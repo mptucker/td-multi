@@ -1,0 +1,205 @@
+{
+  "slug": "sundance",
+  "seo": {
+    "title": "Sundance Camp — Secluded Tiny-Cabin Village & Group Camp on Lake Texoma",
+    "description": "Eighty private acres at the tip of Preston Point. Seven themed tiny cabins, six wooded RV sites, primitive group camping, a sandy swimming beach and pavilions — built for retreats, reunions and small weddings. Book on texomadestinations.com.",
+    "ogImage": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5874-hero.jpg"
+  },
+  "home": {
+    "heroImage": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5874-hero.jpg", "alt": "The tiny cabin village at Sundance Camp at dusk" },
+    "heroKicker": "The Most Peaceful place on Lake Texoma",
+    "heroTitle": "Where rustic meets luxury, and the lake meets the sky.",
+    "heroSubtitle": "Eighty acres, seven tiny cabins, one sandy beach and no one else around. Sundance is the camp you rent for the people you actually want to be with.",
+    "intro": {
+      "title": "Disconnected on purpose",
+      "body": [
+        "Sundance sits at the very tip of Preston Point, fifteen minutes north of Pottsboro at the end of Highway 289, with water on three sides and eighty acres of post oak between you and everything else. There is no Wi-Fi. The night sky is the entertainment.",
+        "The heart of the property is the Tiny Cabin Village — seven individually decorated cabins with Southwestern names, a modern bathhouse a few steps away, big fire pits, sand volleyball and a 400-yard swimming beach. Add six secluded RV sites and a primitive group camping area and you can sleep fifty-plus and host a hundred without seeing another soul."
+      ]
+    },
+    "stats": [
+      { "value": "80", "label": "private acres", "factKey": "sundance.acreage" },
+      { "value": "7", "label": "themed tiny cabins", "factKey": "sundance.cabin_count" },
+      { "value": "6", "label": "wooded RV sites", "factKey": "sundance.rv_count" },
+      { "value": "100", "label": "guests for gatherings", "factKey": "sundance.group_capacity" }
+    ],
+    "features": [
+      {
+        "title": "The Tiny Cabin Village",
+        "icon": "🏡",
+        "body": "Pecos, Glorietta, Rosa Linda, Arroyo, Pinion House, Ponderosa and Cottonwood — seven climate-controlled cabins that sleep two to four, each furnished differently, with a French press, filtered water, a small fridge and a fire pit outside the door.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5873.jpg",
+        "cta": { "label": "See the cabins", "intent": "cabins" }
+      },
+      {
+        "title": "Six RV sites in the trees",
+        "icon": "🚐",
+        "body": "Spacious, shaded gravel pads with 30-amp power and water, a picnic table and fire ring, and a short walk to the private beach. Rigs up to 30 feet. A dump station is close by.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_0166.jpg",
+        "cta": { "label": "Reserve an RV site", "intent": "rv" }
+      },
+      {
+        "title": "Primitive group camping",
+        "icon": "⛺",
+        "body": "Three group camping areas on the lake side of the property for scouts, church groups and big families. Fire pits, picnic tables and a restroom facility; no power or water at the sites.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_7617.jpg",
+        "cta": { "label": "Book group camping", "intent": "tents" }
+      },
+      {
+        "title": "A beach of your own",
+        "icon": "🏖️",
+        "body": "Four hundred yards of sandy swimming beach, a boat ramp, sand volleyball and pavilions with bench tables. On a weekday you will likely have all of it to yourself.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5874-hero.jpg"
+      },
+      {
+        "title": "Chef-crafted, if you want it",
+        "icon": "🍳",
+        "body": "Pre-packaged meals, campfire dinners and s'mores kits can be arranged for your group, along with a Fastrac sunset cruise or a golf cart for the weekend. Ask when you book.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/events-table-night.jpg",
+        "cta": { "label": "Plan a retreat", "intent": "events" }
+      },
+      {
+        "title": "Kayaks, cruises and guides nearby",
+        "icon": "🛶",
+        "body": "Rent kayaks and paddleboards at Lighthouse Marina or Island View, book a striper guide, or catch a Friday-night dinner cruise — all twenty minutes down the peninsula.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3022.jpg",
+        "cta": { "label": "Browse things to do", "intent": "cruises" }
+      }
+    ],
+    "gallery": [
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5874-hero.jpg", "alt": "Tiny cabin village" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5873.jpg", "alt": "Cabin porch" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_0166.jpg", "alt": "Wooded RV site" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_7617.jpg", "alt": "Group camping area" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/events-table-night.jpg", "alt": "Evening table setting" }
+    ],
+    "reviews": [
+      { "quote": "We rented the whole village for a retreat. Zero distractions, incredible sunsets, and the cabins are nicer than they have any right to be.", "author": "Corporate retreat organizer", "source": "Google review" },
+      { "quote": "The stars. Just — the stars.", "author": "Anniversary weekend", "source": "Google review" },
+      { "quote": "Perfect for our scout troop: our own beach, our own fire, and a real bathhouse.", "author": "Troop leader", "source": "Facebook" }
+    ],
+    "hubHandoff": {
+      "title": "Book your cabin, or the whole camp",
+      "body": "Cabin photos, nightly rates and live availability are on texomadestinations.com. Booking three or more cabins? Start with our events team and we'll hold the dates while you gather your group.",
+      "ctas": [
+        { "label": "Book a tiny cabin", "intent": "cabins" },
+        { "label": "Reserve an RV site", "intent": "rv" },
+        { "label": "Plan a group retreat", "intent": "events" }
+      ]
+    }
+  },
+  "stay": {
+    "title": "Cabins, campsites and a very quiet beach",
+    "subtitle": "Every stay at Sundance includes the bathhouse, the beach, the fire pits and the sky.",
+    "sections": [
+      {
+        "title": "Cabins: seven, each one different",
+        "body": [
+          "Pecos, Glorietta and Rosa Linda have king beds for two (a rollaway can be added for $100, and kids under six sleep free in the king). Arroyo sleeps four in two full beds; Pinion House has a queen; Ponderosa is the treehouse with four twins; Cottonwood pairs a full and a twin.",
+          "Each cabin is heated and cooled and furnished with a filtered water dispenser, French press and kettle, towels and linens, cups and wine glasses, a microwave and a small fridge. Bathrooms and hot showers are in the modern bathhouse steps away."
+        ],
+        "bullets": ["Sleeps 2–4", "Climate controlled", "Linens & towels", "Fire pit at each cabin", "Bathhouse nearby", "Pet friendly for a fee"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5873.jpg", "alt": "Tiny cabin exterior" },
+        "cta": { "label": "See cabin availability", "intent": "cabins" },
+        "factKey": "sundance.cabin_count"
+      },
+      {
+        "title": "RV sites",
+        "body": [
+          "Six shaded, spacious gravel sites with 30-amp electric and water, a picnic table and a fire ring, a short walk from the private beach. Maximum rig length is 30 feet; a dump station is close by. Up to four guests per site."
+        ],
+        "bullets": ["30 amp & water", "Max 30' rigs", "Dump station nearby", "Gravel pads", "Wooded view", "Pet friendly"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_0166.jpg", "alt": "RV site" },
+        "cta": { "label": "Reserve an RV site", "intent": "rv" },
+        "factKey": "sundance.rv_count"
+      },
+      {
+        "title": "Primitive & group camping",
+        "body": [
+          "Three group camping areas sit on the lake side of the property with fire pits, picnic tables and a restroom facility. Tents up to eight people; camp at least 100 feet back from the shoreline. Non-profit groups — scouts, church groups, school trips — are especially welcome."
+        ],
+        "bullets": ["Tents only", "Group areas", "Fire pits & tables", "Restroom facility", "No power or water"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_7617.jpg", "alt": "Group camping" },
+        "cta": { "label": "Book group camping", "intent": "tents" }
+      },
+      {
+        "title": "The beach, the ramp and the pavilions",
+        "body": [
+          "A 400-yard sandy swimming beach, a private boat ramp, sand volleyball, large fire pits and covered pavilions with bench tables are shared by everyone on property — which on most nights means your group. There is no lifeguard; swim at your own risk."
+        ],
+        "bullets": ["400-yard beach", "Boat ramp", "Sand volleyball", "Pavilions", "Large fire pits"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5874-hero.jpg", "alt": "Beach and pavilions" }
+      }
+    ],
+    "note": "Sundance has no Wi-Fi by design. Cell coverage is generally good near the cabins."
+  },
+  "plan": {
+    "title": "Finding Sundance",
+    "subtitle": "295 Glen Eden Drive, Pottsboro — the tip of Preston Point, 15 minutes north of town on Highway 289.",
+    "arrival": {
+      "title": "Arrival & check-in",
+      "body": [
+        "Check-in is at 3pm, check-out at 11am. Sundance is a gated, registered-guests-only property; you'll receive arrival instructions and the gate code by text before your stay. Because the camp is unstaffed most evenings, please arrive with everything you need — the nearest store is the Tackle Box on Highway 289, about 20 minutes back toward Pottsboro.",
+        "GPS: 33.877832, -96.636237. If your map app tries to route you across the water, follow 289 all the way north instead."
+      ]
+    },
+    "directions": [
+      "From Pottsboro take SH 289 north for about 15 minutes to the end of Preston Point.",
+      "Glen Eden Drive is the last turn before the water; follow it to the Sundance gate.",
+      "RVs: the road is paved to the gate; sites are gravel with room to turn around.",
+      "Stock up first — the Tackle Box (21 Tackle Box Dr) has ice, firewood, groceries and bait."
+    ],
+    "essentials": [
+      { "title": "Times & access", "items": ["Check-in 3pm · Check-out 11am", "Registered overnight guests only", "Gate code delivered by text", "Quiet hours 11pm–7am"], "factKey": "hub.checkin" },
+      { "title": "Pets", "items": ["$35 per pet, maximum two", "Leashed at all times; no aggressive breeds", "Please pick up after your pet"], "factKey": "hub.pet_fee" },
+      { "title": "Good to know", "items": ["No Wi-Fi on property", "Rollaway bed $100 in cabins 1–3", "Children under 6 free in the king bed", "No ATVs or side-by-sides; designated parking only"], "factKey": "sundance.rollaway" },
+      { "title": "Water & fire", "items": ["No lifeguard — swim at your own risk", "Fires in provided pits only; observe burn bans", "No fireworks or firearms", "Tents at least 100' from the shoreline"] }
+    ],
+    "faqs": [
+      { "q": "Do the cabins have bathrooms?", "a": "Not inside — a modern bathhouse with hot showers is a few steps from the village." },
+      { "q": "Can we rent the whole property?", "a": "Yes. Sundance is regularly bought out for retreats, reunions and weddings. Groups of three or more cabins book through our events team and pay in full at booking." },
+      { "q": "Is there food on site?", "a": "Not routinely, but pre-packaged meals, campfire dinners and breakfast can be arranged for groups. Otherwise the Tackle Box and Pottsboro restaurants are 15–20 minutes away." },
+      { "q": "Can I bring a boat?", "a": "Yes — there is a private ramp and shoreline for registered guests." },
+      { "q": "Is there Wi-Fi?", "a": "No. That's rather the point." }
+    ],
+    "nearby": [
+      { "name": "Lighthouse Resort & Marina", "note": "Fuel dock, store, boat & kayak rentals — 20 minutes." },
+      { "name": "Fastrac cruises", "note": "Sunset, dinner and eagle-watching cruises from Lighthouse Marina." },
+      { "name": "Island View Park", "note": "Lake Texoma's most popular beach and kayak rentals." },
+      { "name": "Tackle Box Outfitters", "note": "Live bait, licenses, propane, firewood and groceries on SH 289." }
+    ]
+  },
+  "groups": {
+    "title": "Your group. Your lake. Nobody else.",
+    "subtitle": "Sundance is designed to be taken over — sleep 50-plus in cabins, RVs and tents, and host up to 100 for the gathering itself.",
+    "intro": [
+      "Most weekends at Sundance belong to one group at a time: a company offsite, a family reunion, a scout troop, a wedding party that wants the ceremony on the beach and the reception under the pavilion. With the whole property yours, the schedule is yours too.",
+      "Our events team helps with the pieces you don't want to think about — catered dinners, s'mores by the fire, breakfast at the pavilion, a sunset cruise for the whole crew, golf carts, even massages. Bookings of three or more cabins are paid in full at reservation and are non-refundable, so let's talk dates first."
+    ],
+    "venues": [
+      { "name": "Tiny Cabin Village buy-out", "capacity": "7 cabins · sleeps up to 20", "details": ["All seven cabins together", "Bathhouse & fire pits", "Add RV sites and group camping to reach 50+"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5874-hero.jpg", "alt": "Tiny cabin village" } },
+      { "name": "Beach & pavilions", "capacity": "Gatherings up to 100", "details": ["400-yard private beach", "Covered pavilions with bench tables", "Large fire pits & sand volleyball", "Open vendor — bring your caterer or use ours"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/events-table-night.jpg", "alt": "Pavilion dinner" } },
+      { "name": "Group camping areas", "capacity": "3 areas · large tents welcome", "details": ["Scouts, church and school groups", "Fire pits & tables", "Restroom facility", "Non-profit friendly"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_7617.jpg", "alt": "Group camping" } }
+    ],
+    "eventTypes": ["Corporate retreats", "Family reunions", "Intimate weddings", "Scout & church groups", "Yoga & wellness weekends", "Milestone birthdays"],
+    "cta": { "label": "Talk to our events team", "intent": "events" },
+    "contactPhone": "903.200.1408"
+  },
+  "rules": {
+    "title": "Sundance policies",
+    "subtitle": "A small camp works because everyone looks after it. Here's what we ask.",
+    "groups": [
+      { "title": "Reservations & payment", "items": ["Guests must be 25 or older to book", "Two-night minimum in peak season; three nights on holiday weekends", "Pay at Check-In: 14 days' notice or one night charged", "Pay Now & Save: non-refundable; only added nights allowed", "Three or more cabins: paid in full at booking, non-refundable", "Once checked in, you're responsible for your full stay"], "factKey": "hub.cancel_pay_at_checkin" },
+      { "title": "On property", "items": ["Check-in 3pm · Check-out 11am", "Registered overnight guests only", "Quiet hours 11pm–7am", "Maximum 4 guests per RV site; see each cabin for capacity", "Designated parking only; no ATVs or side-by-sides"], "factKey": "hub.quiet_hours" },
+      { "title": "Pets", "items": ["$35 per pet, maximum two", "No aggressive breeds; leashed at all times", "$250 deep-clean if pets are found in non-pet units"], "factKey": "hub.pet_fee" },
+      { "title": "Fees you can avoid", "items": ["$250 excessive cleaning", "$250 smoking in a cabin", "$75 quiet-hour violation", "$25 lost key"] }
+    ],
+    "policyNote": "No refunds for weather, road conditions, early departure or circumstances beyond our control. Please observe Grayson County burn bans — we'll text you if one is in effect."
+  },
+  "packages": {
+    "title": "Add-ons and happenings",
+    "subtitle": "Small things that make a Sundance weekend feel effortless.",
+    "intro": "Add these inside your reservation on texomadestinations.com, or ask the events team to bundle them for your group."
+  },
+  "footerBlurb": "Sundance Camp is an 80-acre glamping and group camp at the tip of Preston Point on Lake Texoma, with seven tiny cabins, six RV sites, primitive group camping and a private beach. Part of the Texoma Destinations family; all reservations are made at texomadestinations.com."
+}

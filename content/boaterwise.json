@@ -1,0 +1,125 @@
+{
+  "slug": "boaterwise",
+  "seo": {
+    "title": "BoaterWise — NSBC-Certified On-Water Boating Courses on Lake Texoma",
+    "description": "Hands-on boat handling with NSBC-certified instructors who are also USCG captains. Four 3-hour on-water modules ($199 each, 2–4 students), private instruction on your own boat, a Boat Club course and Trailer Like a Boss — all on Lake Texoma at Lighthouse Marina.",
+    "ogImage": "https://texomadestinations.com/wp-content/uploads/2023/05/Berkshire_STS_250CL-2-1.jpg"
+  },
+  "home": {
+    "heroImage": { "src": "https://texomadestinations.com/wp-content/uploads/2023/05/Berkshire_STS_250CL-2-1.jpg", "alt": "Berkshire pontoon used for BoaterWise training" },
+    "heroKicker": "Your course to on-water confidence",
+    "heroTitle": "Learn to run a boat the way captains do.",
+    "heroSubtitle": "Small-group, hands-on training on Lake Texoma with NSBC-certified instructors who hold USCG captain's licenses. No classroom — you're at the helm from the first hour.",
+    "intro": {
+      "title": "Confidence is a skill. We teach it on the water.",
+      "body": [
+        "BoaterWise is the training arm of the Texoma Destinations family. Our instructors are National Safe Boating Council certified and USCG captains who run charters on this lake every week — so what you learn is how boats actually behave in wind, current and a crowded marina, not how they behave in a video.",
+        "Classes run on 24-foot Berkshire pontoons from the Lighthouse Marina dock, with a maximum of four students so everyone gets real time at the helm. Complete all four NSBC modules and you earn a Certificate of Completion. Already own a boat? We'll come teach you on it."
+      ]
+    },
+    "stats": [
+      { "value": "$199", "label": "per 3-hour NSBC module", "factKey": "boaterwise.module_price" },
+      { "value": "2–4", "label": "students per class" },
+      { "value": "4", "label": "modules to certification" },
+      { "value": "USCG", "label": "captain-licensed instructors" }
+    ],
+    "features": [
+      {
+        "title": "Module 1 — Intro to Powerboating",
+        "icon": "①",
+        "body": "Pre-departure checklist, centering the helm, shifting and throttle control, station holding. The foundation for everything else.",
+        "cta": { "label": "Book Module 1", "intent": "boaterwise-book" }
+      },
+      {
+        "title": "Module 2 — Precision Docking & Boat Handling",
+        "icon": "②",
+        "body": "180-degree turns in tight spaces, port and starboard docking, and the S.C.A.N. method for situational awareness around the marina.",
+        "cta": { "label": "Book Module 2", "intent": "boaterwise-book" }
+      },
+      {
+        "title": "Module 3 — Open Water Boat Handling",
+        "icon": "③",
+        "body": "Trim and planing, ferrying across wind and current, emergency stops and shoreline approaches.",
+        "cta": { "label": "Book Module 3", "intent": "boaterwise-book" }
+      },
+      {
+        "title": "Module 4 — Advanced Maneuvering",
+        "icon": "④",
+        "body": "Wake crossing, person-overboard recovery, sharp turns and collision avoidance. Finish here and you're certified.",
+        "cta": { "label": "Book Module 4", "intent": "boaterwise-book" }
+      },
+      {
+        "title": "Private instruction on your boat",
+        "icon": "🛥️",
+        "body": "Bring your own boat (up to 32 feet) and we'll build the session around it — docking at your slip, launching at your ramp, the maneuvers you actually worry about.",
+        "cta": { "label": "Book private instruction", "intent": "boaterwise-private" }
+      },
+      {
+        "title": "Boat Club course & Trailer Like a Boss",
+        "icon": "🚚",
+        "body": "A two-hour orientation for Big Water Boat Club members (free with membership), and a two-hour trailering clinic that ends the ramp anxiety for good.",
+        "cta": { "label": "See all classes", "intent": "boaterwise-book" }
+      }
+    ],
+    "gallery": [
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/05/Berkshire_STS_250CL-2-1.jpg", "alt": "Training pontoon" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/marina-boat-slips.jpg", "alt": "Lighthouse Marina docks" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A8658-hero.jpg", "alt": "Fuel dock at Lighthouse Marina" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2026/03/IMG_2113-Port.jpeg", "alt": "Pontoon on Lake Texoma" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/DJI_0936.jpg", "alt": "Aerial of the marina" }
+    ],
+    "reviews": [
+      { "quote": "Bought our first pontoon in April and took Modules 1 and 2 before we ever launched it. Best money we spent on the boat.", "author": "New boat owners", "source": "Google review" },
+      { "quote": "I'd been boating for years and still learned how to dock in a crosswind properly.", "author": "Slip tenant at Lighthouse", "source": "Google review" },
+      { "quote": "Our instructor was patient, funny and clearly an actual captain.", "author": "Boat Club member", "source": "Facebook" }
+    ],
+    "hubHandoff": {
+      "title": "Book a class, then go boating",
+      "body": "Classes and private instruction are scheduled online. When you're ready to put it to use, Lighthouse Marina rents the same Berkshire pontoons you trained on — and Big Water Boat Club members get free BoaterWise training plus 50% off rentals.",
+      "ctas": [
+        { "label": "Book a class", "intent": "boaterwise-book" },
+        { "label": "Private instruction", "intent": "boaterwise-private" },
+        { "label": "Rent a tritoon at Lighthouse", "intent": "boats" }
+      ]
+    }
+  },
+  "plan": {
+    "title": "Courses, schedule & where we meet",
+    "subtitle": "Training runs from the dock at Lighthouse Resort & Marina, 300 Lighthouse Drive, Pottsboro.",
+    "arrival": {
+      "title": "What to expect",
+      "body": [
+        "Each NSBC module is three hours on the water with two to four students. Meet at the Lighthouse Marina fuel dock 15 minutes before your start time; we'll have the boat, life jackets and a checklist ready. Wear non-marking shoes, bring sunscreen, water and a hat.",
+        "In Texas, boater education is recommended for everyone and required for operators born on or after September 1, 1993 — the free BoatUS Foundation online course covers the classroom portion; BoaterWise is where you learn to actually drive."
+      ]
+    },
+    "directions": [
+      "From Pottsboro, SH 289 north about 6 miles; Lighthouse Drive is on the left just past the Tackle Box.",
+      "Park in the resort lot and walk to the fuel dock.",
+      "Private instruction on your boat: we meet you at your marina or ramp anywhere on Lake Texoma."
+    ],
+    "essentials": [
+      { "title": "Classes", "items": ["NSBC modules: $199 each, 3 hours, 2–4 students", "Complete all four for the Certificate of Completion", "Private instruction, Boat Club course and Trailer Like a Boss also available"], "factKey": "boaterwise.module_price" },
+      { "title": "Boats", "items": ["We train on 24' Berkshire pontoons", "Private instruction on your own boat up to 32'", "Larger vessels: we'll refer you to a partner"], "factKey": "boaterwise.boat_limit" },
+      { "title": "Bring", "items": ["Non-marking shoes, sunscreen, water, hat", "Your Texas boater-education card if you have one", "Questions — lots of them"] },
+      { "title": "Weather", "items": ["Classes run in light rain", "High wind or lightning reschedules — we'll text you", "Summer classes start early to beat the heat"] }
+    ],
+    "faqs": [
+      { "q": "Do I need any experience?", "a": "None. Module 1 assumes you've never touched a throttle." },
+      { "q": "Is this the Texas boater-education certificate?", "a": "No — that's a free online course through the BoatUS Foundation. BoaterWise is hands-on, on-water training that builds on it." },
+      { "q": "Can two of us share a private session?", "a": "Yes; private instruction is priced per session, not per person." },
+      { "q": "Do Boat Club members pay?", "a": "Big Water Boat Club members receive free BoaterWise training, and TAP Navigator members save 10% on courses." }
+    ]
+  },
+  "rules": {
+    "title": "Policies",
+    "subtitle": "Scheduling, weather and safety.",
+    "groups": [
+      { "title": "Scheduling", "items": ["Classes require a minimum of two students; we'll confirm 48 hours ahead", "Reschedule at least 48 hours before your class at no charge", "Late arrivals may forfeit helm time"] },
+      { "title": "Safety", "items": ["Life jackets are worn by all students while underway", "No alcohol before or during class", "Instructors may end a session for unsafe conditions or conduct"] },
+      { "title": "Weather", "items": ["Light rain: class runs", "High wind or lightning: we reschedule and text you"] }
+    ],
+    "policyNote": "BoaterWise is part of the Texoma Destinations group of companies. Payment and scheduling are handled through our Square booking pages."
+  },
+  "footerBlurb": "BoaterWise provides NSBC-certified, hands-on boating instruction on Lake Texoma from Lighthouse Resort & Marina, taught by USCG-licensed captains. Part of the Texoma Destinations group of companies."
+}

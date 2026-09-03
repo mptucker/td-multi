@@ -1,0 +1,12 @@
+[
+  {
+    "id": "alert-labor-day-2026",
+    "text": "Fall is the best-kept secret on Texoma — cooler evenings, quieter coves, and weekday rates.",
+    "cta_label": "Check fall availability",
+    "cta_url": "https://texomadestinations.com/where-to-stay/cabins?utm_source=brand-site&utm_medium=alert&utm_campaign=fall-2026",
+    "starts_at": "2026-09-01T00:00:00-05:00",
+    "ends_at": "2026-10-31T23:59:59-05:00",
+    "show_on_sites": ["lighthouse", "paradise", "sundance"],
+    "published": true
+  }
+]

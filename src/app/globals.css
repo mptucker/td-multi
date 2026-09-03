@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/* Brand tokens are injected as CSS variables on <html> by BrandLayout. */
+:root {
+  --c-primary: #0c1854;
+  --c-primary-dark: #070f38;
+  --c-accent: #e03c30;
+  --c-accent2: #4aa3df;
+  --c-bg: #f7f8fb;
+  --c-surface: #ffffff;
+  --c-ink: #141a2e;
+  --c-muted: #5b647c;
+  --font-display: "Lora", Georgia, serif;
+  --font-body: "Source Sans 3", system-ui, sans-serif;
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --color-primary: var(--c-primary);
+  --color-primary-dark: var(--c-primary-dark);
+  --color-accent: var(--c-accent);
+  --color-accent2: var(--c-accent2);
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --radius-brand: var(--radius);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, .display { font-family: var(--font-display); letter-spacing: -0.01em; }
+
+.container { width: 100%; max-width: 72rem; margin-inline: auto; padding-inline: 1.25rem; }
+@media (min-width: 768px) { .container { padding-inline: 2rem; } }
+
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem; justify-content: center;
+  padding: .85rem 1.35rem; font-weight: 700; border-radius: var(--radius);
+  text-decoration: none; transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  line-height: 1.1;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--c-accent); color: #fff; box-shadow: 0 6px 18px -8px color-mix(in srgb, var(--c-accent) 70%, transparent); }
+.btn-primary:hover { background: color-mix(in srgb, var(--c-accent) 88%, black); }
+.btn-secondary { background: var(--c-primary); color: #fff; }
+.btn-secondary:hover { background: var(--c-primary-dark); }
+.btn-ghost { background: transparent; color: var(--c-primary); box-shadow: inset 0 0 0 2px var(--c-primary); }
+.btn-ghost.on-dark { color: #fff; box-shadow: inset 0 0 0 2px rgba(255,255,255,.7); }
+
+.card { background: var(--c-surface); border-radius: var(--radius); box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 10px 30px -18px rgba(0,0,0,.25); }
+.eyebrow { text-transform: uppercase; letter-spacing: .18em; font-size: .72rem; font-weight: 700; color: var(--c-accent); }
+.prose-brand p + p { margin-top: 1rem; }
+.hero-shade { background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55)); }
+
+.checklist li { padding-left: 1.6rem; position: relative; }
+.checklist li::before {
+  content: ""; position: absolute; left: 0; top: .55em; width: .75rem; height: .75rem;
+  border-radius: 999px; background: var(--c-accent);
+}

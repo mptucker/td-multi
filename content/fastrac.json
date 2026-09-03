@@ -1,0 +1,207 @@
+{
+  "slug": "fastrac",
+  "seo": {
+    "title": "Fastrac Charters & Cruises — Sunset, Dinner & Themed Cruises and Private Charters on Lake Texoma",
+    "description": "Lake Texoma's only cruise and charter service. Public sunset, dinner, lake-history, eagle-watching and murder-mystery cruises aboard the Island Girl and Sight-Sea-Er II, private charters for 2–70, Lake Day beach trips and the Texoma Water Taxi. Departing Lighthouse Marina, Pottsboro. Tickets on texomadestinations.com.",
+    "ogImage": "https://texomadestinations.com/wp-content/uploads/2023/06/DJI_0886-hero.jpg"
+  },
+  "home": {
+    "heroImage": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/DJI_0886-hero.jpg", "alt": "The Island Girl cruising Lake Texoma at sunset" },
+    "heroKicker": "The Most Amazing way to see Lake Texoma",
+    "heroTitle": "Catch a sunset. Catch some fun.",
+    "heroSubtitle": "Lake Texoma's only cruise and charter service — ticketed sunset and dinner cruises nearly year-round, private charters for two to seventy, and the water taxi that gets you to the islands.",
+    "intro": {
+      "title": "The lake is better from the water",
+      "body": [
+        "Fastrac has run Lake Texoma's public cruises and private charters from the Lighthouse Marina charter dock for years. In peak season there's a cruise every Friday and Saturday night; in winter the eagle-watching breakfast cruises sell out. The 90-minute Lake Tour is a narrated history of the lake — the marinas, the million-dollar homes, Denison Dam and the islands.",
+        "Our fleet fits any group: the Island Girl, Texoma's largest party boat with a climate-controlled cabin and two decks; the Sight-Sea-Er II, a 55-foot tritoon with a galley and restroom; the covered Mellow Yellow and the nimble Jolt for water-taxi runs and small charters; and the Last Call yacht for ten. Every cruise is BYOB, and every one is captained by a licensed USCG captain."
+      ]
+    },
+    "stats": [
+      { "value": "70", "label": "guests on the Island Girl", "factKey": "fastrac.island_girl" },
+      { "value": "$35", "label": "sunset cruise", "factKey": "fastrac.sunset_price" },
+      { "value": "1.5 hr", "label": "most public cruises" },
+      { "value": "2–70", "label": "private charter sizes" }
+    ],
+    "features": [
+      {
+        "title": "Sunset & dinner cruises",
+        "icon": "🌅",
+        "body": "Friday and Saturday evenings in season. The 90-minute Sunset Cruise aboard the Sight-Sea-Er II is $35 for all ages; the Dinner Cruise on the Island Girl adds a full dinner, dessert and soft drinks for $60 (kids 3–12 $40). BYOB.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3022.jpg",
+        "cta": { "label": "See dates & tickets", "intent": "cruises" }
+      },
+      {
+        "title": "Lake Tour Experience",
+        "icon": "🗺️",
+        "body": "A narrated 90-minute history tour — $30 per person, or private on the Mellow Yellow (up to 18) or Sight-Sea-Er (up to 36). Add a boxed lunch.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/lake-day.jpg",
+        "cta": { "label": "Book a Lake Tour", "intent": "cruises" }
+      },
+      {
+        "title": "Themed cruises",
+        "icon": "🎭",
+        "body": "Murder Mystery dinner cruises (adults, $79), Eagle Watching Breakfast cruises in January and February ($59), Cupid's Arrow for Valentine's, Mother's Day brunch, Sights & Sips, and the kids' Discovering Texie cruise with Lake Texoma's dragon mascot.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2026/06/texie_cruises_header-1024x768.jpg",
+        "cta": { "label": "Upcoming themed cruises", "href": "/packages" }
+      },
+      {
+        "title": "Private charters",
+        "icon": "🥂",
+        "body": "Weddings and receptions, corporate outings, reunions, memorials, birthdays. Pick the date, time, menu and boat; we bring the captain, crew and wait service. Island Girl from $500/hr, Sight-Sea-Er II from $350/hr.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/DJI_0886-hero.jpg",
+        "cta": { "label": "Request a charter quote", "href": "/groups-and-events" }
+      },
+      {
+        "title": "Lake Day & Boat Ride experiences",
+        "icon": "🏝️",
+        "body": "Four hours to a secluded beach with captain and crew, kayaks and catering as add-ons — $1,000 for up to 12, $40 per extra guest to 36. Or a private Boat Ride for up to six from $150 an hour with your own itinerary.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/boat-ride.jpg",
+        "cta": { "label": "Book a Lake Day", "intent": "water-taxi-book" }
+      },
+      {
+        "title": "Texoma Water Taxi",
+        "icon": "🚕",
+        "body": "Like Uber, on the water. $25 per person each way between Highport Marina and the islands, or $100 an hour private for up to six. Text or call for a pickup at any marina or your dock, sunrise to sunset.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/water-taxi-map.jpg",
+        "cta": { "label": "Water taxi routes & rates", "href": "https://texomawatertaxi.com/" }
+      }
+    ],
+    "gallery": [
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/DJI_0886-hero.jpg", "alt": "Island Girl underway" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3022.jpg", "alt": "Guests on a sunset cruise" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/lake-day.jpg", "alt": "Lake Day beach experience" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/boat-ride.jpg", "alt": "Private boat ride" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A3330.jpg", "alt": "Cruise at golden hour" }
+    ],
+    "reviews": [
+      { "quote": "The dinner cruise was the highlight of our anniversary weekend. Great food, great captain, unreal sunset.", "author": "Anniversary couple", "source": "Google review" },
+      { "quote": "Eagle cruise in January — we counted eleven bald eagles before breakfast was even served.", "author": "Birder from Plano", "source": "Google review" },
+      { "quote": "Booked the Island Girl for our company party. Zero stress; they handled everything.", "author": "Office manager", "source": "Facebook" }
+    ],
+    "hubHandoff": {
+      "title": "Dates, tickets and charters — all in one place",
+      "body": "Public cruise tickets and Lake Days are sold through Texoma Destinations, with the schedule posted about a month ahead. Private charters start with a quick quote request to our events team.",
+      "ctas": [
+        { "label": "See cruise dates & tickets", "intent": "cruises" },
+        { "label": "Request a private charter", "intent": "events" },
+        { "label": "Book a Lake Day or Boat Ride", "intent": "water-taxi-book" }
+      ]
+    }
+  },
+  "stay": {
+    "title": "Cruises, charters & the fleet",
+    "subtitle": "Everything departs from the charter dock at Lighthouse Marina, 300 Lighthouse Drive, unless a cruise says otherwise.",
+    "sections": [
+      {
+        "title": "Public cruises",
+        "body": [
+          "Ticketed cruises run nearly year-round, with something every Friday and Saturday night in peak season (May–September) unless the boat is privately chartered. The schedule is posted roughly a month ahead — April's cruises appear in March.",
+          "Sunset Cruise — 1.5 hours on the Sight-Sea-Er II, $35 all ages, snacks sold aboard. Dinner Cruise — 1.5 hours on the Island Girl with dinner, dessert and soft drinks, $60 adults / $40 kids 3–12. Lake Tour — 90 narrated minutes, $30. Sights & Sips — light snacks and drinks, $49 / $39 under 12. All BYOB for adult beverages."
+        ],
+        "bullets": ["Fri & Sat nights in season", "Sunset $35", "Dinner $60 / $40", "Lake Tour $30", "BYOB", "72-hour cancellation"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3022.jpg", "alt": "Sunset cruise" },
+        "cta": { "label": "See dates & buy tickets", "intent": "cruises" },
+        "factKey": "fastrac.dinner_price"
+      },
+      {
+        "title": "Themed & seasonal cruises",
+        "body": [
+          "Eagle Watching Breakfast Cruises (January–February, Saturdays and select Sundays, $59, kids 3 and under free) — hot breakfast, mimosa setups and hundreds of wintering eagles. Murder Mystery Cruises ($79, adults only) with rotating plots from 1920s mob to 1980s Wall Street. Cupid's Arrow dinner cruise for Valentine's, Mother's Day Brunch, and the family Discovering Texie Cruise with Lake Texoma's dragon."
+        ],
+        "bullets": ["Eagle Watching $59", "Murder Mystery $79", "Cupid's Arrow $85", "Mother's Day Brunch $59", "Texie Cruise $19.44"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2026/06/texie_cruises_header-1024x768.jpg", "alt": "Texie cruise" },
+        "cta": { "label": "Upcoming themed cruises", "href": "/packages" }
+      },
+      {
+        "title": "Private charters",
+        "body": [
+          "Choose the boat, the date, the menu and the guest list. The Island Girl (up to 70, climate-controlled interior, bathrooms aboard, two decks, catering partners and rotating menus) from $500 an hour. The Sight-Sea-Er II (55-foot tritoon, galley, restroom, up to 36) from $350 an hour. The Last Call 55-foot yacht for up to ten, with appetizer, barbecue or taco-bar menus, from $900 for two hours — or the romantic four-course version for two at $450.",
+          "Private charters require 14 days' notice to cancel without penalty."
+        ],
+        "bullets": ["Island Girl to 70", "Sight-Sea-Er II to 36", "Last Call to 10", "Captain & crew included", "Catering available", "14-day cancellation"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/DJI_0886-hero.jpg", "alt": "Island Girl" },
+        "cta": { "label": "Request a charter quote", "href": "/groups-and-events" },
+        "factKey": "fastrac.island_girl"
+      },
+      {
+        "title": "Lake Day, Boat Rides & Water Taxi",
+        "body": [
+          "Lake Day Experience: four hours to a secluded beach on the Sight-Sea-Er or Mellow Yellow with captain and crew — $1,000 for up to 12, $40 per additional guest up to 36, kayaks and catering optional. Boat Ride Experience: one to six hours for up to six with your own itinerary, $150 an hour. Texoma Water Taxi: $25 per person each way between Highport Marina and the islands, or $100 an hour private for up to six, sunrise to sunset."
+        ],
+        "bullets": ["Lake Day 4 hrs from $1,000", "Boat Ride $150/hr", "Water Taxi $25 pp", "Pets OK on taxi & Lake Day"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/lake-day.jpg", "alt": "Lake Day" },
+        "cta": { "label": "Book a Lake Day or ride", "intent": "water-taxi-book" }
+      }
+    ],
+    "note": "Prices verified on the date shown; the live schedule and checkout are on texomadestinations.com."
+  },
+  "plan": {
+    "title": "Boarding at Lighthouse Marina",
+    "subtitle": "300 Lighthouse Drive, Pottsboro — the charter dock beside the marina store.",
+    "arrival": {
+      "title": "Before you board",
+      "body": [
+        "Boarding opens 15 minutes before departure and the boat leaves promptly at the scheduled time — please allow time for parking and the walk to the dock. Bring your ticket on your phone; a passenger manifest is required for every cruise.",
+        "Cruises depart rain or shine. If the captain cancels for weather (high wind, lightning), you receive a full refund less any expenses incurred. Dress is casual to semi-casual; bring a layer for the top deck."
+      ]
+    },
+    "directions": [
+      "From Pottsboro, SH 289 north about 6 miles; Lighthouse Drive is on the left just past the Tackle Box.",
+      "Park in the main resort lot and walk down to the charter dock next to the fuel dock.",
+      "Some Boat Ride departures leave from Highport Marina (120 Texoma Harbor Rd) — your confirmation will say so.",
+      "Staying the night? Lighthouse cabins are a two-minute walk from the dock."
+    ],
+    "essentials": [
+      { "title": "Tickets & timing", "items": ["Board 15 minutes before departure", "Boat leaves on time", "Public cruises: 72-hour cancellation", "Private charters: 14-day cancellation"], "factKey": "fastrac.cancel_public" },
+      { "title": "Food & drink", "items": ["All cruises are BYOB for adult beverages; a small cooler is fine", "Dinner and themed cruises include the meal", "Snacks sold aboard the Sunset Cruise"] },
+      { "title": "Kids & pets", "items": ["Kids 12 and under wear life jackets on smaller vessels and swimming cruises", "Murder Mystery and Cupid's Arrow are adults only", "Leashed pets on the Water Taxi and Lake Day only"] },
+      { "title": "Good to know", "items": ["Island Girl is handicapped accessible with bathrooms aboard", "No swimming from the Island Girl", "No bareboat charters — every boat comes with our captain", "All vessels return to dock by 11pm"] }
+    ],
+    "faqs": [
+      { "q": "When is the schedule posted?", "a": "About a month ahead — April's cruises are posted in March. Follow us or check texomadestinations.com." },
+      { "q": "Can I bring my own drinks?", "a": "Yes. Every cruise is BYOB for adult beverages; bring a small cooler if you like." },
+      { "q": "What if the weather is bad?", "a": "Cruises depart rain or shine. If the captain cancels for wind or lightning, you get a full refund less any expenses incurred." },
+      { "q": "Can I charter a boat without a captain?", "a": "No — all charters include a USCG-licensed captain and crew." },
+      { "q": "Do you do overnight cruises?", "a": "No; every vessel is back at the dock by 11pm." }
+    ],
+    "nearby": [
+      { "name": "Lighthouse Resort & Marina", "note": "Cabins and RV sites steps from the dock; fuel and store on site." },
+      { "name": "Island View Park", "note": "Beach day before an evening cruise — two minutes away." },
+      { "name": "Tackle Box Outfitters", "note": "Ice and last-minute cooler supplies on SH 289." }
+    ]
+  },
+  "groups": {
+    "title": "Private charters for two to seventy",
+    "subtitle": "Corporate events, weddings and receptions, celebrations, reunions and parties — on the water, with a crew that has done this a thousand times.",
+    "intro": [
+      "Tell us the occasion and the headcount and we'll match the boat: the Island Girl for big parties and receptions, the Sight-Sea-Er II for groups up to 36 who want a galley aboard, the Last Call yacht for an intimate ten, or the Mellow Yellow for a laid-back eighteen. Every charter includes captain, crew and fuel; catering runs from appetizers to plated dinners, and we can add a DJ, live music or a theme.",
+      "Charters book around the public schedule, so weekend evenings in summer go first. Private charters require 14 days' notice to cancel without penalty. Send a quote request and our events team will reply with dates and options."
+    ],
+    "venues": [
+      { "name": "Island Girl", "capacity": "Up to 70 · seated dinner 48", "details": ["Texoma's largest party boat", "Climate-controlled interior, two decks", "Bathrooms aboard, handicapped accessible", "Catering partners, DJs & live music", "From $500/hour"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/DJI_0886-hero.jpg", "alt": "Island Girl" } },
+      { "name": "Sight-Sea-Er II", "capacity": "Up to 36", "details": ["55' Trident tritoon", "Galley, restroom, climate-controlled cabin", "Lake Tours & Lake Days", "From $350/hour"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/lake-day.jpg", "alt": "Sight-Sea-Er II" } },
+      { "name": "Last Call & Mellow Yellow", "capacity": "10 · 18", "details": ["Last Call 55' yacht: appetizer, BBQ or taco-bar menus; romantic 4-course for two", "Mellow Yellow: covered bench seating for 18", "Jolt: six-passenger water taxi"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/boat-ride.jpg", "alt": "Small charter" } }
+    ],
+    "eventTypes": ["Weddings & receptions", "Corporate outings", "Reunions", "Birthdays & anniversaries", "Proposals & elopements", "Memorials", "Bachelor & bachelorette parties"],
+    "cta": { "label": "Request a private charter quote", "intent": "events" },
+    "contactPhone": "903.200.1408"
+  },
+  "rules": {
+    "title": "Cruise policies",
+    "subtitle": "The fine print for a smooth departure.",
+    "groups": [
+      { "title": "Cancellations", "items": ["Public cruises: 72 hours' notice or the full fare is forfeited", "Private charters and Lake Days: 14 days' notice or the full amount is forfeited", "Weather cancellations by the captain are refunded in full, less expenses incurred"], "factKey": "fastrac.cancel_public" },
+      { "title": "Boarding", "items": ["Boarding begins 15 minutes before departure", "The boat leaves promptly at the scheduled time", "A passenger manifest is required — bring ID for adults", "Dress casual to semi-casual"] },
+      { "title": "Aboard", "items": ["BYOB for adult beverages; small coolers welcome", "Kids 12 and under wear life jackets on smaller vessels and swimming cruises", "No swimming from the Island Girl", "Pets only on the Water Taxi and Lake Day Experiences"] },
+      { "title": "Charters", "items": ["Every charter includes a USCG-licensed captain and crew — no bareboat", "Vessels return to dock by 11pm", "Capacity limits are set by the Coast Guard and cannot be exceeded", "Payment in full secures the date"] }
+    ],
+    "policyNote": "Cruises depart rain or shine. Should the captain, at their sole discretion, cancel due to adverse weather such as high winds or lightning, you will be issued a full refund for the cruise less any expenses incurred."
+  },
+  "packages": {
+    "title": "Upcoming cruises & packages",
+    "subtitle": "Themed cruises, seasonal specials and picnic experiences, updated as the schedule is released.",
+    "intro": "Tickets go on sale about a month before each cruise on texomadestinations.com. Private picnics and Lake Days can be booked any time."
+  },
+  "footerBlurb": "Fastrac Charters & Cruises is Lake Texoma's only public cruise and private charter service, departing the charter dock at Lighthouse Marina in Pottsboro, Texas, and operator of the Texoma Water Taxi. Part of the Texoma Destinations family; tickets are sold at texomadestinations.com."
+}

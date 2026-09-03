@@ -1,0 +1,28 @@
+{
+  "name": "td-brand-sites",
+  "version": "1.0.0",
+  "description": "Texoma Destinations multi-brand gateway sites — one Next.js codebase, domain-based brand configuration, content from Supabase (with local JSON fallback).",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "seed": "node scripts/seed-supabase.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.115.0",
+    "next": "^15.5.25",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.4.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3"
+  }
+}

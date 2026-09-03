@@ -1,0 +1,222 @@
+{
+  "slug": "paradise",
+  "seo": {
+    "title": "Paradise on Lake Texoma — Glamping, Cabins, RV & Primitive Camping in Pottsboro, TX",
+    "description": "this is Paradise: 200 gated, wooded acres on Lake Texoma with waterfront glamping Kabanas, Kasitas and Kimas, a 1920s train-car cabin, RV sites, primitive camping, a hammock garden and a community bar. Book on texomadestinations.com.",
+    "ogImage": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A5430-hero.jpg"
+  },
+  "home": {
+    "heroImage": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A5430-hero.jpg", "alt": "Sunset over the glamping Kabanas at Paradise on Lake Texoma" },
+    "heroKicker": "The Most Relaxing place on Lake Texoma",
+    "heroTitle": "Kick your feet up. this is Paradise.",
+    "heroSubtitle": "Two hundred gated acres of oaks, hammocks and water views, a slow-cooked sunset every evening, and nothing on the schedule but the marshmallows.",
+    "intro": {
+      "title": "Escape the hustle without leaving North Texas",
+      "body": [
+        "Paradise sits on the quiet western shore of Lake Texoma, about 90 minutes from Dallas and a world away from it. It's the property we send people to when they say they want to actually unplug — a gated peninsula of shade trees, a hammock garden strung between the oaks, a community bar where neighbors become friends by the second night, and a big group firepit that is always lit by dusk.",
+        "Stay in a glamping Kabana or Kasita steps from the water, sleep in a real 1920s train car, roll in with your RV or vintage camper, or pitch a tent on the primitive shoreline. However you do it, you'll end up in the same place: a camp chair, facing west, watching the sky go orange."
+      ]
+    },
+    "stats": [
+      { "value": "200", "label": "gated acres", "factKey": "paradise.acreage" },
+      { "value": "3", "label": "styles of glamping", "factKey": "paradise.glamping" },
+      { "value": "40", "label": "RV & camper sites", "factKey": "paradise.rv_count" },
+      { "value": "1", "label": "1920s train-car cabin" }
+    ],
+    "features": [
+      {
+        "title": "Glamping in style",
+        "icon": "⛺",
+        "body": "Waterfront Kabanas for two, waterview Kasitas that sleep a family of four, and cozy Kimas with outdoor kitchens. All climate-controlled with USB charging, fire pits, grills and linens — and a shared bathhouse a short walk away.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A0862.jpg",
+        "cta": { "label": "See glamping units", "intent": "cabins" }
+      },
+      {
+        "title": "Sleep in a train car",
+        "icon": "🚂",
+        "body": "The Paradise Express is a real 1920s rail car turned two-bedroom, two-bath cabin that sleeps six and welcomes your dog. Rustic Cabin 3 next door is a favorite for fishing weekends.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A1286.jpg",
+        "cta": { "label": "Check cabin dates", "intent": "cabins" }
+      },
+      {
+        "title": "RV & vintage camper sites",
+        "icon": "🚐",
+        "body": "Shaded and waterfront sites with 30/50-amp power and water, many with full hookups, all with a fire ring and a lake view. We especially love vintage campers — bring yours and you'll fit right in.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A4518.jpg",
+        "cta": { "label": "Find an RV site", "intent": "rv" }
+      },
+      {
+        "title": "Primitive camping",
+        "icon": "🔥",
+        "body": "A short hike from the parking area to a secluded stretch of shoreline. No hookups, no neighbors, just a fire pit and the stars. Bring water and a good headlamp.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_9916.jpg",
+        "cta": { "label": "Reserve a tent site", "intent": "tents" }
+      },
+      {
+        "title": "Hammock garden & community bar",
+        "icon": "🌅",
+        "body": "Our two most-photographed spots. Claim a hammock for the afternoon, then wander over to the community bar and the big firepit when the sun starts to drop.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A5513.jpg"
+      },
+      {
+        "title": "Your own boat ramp & kayaks",
+        "icon": "🛶",
+        "body": "Registered guests launch for free on the private ramp (26 feet and under). Rent kayaks and paddleboards at the office and paddle the calm coves along our shoreline.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A1916.jpg",
+        "cta": { "label": "Rent kayaks & SUPs", "intent": "kayaks" }
+      }
+    ],
+    "gallery": [
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A5430-hero.jpg", "alt": "Kabanas at golden hour" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A0862.jpg", "alt": "Inside a glamping Kasita" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A1916.jpg", "alt": "Kayaks on the Paradise shoreline" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_9070.jpg", "alt": "Campfire at Paradise" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A4518.jpg", "alt": "RV site under the oaks" }
+    ],
+    "reviews": [
+      { "quote": "The Kasita was spotless and the sunset from our porch was unreal. We didn't touch our phones for two days.", "author": "Weekend guest", "source": "Google review" },
+      { "quote": "Quietest campground we've found within two hours of Dallas. The hammock garden alone is worth the drive.", "author": "RV traveler", "source": "Google review" },
+      { "quote": "Our kids still talk about sleeping in the train car.", "author": "Family of five", "source": "Facebook" }
+    ],
+    "hubHandoff": {
+      "title": "Ready when you are",
+      "body": "Live availability, real photos of every unit, and Pay Now & Save rates live on texomadestinations.com — the booking home for Paradise and the whole Texoma Destinations family. Pick your dates and we'll text you the gate code before you arrive.",
+      "ctas": [
+        { "label": "See glamping & cabins", "intent": "cabins" },
+        { "label": "Find an RV site", "intent": "rv" },
+        { "label": "Reserve a tent site", "intent": "tents" }
+      ]
+    }
+  },
+  "stay": {
+    "title": "Three ways to do Paradise",
+    "subtitle": "Glamping, cabins, or bring your own rig. Every site has a water view; several sit right on the shoreline.",
+    "sections": [
+      {
+        "title": "Glamping: Kabanas, Kasitas & Kimas",
+        "body": [
+          "Four waterfront Kabanas sleep two and put you closest to the water. Six waterview Kasitas add a loft bed for two kids. The Kimas are our snug one-room cabins with a full bed, Bluetooth speaker and an outdoor kitchen.",
+          "Every glamping unit is heated and cooled, has USB charging, a fire pit, an outdoor sink and grill, and comes with linens. Bathrooms and hot showers are in the shared bathhouse a short walk away. Sunday through Thursday nights are always discounted."
+        ],
+        "bullets": ["Sleeps 2–4", "Climate controlled", "Fire pit & grill", "Linens included", "Shared bathhouse", "Pet friendly for a fee"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A0862.jpg", "alt": "Glamping Kasita interior" },
+        "cta": { "label": "See glamping availability", "intent": "cabins" },
+        "factKey": "paradise.glamping"
+      },
+      {
+        "title": "Cabins: the Paradise Express & Cabin 3",
+        "body": [
+          "The Paradise Express is a genuine 1920s train car, now a two-bedroom, two-bath cabin for six with a full kitchen and a dog-friendly policy. Cabin 3 is a rustic duplex with three bedrooms and one bath — simple, comfortable and steps from the water.",
+          "Cabins include towels, linens, basic dishes and cookware, a coffee pot or press, a grill and a fire pit."
+        ],
+        "bullets": ["Sleeps up to 6", "Full or kitchenette", "Private bath", "Pet friendly (Express)"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A1286.jpg", "alt": "The Paradise Express train-car cabin" },
+        "cta": { "label": "Check cabin dates", "intent": "cabins" }
+      },
+      {
+        "title": "RV & camper sites",
+        "body": [
+          "Two loops. The West Loop (sites 1–21) fits rigs up to about 24 feet under heavy shade. The South Loop (sites 22–50) is bigger, brighter and closest to the water, with 50-amp service available and full hookups on many sites. Sites 33–50 need extended hoses (about 100' water, 25' sewer).",
+          "Every site has a picnic table, fire ring, water and electric, and a view of the lake. Up to six people and two vehicles per site; no tents on RV sites. Wi-Fi is available at the office."
+        ],
+        "bullets": ["30 & 50 amp", "Many full hookups", "Dump station", "Gravel pads", "Fire ring & table", "Pet friendly"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A4518.jpg", "alt": "RV site at Paradise" },
+        "cta": { "label": "Find an RV site", "intent": "rv" },
+        "factKey": "paradise.rv_count"
+      },
+      {
+        "title": "Primitive camping",
+        "body": [
+          "Park at the trailhead and hike a third to a half mile to a quiet stretch of shoreline reserved for tents. There are no restrooms or showers at the sites — the nearest facilities are back at the main camp — so pack in water and pack out trash.",
+          "Vehicles must stay behind the fence line. It is the most secluded spot on the property and the best place on Paradise to see stars."
+        ],
+        "bullets": ["Tents only", "Fire pits", "Lake access", "No power or water", "Hike-in"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_9916.jpg", "alt": "Primitive tent camping on the shoreline" },
+        "cta": { "label": "Reserve a tent site", "intent": "tents" }
+      },
+      {
+        "title": "Things to do without leaving the gate",
+        "body": [
+          "Launch your boat on the private ramp (26' and under, registered guests only), rent a kayak or paddleboard at the office, let the kids loose on the playground, then drift to the hammock garden. Evenings gather at the community bar and the group firepit.",
+          "TAP members get free day use and boat-ramp access at Paradise year-round."
+        ],
+        "bullets": ["Private boat ramp", "Kayak & SUP rentals", "Hammock garden", "Community bar", "Group firepit", "Playground"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A5513.jpg", "alt": "Hammock garden at Paradise" },
+        "cta": { "label": "Rent kayaks & SUPs", "intent": "kayaks" },
+        "factKey": "paradise.ramp_limit"
+      }
+    ],
+    "note": "Unit counts, photos and nightly rates are maintained on texomadestinations.com and shown live when you choose your dates."
+  },
+  "plan": {
+    "title": "Getting to Paradise",
+    "subtitle": "503 Paradise Park Road, Pottsboro — on the west side of the Preston Peninsula, about 15 minutes from Lighthouse Resort.",
+    "arrival": {
+      "title": "Arrival & check-in",
+      "body": [
+        "Check-in is at 3pm and check-out is 11am. Paradise is gated: you'll receive your gate code by text message before arrival (text 903.414.6050 if you haven't). Head straight to your unit or site — no office stop needed unless you'd like to say hello.",
+        "Cell coverage is good; Wi-Fi is available at the office only, which most guests consider a feature."
+      ]
+    },
+    "directions": [
+      "From Dallas: US-75 north to Sherman, then west on FM 1417 / SH 289 toward Pottsboro.",
+      "From Pottsboro, follow SH 289 north and west; watch for the Paradise Park Road turn on the lake side.",
+      "Large rigs: the South Loop entrance is the easier approach — ask when you book.",
+      "Google Maps sometimes lists us as 'Paradise Cove Resort & Camp' — same place."
+    ],
+    "essentials": [
+      { "title": "Times & access", "items": ["Check-in 3pm · Check-out 11am", "Gate code delivered by text", "Day-use visitors 9am to sunset", "Quiet hours 11pm–7am"], "factKey": "hub.checkin" },
+      { "title": "Pets", "items": ["Welcome in pet-friendly units and on all RV sites", "$35 per pet, maximum two", "Leashed at all times; no aggressive breeds"], "factKey": "hub.pet_fee" },
+      { "title": "Vehicles & boats", "items": ["Park in designated spaces only — no grass or roadside parking", "Two vehicles per RV site", "Boat ramp for vessels 26' and under, 9am–sunset", "No ATVs or side-by-sides"] },
+      { "title": "Fires & safety", "items": ["Fires in provided rings and pits only", "Observe county burn bans", "No fireworks or firearms", "No lifeguard — swim at your own risk"] }
+    ],
+    "faqs": [
+      { "q": "Do the glamping units have bathrooms?", "a": "Kabanas, Kasitas and Kimas use the shared bathhouse a short walk away. The Paradise Express and Cabin 3 have private baths." },
+      { "q": "Is there Wi-Fi?", "a": "At the office, yes. Cellular coverage is good across the property." },
+      { "q": "Can I bring my boat?", "a": "Yes. Registered guests launch free on the private ramp (26 feet and under) between 9am and sunset. Trailer parking is available near the ramp." },
+      { "q": "Do you take walk-ins?", "a": "When there's space, but the best units sell out weekends. Book ahead on texomadestinations.com to lock in Pay Now & Save rates." },
+      { "q": "Where do I buy firewood and ice?", "a": "Add Campfire Delivery to your reservation and we'll bring it to your site between 8am and 8pm." }
+    ],
+    "nearby": [
+      { "name": "Eisenhower State Park", "note": "6.5 miles of trails and a swim beach, 20 minutes away." },
+      { "name": "Hagerman National Wildlife Refuge", "note": "Birding and a 3.5-mile trail on the south shore." },
+      { "name": "Cross Timbers Trail", "note": "14 miles of shoreline hiking along the lake's south side." },
+      { "name": "Pottsboro restaurants", "note": "Barbecue, Tex-Mex and lake-side patios 15 minutes away." },
+      { "name": "Fastrac sunset cruises", "note": "Fri & Sat evenings from Lighthouse Marina, 15 minutes east." },
+      { "name": "Island View Park", "note": "Lake Texoma's most popular beach — free entry for TAP members." }
+    ]
+  },
+  "groups": {
+    "title": "Reunions, retreats and very relaxed weddings",
+    "subtitle": "Book a cluster of glamping units and RV sites together, or take over the community bar and firepit for the evening.",
+    "intro": [
+      "Paradise is built for the kind of gathering where everyone stays on property. Families take a row of Kasitas and Kabanas, the RV crowd parks on the South Loop, and everyone meets at the firepit. For larger groups we'll block adjoining sites and help you plan a catered dinner at the pavilion.",
+      "Reservations of three or more units are paid in full at booking and are non-refundable, so start with our events team — they'll hold dates while you count heads."
+    ],
+    "venues": [
+      { "name": "Community pavilion & bar", "capacity": "Up to 60 standing", "details": ["Covered pavilion with tables", "Community bar", "Adjacent group firepit", "Open vendor / bring your caterer"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A5513.jpg", "alt": "Community pavilion" } },
+      { "name": "Glamping village buy-out", "capacity": "Sleeps ~30 in glamping units", "details": ["Kabanas, Kasitas and Kimas together", "Shared bathhouse", "Waterfront fire pits", "Add the train car for 6 more"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A5430-hero.jpg", "alt": "Glamping village" } },
+      { "name": "Beach picnics & cruises", "capacity": "2–36 guests", "details": ["Styled beach picnic for two", "Boat ride + island picnic", "Sunset or dinner cruise from Lighthouse Marina"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/boat-ride.jpg", "alt": "Island picnic" } }
+    ],
+    "eventTypes": ["Family reunions", "Church & scout groups", "Vintage camper rallies", "Micro-weddings & elopements", "Company retreats", "Birthday weekends"],
+    "cta": { "label": "Start planning with our events team", "intent": "events" },
+    "contactPhone": "903.200.1408"
+  },
+  "rules": {
+    "title": "House rules at Paradise",
+    "subtitle": "Short version: be kind to your neighbors, your site and the lake. The details:",
+    "groups": [
+      { "title": "Reservations & payment", "items": ["Guests must be 25 or older to book", "Two-night minimum April 1–October 31; three nights on holiday weekends", "Pay at Check-In: 14 days' notice to cancel, or one night is charged", "Pay Now & Save: non-refundable; nights may be added but not changed", "Three or more units: paid in full at booking, non-refundable", "Packages have a 3-day cancellation window"], "factKey": "hub.cancel_pay_at_checkin" },
+      { "title": "On property", "items": ["Check-in 3pm · Check-out 11am", "Quiet hours 11pm–7am", "Maximum 6 people per RV site (4 adults); no more than 10 at any site at any time", "No tents on RV sites", "Designated parking only; two vehicles per site", "No ATVs or side-by-sides"], "factKey": "hub.quiet_hours" },
+      { "title": "Pets", "items": ["$35 per pet, maximum two per unit", "No aggressive breeds", "Leashed and picked-up-after at all times", "$250 deep-clean fee if pets are found in non-pet units"], "factKey": "hub.pet_fee" },
+      { "title": "Fees you can avoid", "items": ["$250 excessive cleaning", "$250 smoking in a unit", "$75 quiet-hour violation", "$25 lost key", "$250 vehicles beyond the primitive fence line"] }
+    ],
+    "policyNote": "Cancellations due to weather, road conditions, early departure or other circumstances beyond our control are not refunded. Once checked in, you're responsible for your full stay."
+  },
+  "packages": {
+    "title": "Packages, add-ons and what's on",
+    "subtitle": "Little upgrades that make a weekend at Paradise easier — and the events worth planning a trip around.",
+    "intro": "Everything below is added inside your reservation on texomadestinations.com, so it's waiting for you when you arrive."
+  },
+  "footerBlurb": "Paradise on Lake Texoma is a 200-acre gated campground on the western shore of Lake Texoma with glamping, cabins, RV sites and primitive camping. Part of the Texoma Destinations family; all reservations are made at texomadestinations.com."
+}

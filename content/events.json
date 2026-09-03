@@ -1,0 +1,32 @@
+[
+  {
+    "id": "evt-texie-2026-09-05",
+    "slug": "discovering-texie-cruise-sep-2026",
+    "title": "Discovering Texie Cruise for Kids",
+    "starts_at": "2026-09-05T10:00:00-05:00",
+    "ends_at": "2026-09-05T11:30:00-05:00",
+    "location": "Fastrac Charter Dock, Lighthouse Marina",
+    "summary": "A 90-minute storytelling cruise with Lake Texoma's official mascot, Texie the Dragon — magical surprises and a light brunch included.",
+    "image": "https://texomadestinations.com/wp-content/uploads/2026/06/texie_cruises_header-1024x768.jpg",
+    "price_text": "$19.44 per person",
+    "cta_label": "Get tickets",
+    "cta_url": "https://fastrac.com/reserve/cart/add/cruise/3009?utm_source=brand-site&utm_medium=events&utm_campaign=texie",
+    "show_on_sites": ["fastrac", "lighthouse", "paradise", "island-view", "tackle-box"],
+    "published": true
+  },
+  {
+    "id": "evt-eagle-2027-01",
+    "slug": "eagle-watching-breakfast-cruises-2027",
+    "title": "Eagle Watching Breakfast Cruises",
+    "starts_at": "2027-01-09T08:00:00-06:00",
+    "ends_at": "2027-02-27T10:00:00-06:00",
+    "location": "Fastrac Charter Dock, Lighthouse Marina",
+    "summary": "Saturdays and select Sundays in January and February: a hot breakfast, mimosa and Bloody Mary setups, and the best seats on the lake for bald eagle season.",
+    "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3022.jpg",
+    "price_text": "$59 · kids 3 & under free",
+    "cta_label": "See dates",
+    "cta_url": "https://texomadestinations.com/things-to-do?utm_source=brand-site&utm_medium=events&utm_campaign=eagle#/charters-cruises",
+    "show_on_sites": ["fastrac", "lighthouse", "sundance"],
+    "published": true
+  }
+]

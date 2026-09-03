@@ -1,0 +1,120 @@
+{
+  "slug": "water-taxi",
+  "seo": {
+    "title": "Texoma Water Taxi by Fastrac — On-Demand Rides to the Islands, Marinas & Your Dock",
+    "description": "It's like Uber on the water. $25 per person each way between Highport Marina and the islands, $100 an hour private for up to six, pickups at any marina or dock in the service area, sunrise to sunset. Text 903.414.6050.",
+    "ogImage": "https://texomadestinations.com/wp-content/uploads/2023/07/boat-ride.jpg"
+  },
+  "home": {
+    "heroImage": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/boat-ride.jpg", "alt": "Water taxi underway on Lake Texoma" },
+    "heroKicker": "Texoma's only water taxi",
+    "heroTitle": "It's like Uber. On the water.",
+    "heroSubtitle": "A ride to the islands, a restaurant, another marina or back to your own dock — without the swim. Text or call and we'll get you there.",
+    "intro": {
+      "title": "Where do you want to go?",
+      "body": [
+        "The Texoma Water Taxi runs on demand from sunrise to sunset across the busiest part of Lake Texoma: Highport Marina and Island Bar & Grill, Pelican's Landing, Marina Del Rey, Flowing Wells, Grandpappy Point, Buncombe Creek, Alberta Creek, Catfish Bay, Burns Run, Island View, Lighthouse Resort and the islands — North (Party) Island, Treasure Island and Wood Island.",
+        "We'll pick you up at any marina or at your dock inside the service area, drop you at your boat, run beverages out to the island, or take the whole crew to dinner and bring you home. Groups up to 18 on the Mellow Yellow; six on the Jolt."
+      ]
+    },
+    "stats": [
+      { "value": "$25", "label": "per person each way, Highport ↔ islands", "factKey": "watertaxi.rates" },
+      { "value": "$100", "label": "per hour private, up to 6", "factKey": "watertaxi.rates" },
+      { "value": "18", "label": "max group size" },
+      { "value": "☀️", "label": "sunrise to sunset" }
+    ],
+    "features": [
+      {
+        "title": "Island shuttle",
+        "icon": "🏝️",
+        "body": "$25 per person each way between Highport Marina and North, Treasure or Wood Island. All ages, sunrise to sunset. Round trips are two bookings.",
+        "cta": { "label": "Book a ride", "intent": "water-taxi-book" }
+      },
+      {
+        "title": "Anywhere on the lake",
+        "icon": "🗺️",
+        "body": "$100 an hour dock-to-dock for up to six, from the time we leave our dock until we return. Restaurants, marinas, your friend's slip.",
+        "cta": { "label": "Book a private ride", "intent": "water-taxi-book" }
+      },
+      {
+        "title": "Boat drop-off & pickup",
+        "icon": "⚓",
+        "body": "Left the boat at the marina and the truck at the ramp? We'll shuttle you between them, or out to your boat on the hook."
+      },
+      {
+        "title": "Overnight island camping",
+        "icon": "⛺",
+        "body": "Drop-off in the afternoon, pickup in the morning. Bring everything — the islands are primitive."
+      },
+      {
+        "title": "Beverage delivery",
+        "icon": "🧊",
+        "body": "Running low on the island? We'll bring ice and drinks from the store out to you."
+      },
+      {
+        "title": "Parties & celebrations",
+        "icon": "🎉",
+        "body": "Bachelor and bachelorette parties, wedding shuttles, birthdays — the Mellow Yellow carries 18, or step up to a Fastrac private charter.",
+        "cta": { "label": "See charters & cruises", "intent": "cruises" }
+      }
+    ],
+    "gallery": [
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/boat-ride.jpg", "alt": "Water taxi ride" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/water-taxi-map.jpg", "alt": "Service area map" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/lake-day.jpg", "alt": "Island beach" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3704.jpg", "alt": "Island View from the water" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/DJI_0936.jpg", "alt": "Lighthouse Marina" }
+    ],
+    "reviews": [
+      { "quote": "Texted from Highport, boat showed up in 20 minutes, dropped us on Party Island. Exactly as advertised.", "author": "Fourth of July crew", "source": "Google review" },
+      { "quote": "Took the taxi to dinner at Pelican's Landing and back to our slip. Way better than driving.", "author": "Slip tenant", "source": "Facebook" }
+    ],
+    "hubHandoff": {
+      "title": "Text for a ride, or book ahead",
+      "body": "For a ride right now, text 903.414.6050 or call 903.361.0775. For a set pickup time, holiday weekends or groups, book online — and if you'd rather have the whole boat for the evening, Fastrac's charters and cruises leave from the same dock.",
+      "ctas": [
+        { "label": "Book a ride online", "intent": "water-taxi-book" },
+        { "label": "See cruises & charters", "intent": "cruises" }
+      ]
+    }
+  },
+  "plan": {
+    "title": "Routes, rates & how it works",
+    "subtitle": "Service area centered on Highport Marina and the Preston Peninsula; home dock at Lighthouse Marina.",
+    "arrival": {
+      "title": "How to get a ride",
+      "body": [
+        "Text 903.414.6050 or call 903.361.0775 with where you are and where you're headed. For a guaranteed pickup time — holiday weekends especially — book online ahead. Your captain takes card, Venmo or cash on the boat; tips appreciated.",
+        "Rides run rain or shine, sunrise to sunset; night trips can be arranged with a $20 surcharge. Memorial Day, Fourth of July and Labor Day weekends add $5 per person."
+      ]
+    },
+    "directions": [
+      "Highport Marina / Island Bar & Grill · Pelican's Landing at Cedar Bayou · Marina Del Rey · Flowing Wells · Grandpappy Point",
+      "Buncombe Creek · Alberta Creek · Catfish Bay · East & West Burns Run",
+      "Island View Park · Lighthouse Resort & Marina",
+      "North (Party) Island · Treasure Island · Wood Island"
+    ],
+    "essentials": [
+      { "title": "Rates", "items": ["$25 per person each way, Highport ↔ islands", "$100 per hour private, up to 6, dock to dock", "Round trips are two bookings"], "factKey": "watertaxi.rates" },
+      { "title": "Surcharges", "items": ["$20 per trip after dark", "$5 per person on Memorial Day, July 4th and Labor Day weekends"], "factKey": "watertaxi.surcharges" },
+      { "title": "Capacity", "items": ["Jolt: up to 6", "Mellow Yellow: up to 18 (covered, bench seating)", "Leashed pets welcome on private trips"] },
+      { "title": "Kids", "items": ["Children 12 and under wear life jackets aboard the taxi — we have them", "All ages welcome on the island shuttle"] }
+    ],
+    "faqs": [
+      { "q": "How long will I wait?", "a": "Usually 15–30 minutes depending on where the boat is. Book ahead for a set time." },
+      { "q": "Can you pick me up at a private dock?", "a": "Yes, anywhere inside the service area." },
+      { "q": "Can I bring a cooler?", "a": "Yes. We'll even restock it from the store if you're stuck on the island." },
+      { "q": "Do you run at night?", "a": "By arrangement, with a $20 surcharge. Standard hours are sunrise to sunset." }
+    ]
+  },
+  "rules": {
+    "title": "Rider policies",
+    "subtitle": "Quick and simple.",
+    "groups": [
+      { "title": "Booking & payment", "items": ["72 hours' notice to cancel a booked ride", "Card, Venmo or cash on the boat", "Rides run rain or shine; captain may cancel for unsafe weather with a full refund"], "factKey": "fastrac.cancel_public" },
+      { "title": "Aboard", "items": ["Life jackets for kids 12 and under", "Capacity limits are firm — Coast Guard rules", "No glass on the islands", "Leashed pets on private trips only"] }
+    ],
+    "policyNote": "Texoma Water Taxi is operated by Fastrac Charters & Cruises, part of the Texoma Destinations family."
+  },
+  "footerBlurb": "Texoma Water Taxi by Fastrac is Lake Texoma's only on-demand water taxi — island shuttles from Highport Marina, private rides anywhere in the service area, boat drop-offs and beverage delivery, sunrise to sunset. Part of the Texoma Destinations family."
+}

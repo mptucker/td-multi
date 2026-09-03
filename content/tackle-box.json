@@ -1,0 +1,130 @@
+{
+  "slug": "tackle-box",
+  "seo": {
+    "title": "Tackle Box Outfitters — Live Bait, Tackle, Licenses & Propane on Lake Texoma · Pottsboro, TX",
+    "description": "Lake Texoma's fishing and outdoor headquarters on SH 289 in Pottsboro: live shiners and minnows, striper tackle, $12 Lake Texoma licenses, propane refills, ice, firewood, beer, snacks and boat supplies — the last stop before Lighthouse Resort.",
+    "ogImage": "https://texomadestinations.com/wp-content/uploads/2023/06/Texoma_Day30786-hero.jpg"
+  },
+  "home": {
+    "heroImage": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Texoma_Day30786-hero.jpg", "alt": "Tackle wall inside the Tackle Box" },
+    "heroKicker": "The Most Fishing on Lake Texoma",
+    "heroTitle": "Everything you need for a day on the lake. One stop.",
+    "heroSubtitle": "Live bait, striper tackle, fishing licenses, propane, ice, firewood and cold drinks — on Highway 289 as you head to the water.",
+    "intro": {
+      "title": "The last stop before the lake",
+      "body": [
+        "The Tackle Box sits on SH 289 at Tackle Box Drive, the road every angler and camper takes to Lighthouse Resort, Island View and the Preston Peninsula. It's the only live-bait shop within 25 miles of the Lighthouse, one of the only propane refill stops on the peninsula, and the place to buy your Lake Texoma fishing license for $12 — residents and non-residents alike.",
+        "Inside: rods, reels, lures, soft plastics and swimbaits for stripers, cast nets and landing nets, tackle boxes, bait tanks, and the wall of mounts — stripers, largemouth, blue cats, a bobcat and Bob Jr. the bass, who takes visitors. Out front: ice, coolers, firewood, RV hoses and repair items, boat safety gear, beer, tobacco, snacks, sunscreen, water shoes and beach toys."
+      ]
+    },
+    "stats": [
+      { "value": "$12", "label": "Lake Texoma license", "factKey": "tacklebox.license" },
+      { "value": "25 mi", "label": "only live bait near Lighthouse" },
+      { "value": "LP", "label": "propane refills — cylinders & RVs" },
+      { "value": "5–10%", "label": "off retail for TAP members", "factKey": "hub.tap_prices" }
+    ],
+    "features": [
+      {
+        "title": "Live bait",
+        "icon": "🪱",
+        "body": "Shiners in season, bass and crappie minnows, black salties, worms and glow worms, plus frozen bait and livers. Bait tanks and aerators if you're stocking up for a guide day.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A1466.jpg"
+      },
+      {
+        "title": "Striper tackle",
+        "icon": "🎣",
+        "body": "Lures, soft plastics and swimbaits the Texoma guides actually throw, rods and reels, cast nets, landing nets and tackle boxes. Ask what's working — the staff fish here.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A6245.jpg"
+      },
+      {
+        "title": "Fishing licenses",
+        "icon": "🪪",
+        "body": "A Lake Texoma license is $12 for residents and non-residents and covers the whole lake, both states. Buy it here in two minutes.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A8880.jpg"
+      },
+      {
+        "title": "Propane, ice & firewood",
+        "icon": "🔥",
+        "body": "Cylinder refills any time we're open; RV fills with a quick call ahead. Ice, coolers, firewood and fire starters for the campsite.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Texoma_Day30672.jpg"
+      },
+      {
+        "title": "Boat & RV supplies",
+        "icon": "🛠️",
+        "body": "Boat repair and safety equipment, life jackets, RV repair items and hoses — the parts that save a weekend.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/05/Photo-Jun-01-2019-4-14-44-PM.jpg"
+      },
+      {
+        "title": "Book a striper guide",
+        "icon": "🚤",
+        "body": "Texoma is the Striper Capital of the World and the top guides run out of Lighthouse Marina, two minutes up the road. Find one on Texoma Destinations, then stop here for your license and bait.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A8377.jpg",
+        "cta": { "label": "See the guide list", "intent": "fishing" }
+      }
+    ],
+    "gallery": [
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Texoma_Day30786-hero.jpg", "alt": "Tackle wall" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A1466.jpg", "alt": "Bait tanks" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A6245.jpg", "alt": "Lures" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A8880.jpg", "alt": "Storefront" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Texoma_Day30672.jpg", "alt": "Store interior" }
+    ],
+    "reviews": [
+      { "quote": "Only place near the lake with live shiners at 6am. Staff knows exactly what the stripers are hitting.", "author": "Weekend angler", "source": "Google review" },
+      { "quote": "Filled the RV propane on the way to Lighthouse. Quick, friendly, done.", "author": "RV camper", "source": "Google review" },
+      { "quote": "My kids have to feed Bob Jr. every single trip.", "author": "Lake regular", "source": "Facebook" }
+    ],
+    "hubHandoff": {
+      "title": "Guides, cabins and boats are one click away",
+      "body": "Texoma Destinations lists the striper guides, Lighthouse cabins and tritoon rentals that turn a bait run into a weekend. TAP members save 5–10% here in the store and a nickel to a dime per gallon at the Lighthouse fuel dock.",
+      "ctas": [
+        { "label": "Find a fishing guide", "intent": "fishing" },
+        { "label": "Book a Lighthouse cabin", "intent": "cabins" },
+        { "label": "Compare TAP tiers", "intent": "tap" }
+      ]
+    }
+  },
+  "plan": {
+    "title": "Visit the store",
+    "subtitle": "21 Tackle Box Drive, Pottsboro — on SH 289 as you approach Lighthouse Resort & Marina.",
+    "arrival": {
+      "title": "Hours & propane",
+      "body": [
+        "Store hours change with the season — call 903.786.9010 before an early or late run, especially for live bait counts and propane. RV propane fills need a quick heads-up so we can have someone at the tank.",
+        "The Tackle Box shares an address with the Texoma Destinations reservation office; if you have a question about a cabin or cruise, the team next door can help."
+      ]
+    },
+    "directions": [
+      "From Pottsboro take SH 289 north about 5 miles; the Tackle Box is on the right at Tackle Box Drive.",
+      "Two minutes before Lighthouse Resort & Marina and Island View Park — stock up before you get to the water.",
+      "Trailer parking out front; pull through for propane."
+    ],
+    "essentials": [
+      { "title": "Licenses", "items": ["Lake Texoma license $12, residents and non-residents", "Covers the whole lake — Texas and Oklahoma waters", "Valid through December 31"], "factKey": "tacklebox.license" },
+      { "title": "Bait", "items": ["Shiners in season; bass & crappie minnows year-round", "Black salties, worms & glow worms", "Frozen bait & livers", "Call ahead for large quantities"] },
+      { "title": "Propane & camp", "items": ["Cylinder refills during store hours", "RV fills with prior scheduling", "Ice, firewood, charcoal & starters", "RV hoses & repair items"] },
+      { "title": "TAP members", "items": ["5% off retail (Adventurer) · 10% off (Navigator)", "Fuel discounts at the Lighthouse fuel dock", "Show your TAP pass at checkout"], "factKey": "hub.tap_prices" }
+    ],
+    "faqs": [
+      { "q": "Do I need a Texas or Oklahoma license?", "a": "Neither — a $12 Lake Texoma license covers the whole lake, both states, and we sell it here." },
+      { "q": "Do you have live shiners?", "a": "In season, yes. Call ahead on tournament weekends." },
+      { "q": "Can you fill my RV propane tank?", "a": "Yes, with a quick call ahead so we have someone at the tank." },
+      { "q": "Can I shop online?", "a": "Not at the moment — the online store is being rebuilt. Call and we'll set anything aside." }
+    ],
+    "nearby": [
+      { "name": "Lighthouse Resort & Marina", "note": "Cabins, boat rentals, fuel dock and guide services two minutes north." },
+      { "name": "Island View Park", "note": "Lake Texoma's most popular beach — grab sunscreen and ice here first." },
+      { "name": "Fastrac cruises", "note": "Sunset and dinner cruises from Lighthouse Marina." }
+    ]
+  },
+  "rules": {
+    "title": "Store policies & fishing regs",
+    "subtitle": "The short list.",
+    "groups": [
+      { "title": "Store", "items": ["Hours vary by season — call 903.786.9010", "Live bait sales are final", "Propane: cylinders on demand, RVs by appointment", "We accept cards and cash"] },
+      { "title": "Fishing on Texoma", "items": ["A Lake Texoma license ($12) covers both states' waters", "Striper limits and length rules are set by TPWD/ODWC and change — check the current regulations", "Two-thirds of the lake lies in Oklahoma; the Texoma license means you don't have to care"], "factKey": "tacklebox.license" }
+    ],
+    "policyNote": "For cabin, boat rental and cruise policies, see texomadestinations.com — the Tackle Box only sells the gear."
+  },
+  "footerBlurb": "Tackle Box Outfitters is Lake Texoma's fishing and outdoor headquarters on SH 289 in Pottsboro — live bait, tackle, $12 lake licenses, propane and camp supplies, two minutes from Lighthouse Resort & Marina. Part of the Texoma Destinations family."
+}

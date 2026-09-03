@@ -1,0 +1,191 @@
+{
+  "slug": "island-view",
+  "seo": {
+    "title": "Island View Park — Lake Texoma's Most Popular Beach · Day Passes, Shelters & Kayak Rentals",
+    "description": "A sandy beach on Lake Texoma open 9am to sunset year-round, 90 minutes from Dallas. $7 day passes (kids 7 & under free), covered shelters, kayak and paddleboard rentals, volleyball and outdoor showers. Buy your pass on texomadestinations.com.",
+    "ogImage": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3656-hero.jpg"
+  },
+  "alertBar": null,
+  "home": {
+    "heroImage": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3656-hero.jpg", "alt": "Families on the beach at Island View Park" },
+    "heroKicker": "The Most Fun place on Lake Texoma",
+    "heroTitle": "The beach day that's closer than you think.",
+    "heroSubtitle": "Lake Texoma's most popular sandy beach, open every day from 9am to sunset. Seven bucks gets you in. Kids seven and under are free.",
+    "intro": {
+      "title": "Sand, shade and a whole lake to look at",
+      "body": [
+        "Island View is the day-trip beach for North Texas. Ninety minutes from Dallas you're on real sand with a swim area, picnic tables under the trees, covered shelters with grills, a volleyball court, outdoor showers and changing rooms, and a store for the things you forgot. Kayaks and paddleboards rent by the hour right off the beach.",
+        "It's also a birder's secret: the shoreline and coves here see hundreds of species through the year, and eagles in winter. Come early on summer weekends — the best shade goes first."
+      ]
+    },
+    "stats": [
+      { "value": "$7", "label": "day pass · kids 7 & under free", "factKey": "islandview.day_pass" },
+      { "value": "9am", "label": "to sunset, every day", "factKey": "islandview.hours" },
+      { "value": "$40", "label": "covered shelter per day", "factKey": "islandview.shelter" },
+      { "value": "$25", "label": "kayak or SUP per hour", "factKey": "islandview.kayak" }
+    ],
+    "features": [
+      {
+        "title": "Day passes",
+        "icon": "🎟️",
+        "body": "$7 per person; kids seven and under are free. Buy online before you leave home and skip the line at the gate. TAP members get in free all year.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3656-hero.jpg",
+        "cta": { "label": "Buy a day pass", "intent": "day-pass-cart" }
+      },
+      {
+        "title": "Covered shelters",
+        "icon": "⛱️",
+        "body": "Reserve a covered shelter with a picnic table for 6–10 and a charcoal grill for $40 a day — the move for birthdays and family cookouts. Reservation only; they sell out on holiday weekends.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A2236.jpg",
+        "cta": { "label": "Reserve a shelter", "intent": "beach" }
+      },
+      {
+        "title": "Kayaks & paddleboards",
+        "icon": "🛶",
+        "body": "Singles $25 an hour, doubles $40, paddleboards $25. Paddle the calm cove and around the point. Guided paddles for groups run about 90 minutes; solo paddlers must be 8 or older.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3704.jpg",
+        "cta": { "label": "Reserve kayaks & SUPs", "intent": "kayaks" }
+      },
+      {
+        "title": "Picnics on the sand",
+        "icon": "🧺",
+        "body": "Let us set the scene: a styled beach picnic for two with florals and an umbrella, or a boat ride to a private island picnic with Fastrac.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/events-table-night.jpg",
+        "cta": { "label": "Book a picnic", "intent": "picnics" }
+      },
+      {
+        "title": "Group beach days",
+        "icon": "🎉",
+        "body": "Company outings, youth groups and reunions get group pricing, shelter blocks, catering options and boat rentals through Texoma Destinations' events team.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_2008.jpg",
+        "cta": { "label": "Plan a group day", "intent": "events" }
+      },
+      {
+        "title": "Free with TAP",
+        "icon": "🪪",
+        "body": "A TAP membership from $99 a year covers free day use for two (or four) at Island View and Paradise, free boat-ramp access at Lighthouse and Paradise, and discounts across the lake.",
+        "image": "https://texomadestinations.com/wp-content/uploads/2024/05/DescribeTheFauna_TexomaDestinations_Q0A8092-Edit-scaled.jpg",
+        "cta": { "label": "Compare TAP tiers", "intent": "tap" }
+      }
+    ],
+    "gallery": [
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3656-hero.jpg", "alt": "Beach at Island View" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3704.jpg", "alt": "Kayaks at Island View" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_2008.jpg", "alt": "Shelters under the trees" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A2236.jpg", "alt": "Picnic table by the water" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/events-table-night.jpg", "alt": "Beach picnic setup" }
+    ],
+    "reviews": [
+      { "quote": "Best swimming beach on Texoma, hands down. We come every other Saturday all summer.", "author": "Sherman local", "source": "Google review" },
+      { "quote": "Reserved a shelter for my son's birthday — grill, shade, sand, done.", "author": "Parent of a 7-year-old", "source": "Facebook" },
+      { "quote": "Paddleboards right on the beach, no trailer, no hassle.", "author": "Weekend visitor", "source": "Google review" }
+    ],
+    "hubHandoff": {
+      "title": "Buy your pass before you leave the house",
+      "body": "Day passes, shelters and kayaks for Island View are sold on texomadestinations.com. Buy ahead, show your phone at the gate, and go straight to the sand.",
+      "ctas": [
+        { "label": "Buy a day pass", "intent": "day-pass-cart" },
+        { "label": "Reserve a shelter", "intent": "beach" },
+        { "label": "Reserve kayaks & SUPs", "intent": "kayaks" }
+      ]
+    }
+  },
+  "stay": {
+    "title": "A day at the beach",
+    "subtitle": "What's here, what it costs and how to make the most of it.",
+    "sections": [
+      {
+        "title": "The beach & swim area",
+        "body": [
+          "A wide sandy beach with a gradual entry, picnic tables under mature trees, a volleyball court, outdoor showers and changing rooms. There is no lifeguard and no designated swim area — swim at your own risk and keep an eye on the kids. Glass containers stay in the car."
+        ],
+        "bullets": ["Sandy beach", "Volleyball", "Outdoor showers", "Changing rooms", "Store", "Restrooms"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3656-hero.jpg", "alt": "The beach" },
+        "cta": { "label": "Buy a day pass", "intent": "day-pass-cart" },
+        "factKey": "islandview.day_pass"
+      },
+      {
+        "title": "Covered shelters",
+        "body": [
+          "Shelters seat 6–10 at a picnic table with a charcoal grill under a roof — reserve one for $40 a day and it's yours from open to close. TAP Adventurer members get $5 off; Navigator members get weekday shelters free."
+        ],
+        "bullets": ["Seats 6–10", "Charcoal grill", "All-day reservation", "Near restrooms"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_2008.jpg", "alt": "Covered shelter" },
+        "cta": { "label": "Reserve a shelter", "intent": "beach" },
+        "factKey": "islandview.shelter"
+      },
+      {
+        "title": "Kayaks, paddleboards & guided paddles",
+        "body": [
+          "Single kayaks are $25 an hour, doubles $40, stand-up paddleboards $25. Life jackets are included and required. Guided paddles for up to six run about 90 minutes and are a favorite for groups and first-timers."
+        ],
+        "bullets": ["Kayaks & SUPs", "Life jackets included", "Guided paddles", "Ages 8+ solo"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3704.jpg", "alt": "Kayaks" },
+        "cta": { "label": "Reserve kayaks & SUPs", "intent": "kayaks" },
+        "factKey": "islandview.kayak"
+      },
+      {
+        "title": "Picnics, groups & boat days",
+        "body": [
+          "Texoma Destinations' events team styles beach picnics for two, arranges group pricing and catering for outings, and can add a Fastrac boat ride or water-taxi trip to the islands from right here."
+        ],
+        "bullets": ["Beach picnic for two", "Group pricing", "Catering options", "Fastrac boat rides"],
+        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/events-table-night.jpg", "alt": "Beach picnic" },
+        "cta": { "label": "Book a picnic", "intent": "picnics" }
+      }
+    ],
+    "note": "Prices shown were verified on the date listed and are charged at checkout on texomadestinations.com."
+  },
+  "plan": {
+    "title": "Getting to Island View",
+    "subtitle": "87426 Preston Bend Road, Pottsboro — on the Preston Peninsula just up the road from Lighthouse Resort.",
+    "arrival": {
+      "title": "Hours & the gate",
+      "body": [
+        "Open 9am to sunset every day of the year. The gate closes 30 minutes after sunset — please be packed and rolling by then. Show your online pass or pay at the gate; shelters are reservation-only, so book ahead.",
+        "Once you're inside, there are no refunds for weather. Check the forecast, bring shade, and remember the lake is usually calmest in the morning."
+      ]
+    },
+    "directions": [
+      "From Pottsboro take SH 289 north toward Lighthouse Resort; turn onto Preston Bend Road and follow signs to Island View.",
+      "About 90 minutes from downtown Dallas via US-75.",
+      "Parking is in designated areas only — arrive early on summer weekends.",
+      "Coming by boat? Fastrac's water taxi stops at Island View."
+    ],
+    "essentials": [
+      { "title": "Hours & entry", "items": ["9am to sunset daily, year-round", "Gate closes 30 minutes after sunset", "$7 per person; kids 7 & under free; TAP members free", "Shelters by reservation only"], "factKey": "islandview.hours" },
+      { "title": "Bring / don't bring", "items": ["Bring: shade, sunscreen, coolers (no glass)", "Pets welcome on a leash; no aggressive breeds", "No glass bottles or containers", "No firearms, fireworks or open fires (grills in shelters are fine)"] },
+      { "title": "Safety", "items": ["No lifeguard — swim at your own risk", "Kids 12 and under should wear life jackets on the water", "Clean up after yourselves and your pets", "Be courteous and safe — and have fun"] },
+      { "title": "Weather", "items": ["Open rain or shine", "No refunds once inside the gate", "Kayak rentals may pause for wind or lightning"] }
+    ],
+    "faqs": [
+      { "q": "Can I bring my own kayak or paddleboard?", "a": "Yes — launch from the beach with your day pass." },
+      { "q": "Are dogs allowed?", "a": "Leashed dogs are welcome; please clean up after them. No aggressive breeds." },
+      { "q": "Can I bring alcohol?", "a": "Yes, in cans or plastic. No glass anywhere in the park." },
+      { "q": "Is there food?", "a": "The store has snacks and drinks; most guests bring a cooler and grill at a shelter." },
+      { "q": "Do you close in winter?", "a": "No — Island View is open 9am to sunset year-round, and winter is eagle season." }
+    ],
+    "nearby": [
+      { "name": "Lighthouse Resort & Marina", "note": "Cabins, boat rentals and a fuel dock two minutes away — make it a weekend." },
+      { "name": "Fastrac sunset cruises", "note": "Friday and Saturday evenings from Lighthouse Marina." },
+      { "name": "Tackle Box Outfitters", "note": "Ice, bait, sunscreen and snacks on SH 289." }
+    ]
+  },
+  "rules": {
+    "title": "Park rules",
+    "subtitle": "Simple ones. They keep Island View the nicest beach on the lake.",
+    "groups": [
+      { "title": "Hours & entry", "items": ["Open 9am to sunset daily", "Gate closes 30 minutes after sunset", "Day pass required for everyone 8 and older", "Shelters by reservation only (see the front gate)"], "factKey": "islandview.hours" },
+      { "title": "Safety", "items": ["No lifeguard or designated swim area — swim at your own risk", "No glass bottles or containers", "No firearms, fireworks or open fires", "Parking in designated areas only"] },
+      { "title": "Pets & courtesy", "items": ["Pets on a leash; no aggressive breeds", "Clean up after yourselves and your pets", "Be courteous to your neighbors on the sand"], "factKey": "hub.pet_fee" },
+      { "title": "Refunds", "items": ["No weather refunds once inside the gate", "Shelter and kayak reservations follow the Texoma Destinations rental policy shown at checkout"] }
+    ],
+    "policyNote": "Most importantly — have fun. Questions on the day? Ask at the gate or call 903.419.1008."
+  },
+  "packages": {
+    "title": "Picnics, passes and beach events",
+    "subtitle": "Ways to upgrade a beach day, and the events worth circling on the calendar.",
+    "intro": "Everything below is booked on texomadestinations.com and ready when you arrive."
+  },
+  "footerBlurb": "Island View Park is Lake Texoma's most popular day-use beach — sandy shoreline, covered shelters, kayak and paddleboard rentals — open 9am to sunset year-round on the Preston Peninsula. Part of the Texoma Destinations family; passes and rentals are sold at texomadestinations.com."
+}

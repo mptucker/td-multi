@@ -1,0 +1,68 @@
+[
+  {
+    "id": "pkg-tap",
+    "slug": "tap-membership",
+    "title": "TAP — Texoma Access Package",
+    "summary": "One annual membership that pays for itself in a couple of visits: free day use at Island View and Paradise, free boat-ramp access at Lighthouse and Paradise, and 5–15% off stays, rentals and cruises.",
+    "details": ["Explorer $99 · Adventurer $199 · Navigator $399 per year", "Discounts at the Lighthouse fuel dock and the Tackle Box", "Early-bird access to special events and cruises"],
+    "price_text": "From $99 / year",
+    "image": "https://texomadestinations.com/wp-content/uploads/2024/05/DescribeTheFauna_TexomaDestinations_Q0A8092-Edit-scaled.jpg",
+    "cta_label": "Compare TAP tiers",
+    "cta_intent": "tap",
+    "show_on_sites": ["lighthouse", "paradise", "sundance", "island-view", "fastrac", "tackle-box", "boaterwise"],
+    "published": true,
+    "sort_order": 1
+  },
+  {
+    "id": "pkg-picnic-boat",
+    "slug": "boat-ride-island-picnic",
+    "title": "Boat Ride + Island Picnic for Two",
+    "summary": "Two hours, one secluded beach. We set the blanket, basket and pillows, bring the meal and sparkling water, and handle the boat ride there and back.",
+    "details": ["2 hours · private captain", "Meal, small cooler and Bluetooth speaker included", "Set-up and tear-down handled for you"],
+    "price_text": "$350",
+    "image": "https://texomadestinations.com/wp-content/uploads/2023/07/boat-ride.jpg",
+    "cta_label": "Reserve a picnic",
+    "cta_intent": "picnics",
+    "show_on_sites": ["fastrac", "lighthouse", "paradise", "sundance", "water-taxi"],
+    "published": true,
+    "sort_order": 2
+  },
+  {
+    "id": "pkg-picnic-beach",
+    "slug": "beach-picnic-for-two",
+    "title": "Beach Picnic for Two",
+    "summary": "A styled two-hour picnic on the sand — custom color theme, fresh florals, umbrella and décor — perfect for proposals and anniversaries.",
+    "details": ["2 hours on the beach", "Add a boat ride for $150 per hour"],
+    "price_text": "$250",
+    "image": "https://texomadestinations.com/wp-content/uploads/2023/07/events-table-night.jpg",
+    "cta_label": "Reserve a picnic",
+    "cta_intent": "picnics",
+    "show_on_sites": ["island-view", "fastrac", "lighthouse", "paradise"],
+    "published": true,
+    "sort_order": 3
+  },
+  {
+    "id": "pkg-stay-n-play",
+    "slug": "stay-n-play-late-checkout",
+    "title": "Stay-N-Play Late Checkout",
+    "summary": "Keep the cabin until evening and squeeze in one more lake day. Available Sunday through Wednesday, subject to availability — add it in your reservation.",
+    "price_text": "Ask at booking",
+    "cta_label": "Manage my reservation",
+    "cta_intent": "my-reservations",
+    "show_on_sites": ["lighthouse", "paradise", "sundance"],
+    "published": true,
+    "sort_order": 4
+  },
+  {
+    "id": "pkg-firewood-delivery",
+    "slug": "campfire-delivery",
+    "title": "Campfire Delivery",
+    "summary": "Firewood, ice, charcoal and lighter fluid delivered to your site between 8am and 8pm so you never leave the fire.",
+    "details": ["Firewood (45 lb) $30 · Ice (7 lb) $5 · Charcoal $12 · Lighter fluid $8"],
+    "cta_label": "Add to my stay",
+    "cta_intent": "my-reservations",
+    "show_on_sites": ["lighthouse", "paradise", "sundance"],
+    "published": true,
+    "sort_order": 5
+  }
+]
