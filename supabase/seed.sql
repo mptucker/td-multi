@@ -4,10 +4,9 @@
 -- ============================================================================
 -- EVENTS
 -- ============================================================================
-INSERT INTO events (id, slug, title, starts_at, ends_at, location, summary, image, price_text, cta_label, cta_url, show_on_sites, published)
+INSERT INTO events (slug, title, starts_at, ends_at, location, summary, image, price_text, cta_label, cta_url, show_on_sites, published)
 VALUES
   (
-    'evt-texie-2026-09-05',
     'discovering-texie-cruise-sep-2026',
     'Discovering Texie Cruise for Kids',
     '2026-09-05T10:00:00-05:00',
@@ -22,7 +21,6 @@ VALUES
     true
   ),
   (
-    'evt-eagle-2027-01',
     'eagle-watching-breakfast-cruises-2027',
     'Eagle Watching Breakfast Cruises',
     '2027-01-09T08:00:00-06:00',
@@ -52,10 +50,9 @@ ON CONFLICT (slug) DO UPDATE SET
 -- ============================================================================
 -- PACKAGES
 -- ============================================================================
-INSERT INTO packages (id, slug, title, summary, details, price_text, image, cta_label, cta_intent, show_on_sites, published, sort_order)
+INSERT INTO packages (slug, title, summary, details, price_text, image, cta_label, cta_intent, show_on_sites, published, sort_order)
 VALUES
   (
-    'pkg-tap',
     'tap-membership',
     'TAP — Texoma Access Package',
     'One annual membership that pays for itself in a couple of visits: free day use at Island View and Paradise, free boat-ramp access at Lighthouse and Paradise, and 5–15% off stays, rentals and cruises.',
@@ -69,7 +66,6 @@ VALUES
     1
   ),
   (
-    'pkg-picnic-boat',
     'boat-ride-island-picnic',
     'Boat Ride + Island Picnic for Two',
     'Two hours, one secluded beach. We set the blanket, basket and pillows, bring the meal and sparkling water, and handle the boat ride there and back.',
@@ -83,7 +79,6 @@ VALUES
     2
   ),
   (
-    'pkg-picnic-beach',
     'beach-picnic-for-two',
     'Beach Picnic for Two',
     'A styled two-hour picnic on the sand — custom color theme, fresh florals, umbrella and décor — perfect for proposals and anniversaries.',
@@ -97,7 +92,6 @@ VALUES
     3
   ),
   (
-    'pkg-stay-n-play',
     'stay-n-play-late-checkout',
     'Stay-N-Play Late Checkout',
     'Keep the cabin until evening and squeeze in one more lake day. Available Sunday through Wednesday, subject to availability — add it in your reservation.',
@@ -111,7 +105,6 @@ VALUES
     4
   ),
   (
-    'pkg-firewood-delivery',
     'campfire-delivery',
     'Campfire Delivery',
     'Firewood, ice, charcoal and lighter fluid delivered to your site between 8am and 8pm so you never leave the fire.',
@@ -139,10 +132,9 @@ ON CONFLICT (slug) DO UPDATE SET
 -- ============================================================================
 -- ALERTS
 -- ============================================================================
-INSERT INTO alerts (id, text, cta_label, cta_url, starts_at, ends_at, show_on_sites, published)
+INSERT INTO alerts (text, cta_label, cta_url, starts_at, ends_at, show_on_sites, published)
 VALUES
   (
-    'alert-labor-day-2026',
     'Fall is the best-kept secret on Texoma — cooler evenings, quieter coves, and weekday rates.',
     'Check fall availability',
     'https://texomadestinations.com/where-to-stay/cabins?utm_source=brand-site&utm_medium=alert&utm_campaign=fall-2026',
@@ -151,14 +143,7 @@ VALUES
     ARRAY['lighthouse', 'paradise', 'sundance'],
     true
   )
-ON CONFLICT (id) DO UPDATE SET
-  text = EXCLUDED.text,
-  cta_label = EXCLUDED.cta_label,
-  cta_url = EXCLUDED.cta_url,
-  starts_at = EXCLUDED.starts_at,
-  ends_at = EXCLUDED.ends_at,
-  show_on_sites = EXCLUDED.show_on_sites,
-  published = EXCLUDED.published;
+ON CONFLICT DO NOTHING;
 
 -- ============================================================================
 -- FACTS
