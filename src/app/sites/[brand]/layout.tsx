@@ -7,6 +7,7 @@ import { BrandStyle } from "@/components/BrandProvider";
 import { AlertBar, Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { LocalBusinessJsonLd } from "@/components/Sections";
+import { MembershipBand } from "@/components/MembershipBand";
 
 export const revalidate = 60; // ISR: CMS edits appear within a minute
 
@@ -49,11 +50,14 @@ export default async function BrandLayout({ children, params }: { children: Reac
           }}
         />
       )}
-      <LocalBusinessJsonLd brand={brand} description={content.seo.description} image={content.seo.ogImage} />
-      <AlertBar alert={alert} />
-      <Header brand={brand} />
-      <main>{children}</main>
-      <Footer brand={brand} blurb={content.footerBlurb} />
+      <div className="brand-site min-h-screen" data-brand={brand.slug}>
+        <LocalBusinessJsonLd brand={brand} description={content.seo.description} image={content.seo.ogImage} />
+        <AlertBar alert={alert} />
+        <Header brand={brand} />
+        <main>{children}</main>
+        <MembershipBand brand={brand} />
+        <Footer brand={brand} blurb={content.footerBlurb} />
+      </div>
     </>
   );
 }

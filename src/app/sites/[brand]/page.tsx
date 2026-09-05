@@ -1,6 +1,9 @@
 import { loadPage } from "./_shared";
 import { getEvents, getPackages } from "@/lib/content";
 import { FeatureGrid, Gallery, Hero, HubHandoff, Intro, Reviews, StatsBar, EventsList, PackagesList } from "@/components/Sections";
+import { IslandViewHome } from "@/components/island-view/IslandViewHome";
+import { BoaterWiseHome } from "@/components/boaterwise/BoaterWiseHome";
+import { TackleBoxHome } from "@/components/tackle-box/TackleBoxHome";
 
 export const revalidate = 60;
 
@@ -9,6 +12,18 @@ export default async function HomePage({ params }: { params: Promise<{ brand: st
   const h = content.home;
   const [events, packages] = await Promise.all([getEvents(brand.slug, 3), getPackages(brand.slug)]);
   const showPackages = brand.pages.includes("packages");
+
+  if (brand.slug === "island-view") {
+    return <IslandViewHome brand={brand} content={content} facts={facts} events={events} packages={packages} />;
+  }
+
+  if (brand.slug === "boaterwise") {
+    return <BoaterWiseHome brand={brand} content={content} facts={facts} />;
+  }
+
+  if (brand.slug === "tackle-box") {
+    return <TackleBoxHome brand={brand} content={content} />;
+  }
 
   return (
     <>

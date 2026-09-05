@@ -27,7 +27,7 @@ export function Header({ brand }: { brand: BrandConfig }) {
   return (
     <header className={`${dark ? "bg-primary text-white" : "bg-surface text-ink"} sticky top-0 z-40 shadow-sm`}>
       <div className="container flex items-center justify-between gap-6 py-3">
-        <Link href="/" className="flex items-center shrink-0" aria-label={`${brand.nap.displayName} home`}>
+        <Link href="/" className="brand-lockup flex items-center shrink-0" aria-label={`${brand.nap.displayName} home`}>
           <span className={`inline-flex rounded-md px-2 py-1 ${dark ? "bg-white/95" : ""}`}>
             <Image
               src={brand.logo.src}
@@ -38,6 +38,7 @@ export function Header({ brand }: { brand: BrandConfig }) {
               className="h-10 md:h-12 w-auto"
             />
           </span>
+          <span className="brand-endorsement">A Texoma<br />Destinations property</span>
         </Link>
         <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold">
           {nav.map((p) => (

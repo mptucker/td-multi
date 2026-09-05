@@ -3,11 +3,11 @@
   "seo": {
     "title": "BoaterWise — NSBC-Certified On-Water Boating Courses on Lake Texoma",
     "description": "Hands-on boat handling with NSBC-certified instructors who are also USCG captains. Four 3-hour on-water modules ($199 each, 2–4 students), private instruction on your own boat, a Boat Club course and Trailer Like a Boss — all on Lake Texoma at Lighthouse Marina.",
-    "ogImage": "https://texomadestinations.com/wp-content/uploads/2023/05/Berkshire_STS_250CL-2-1.jpg"
+    "ogImage": "/boaterwise/training-hero.webp"
   },
   "home": {
-    "heroImage": { "src": "https://texomadestinations.com/wp-content/uploads/2023/05/Berkshire_STS_250CL-2-1.jpg", "alt": "Berkshire pontoon used for BoaterWise training" },
-    "heroKicker": "Your course to on-water confidence",
+    "heroImage": { "src": "/boaterwise/training-hero.webp", "alt": "A BoaterWise captain coaching students aboard a pontoon on Lake Texoma" },
+    "heroKicker": "Your course to on-water safety",
     "heroTitle": "Learn to run a boat the way captains do.",
     "heroSubtitle": "Small-group, hands-on training on Lake Texoma with NSBC-certified instructors who hold USCG captain's licenses. No classroom — you're at the helm from the first hour.",
     "intro": {
@@ -49,9 +49,9 @@
         "cta": { "label": "Book Module 4", "intent": "boaterwise-book" }
       },
       {
-        "title": "Private instruction on your boat",
+        "title": "Private instruction on your boat or ours",
         "icon": "🛥️",
-        "body": "Bring your own boat (up to 32 feet) and we'll build the session around it — docking at your slip, launching at your ramp, the maneuvers you actually worry about.",
+        "body": "Train on our pontoon or bring your own boat (up to 32 feet) and we'll build the session around it — docking at your slip, launching at your ramp, and the maneuvers you actually worry about.",
         "cta": { "label": "Book private instruction", "intent": "boaterwise-private" }
       },
       {
@@ -105,10 +105,14 @@
       { "title": "Weather", "items": ["Classes run in light rain", "High wind or lightning reschedules — we'll text you", "Summer classes start early to beat the heat"] }
     ],
     "faqs": [
-      { "q": "Do I need any experience?", "a": "None. Module 1 assumes you've never touched a throttle." },
-      { "q": "Is this the Texas boater-education certificate?", "a": "No — that's a free online course through the BoatUS Foundation. BoaterWise is hands-on, on-water training that builds on it." },
-      { "q": "Can two of us share a private session?", "a": "Yes; private instruction is priced per session, not per person." },
-      { "q": "Do Boat Club members pay?", "a": "Big Water Boat Club members receive free BoaterWise training, and TAP Navigator members save 10% on courses." }
+      { "q": "How does training work?", "a": "We train on 24-foot Berkshire pontoons at Lighthouse Marina in Pottsboro. Each NSBC module is approximately three hours and classes have a minimum of two students and a maximum of four, giving everyone meaningful time at the helm. Choose your class and book online through our current scheduling page." },
+      { "q": "How do I prepare for my training?", "a": "Classes are 100% outside and on the water, so dress for the weather. Spring and fall can feel cooler on the lake; summer calls for sunscreen, a hat and plenty of water. Wear non-marking shoes and arrive with an open mind, ready to learn. Reviewing your module on the NSBC website beforehand is helpful but not required." },
+      { "q": "Do I need any boating experience?", "a": "None. Module 1 assumes you are new to the helm. Experienced boaters are also welcome to select a later module when they want focused help with docking, open-water handling or advanced maneuvers." },
+      { "q": "Do I have to take all four modules?", "a": "No. You are welcome to take only the module that addresses the skill you want to improve. The complete four-module pathway gives you the broadest progression. NSBC states that a Certificate of Completion may be awarded for each module after you demonstrate its required skills; this is hands-on course completion, not an instructor certification." },
+      { "q": "Is this the Texas boater-education certificate?", "a": "No. Texas boater education covers laws and boating-safety fundamentals and may be legally required based on your age and the vessel you operate. BoaterWise provides the hands-on, on-water boat-control training that builds practical skill. Students should complete a NASBLA-approved safety course before taking the NSBC course." },
+      { "q": "Can I do private instruction?", "a": "Yes. Private instruction can take place on our pontoon or your boat and can follow the NSBC modules or focus on your specific needs. It works well for an individual or couple who wants the instructor's full attention. We train on customer boats up to 32 feet; for larger yacht systems or yacht-management instruction, we recommend contacting Jobe Marine." },
+      { "q": "Can you help us purchase a boat?", "a": "Our instructors are dedicated to training, but we are happy to make recommendations and connect you with the right team. The Berkshire pontoons used in training are sold by Big Water Marine & Boat Club in Pottsboro and Kingston. If you enjoy the boat during your class, we can make a warm introduction." },
+      { "q": "What happens if the weather is bad?", "a": "Classes can run in light rain. High wind, lightning or other unsafe conditions may require rescheduling; we will contact you using the information supplied with your booking." }
     ]
   },
   "rules": {
