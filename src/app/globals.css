@@ -15,6 +15,144 @@
   --radius: 0.75rem;
 }
 
+/* -------------------------------------------------------------------------- */
+/* Texoma Water Taxi — a route-led, one-page service site                     */
+/* -------------------------------------------------------------------------- */
+[data-brand="water-taxi"] { background: #f3f0e9; }
+[data-brand="water-taxi"] > header { position: relative; background: #102847; border-bottom: 4px solid #ffad22; box-shadow: none; }
+[data-brand="water-taxi"] > header .brand-lockup > span:first-child { background: transparent; }
+[data-brand="water-taxi"] > header .brand-lockup img { height: 4.2rem; }
+[data-brand="water-taxi"] > header .btn-primary { background: #f04b31; color: #fff; box-shadow: 4px 4px 0 #ffad22; }
+[data-brand="water-taxi"] footer { margin-top: 0; }
+[data-brand="water-taxi"] .tap-band { margin-top: 0; background: #ffad22; color: #102847; }
+
+.wt-kicker { display: flex; align-items: center; gap: .75rem; color: #f04b31; font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.wt-kicker span { width: 2.5rem; height: 4px; background: #ffad22; }
+.wt-hero { position: relative; display: grid; grid-template-columns: .9fr 1.1fr; min-height: 750px; overflow: hidden; background: #f3f0e9; }
+.wt-hero-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(3rem, 7vw, 7rem) clamp(1.5rem, 5vw, 6rem); }
+.wt-hero h1, .wt-route h2, .wt-destination-list h2, .wt-extras h2, .wt-map h2, .wt-party h2, .wt-faq h2, .wt-final h2 { color: #102847; font-family: var(--font-display); font-weight: 800; letter-spacing: -.045em; line-height: .86; text-transform: uppercase; }
+.wt-hero h1 { margin: 1.25rem 0 1.5rem; font-size: clamp(4.5rem, 7.2vw, 8rem); }
+.wt-hero h1 em { color: #f04b31; font-style: italic; }
+.wt-hero-copy > p:not(.wt-kicker) { max-width: 580px; color: #52606d; font-size: clamp(1rem, 1.4vw, 1.22rem); line-height: 1.65; }
+.wt-actions { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 2rem; }
+.wt-actions .btn { border-radius: 0; }
+.wt-actions .btn-primary { background: #f04b31; color: #fff; box-shadow: 5px 5px 0 #ffad22; }
+.wt-actions .btn-ghost { color: #102847; box-shadow: inset 0 0 0 2px #102847; }
+.wt-hero-photo { position: relative; min-height: 610px; margin: clamp(2rem, 4vw, 4rem) clamp(1rem, 3vw, 3rem) clamp(2rem, 4vw, 4rem) 0; overflow: hidden; clip-path: polygon(8% 0, 100% 0, 100% 92%, 91% 100%, 0 100%, 0 8%); }
+.wt-hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(8,23,43,.3)); }
+.wt-fare-card { position: absolute; z-index: 2; right: 0; bottom: 0; min-width: 245px; padding: 1.3rem 1.5rem 1.5rem; background: #ffad22; color: #102847; border-top: 7px solid #f04b31; }
+.wt-fare-card span { font-size: .7rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.wt-fare-card strong { display: block; margin: -.15rem 0; font-family: var(--font-display); font-size: 5rem; line-height: 1; }
+.wt-fare-card p { font-size: .78rem; font-weight: 700; line-height: 1.35; }
+.wt-scroll { position: absolute; left: 2rem; bottom: 1rem; color: #73808b; font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; writing-mode: vertical-rl; transform: rotate(180deg); }
+
+.wt-booking-strip { display: grid; grid-template-columns: repeat(3, 1fr); background: #102847; color: #fff; }
+.wt-booking-strip > p { display: flex; align-items: center; justify-content: center; min-height: 112px; padding: 1.5rem; border-right: 1px solid rgba(255,255,255,.18); }
+.wt-booking-strip > p:last-child { border: 0; }
+.wt-booking-strip span { margin-right: 1rem; color: #ffad22; font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; }
+.wt-booking-strip a { font-size: .78rem; font-weight: 600; text-transform: uppercase; }
+.wt-booking-strip strong { margin-left: .35rem; font-size: 1.05rem; }
+.wt-booking-strip .btn { padding: 0; background: none; box-shadow: none; }
+
+.wt-route { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(3rem, 8vw, 8rem); padding: clamp(6rem, 10vw, 10rem) max(1.5rem, calc((100vw - 72rem)/2)); background: #fff; }
+.wt-route h2, .wt-destination-list h2, .wt-extras h2, .wt-map h2, .wt-faq h2 { margin-top: 1rem; font-size: clamp(3.8rem, 7vw, 7rem); }
+.wt-route ol { position: relative; }
+.wt-route ol::before { content: ""; position: absolute; left: 31px; top: 32px; bottom: 32px; width: 5px; background: #ffad22; }
+.wt-route li { position: relative; display: grid; grid-template-columns: 68px 1fr; gap: 1.5rem; padding-bottom: 3.5rem; }
+.wt-route li:last-child { padding-bottom: 0; }
+.wt-route li > span { z-index: 1; display: grid; place-items: center; width: 68px; height: 68px; color: #fff; background: #f04b31; border: 7px solid #ffe0a3; border-radius: 50%; font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; }
+.wt-route small { color: #f04b31; font-size: .68rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.wt-route h3 { margin: .35rem 0 .6rem; color: #102847; font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.7rem); font-weight: 700; line-height: 1; text-transform: uppercase; }
+.wt-route li p { max-width: 590px; color: #68737e; line-height: 1.65; }
+
+.wt-destinations { display: grid; grid-template-columns: .95fr 1.05fr; min-height: 720px; background: #102847; }
+.wt-destination-photo { position: relative; min-height: 650px; }
+.wt-destination-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,23,43,.8), transparent 55%); }
+.wt-destination-photo > p { position: absolute; z-index: 1; left: clamp(1.5rem, 4vw, 4rem); right: 2rem; bottom: 2.5rem; max-width: 450px; color: #fff; font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 3.5rem); font-weight: 700; line-height: 1; text-transform: uppercase; }
+.wt-destination-list { padding: clamp(4rem, 8vw, 7rem); }
+.wt-destination-list .wt-kicker { color: #ffad22; }
+.wt-destination-list h2 { color: #fff; }
+.wt-destination-list > div { display: grid; grid-template-columns: 1fr 1fr; margin-top: 2.5rem; border-top: 1px solid rgba(255,255,255,.2); }
+.wt-destination-list > div span { padding: .85rem .4rem; color: #dce6ef; border-bottom: 1px solid rgba(255,255,255,.16); font-size: .78rem; font-weight: 600; }
+
+.wt-private { display: grid; grid-template-columns: 1fr 1fr; min-height: 620px; }
+.wt-private-title { display: flex; flex-direction: column; justify-content: center; padding: clamp(3rem, 7vw, 7rem); color: #102847; background: #ffad22; }
+.wt-private-title > p { font-size: .76rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.wt-private-title h2 { margin: .5rem 0 1rem; font-family: var(--font-display); font-size: clamp(7rem, 13vw, 13rem); font-weight: 800; letter-spacing: -.07em; line-height: .8; }
+.wt-private-title h2 small { font-size: .18em; letter-spacing: 0; }
+.wt-private-title > span { max-width: 510px; font-weight: 600; line-height: 1.6; }
+.wt-private-photo { position: relative; min-height: 550px; }
+
+.wt-extras { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(3rem, 7vw, 7rem); padding-block: clamp(6rem, 10vw, 10rem); }
+.wt-extras > div { display: grid; grid-template-columns: 1fr 1fr; }
+.wt-extras article { min-height: 235px; padding: 2rem; border-top: 1px solid #c7c5be; border-left: 1px solid #c7c5be; }
+.wt-extras article:nth-child(odd) { border-left: 0; }
+.wt-extras article > span { color: #f04b31; font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; }
+.wt-extras h3 { margin: 1.3rem 0 .6rem; color: #102847; font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; text-transform: uppercase; }
+.wt-extras article p { color: #65717a; line-height: 1.6; }
+
+.wt-map { display: grid; grid-template-columns: .8fr 1.2fr; min-height: 650px; background: #dfe8e8; }
+.wt-map-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(3rem, 7vw, 7rem); }
+.wt-map-copy > p:not(.wt-kicker) { margin: 1.5rem 0; color: #536775; line-height: 1.7; }
+.wt-map-copy > a { align-self: flex-start; color: #f04b31; font-weight: 800; border-bottom: 2px solid currentColor; }
+.wt-map-image { position: relative; min-height: 600px; margin: 2rem; background: #fff; }
+
+.wt-party { position: relative; display: grid; place-items: center; min-height: 720px; text-align: center; }
+.wt-party-shade { position: absolute; inset: 0; background: rgba(8,23,43,.68); }
+.wt-party > div:last-child { position: relative; z-index: 1; padding: 2rem; }
+.wt-party > div > p { color: #ffcb56; font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.wt-party h2 { margin: 1rem 0 2rem; color: #fff; font-size: clamp(4.5rem, 10vw, 10rem); }
+.wt-party .btn { background: #f04b31; color: #fff; border-radius: 0; box-shadow: 5px 5px 0 #ffad22; }
+
+.wt-faq { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(3rem, 8vw, 8rem); padding-block: clamp(6rem, 10vw, 10rem); }
+.wt-faq details { border-top: 1px solid #bfc3c1; }
+.wt-faq details:last-child { border-bottom: 1px solid #bfc3c1; }
+.wt-faq summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.5rem 0; color: #102847; font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; text-transform: uppercase; cursor: pointer; list-style: none; }
+.wt-faq summary::-webkit-details-marker { display: none; }
+.wt-faq summary span { color: #f04b31; font-size: 2rem; }
+.wt-faq details[open] summary span { transform: rotate(45deg); }
+.wt-faq details p { padding: 0 3rem 1.5rem 0; color: #64717b; line-height: 1.65; }
+
+.wt-final { padding: clamp(5rem, 10vw, 9rem) 1.5rem; background: #f04b31; color: #fff; text-align: center; }
+.wt-final > p { color: #ffd16a; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+.wt-final h2 { margin: .4rem 0 1.5rem; color: #fff; font-size: clamp(6rem, 17vw, 16rem); }
+.wt-final a { display: inline-block; padding-bottom: .2rem; color: #fff; font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 800; border-bottom: 3px solid #ffad22; }
+
+@media (max-width: 900px) {
+  .wt-hero, .wt-route, .wt-destinations, .wt-private, .wt-extras, .wt-map, .wt-faq { grid-template-columns: 1fr; }
+  .wt-hero-copy { padding-bottom: 2rem; }
+  .wt-hero-photo { min-height: 520px; margin: 0 1rem 2rem; }
+  .wt-scroll { display: none; }
+  .wt-route-intro { margin-bottom: 1rem; }
+  .wt-destination-photo { min-height: 560px; }
+  .wt-private-photo { min-height: 500px; grid-row: 1; }
+  .wt-map-image { min-height: 520px; grid-row: 1; }
+}
+
+@media (max-width: 640px) {
+  [data-brand="water-taxi"] > header .brand-lockup img { height: 3rem; }
+  [data-brand="water-taxi"] > header .brand-endorsement { display: none; }
+  .wt-hero { min-height: auto; }
+  .wt-hero-copy { padding-top: 4rem; }
+  .wt-hero h1 { font-size: clamp(4rem, 18vw, 5.5rem); }
+  .wt-hero-photo { min-height: 430px; clip-path: polygon(7% 0, 100% 0, 100% 94%, 93% 100%, 0 100%, 0 7%); }
+  .wt-fare-card { min-width: 200px; }
+  .wt-booking-strip { grid-template-columns: 1fr; }
+  .wt-booking-strip > p { min-height: 82px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+  .wt-route ol::before { left: 25px; }
+  .wt-route li { grid-template-columns: 56px 1fr; gap: 1rem; }
+  .wt-route li > span { width: 56px; height: 56px; }
+  .wt-destination-list { padding: 4rem 1.5rem; }
+  .wt-destination-list > div { grid-template-columns: 1fr; }
+  .wt-private-title { padding: 4rem 1.5rem; }
+  .wt-private-title h2 { font-size: 7rem; }
+  .wt-extras > div { grid-template-columns: 1fr; }
+  .wt-extras article { min-height: auto; border-left: 0; }
+  .wt-map-copy { padding: 4rem 1.5rem; }
+  .wt-map-image { min-height: 390px; margin: 1rem; }
+  .wt-party { min-height: 600px; }
+}
+
 @theme inline {
   --color-primary: var(--c-primary);
   --color-primary-dark: var(--c-primary-dark);

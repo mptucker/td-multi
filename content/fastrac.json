@@ -62,7 +62,7 @@
       {
         "title": "Texoma Water Taxi",
         "icon": "🚕",
-        "body": "Like Uber, on the water. $25 per person each way between Highport Marina and the islands, or $100 an hour private for up to six. Text or call for a pickup at any marina or your dock, sunrise to sunset.",
+        "body": "Like Uber, on the water. $25 per person each way between Highport Marina and the islands, or $150 an hour private for up to six. Text or call for a pickup at any marina or your dock, sunrise to sunset.",
         "image": "https://texomadestinations.com/wp-content/uploads/2023/07/water-taxi-map.jpg",
         "cta": { "label": "Water taxi routes & rates", "href": "https://texomawatertaxi.com/" }
       }
@@ -127,7 +127,7 @@
       {
         "title": "Lake Day, Boat Rides & Water Taxi",
         "body": [
-          "Lake Day Experience: four hours to a secluded beach on the Sight-Sea-Er or Mellow Yellow with captain and crew — $1,000 for up to 12, $40 per additional guest up to 36, kayaks and catering optional. Boat Ride Experience: one to six hours for up to six with your own itinerary, $150 an hour. Texoma Water Taxi: $25 per person each way between Highport Marina and the islands, or $100 an hour private for up to six, sunrise to sunset."
+          "Lake Day Experience: four hours to a secluded beach on the Sight-Sea-Er or Mellow Yellow with captain and crew — $1,000 for up to 12, $40 per additional guest up to 36, kayaks and catering optional. Boat Ride Experience: one to six hours for up to six with your own itinerary, $150 an hour. Texoma Water Taxi: $25 per person each way between Highport Marina and the islands, or $150 an hour private for up to six, sunrise to sunset."
         ],
         "bullets": ["Lake Day 4 hrs from $1,000", "Boat Ride $150/hr", "Water Taxi $25 pp", "Pets OK on taxi & Lake Day"],
         "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/lake-day.jpg", "alt": "Lake Day" },

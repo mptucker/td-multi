@@ -4,6 +4,7 @@ import { FeatureGrid, Gallery, Hero, HubHandoff, Intro, Reviews, StatsBar, Event
 import { IslandViewHome } from "@/components/island-view/IslandViewHome";
 import { BoaterWiseHome } from "@/components/boaterwise/BoaterWiseHome";
 import { TackleBoxHome } from "@/components/tackle-box/TackleBoxHome";
+import { WaterTaxiHome } from "@/components/water-taxi/WaterTaxiHome";
 
 export const revalidate = 60;
 
@@ -23,6 +24,10 @@ export default async function HomePage({ params }: { params: Promise<{ brand: st
 
   if (brand.slug === "tackle-box") {
     return <TackleBoxHome brand={brand} content={content} />;
+  }
+
+  if (brand.slug === "water-taxi") {
+    return <WaterTaxiHome brand={brand} content={content} />;
   }
 
   return (

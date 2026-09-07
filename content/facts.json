@@ -42,7 +42,7 @@
   { "key": "fastrac.sunset_price", "brand": "fastrac", "label": "Sunset cruise", "value": "$35", "owner": "Fastrac Ops", "last_verified": "2026-09-03", "source_url": "https://fastrac.com/cruises/sunset-cruise-experience/" },
   { "key": "fastrac.dinner_price", "brand": "fastrac", "label": "Dinner cruise", "value": "$60 adults · $40 kids 3–12", "owner": "Fastrac Ops", "last_verified": "2026-09-03", "source_url": "https://fastrac.com/cruises/dinner-cruise-experience/" },
 
-  { "key": "watertaxi.rates", "brand": "water-taxi", "label": "Rates", "value": "$25/person each way Highport ↔ islands · $100/hr private (up to 6)", "owner": "Fastrac Ops", "last_verified": "2026-09-03", "source_url": "https://fastrac.com/cruises/water-taxi/", "notes": "CONFLICT: shop page says $20pp on Jolt; sightseeing $180/hr vs Boat Ride $150/hr." },
+  { "key": "watertaxi.rates", "brand": "water-taxi", "label": "Rates", "value": "$25/person each way Highport ↔ islands · $150/hr private (up to 6)", "owner": "Fastrac Ops", "last_verified": "2026-09-07", "source_url": "https://texomawatertaxi.com/" },
   { "key": "watertaxi.surcharges", "brand": "water-taxi", "label": "Surcharges", "value": "$20 night trips · $5/person holiday weekends", "owner": "Fastrac Ops", "last_verified": "2026-09-03" },
 
   { "key": "tacklebox.license", "brand": "tackle-box", "label": "Lake Texoma fishing license", "value": "$12 (residents and non-residents)", "owner": "Store Manager", "last_verified": "2026-09-03", "source_url": "https://texomadestinations.com/properties/the-tackle-box" },

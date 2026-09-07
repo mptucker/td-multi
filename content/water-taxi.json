@@ -2,11 +2,11 @@
   "slug": "water-taxi",
   "seo": {
     "title": "Texoma Water Taxi by Fastrac — On-Demand Rides to the Islands, Marinas & Your Dock",
-    "description": "It's like Uber on the water. $25 per person each way between Highport Marina and the islands, $100 an hour private for up to six, pickups at any marina or dock in the service area, sunrise to sunset. Text 903.414.6050.",
-    "ogImage": "https://texomadestinations.com/wp-content/uploads/2023/07/boat-ride.jpg"
+    "description": "Lake Texoma's on-demand water taxi. $25 per person each way between Highport Marina and the islands, $150 an hour private for up to six, with pickups at marinas and docks across the service area. Text 903.361.0775.",
+    "ogImage": "/water-taxi/jolt.webp"
   },
   "home": {
-    "heroImage": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/boat-ride.jpg", "alt": "Water taxi underway on Lake Texoma" },
+    "heroImage": { "src": "/water-taxi/jolt.webp", "alt": "The Jolt Texoma Water Taxi at the dock" },
     "heroKicker": "Texoma's only water taxi",
     "heroTitle": "It's like Uber. On the water.",
     "heroSubtitle": "A ride to the islands, a restaurant, another marina or back to your own dock — without the swim. Text or call and we'll get you there.",
@@ -19,7 +19,7 @@
     },
     "stats": [
       { "value": "$25", "label": "per person each way, Highport ↔ islands", "factKey": "watertaxi.rates" },
-      { "value": "$100", "label": "per hour private, up to 6", "factKey": "watertaxi.rates" },
+      { "value": "$150", "label": "per hour private, up to 6", "factKey": "watertaxi.rates" },
       { "value": "18", "label": "max group size" },
       { "value": "☀️", "label": "sunrise to sunset" }
     ],
@@ -33,7 +33,7 @@
       {
         "title": "Anywhere on the lake",
         "icon": "🗺️",
-        "body": "$100 an hour dock-to-dock for up to six, from the time we leave our dock until we return. Restaurants, marinas, your friend's slip.",
+        "body": "$150 an hour dock-to-dock for up to six, from the time we leave our dock until we return. Restaurants, marinas, your friend's slip.",
         "cta": { "label": "Book a private ride", "intent": "water-taxi-book" }
       },
       {
@@ -71,7 +71,7 @@
     ],
     "hubHandoff": {
       "title": "Text for a ride, or book ahead",
-      "body": "For a ride right now, text 903.414.6050 or call 903.361.0775. For a set pickup time, holiday weekends or groups, book online — and if you'd rather have the whole boat for the evening, Fastrac's charters and cruises leave from the same dock.",
+      "body": "For a ride right now, text or call 903.361.0775. For a set pickup time, holiday weekends or groups, book online — and if you'd rather have the whole boat for the evening, Fastrac's charters and cruises leave from the same dock.",
       "ctas": [
         { "label": "Book a ride online", "intent": "water-taxi-book" },
         { "label": "See cruises & charters", "intent": "cruises" }
@@ -84,7 +84,7 @@
     "arrival": {
       "title": "How to get a ride",
       "body": [
-        "Text 903.414.6050 or call 903.361.0775 with where you are and where you're headed. For a guaranteed pickup time — holiday weekends especially — book online ahead. Your captain takes card, Venmo or cash on the boat; tips appreciated.",
+        "Text or call 903.361.0775 with where you are and where you're headed. For a guaranteed pickup time — holiday weekends especially — book online ahead. Your captain takes card, Venmo or cash on the boat; tips appreciated.",
         "Rides run rain or shine, sunrise to sunset; night trips can be arranged with a $20 surcharge. Memorial Day, Fourth of July and Labor Day weekends add $5 per person."
       ]
     },
@@ -95,7 +95,7 @@
       "North (Party) Island · Treasure Island · Wood Island"
     ],
     "essentials": [
-      { "title": "Rates", "items": ["$25 per person each way, Highport ↔ islands", "$100 per hour private, up to 6, dock to dock", "Round trips are two bookings"], "factKey": "watertaxi.rates" },
+      { "title": "Rates", "items": ["$25 per person each way, Highport ↔ islands", "$150 per hour private, up to 6, dock to dock", "Round trips are two bookings"], "factKey": "watertaxi.rates" },
       { "title": "Surcharges", "items": ["$20 per trip after dark", "$5 per person on Memorial Day, July 4th and Labor Day weekends"], "factKey": "watertaxi.surcharges" },
       { "title": "Capacity", "items": ["Jolt: up to 6", "Mellow Yellow: up to 18 (covered, bench seating)", "Leashed pets welcome on private trips"] },
       { "title": "Kids", "items": ["Children 12 and under wear life jackets aboard the taxi — we have them", "All ages welcome on the island shuttle"] }
