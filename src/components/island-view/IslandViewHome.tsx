@@ -48,7 +48,7 @@ export function IslandViewHome({
             ))}
           </dl>
           <HubLink brand={brand} cta={{ label: `Get your ${dayPass ?? "$7"} pass`, intent: "day-pass-cart", variant: "secondary" }} campaign="iv-plan-card" />
-          <p className="iv-card-note">Buy online, show your phone at the gate, and head for the sand.</p>
+          <p className="iv-card-note">Buy online, then show your phone when you check in at the gate.</p>
         </aside>
       </section>
 

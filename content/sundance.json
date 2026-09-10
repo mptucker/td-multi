@@ -2,19 +2,19 @@
   "slug": "sundance",
   "seo": {
     "title": "Sundance Camp — Secluded Tiny-Cabin Village & Group Camp on Lake Texoma",
-    "description": "Eighty private acres at the tip of Preston Point. Seven themed tiny cabins, six wooded RV sites, primitive group camping, a sandy swimming beach and pavilions — built for retreats, reunions and small weddings. Book on texomadestinations.com.",
-    "ogImage": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5874-hero.jpg"
+    "description": "Eighty private acres at the tip of Preston Point. A village of themed tiny cabins, six wooded RV sites, primitive group camping, a sandy swimming beach and pavilions — built for retreats, reunions and small weddings. Book on texomadestinations.com.",
+    "ogImage": "/sundance/hero.webp"
   },
   "home": {
-    "heroImage": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5874-hero.jpg", "alt": "The tiny cabin village at Sundance Camp at dusk" },
+    "heroImage": { "src": "/sundance/hero.webp", "alt": "The welcoming gate at Sundance Camp on Lake Texoma" },
     "heroKicker": "The Most Peaceful place on Lake Texoma",
     "heroTitle": "Where rustic meets luxury, and the lake meets the sky.",
-    "heroSubtitle": "Eighty acres, seven tiny cabins, one sandy beach and no one else around. Sundance is the camp you rent for the people you actually want to be with.",
+    "heroSubtitle": "Eighty acres, a colorful tiny-cabin village, one sandy beach and no one else around. Sundance is the camp you rent for the people you actually want to be with.",
     "intro": {
       "title": "Disconnected on purpose",
       "body": [
         "Sundance sits at the very tip of Preston Point, fifteen minutes north of Pottsboro at the end of Highway 289, with water on three sides and eighty acres of post oak between you and everything else. There is no Wi-Fi. The night sky is the entertainment.",
-        "The heart of the property is the Tiny Cabin Village — seven individually decorated cabins with Southwestern names, a modern bathhouse a few steps away, big fire pits, sand volleyball and a 400-yard swimming beach. Add six secluded RV sites and a primitive group camping area and you can sleep fifty-plus and host a hundred without seeing another soul."
+        "The heart of the property is the Tiny Cabin Village — individually decorated cabins with Southwestern names, a modern bathhouse a few steps away, one large community fire pit and a 400-yard swimming beach. Add six secluded RV sites and a designated primitive group-camping area and you can bring the whole group without seeing another soul."
       ]
     },
     "stats": [
@@ -27,28 +27,28 @@
       {
         "title": "The Tiny Cabin Village",
         "icon": "🏡",
-        "body": "Pecos, Glorietta, Rosa Linda, Arroyo, Pinion House, Ponderosa and Cottonwood — seven climate-controlled cabins that sleep two to four, each furnished differently, with a French press, filtered water, a small fridge and a fire pit outside the door.",
+        "body": "Pecos, Glorietta, Rosa Linda, Arroyo, Pinion House, Ponderosa and Cottonwood each have their own look and personality. The climate-controlled cabins sleep two to four and include a French press, filtered water and a small fridge; the village shares one large community fire pit.",
         "image": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5873.jpg",
         "cta": { "label": "See the cabins", "intent": "cabins" }
       },
       {
         "title": "Six RV sites in the trees",
         "icon": "🚐",
-        "body": "Spacious, shaded gravel pads with 30-amp power and water, a picnic table and fire ring, and a short walk to the private beach. Rigs up to 30 feet. A dump station is close by.",
+        "body": "Spacious, shaded gravel pads with 30-amp power and water, a picnic table and fire ring, and a short walk to the private beach. Confirm current rig-length limits when booking. Sundance does not have a dump station; registered guests may use the dump station at Lighthouse Resort & Marina.",
         "image": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_0166.jpg",
         "cta": { "label": "Reserve an RV site", "intent": "rv" }
       },
       {
         "title": "Primitive group camping",
         "icon": "⛺",
-        "body": "Three group camping areas on the lake side of the property for scouts, church groups and big families. Fire pits, picnic tables and a restroom facility; no power or water at the sites.",
+        "body": "A designated primitive group-camping area on the lake side of the property welcomes scouts, church groups and big families. It includes fire pits, picnic tables and access to a restroom facility; there is no power or water at the tent sites.",
         "image": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_7617.jpg",
         "cta": { "label": "Book group camping", "intent": "tents" }
       },
       {
         "title": "A beach of your own",
         "icon": "🏖️",
-        "body": "Four hundred yards of sandy swimming beach, a boat ramp, sand volleyball and pavilions with bench tables. On a weekday you will likely have all of it to yourself.",
+        "body": "Four hundred yards of sandy swimming beach and pavilions with bench tables. On a weekday you will likely have all of it to yourself.",
         "image": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5874-hero.jpg"
       },
       {
@@ -90,15 +90,15 @@
   },
   "stay": {
     "title": "Cabins, campsites and a very quiet beach",
-    "subtitle": "Every stay at Sundance includes the bathhouse, the beach, the fire pits and the sky.",
+    "subtitle": "Every stay at Sundance includes the bathhouse, the beach, the community fire pit and the sky.",
     "sections": [
       {
-        "title": "Cabins: seven, each one different",
+        "title": "Tiny cabins, each one different",
         "body": [
-          "Pecos, Glorietta and Rosa Linda have king beds for two (a rollaway can be added for $100, and kids under six sleep free in the king). Arroyo sleeps four in two full beds; Pinion House has a queen; Ponderosa is the treehouse with four twins; Cottonwood pairs a full and a twin.",
+          "Pecos, Glorietta and Rosa Linda have king beds for two; children under six stay free when sharing the existing king bed with their parents. Arroyo sleeps four in two full beds; Pinion House has a queen; Ponderosa is the treehouse with four twins; Cottonwood pairs a full and a twin.",
           "Each cabin is heated and cooled and furnished with a filtered water dispenser, French press and kettle, towels and linens, cups and wine glasses, a microwave and a small fridge. Bathrooms and hot showers are in the modern bathhouse steps away."
         ],
-        "bullets": ["Sleeps 2–4", "Climate controlled", "Linens & towels", "Fire pit at each cabin", "Bathhouse nearby", "Pet friendly for a fee"],
+        "bullets": ["Sleeps 2–4", "Climate controlled", "Linens & towels", "Community fire pit", "Bathhouse nearby", "Pet friendly for a fee"],
         "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5873.jpg", "alt": "Tiny cabin exterior" },
         "cta": { "label": "See cabin availability", "intent": "cabins" },
         "factKey": "sundance.cabin_count"
@@ -106,9 +106,9 @@
       {
         "title": "RV sites",
         "body": [
-          "Six shaded, spacious gravel sites with 30-amp electric and water, a picnic table and a fire ring, a short walk from the private beach. Maximum rig length is 30 feet; a dump station is close by. Up to four guests per site."
+          "Six shaded, spacious gravel sites with 30-amp electric and water, a picnic table and a fire ring, a short walk from the private beach. Confirm the current rig-length limit when booking. Sundance has no dump station; registered guests may use the dump station at Lighthouse Resort & Marina. Up to four guests per site."
         ],
-        "bullets": ["30 amp & water", "Max 30' rigs", "Dump station nearby", "Gravel pads", "Wooded view", "Pet friendly"],
+        "bullets": ["30 amp & water", "Confirm rig length", "Lighthouse dump station", "Gravel pads", "Wooded view", "Pet friendly"],
         "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_0166.jpg", "alt": "RV site" },
         "cta": { "label": "Reserve an RV site", "intent": "rv" },
         "factKey": "sundance.rv_count"
@@ -116,18 +116,18 @@
       {
         "title": "Primitive & group camping",
         "body": [
-          "Three group camping areas sit on the lake side of the property with fire pits, picnic tables and a restroom facility. Tents up to eight people; camp at least 100 feet back from the shoreline. Non-profit groups — scouts, church groups, school trips — are especially welcome."
+          "A designated primitive group-camping area sits on the lake side of the property with fire pits, picnic tables and access to a restroom facility. Tents accommodate up to eight people; camp at least 100 feet back from the shoreline. Non-profit groups — scouts, church groups and school trips — are especially welcome."
         ],
         "bullets": ["Tents only", "Group areas", "Fire pits & tables", "Restroom facility", "No power or water"],
         "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_7617.jpg", "alt": "Group camping" },
         "cta": { "label": "Book group camping", "intent": "tents" }
       },
       {
-        "title": "The beach, the ramp and the pavilions",
+        "title": "The beach and pavilions",
         "body": [
-          "A 400-yard sandy swimming beach, a private boat ramp, sand volleyball, large fire pits and covered pavilions with bench tables are shared by everyone on property — which on most nights means your group. There is no lifeguard; swim at your own risk."
+          "A 400-yard sandy swimming beach, one large community fire pit and covered pavilions with bench tables are shared by everyone on property — which on most nights means your group. There is no lifeguard; swim at your own risk."
         ],
-        "bullets": ["400-yard beach", "Boat ramp", "Sand volleyball", "Pavilions", "Large fire pits"],
+        "bullets": ["400-yard beach", "Covered pavilions", "Community fire pit", "Shared gathering space"],
         "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5874-hero.jpg", "alt": "Beach and pavilions" }
       }
     ],
@@ -152,14 +152,14 @@
     "essentials": [
       { "title": "Times & access", "items": ["Check-in 3pm · Check-out 11am", "Registered overnight guests only", "Gate code delivered by text", "Quiet hours 11pm–7am"], "factKey": "hub.checkin" },
       { "title": "Pets", "items": ["$35 per pet, maximum two", "Leashed at all times; no aggressive breeds", "Please pick up after your pet"], "factKey": "hub.pet_fee" },
-      { "title": "Good to know", "items": ["No Wi-Fi on property", "Rollaway bed $100 in cabins 1–3", "Children under 6 free in the king bed", "No ATVs or side-by-sides; designated parking only"], "factKey": "sundance.rollaway" },
+      { "title": "Good to know", "items": ["No Wi-Fi on property", "Children under 6 stay free when sharing the existing king bed", "One large community fire pit", "No ATVs or side-by-sides; designated parking only"] },
       { "title": "Water & fire", "items": ["No lifeguard — swim at your own risk", "Fires in provided pits only; observe burn bans", "No fireworks or firearms", "Tents at least 100' from the shoreline"] }
     ],
     "faqs": [
       { "q": "Do the cabins have bathrooms?", "a": "Not inside — a modern bathhouse with hot showers is a few steps from the village." },
       { "q": "Can we rent the whole property?", "a": "Yes. Sundance is regularly bought out for retreats, reunions and weddings. Groups of three or more cabins book through our events team and pay in full at booking." },
       { "q": "Is there food on site?", "a": "Not routinely, but pre-packaged meals, campfire dinners and breakfast can be arranged for groups. Otherwise the Tackle Box and Pottsboro restaurants are 15–20 minutes away." },
-      { "q": "Can I bring a boat?", "a": "Yes — there is a private ramp and shoreline for registered guests." },
+      { "q": "Can I bring a boat?", "a": "You may bring a boat, but Sundance does not have a usable launch ramp. Ask the reservations team about nearby launch and marina options before arrival." },
       { "q": "Is there Wi-Fi?", "a": "No. That's rather the point." }
     ],
     "nearby": [
@@ -177,9 +177,9 @@
       "Our events team helps with the pieces you don't want to think about — catered dinners, s'mores by the fire, breakfast at the pavilion, a sunset cruise for the whole crew, golf carts, even massages. Bookings of three or more cabins are paid in full at reservation and are non-refundable, so let's talk dates first."
     ],
     "venues": [
-      { "name": "Tiny Cabin Village buy-out", "capacity": "7 cabins · sleeps up to 20", "details": ["All seven cabins together", "Bathhouse & fire pits", "Add RV sites and group camping to reach 50+"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5874-hero.jpg", "alt": "Tiny cabin village" } },
-      { "name": "Beach & pavilions", "capacity": "Gatherings up to 100", "details": ["400-yard private beach", "Covered pavilions with bench tables", "Large fire pits & sand volleyball", "Open vendor — bring your caterer or use ours"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/events-table-night.jpg", "alt": "Pavilion dinner" } },
-      { "name": "Group camping areas", "capacity": "3 areas · large tents welcome", "details": ["Scouts, church and school groups", "Fire pits & tables", "Restroom facility", "Non-profit friendly"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_7617.jpg", "alt": "Group camping" } }
+      { "name": "Tiny Cabin Village buy-out", "capacity": "Ask about current cabin availability", "details": ["Available cabins together", "Bathhouse & community fire pit", "Add RV sites and group camping for larger groups"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5874-hero.jpg", "alt": "Tiny cabin village" } },
+      { "name": "Beach & pavilions", "capacity": "Gatherings up to 100", "details": ["400-yard private beach", "Covered pavilions with bench tables", "Large community fire pit", "Open vendor — bring your caterer or use ours"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/events-table-night.jpg", "alt": "Pavilion dinner" } },
+      { "name": "Primitive group camping", "capacity": "Designated tent-camping area", "details": ["Scouts, church and school groups", "Fire pits & tables", "Restroom facility", "Non-profit friendly"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_7617.jpg", "alt": "Group camping" } }
     ],
     "eventTypes": ["Corporate retreats", "Family reunions", "Intimate weddings", "Scout & church groups", "Yoga & wellness weekends", "Milestone birthdays"],
     "cta": { "label": "Talk to our events team", "intent": "events" },
@@ -189,7 +189,7 @@
     "title": "Sundance policies",
     "subtitle": "A small camp works because everyone looks after it. Here's what we ask.",
     "groups": [
-      { "title": "Reservations & payment", "items": ["Guests must be 25 or older to book", "Two-night minimum in peak season; three nights on holiday weekends", "Pay at Check-In: 14 days' notice or one night charged", "Pay Now & Save: non-refundable; only added nights allowed", "Three or more cabins: paid in full at booking, non-refundable", "Once checked in, you're responsible for your full stay"], "factKey": "hub.cancel_pay_at_checkin" },
+      { "title": "Reservations & payment", "items": ["The booking guest must meet the current minimum age shown at checkout", "Two-night minimum in peak season; three nights on holiday weekends", "Pay at Check-In: 14 days' notice or one night charged", "Pay Now & Save: non-refundable; only added nights allowed", "Three or more cabins: paid in full at booking, non-refundable", "Once checked in, you're responsible for your full stay"], "factKey": "hub.cancel_pay_at_checkin" },
       { "title": "On property", "items": ["Check-in 3pm · Check-out 11am", "Registered overnight guests only", "Quiet hours 11pm–7am", "Maximum 4 guests per RV site; see each cabin for capacity", "Designated parking only; no ATVs or side-by-sides"], "factKey": "hub.quiet_hours" },
       { "title": "Pets", "items": ["$35 per pet, maximum two", "No aggressive breeds; leashed at all times", "$250 deep-clean if pets are found in non-pet units"], "factKey": "hub.pet_fee" },
       { "title": "Fees you can avoid", "items": ["$250 excessive cleaning", "$250 smoking in a cabin", "$75 quiet-hour violation", "$25 lost key"] }
@@ -201,5 +201,5 @@
     "subtitle": "Small things that make a Sundance weekend feel effortless.",
     "intro": "Add these inside your reservation on texomadestinations.com, or ask the events team to bundle them for your group."
   },
-  "footerBlurb": "Sundance Camp is an 80-acre glamping and group camp at the tip of Preston Point on Lake Texoma, with seven tiny cabins, six RV sites, primitive group camping and a private beach. Part of the Texoma Destinations family; all reservations are made at texomadestinations.com."
+  "footerBlurb": "Sundance Camp is an 80-acre glamping and group camp at the tip of Preston Point on Lake Texoma, with a colorful tiny-cabin village, six RV sites, primitive group camping and a private beach. Part of the Texoma Destinations family; all reservations are made at texomadestinations.com."
 }

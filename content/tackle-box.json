@@ -13,14 +13,14 @@
     "intro": {
       "title": "The last stop before the lake",
       "body": [
-        "The Tackle Box sits on SH 289 at Tackle Box Drive, the road every angler and camper takes to Lighthouse Resort, Island View and the Preston Peninsula. It stocks shiners year-round, offers unleaded and ethanol-free fuel at the pump, fills propane, and sells the $12 Lake Texoma fishing license to residents and non-residents alike.",
+        "Tackle Box Outfitters sits on Highway 289 on the way to Lighthouse Resort & Marina and the Preston Peninsula. It stocks shiners year-round, offers unleaded and ethanol-free fuel at the pump, refills portable propane cylinders, and sells the $12 Lake Texoma fishing license to residents and non-residents alike.",
         "Inside: a huge selection of rods, reels, terminal tackle, lures, soft plastics and swimbaits, plus cast nets, landing nets, filet knives, marine fluids, boat and trailer parts, life jackets, water toys, inflatables and tubes. Add souvenirs, shirts, ice, firewood, snacks, cold drinks and always-hot coffee—and the Texoma Destinations team in the same building can help arrange activities, experiences, boat rentals and lodging."
       ]
     },
     "stats": [
       { "value": "$12", "label": "Lake Texoma license", "factKey": "tacklebox.license" },
       { "value": "25 mi", "label": "only live bait near Lighthouse" },
-      { "value": "LP", "label": "propane refills — cylinders & RVs" },
+      { "value": "LP", "label": "portable propane-cylinder refills" },
       { "value": "5–10%", "label": "off retail for TAP members", "factKey": "hub.tap_prices" }
     ],
     "features": [
@@ -71,7 +71,7 @@
     ],
     "reviews": [
       { "quote": "Only place near the lake with live shiners at 6am. Staff knows exactly what the stripers are hitting.", "author": "Weekend angler", "source": "Google review" },
-      { "quote": "Filled the RV propane on the way to Lighthouse. Quick, friendly, done.", "author": "RV camper", "source": "Google review" },
+      { "quote": "Stopped for propane on the way to Lighthouse. Quick, friendly, done.", "author": "Lake Texoma camper", "source": "Google review" },
       { "quote": "My kids have to feed Bob Jr. every single trip.", "author": "Lake regular", "source": "Facebook" }
     ],
     "hubHandoff": {
@@ -90,26 +90,26 @@
     "arrival": {
       "title": "Hours & propane",
       "body": [
-        "Store hours change with the season. Shiners are stocked year-round, and unleaded and ethanol-free fuel are available at the pump. RV propane fills need a quick heads-up so we can have someone at the tank.",
+        "Store hours change with the season. Shiners are stocked year-round, unleaded and ethanol-free fuel are available at the pump, and portable propane cylinders can be refilled during store hours.",
         "The Tackle Box shares an address with the Texoma Destinations reservation office; if you have a question about a cabin or cruise, the team next door can help."
       ]
     },
     "directions": [
       "From Pottsboro take SH 289 north about 5 miles; the Tackle Box is on the right at 83924 N State Hwy 289.",
-      "Two minutes before Lighthouse Resort & Marina and Island View Park — stock up before you get to the water.",
-      "Trailer parking out front; pull through for propane."
+      "On Highway 289 on the way to Lighthouse Resort & Marina and the Preston Peninsula — stock up before you get to the water.",
+      "Trailer parking is available out front."
     ],
     "essentials": [
       { "title": "Licenses", "items": ["Lake Texoma license $12, residents and non-residents", "Covers the whole lake — Texas and Oklahoma waters", "Valid through December 31"], "factKey": "tacklebox.license" },
       { "title": "Bait", "items": ["Shiners year-round; bass & crappie minnows", "Black salties, worms & glow worms", "Frozen bait & livers", "Call ahead only for large quantities"] },
-      { "title": "Propane & camp", "items": ["Cylinder refills during store hours", "RV fills with prior scheduling", "Ice, firewood, charcoal & starters", "RV hoses & repair items"] },
+      { "title": "Propane & camp", "items": ["Portable-cylinder refills during store hours", "Ice, firewood, charcoal & starters", "Camping supplies", "RV hoses & repair items"] },
       { "title": "TAP members", "items": ["5% off retail (Adventurer) · 10% off (Navigator)", "Fuel discounts at the Lighthouse fuel dock", "Show your TAP pass at checkout"], "factKey": "hub.tap_prices" }
     ],
     "faqs": [
       { "q": "Do I need a Texas or Oklahoma license?", "a": "Neither — a $12 Lake Texoma license covers the whole lake, both states, and we sell it here." },
       { "q": "Do you have live shiners?", "a": "Yes. We stock shiners year-round—there is no need to call ahead for normal quantities." },
       { "q": "Do you sell fuel?", "a": "Yes. We sell both unleaded and ethanol-free fuel at the pump." },
-      { "q": "Can you fill my RV propane tank?", "a": "Yes, with a quick call ahead so we have someone at the tank." },
+      { "q": "Can you refill propane?", "a": "We refill portable propane cylinders during store hours. Please call before arriving if you need a less common tank size serviced." },
       { "q": "Can I shop online?", "a": "Not at the moment — the online store is being rebuilt. Call and we'll set anything aside." }
     ],
     "nearby": [
@@ -122,7 +122,7 @@
     "title": "Store policies & fishing regs",
     "subtitle": "The short list.",
     "groups": [
-      { "title": "Store", "items": ["Hours vary by season — call 903.786.9010", "Live bait sales are final", "Propane: cylinders on demand, RVs by appointment", "We accept cards and cash"] },
+      { "title": "Store", "items": ["Hours vary by season — call 903.786.9010", "Live bait sales are final", "Portable propane-cylinder refills", "We accept cards and cash"] },
       { "title": "Fishing on Texoma", "items": ["A Lake Texoma license ($12) covers both states' waters", "Striper limits and length rules are set by TPWD/ODWC and change — check the current regulations", "Two-thirds of the lake lies in Oklahoma; the Texoma license means you don't have to care"], "factKey": "tacklebox.license" }
     ],
     "policyNote": "For cabin, boat rental and cruise policies, see texomadestinations.com — the Tackle Box only sells the gear."

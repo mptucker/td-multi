@@ -63,7 +63,7 @@ export function BoaterWiseHome({ brand, content }: { brand: BrandConfig; content
       <section className="bw-next-boat">
         <div className="container">
           <p className="bw-next-label">From first lesson to first boat</p>
-          <div className="bw-next-copy"><p className="eyebrow">The Texoma boating flywheel</p><h2>Love the boat you trained on?</h2><p>BoaterWise instructors stay focused on training—not sales. But when you’re ready to explore ownership, we can make a warm handoff to Big Water Marine. They sell Berkshire pontoons like the boats used in our classes, along with other premium brands, from their Pottsboro and Kingston locations.</p></div>
+          <div className="bw-next-copy"><p className="eyebrow">The Texoma boating flywheel</p><h2>Love the boat you trained on?</h2><p>BoaterWise instructors stay focused on training—not sales. But when you’re ready to explore ownership, we can make a warm handoff to Big Water Marine. They sell Berkshire pontoons like the boats used in our classes, along with other premium brands, from their Pottsboro location.</p></div>
           <div className="bw-next-actions"><a href="https://bigwatermarine.com/inventory/?utm_source=boaterwise.com&utm_medium=brand-site&utm_campaign=after-training" className="btn btn-primary">Shop boats at Big Water Marine <span aria-hidden>→</span></a><a href="https://bigwatermarine.com/boatclub/?utm_source=boaterwise.com&utm_medium=brand-site&utm_campaign=after-training" className="bw-text-link">Not ready to own? Explore Boat Club →</a></div>
         </div>
       </section>

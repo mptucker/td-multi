@@ -14,7 +14,7 @@
     "intro": {
       "title": "Sand, shade and a whole lake to look at",
       "body": [
-        "Island View is the day-trip beach for North Texas. Ninety minutes from Dallas you're on real sand with a swim area, picnic tables under the trees, covered shelters with grills, a volleyball court, outdoor showers and changing rooms, and a store for the things you forgot. Kayaks and paddleboards rent by the hour right off the beach.",
+        "Island View is the day-trip beach for North Texas. Ninety minutes from Dallas you're on real sand with a swim area, picnic tables beneath covered shelters, grills, a volleyball court, outdoor showers and changing rooms, and a store for the things you forgot. Kayaks and paddleboards rent by the hour right off the beach.",
         "It's also a birder's secret: the shoreline and coves here see hundreds of species through the year, and eagles in winter. Come early on summer weekends — the best shade goes first."
       ]
     },
@@ -28,7 +28,7 @@
       {
         "title": "Day passes",
         "icon": "🎟️",
-        "body": "$7 per person; kids seven and under are free. Buy online before you leave home and skip the line at the gate. TAP members get in free all year.",
+        "body": "$7 per person; kids seven and under are free. Guests 18 and older can purchase passes online before arriving; younger guests are welcome when appropriately accompanied. Show your pass at the gate when you arrive. TAP members get in free all year.",
         "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3656-hero.jpg",
         "cta": { "label": "Buy a day pass", "intent": "day-pass-cart" }
       },
@@ -71,7 +71,7 @@
     "gallery": [
       { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3656-hero.jpg", "alt": "Beach at Island View" },
       { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3704.jpg", "alt": "Kayaks at Island View" },
-      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_2008.jpg", "alt": "Shelters under the trees" },
+      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_2008.jpg", "alt": "Covered picnic shelters among the trees" },
       { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A2236.jpg", "alt": "Picnic table by the water" },
       { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/events-table-night.jpg", "alt": "Beach picnic setup" }
     ],
@@ -82,7 +82,7 @@
     ],
     "hubHandoff": {
       "title": "Buy your pass before you leave the house",
-      "body": "Day passes, shelters and kayaks for Island View are sold on texomadestinations.com. Buy ahead, show your phone at the gate, and go straight to the sand.",
+      "body": "Day passes, shelters and kayaks for Island View are sold on texomadestinations.com. Guests 18 and older can buy ahead; show your phone at the gate for check-in when you arrive.",
       "ctas": [
         { "label": "Buy a day pass", "intent": "day-pass-cart" },
         { "label": "Reserve a shelter", "intent": "beach" },
@@ -97,7 +97,7 @@
       {
         "title": "The beach & swim area",
         "body": [
-          "A wide sandy beach with a gradual entry, picnic tables under mature trees, a volleyball court, outdoor showers and changing rooms. There is no lifeguard and no designated swim area — swim at your own risk and keep an eye on the kids. Glass containers stay in the car."
+          "A wide sandy beach with a gradual entry, picnic tables beneath covered shelters, a volleyball court, outdoor showers and changing rooms. There is no lifeguard and no designated swim area — swim at your own risk and keep an eye on the kids. Glass containers stay in the car."
         ],
         "bullets": ["Sandy beach", "Volleyball", "Outdoor showers", "Changing rooms", "Store", "Restrooms"],
         "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3656-hero.jpg", "alt": "The beach" },
@@ -163,6 +163,7 @@
       { "q": "Are dogs allowed?", "a": "Leashed dogs are welcome; please clean up after them. No aggressive breeds." },
       { "q": "Can I bring alcohol?", "a": "Yes, in cans or plastic. No glass anywhere in the park." },
       { "q": "Is there food?", "a": "The store has snacks and drinks; most guests bring a cooler and grill at a shelter." },
+      { "q": "How old do I need to be to buy a day pass?", "a": "You must be 18 or older to purchase a day pass online. Guests under 18 are welcome at Island View when appropriately accompanied." },
       { "q": "Do you close in winter?", "a": "No — Island View is open 9am to sunset year-round, and winter is eagle season." }
     ],
     "nearby": [

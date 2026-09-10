@@ -45,8 +45,8 @@ export function TackleBoxHome({ brand, content }: { brand: BrandConfig; content:
           <div className="tb-story-copy">
             <p className="eyebrow">A proper lake outfitter</p>
             <h2>Stocked with what works.<br />Staffed by people who know why.</h2>
-            <p>Every good lake town has a shop like this—the place where the shelves are packed, the advice is practical, and somebody usually knows what&apos;s biting. Tackle Box Outfitters sits on Highway 289 on the way to Lighthouse Resort, Island View and the Preston Peninsula.</p>
-            <p>Come for live bait, a Texoma license, fuel at the pump or an RV propane fill. Stay for the wall of mounts, a visit with Bob Jr., and the sort of local knowledge that does not come printed on the package.</p>
+            <p>Every good lake town has a shop like this—the place where the shelves are packed, the advice is practical, and somebody usually knows what&apos;s biting. Tackle Box Outfitters sits on Highway 289 on the way to Lighthouse Resort &amp; Marina and the Preston Peninsula.</p>
+            <p>Come for live bait, a Texoma license, fuel at the pump or a portable propane-cylinder refill. Stay for the wall of mounts, a visit with Bob Jr., and the sort of local knowledge that does not come printed on the package.</p>
           </div>
           <div className="tb-story-photo"><Image src="/tackle-box/storefront.webp" alt="A parent helping a young angler prepare a lure beside Lake Texoma" fill sizes="(min-width: 900px) 38vw, 100vw" className="object-cover" /><span>Pass it down.</span></div>
         </div>
@@ -96,7 +96,7 @@ export function TackleBoxHome({ brand, content }: { brand: BrandConfig; content:
         <div className="tb-visit-board">
           <p className="eyebrow">Pull in on your way north</p><h2>Visit the shop</h2>
           <address>{brand.nap.streetAddress}<br />{brand.nap.city}, {brand.nap.region} {brand.nap.postalCode}</address>
-          <p>On Highway 289, two minutes before Lighthouse Resort &amp; Marina, in the same building as Texoma Destinations. Store hours vary by season. Call ahead only for large bait orders or RV propane fills.</p>
+          <p>On Highway 289 on the way to Lighthouse Resort &amp; Marina, in the same building as Texoma Destinations. Store hours vary by season. Shiners are stocked year-round; call ahead only for unusually large bait orders.</p>
           <div className="flex flex-wrap gap-3"><a className="btn btn-primary" href={brand.nap.googleMapsUrl}>Open in Maps <span aria-hidden>→</span></a><a className="tb-call" href={`tel:${brand.nap.phoneE164}`}>{brand.nap.phone}</a></div>
         </div>
         <div className="tb-faq">
