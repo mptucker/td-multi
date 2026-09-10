@@ -65,8 +65,10 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
   const [tab, setTab] = useState<Tab>("overview");
   const [status, setStatus] = useState("Loading…");
   const [data, setData] = useState<Record<string, any[]>>({});
+  const sessionRef = useRef<any>(null);
 
-  const load = useCallback(async (activeSession = session) => {
+  const load = useCallback(async (activeSession?: any) => {
+    activeSession ??= sessionRef.current;
     if (!sb || !activeSession) return;
     setStatus("Loading workspace…");
     const { data: p, error: profileError } = await sb.from("cms_users").select("*").eq("user_id", activeSession.user.id).maybeSingle();
@@ -96,13 +98,24 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
     setProfile(p); setAssignments(allowed);
     setData({ brands: queries[0].data ?? [], media: queries[1].data ?? [], alerts: queries[2].data ?? [], faqs: queries[3].data ?? [], packages: queries[4].data ?? [], events: queries[5].data ?? [], global: queries[6].data ?? [], settings: queries[7].data ?? [], revisions: queries[8].data ?? [], audit: queries[9].data ?? [], users: queries[10].data ?? [], requests: queries[11].data ?? [] });
     setStatus("Live");
-  }, [session]);
+  }, []);
 
   useEffect(() => {
     if (!sb) { setStatus("Supabase is not configured"); return; }
-    sb.auth.getSession().then(({ data }) => { setSession(data.session); if (data.session) load(data.session); else setStatus("Signed out"); });
-    const { data: listener } = sb.auth.onAuthStateChange((_event, next) => { setSession(next); if (next) setTimeout(() => load(next), 0); });
-    return () => listener.subscription.unsubscribe();
+    let active = true;
+    sb.auth.getSession().then(({ data }) => {
+      if (!active) return;
+      sessionRef.current = data.session;
+      setSession(data.session);
+      if (data.session) load(data.session); else setStatus("Signed out");
+    });
+    const { data: listener } = sb.auth.onAuthStateChange((event, next) => {
+      sessionRef.current = next;
+      setSession(next);
+      if (!next) { setProfile(null); setStatus("Signed out"); return; }
+      if (event === "SIGNED_IN" || event === "USER_UPDATED") setTimeout(() => load(next), 0);
+    });
+    return () => { active = false; listener.subscription.unsubscribe(); };
   }, [load]);
 
   if (!sb) return <CmsMessage title="CMS setup needed">Add the public Supabase URL and anonymous key to this deployment.</CmsMessage>;
