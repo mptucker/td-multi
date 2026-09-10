@@ -87,19 +87,17 @@ export function Footer({ brand, blurb }: { brand: BrandConfig; blurb: string }) 
                 Book everything at texomadestinations.com
               </a>
             </li>
+            <li className="mt-4 border-t border-white/15 pt-4">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-white/60">
+                <a href="https://bigwater.co/" className="hover:text-white hover:underline">BigWater.co — Premium Marine Lifestyle</a>
+              </h4>
+              <ul className="mt-3 space-y-2">
+                <li><a href="https://bigwatermarine.com/" className="hover:underline">Big Water Marine</a></li>
+                <li><a href="https://towboatusntx.com/" className="hover:underline">TowBoatUS North Texas</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
-      </div>
-      <div className="border-t border-white/10">
-        <nav className="container grid gap-4 py-7 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-center" aria-label="BigWater.co marine brands">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-white/60">
-            <a href="https://bigwater.co/" className="hover:text-white hover:underline">BigWater.co — Premium Marine Lifestyle</a>
-          </h3>
-          <ul className="flex flex-wrap gap-x-7 gap-y-2 text-sm md:justify-end">
-            <li><a href="https://bigwatermarine.com/" className="hover:underline">Big Water Marine</a></li>
-            <li><a href="https://towboatusntx.com/" className="hover:underline">TowBoatUS North Texas</a></li>
-          </ul>
-        </nav>
       </div>
       <div className="border-t border-white/10">
         <div className="container flex flex-wrap items-center justify-between gap-3 py-5 text-xs text-white/60">
