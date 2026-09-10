@@ -387,6 +387,7 @@ export function BrandEntityJsonLd({ brand, description, image }: { brand: BrandC
         description,
         inLanguage: "en-US",
         publisher: { "@id": businessId },
+        relatedLink: ["https://bigwater.co/", "https://bigwatermarine.com/", "https://towboatusntx.com/"],
       },
       {
         "@type": brand.schemaType,
