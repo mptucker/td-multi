@@ -49,13 +49,48 @@ export function getBrand(slug: BrandSlug): BrandConfig {
   return BRANDS[slug];
 }
 
+export async function getBrandWithSettings(slug: BrandSlug): Promise<BrandConfig> {
+  const brand = BRANDS[slug];
+  const sb = supabaseAnon();
+  if (!sb) return brand;
+  const { data } = await sb.from("brand_settings").select("*").eq("brand", slug).maybeSingle();
+  if (!data) return brand;
+  const fallback = BRANDS.lighthouse.nap;
+  return {
+    ...brand,
+    nap: {
+      ...brand.nap,
+      streetAddress: data.street_address || brand.nap.streetAddress,
+      city: data.city || brand.nap.city,
+      region: data.region || brand.nap.region,
+      postalCode: data.postal_code || brand.nap.postalCode,
+      phone: data.phone || brand.nap.phone,
+      phoneE164: data.phone_e164 || brand.nap.phoneE164,
+      email: data.email || brand.nap.email,
+      facebook: data.facebook || brand.nap.facebook || fallback.facebook,
+      instagram: data.instagram || brand.nap.instagram || fallback.instagram,
+      tiktok: data.tiktok || brand.nap.tiktok || fallback.tiktok,
+    },
+  };
+}
+
+export async function getGlobalSetting<T>(key: string, fallback: T): Promise<T> {
+  const sb = supabaseAnon();
+  if (!sb) return fallback;
+  const { data } = await sb.from("global_settings").select("value").eq("key", key).maybeSingle();
+  return (data?.value as T) ?? fallback;
+}
+
 export async function getContent(slug: BrandSlug): Promise<BrandContent> {
   const sb = supabaseAnon();
+  let result = CONTENT[slug];
   if (sb) {
     const { data } = await sb.from("brand_content").select("content").eq("brand", slug).maybeSingle();
-    if (data?.content) return data.content as BrandContent;
+    if (data?.content) result = data.content as BrandContent;
+    const { data: faqs } = await sb.from("faqs").select("question,answer").eq("brand", slug).eq("published", true).order("sort_order");
+    if (faqs?.length && result.plan) result = { ...result, plan: { ...result.plan, faqs: faqs.map((faq) => ({ q: faq.question, a: faq.answer })) } };
   }
-  return CONTENT[slug];
+  return result;
 }
 
 const nowIso = () => new Date().toISOString();
@@ -114,7 +149,9 @@ export async function getAlert(slug: BrandSlug): Promise<AlertItem | null> {
     rows = visibleTo(alertsJson as AlertItem[], slug);
   }
   const t = nowIso();
-  return rows.find((a) => (!a.starts_at || a.starts_at <= t) && (!a.ends_at || a.ends_at >= t)) ?? null;
+  return rows
+    .filter((a) => (!a.starts_at || a.starts_at <= t) && (!a.ends_at || a.ends_at >= t))
+    .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0))[0] ?? null;
 }
 
 export async function getFacts(slug: BrandSlug): Promise<Record<string, FactItem>> {

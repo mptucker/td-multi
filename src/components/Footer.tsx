@@ -15,7 +15,18 @@ const FAMILY: { slug: keyof typeof BRANDS; label: string }[] = [
   { slug: "boaterwise", label: "BoaterWise" },
 ];
 
-export function Footer({ brand, blurb }: { brand: BrandConfig; blurb: string }) {
+type FooterSettings = {
+  family_heading?: string;
+  hub_label?: string;
+  hub_url?: string;
+  bigwater_heading?: string;
+  bigwater_url?: string;
+  marine_label?: string;
+  marine_url?: string;
+  tow_label?: string;
+  tow_url?: string;
+};
+export function Footer({ brand, blurb, settings }: { brand: BrandConfig; blurb: string; settings?: FooterSettings }) {
   const n = brand.nap;
   const labels = { ...PAGE_LABELS, ...(PAGE_LABEL_OVERRIDES[brand.slug] ?? {}) };
   const year = new Date().getFullYear();
@@ -74,7 +85,7 @@ export function Footer({ brand, blurb }: { brand: BrandConfig; blurb: string }) 
         </div>
 
         <div>
-          <h3 className="text-sm font-bold uppercase tracking-widest text-white/60">The Texoma Destinations family</h3>
+          <h3 className="text-sm font-bold uppercase tracking-widest text-white/60">{settings?.family_heading || "The Texoma Destinations family"}</h3>
           <ul className="mt-3 space-y-2 text-sm">
             {FAMILY.filter((f) => f.slug !== brand.slug).map((f) => (
               <li key={f.slug}>
@@ -82,18 +93,18 @@ export function Footer({ brand, blurb }: { brand: BrandConfig; blurb: string }) 
               </li>
             ))}
             <li className="pt-2">
-              <a href={hubUrl("reserve", brand, { campaign: "footer" })} className="inline-flex items-center gap-2 font-bold hover:underline">
+              <a href={settings?.hub_url || hubUrl("reserve", brand, { campaign: "footer" })} className="inline-flex items-center gap-2 font-bold hover:underline">
                 <Image src="/brands/texoma-destinations.png" alt="" width={400} height={129} className="h-6 w-auto rounded bg-white/95 px-1" />
-                Book everything at texomadestinations.com
+                {settings?.hub_label || "Book everything at texomadestinations.com"}
               </a>
             </li>
             <li className="mt-4 border-t border-white/15 pt-4">
               <h4 className="text-xs font-bold uppercase tracking-wider text-white/60">
-                <a href="https://bigwater.co/" className="hover:text-white hover:underline">BigWater.co — Premium Marine Lifestyle</a>
+                <a href={settings?.bigwater_url || "https://bigwater.co/"} className="hover:text-white hover:underline">{settings?.bigwater_heading || "BigWater.co — Premium Marine Lifestyle"}</a>
               </h4>
               <ul className="mt-3 space-y-2">
-                <li><a href="https://bigwatermarine.com/" className="hover:underline">Big Water Marine</a></li>
-                <li><a href="https://towboatusntx.com/" className="hover:underline">TowBoatUS North Texas</a></li>
+                <li><a href={settings?.marine_url || "https://bigwatermarine.com/"} className="hover:underline">{settings?.marine_label || "Big Water Marine"}</a></li>
+                <li><a href={settings?.tow_url || "https://towboatusntx.com/"} className="hover:underline">{settings?.tow_label || "TowBoatUS North Texas"}</a></li>
               </ul>
             </li>
           </ul>
@@ -107,6 +118,7 @@ export function Footer({ brand, blurb }: { brand: BrandConfig; blurb: string }) 
             <a href={hubUrl("legal-terms", brand)} className="hover:underline">Terms</a>
             {n.facebook && <a href={n.facebook} className="hover:underline">Facebook</a>}
             {n.instagram && <a href={n.instagram} className="hover:underline">Instagram</a>}
+            {n.tiktok && <a href={n.tiktok} className="hover:underline">TikTok</a>}
           </span>
         </div>
       </div>

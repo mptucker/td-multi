@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import type { BrandConfig, BrandContent } from "@/config/types";
 import { HubLink } from "@/components/HubLink";
+import { RichText } from "@/components/RichText";
 
 const elements = [
   { name: "Nature", icon: "/sundance/herbal-spa-treatment-leaves.png", color: "#a8c2ce" },
@@ -66,7 +67,7 @@ export function SundanceHome({ brand, content }: { brand: BrandConfig; content: 
 
     <section className="sd3-practical container">
       <div><p className="eyebrow">Before you disappear</p><h2>Good things<br />to know.</h2><p>Gated. Quiet. Registered overnight guests only. Check-in begins at 3pm, check-out is at 11am, and there is no Wi-Fi by design.</p><nav><Link href="/plan-your-visit">Plan your arrival →</Link><Link href="/rules">Read the simple rules →</Link><a href={brand.nap.googleMapsUrl}>Get directions →</a></nav></div>
-      <div className="sd3-faq">{plan.faqs.slice(0, 4).map((faq) => <details key={faq.q}><summary>{faq.q}<span>+</span></summary><p>{faq.a}</p></details>)}</div>
+      <div className="sd3-faq">{plan.faqs.slice(0, 4).map((faq) => <details key={faq.q}><summary>{faq.q}<span>+</span></summary><p><RichText>{faq.a}</RichText></p></details>)}</div>
     </section>
   </>;
 }

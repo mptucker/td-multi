@@ -3,9 +3,11 @@ import Link from "next/link";
 import type { AlertItem, BrandConfig } from "@/config/types";
 import { PAGE_LABELS, PAGE_LABEL_OVERRIDES, PAGE_PATHS } from "@/config/brands";
 import { hubUrl } from "@/config/hub-links";
+import { DismissibleAlert } from "./DismissibleAlert";
 
-export function AlertBar({ alert }: { alert: AlertItem | null }) {
+export function AlertBar({ alert, brand }: { alert: AlertItem | null; brand: string }) {
   if (!alert) return null;
+  if (alert.dismissible !== false) return <DismissibleAlert alert={alert} brand={brand} />;
   return (
     <div className="bg-accent text-white text-sm">
       <div className="container flex flex-wrap items-center justify-center gap-x-3 gap-y-1 py-2 text-center">

@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { BrandConfig, BrandContent } from "@/config/types";
 import { HubLink } from "@/components/HubLink";
 import { FAQJsonLd } from "@/components/Sections";
+import { RichText } from "@/components/RichText";
 
 const departments = [
   { title: "Hook, line & sinker", note: "A huge selection of rods, reels, terminal tackle, striper lures, soft plastics, nets and filet knives—plus local advice on what to throw.", image: "/tackle-box/tackle.webp", alt: "Fishing tackle stocked at Tackle Box Outfitters" },
@@ -103,7 +104,7 @@ export function TackleBoxHome({ brand, content }: { brand: BrandConfig; content:
         </div>
         <div className="tb-faq">
           <p className="eyebrow">Good to know</p>
-          {plan.faqs.map((faq) => <details key={faq.q}><summary>{faq.q}<span aria-hidden>+</span></summary><p>{faq.a}</p></details>)}
+          {plan.faqs.map((faq) => <details key={faq.q}><summary>{faq.q}<span aria-hidden>+</span></summary><p><RichText>{faq.a}</RichText></p></details>)}
         </div>
       </section>
     </>

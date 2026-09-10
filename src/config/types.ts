@@ -88,6 +88,7 @@ export interface NAP {
   googlePlaceId?: string;
   facebook?: string;
   instagram?: string;
+  tiktok?: string;
   hours?: string[];
 }
 
@@ -282,6 +283,9 @@ export interface AlertItem {
   ends_at?: string | null;
   show_on_sites: BrandSlug[];
   published: boolean;
+  promo_code?: string | null;
+  dismissible?: boolean;
+  priority?: number;
 }
 
 /** Facts registry — every operational number has an owner and a last-verified date. */

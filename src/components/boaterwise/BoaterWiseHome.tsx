@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { BrandConfig, BrandContent, FactItem } from "@/config/types";
 import { HubLink } from "@/components/HubLink";
 import { FAQJsonLd } from "@/components/Sections";
+import { RichText } from "@/components/RichText";
 
 const trustMarks = [
   { src: "/boaterwise/nsbc.png", alt: "National Safe Boating Council", note: "NSBC-certified instructors and curriculum" },
@@ -43,7 +44,7 @@ export function BoaterWiseHome({ brand, content }: { brand: BrandConfig; content
 
       <section className="bw-intro"><div className="container grid items-center gap-10 py-14 md:grid-cols-2 md:py-18">
         <div className="bw-intro-image"><Image src="/boaterwise/helm-instruction.webp" alt="A BoaterWise instructor pointing out a maneuver to a student at the helm" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" /></div>
-        <div><p className="eyebrow">Professional. Relaxed. Practical.</p><h2>{h.intro.title}</h2>{h.intro.body.map((p, i) => <p key={i}>{p}</p>)}</div>
+        <div><p className="eyebrow">Professional. Relaxed. Practical.</p><h2>{h.intro.title}</h2>{h.intro.body.map((p, i) => <p key={i}><RichText>{p}</RichText></p>)}</div>
       </div></section>
 
       <section id="courses" className="bw-courses container py-14 md:py-18">
@@ -77,7 +78,7 @@ export function BoaterWiseHome({ brand, content }: { brand: BrandConfig; content
 
       <section id="questions" className="bw-faq"><div className="container grid gap-10 py-14 md:grid-cols-[.65fr_1.35fr] md:py-18">
         <div><p className="eyebrow">Before you board</p><h2>Good questions make better boaters.</h2><p>Still unsure which class fits? Call us at <a href={`tel:${brand.nap.phoneE164}`}>{brand.nap.phone}</a> and we’ll help you choose.</p></div>
-        <div className="bw-faq-list">{plan.faqs.map((faq) => <details key={faq.q}><summary>{faq.q}<span aria-hidden>+</span></summary><p>{faq.a}</p>{faq.q.includes("prepare") && <a className="bw-faq-resource" href="https://www.safeboatingcouncil.org/training/on-water-courses/boat-control-on-water-training-course/">Review the NSBC course modules →</a>}{faq.q.includes("private") && <a className="bw-faq-resource" href="https://jobemarine.com">Visit Jobe Marine →</a>}{faq.q.includes("purchase") && <a className="bw-faq-resource" href="https://bigwatermarine.com/inventory/?utm_source=boaterwise.com&utm_medium=brand-site&utm_campaign=faq">Browse Big Water Marine inventory →</a>}</details>)}</div>
+        <div className="bw-faq-list">{plan.faqs.map((faq) => <details key={faq.q}><summary>{faq.q}<span aria-hidden>+</span></summary><p><RichText>{faq.a}</RichText></p>{faq.q.includes("prepare") && <a className="bw-faq-resource" href="https://www.safeboatingcouncil.org/training/on-water-courses/boat-control-on-water-training-course/">Review the NSBC course modules →</a>}{faq.q.includes("private") && <a className="bw-faq-resource" href="https://jobemarine.com">Visit Jobe Marine →</a>}{faq.q.includes("purchase") && <a className="bw-faq-resource" href="https://bigwatermarine.com/inventory/?utm_source=boaterwise.com&utm_medium=brand-site&utm_campaign=faq">Browse Big Water Marine inventory →</a>}</details>)}</div>
       </div></section>
 
       <section className="bw-final container">

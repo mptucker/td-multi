@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 import { BRAND_SLUGS, isBrandSlug } from "@/config/brands";
-import { getAlert, getBrand, getContent } from "@/lib/content";
+import { getAlert, getBrandWithSettings, getContent, getGlobalSetting } from "@/lib/content";
 import { BrandStyle } from "@/components/BrandProvider";
 import { AlertBar, Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -22,7 +22,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { brand: slug } = await params;
   if (!isBrandSlug(slug)) return {};
-  const brand = getBrand(slug);
+  const brand = await getBrandWithSettings(slug);
   const c = await getContent(slug);
   const host = (await headers()).get("host");
   const preview = isPreviewHost(host, [brand.canonicalDomain, `www.${brand.canonicalDomain}`]);
@@ -46,8 +46,13 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 export default async function BrandLayout({ children, params }: { children: ReactNode } & Params) {
   const { brand: slug } = await params;
   if (!isBrandSlug(slug)) notFound();
-  const brand = getBrand(slug);
-  const [content, alert] = await Promise.all([getContent(slug), getAlert(slug)]);
+  const [brand, content, alert, tap, footer] = await Promise.all([
+    getBrandWithSettings(slug),
+    getContent(slug),
+    getAlert(slug),
+    getGlobalSetting("tap", null as null | { enabled?: boolean; image?: string; heading?: string; body?: string; button_label?: string; button_url?: string }),
+    getGlobalSetting("footer", null as null | Record<string, string>),
+  ]);
   const gtm = brand.gtmId ?? process.env.NEXT_PUBLIC_GTM_ID;
 
   return (
@@ -67,11 +72,11 @@ export default async function BrandLayout({ children, params }: { children: Reac
       />
       <div className="brand-site min-h-screen" data-brand={brand.slug}>
         <BrandEntityJsonLd brand={brand} description={content.seo.description} image={content.seo.ogImage} />
-        <AlertBar alert={alert} />
+        <AlertBar alert={alert} brand={brand.slug} />
         <Header brand={brand} />
         <main>{children}</main>
-        <MembershipBand brand={brand} />
-        <Footer brand={brand} blurb={content.footerBlurb} />
+        {tap?.enabled !== false && <MembershipBand brand={brand} settings={tap ?? undefined} />}
+        <Footer brand={brand} blurb={content.footerBlurb} settings={footer ?? undefined} />
       </div>
     </>
   );

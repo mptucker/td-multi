@@ -16,6 +16,7 @@ import type {
 import { HubLink } from "./HubLink";
 import { hubUrl } from "@/config/hub-links";
 import { absoluteBrandAsset, BRAND_TOPICS, PAGE_LABELS } from "@/lib/seo";
+import { RichText } from "./RichText";
 
 /* ------------------------------------------------------------------ Hero */
 export function Hero({
@@ -83,7 +84,7 @@ export function Intro({ eyebrow, title, body, id }: { eyebrow?: string; title: s
         <h2 className="mt-2 text-3xl font-bold leading-tight md:text-4xl">{title}</h2>
       </div>
       <div className="prose-brand text-lg leading-relaxed text-muted md:col-span-7">
-        {body.map((p, i) => <p key={i}>{p}</p>)}
+        {body.map((p, i) => <p key={i}><RichText>{p}</RichText></p>)}
       </div>
     </section>
   );
@@ -109,7 +110,7 @@ export function FeatureGrid({ brand, features, title, eyebrow, id }: { brand: Br
             )}
             <div className="flex flex-1 flex-col p-6">
               <h3 className="text-xl font-bold">{f.icon && <span className="mr-2" aria-hidden>{f.icon}</span>}{f.title}</h3>
-              <p className="mt-2 flex-1 text-muted leading-relaxed">{f.body}</p>
+              <p className="mt-2 flex-1 text-muted leading-relaxed"><RichText>{f.body}</RichText></p>
               {f.cta && (
                 <div className="mt-5">
                   <HubLink brand={brand} cta={{ ...f.cta, variant: f.cta.variant ?? "ghost" }} campaign="feature" className="!py-2 !px-4 text-sm" />
@@ -212,7 +213,7 @@ export function FAQList({ faqs }: { faqs: FAQ[] }) {
               {f.q}
               <span className="text-accent transition group-open:rotate-45" aria-hidden>+</span>
             </summary>
-            <p className="mt-3 text-muted leading-relaxed">{f.a}</p>
+            <p className="mt-3 text-muted leading-relaxed"><RichText>{f.a}</RichText></p>
           </details>
         ))}
       </div>
@@ -269,10 +270,10 @@ export function EventsList({ events, brand }: { events: EventItem[]; brand: Bran
                 <p className="text-sm font-bold text-accent">{fmtDate(e.starts_at)}{e.ends_at && e.ends_at.slice(0, 10) !== e.starts_at.slice(0, 10) ? ` – ${fmtDate(e.ends_at)}` : ""}</p>
                 <h3 className="mt-1 text-xl font-bold">{e.title}</h3>
                 <p className="text-sm text-muted">{e.location}</p>
-                <p className="mt-3 flex-1 text-muted leading-relaxed">{e.summary}</p>
+                <p className="mt-3 flex-1 text-muted leading-relaxed"><RichText>{e.summary}</RichText></p>
                 <div className="mt-4 flex items-center justify-between gap-3">
                   {e.price_text && <span className="font-bold">{e.price_text}</span>}
-                  {e.cta_url && <a href={e.cta_url} className="btn btn-primary !py-2 !px-4 text-sm">{e.cta_label ?? "Get tickets"}</a>}
+                  {e.cta_url && <a href={e.cta_url} data-intent="event" data-entity-id={e.id} className="btn btn-primary !py-2 !px-4 text-sm">{e.cta_label ?? "Get tickets"}</a>}
                 </div>
               </div>
             </article>
@@ -305,14 +306,14 @@ export function PackagesList({ packages, brand }: { packages: PackageItem[]; bra
                 <div className="flex flex-1 flex-col p-6">
                   <h3 className="text-xl font-bold">{p.title}</h3>
                   {p.price_text && <p className="mt-1 font-bold text-accent">{p.price_text}</p>}
-                  <p className="mt-2 flex-1 text-muted leading-relaxed">{p.summary}</p>
+                  <p className="mt-2 flex-1 text-muted leading-relaxed"><RichText>{p.summary}</RichText></p>
                   {p.details && p.details.length > 0 && (
                     <ul className="checklist mt-3 space-y-1 text-sm text-muted">
                       {p.details.map((d) => <li key={d}>{d}</li>)}
                     </ul>
                   )}
                   <div className="mt-5">
-                    <a href={href} className="btn btn-secondary !py-2 !px-4 text-sm">{p.cta_label ?? "Book this"}</a>
+                    <a href={href} data-intent="package" data-entity-id={p.id} className="btn btn-secondary !py-2 !px-4 text-sm">{p.cta_label ?? "Book this"}</a>
                   </div>
                 </div>
               </article>

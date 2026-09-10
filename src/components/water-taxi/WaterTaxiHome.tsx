@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { BrandConfig, BrandContent } from "@/config/types";
 import { HubLink } from "@/components/HubLink";
 import { FAQJsonLd } from "@/components/Sections";
+import { RichText } from "@/components/RichText";
 
 const destinations = [
   "Highport Marina", "North Island", "Treasure Island", "Wood Island",
@@ -87,7 +88,7 @@ export function WaterTaxiHome({ brand, content }: { brand: BrandConfig; content:
 
     <section className="wt-faq container">
       <header><p className="wt-kicker"><span /> Before you text</p><h2>Good to know.</h2></header>
-      <div>{faqs.map((faq) => <details key={faq.q}><summary>{faq.q}<span>+</span></summary><p>{faq.a}</p></details>)}</div>
+      <div>{faqs.map((faq) => <details key={faq.q}><summary>{faq.q}<span>+</span></summary><p><RichText>{faq.a}</RichText></p></details>)}</div>
     </section>
 
     <section className="wt-final">

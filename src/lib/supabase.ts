@@ -24,3 +24,9 @@ export function supabaseService(): SupabaseClient | null {
   });
   return service;
 }
+
+/** Browser client for Supabase Phone OTP and CMS operations protected by RLS. */
+export function supabaseBrowser(): SupabaseClient | null {
+  if (!hasSupabase()) return null;
+  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+}

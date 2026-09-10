@@ -1,44 +1,23 @@
 import "server-only";
-import { cookies } from "next/headers";
-import { createHmac, timingSafeEqual } from "node:crypto";
+import { supabaseService } from "@/lib/supabase";
+import type { BrandSlug } from "@/config/types";
 
-/**
- * Minimal admin gate: a shared password (ADMIN_PASSWORD) exchanged for a signed cookie.
- * Good enough for a small internal team on day one; swap for Supabase Auth (magic link)
- * when more than a handful of editors need audit trails — the data layer won't change.
- */
-const COOKIE = "td_admin";
+export type CmsRole = "admin" | "director" | "site_manager" | "editor" | "viewer";
+export type CmsUser = { userId: string; phone?: string; displayName: string; role: CmsRole; sites: BrandSlug[] };
 
-function sign(value: string) {
-  const secret = process.env.ADMIN_PASSWORD ?? "";
-  return createHmac("sha256", secret).update(value).digest("hex");
+export async function cmsUserFromRequest(request: Request): Promise<CmsUser | null> {
+  const token = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
+  const sb = supabaseService();
+  if (!token || !sb) return null;
+  const { data: auth, error } = await sb.auth.getUser(token);
+  if (error || !auth.user) return null;
+  const { data: profile } = await sb.from("cms_users").select("user_id,display_name,phone,role,active").eq("user_id", auth.user.id).maybeSingle();
+  if (!profile?.active) return null;
+  const { data: assignments } = await sb.from("cms_user_sites").select("brand").eq("user_id", auth.user.id);
+  await sb.from("cms_users").update({ last_login_at: new Date().toISOString() }).eq("user_id", auth.user.id);
+  return { userId: auth.user.id, phone: profile.phone ?? auth.user.phone, displayName: profile.display_name || auth.user.phone || "Staff member", role: profile.role as CmsRole, sites: (assignments ?? []).map((row) => row.brand as BrandSlug) };
 }
 
-export function adminConfigured() {
-  return Boolean(process.env.ADMIN_PASSWORD);
-}
-
-export async function isAdmin(): Promise<boolean> {
-  if (!adminConfigured()) return false;
-  const c = (await cookies()).get(COOKIE)?.value;
-  if (!c) return false;
-  const [v, sig] = c.split(".");
-  if (!v || !sig) return false;
-  const expected = sign(v);
-  try {
-    return timingSafeEqual(Buffer.from(sig), Buffer.from(expected));
-  } catch {
-    return false;
-  }
-}
-
-export async function login(password: string): Promise<boolean> {
-  if (!adminConfigured() || password !== process.env.ADMIN_PASSWORD) return false;
-  const v = String(Date.now());
-  (await cookies()).set(COOKIE, `${v}.${sign(v)}`, { httpOnly: true, sameSite: "lax", path: "/admin", maxAge: 60 * 60 * 12, secure: process.env.NODE_ENV === "production" });
-  return true;
-}
-
-export async function logout() {
-  (await cookies()).delete(COOKIE);
-}
+export function canWrite(user: CmsUser) { return user.role !== "viewer"; }
+export function canManageUsers(user: CmsUser) { return user.role === "admin"; }
+export function canAccessBrand(user: CmsUser, brand?: string | null) { return !brand || user.role === "admin" || user.role === "director" || user.sites.includes(brand as BrandSlug); }
