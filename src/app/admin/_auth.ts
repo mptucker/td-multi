@@ -1,5 +1,5 @@
 import "server-only";
-import { supabaseService } from "@/lib/supabase";
+import { supabaseAuthenticated } from "@/lib/supabase";
 import type { BrandSlug } from "@/config/types";
 
 export type CmsRole = "admin" | "director" | "site_manager" | "editor" | "viewer";
@@ -7,14 +7,13 @@ export type CmsUser = { userId: string; phone?: string; displayName: string; rol
 
 export async function cmsUserFromRequest(request: Request): Promise<CmsUser | null> {
   const token = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
-  const sb = supabaseService();
+  const sb = token ? supabaseAuthenticated(token) : null;
   if (!token || !sb) return null;
   const { data: auth, error } = await sb.auth.getUser(token);
   if (error || !auth.user) return null;
   const { data: profile } = await sb.from("cms_users").select("user_id,display_name,phone,role,active").eq("user_id", auth.user.id).maybeSingle();
   if (!profile?.active) return null;
   const { data: assignments } = await sb.from("cms_user_sites").select("brand").eq("user_id", auth.user.id);
-  await sb.from("cms_users").update({ last_login_at: new Date().toISOString() }).eq("user_id", auth.user.id);
   return { userId: auth.user.id, phone: profile.phone ?? auth.user.phone, displayName: profile.display_name || auth.user.phone || "Staff member", role: profile.role as CmsRole, sites: (assignments ?? []).map((row) => row.brand as BrandSlug) };
 }
 

@@ -30,3 +30,12 @@ export function supabaseBrowser(): SupabaseClient | null {
   if (!hasSupabase()) return null;
   return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
 }
+
+/** Server client scoped to a staff member's JWT; all reads remain subject to RLS. */
+export function supabaseAuthenticated(accessToken: string): SupabaseClient | null {
+  if (!hasSupabase()) return null;
+  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
+    global: { headers: { Authorization: "Bearer " + accessToken } },
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+}
