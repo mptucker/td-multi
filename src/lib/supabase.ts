@@ -26,9 +26,11 @@ export function supabaseService(): SupabaseClient | null {
 }
 
 /** Browser client for Supabase Phone OTP and CMS operations protected by RLS. */
-export function supabaseBrowser(): SupabaseClient | null {
-  if (!hasSupabase()) return null;
-  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+export function supabaseBrowser(url?: string, key?: string): SupabaseClient | null {
+  const resolvedUrl = url || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const resolvedKey = key || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!resolvedUrl || !resolvedKey) return null;
+  return createClient(resolvedUrl, resolvedKey);
 }
 
 /** Server client scoped to a staff member's JWT; all reads remain subject to RLS. */

@@ -10,7 +10,7 @@ type Tab = "overview" | "sites" | "media" | "alerts" | "faqs" | "packages" | "ev
 const BRAND_NAMES: Record<string, string> = { lighthouse: "Lighthouse Resort & Marina", paradise: "Paradise on Lake Texoma", sundance: "Sundance Camp", "island-view": "Island View Park", fastrac: "Fastrac Cruises", "water-taxi": "Texoma Water Taxi", "tackle-box": "Tackle Box Outfitters", boaterwise: "BoaterWise" };
 const ALL_BRANDS = Object.keys(BRAND_NAMES);
 const NAV: [Tab, string][] = [["overview","Overview"],["sites","Site content"],["media","Media"],["alerts","Announcement bars"],["faqs","FAQs"],["packages","Packages"],["events","Events"],["global","Global footer & TAP"],["staff","Staff"],["activity","Activity"]];
-const sb = supabaseBrowser();
+let sb = supabaseBrowser();
 
 function setAtPath(source: Record<string, any>, path: string, value: string) {
   const next = structuredClone(source);
@@ -50,7 +50,8 @@ function contentWarnings(content: Record<string, any>) {
 }
 function formatDate(value?: string) { return value ? new Intl.DateTimeFormat("en-US", { dateStyle: "medium", timeStyle: value.includes("T") ? "short" : undefined }).format(new Date(value)) : "—"; }
 
-export function AdminApp() {
+export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; supabaseKey: string }) {
+  sb ??= supabaseBrowser(supabaseUrl, supabaseKey);
   const [session, setSession] = useState<any>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [assignments, setAssignments] = useState<string[]>([]);
@@ -97,14 +98,14 @@ export function AdminApp() {
 
   if (!sb) return <CmsMessage title="CMS setup needed">Add the public Supabase URL and anonymous key to this deployment.</CmsMessage>;
   if (!session) return <PhoneLogin />;
-  if (!profile) return <CmsMessage title="Access requested">Your phone number is verified. An administrator needs to approve CMS access before you can continue.<button className="cms-button cms-button-muted" onClick={() => sb.auth.signOut()}>Use another number</button></CmsMessage>;
+  if (!profile) return <CmsMessage title="Access requested">Your phone number is verified. An administrator needs to approve CMS access before you can continue.<button className="cms-button cms-button-muted" onClick={() => sb!.auth.signOut()}>Use another number</button></CmsMessage>;
 
   return (
     <div className="cms-app">
       <aside className="cms-sidebar">
         <div><strong>Texoma Destinations</strong><span>Brand publishing</span></div>
         <nav>{NAV.filter(([key]) => key !== "staff" || profile.role === "admin").map(([key, label]) => <button key={key} className={tab === key ? "active" : ""} onClick={() => setTab(key)}>{label}</button>)}</nav>
-        <div className="cms-user"><strong>{profile.display_name || profile.phone}</strong><span>{profile.role.replace("_", " ")}</span><button onClick={() => sb.auth.signOut()}>Sign out</button></div>
+        <div className="cms-user"><strong>{profile.display_name || profile.phone}</strong><span>{profile.role.replace("_", " ")}</span><button onClick={() => sb!.auth.signOut()}>Sign out</button></div>
       </aside>
       <main className="cms-main">
         <header className="cms-topbar"><div><h1>{NAV.find(([key]) => key === tab)?.[1]}</h1><p>{tabDescription(tab)}</p></div><span className="cms-live-dot">{status}</span></header>
