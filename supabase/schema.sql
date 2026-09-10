@@ -41,6 +41,15 @@ create table if not exists cms_access_requests (
   requested_at timestamptz not null default now()
 );
 
+create table if not exists cms_invites (
+  phone text primary key,
+  display_name text not null,
+  role text not null check (role in ('admin','director','site_manager')),
+  sites text[] not null default '{}',
+  invited_by uuid references auth.users(id),
+  created_at timestamptz not null default now()
+);
+
 create or replace function normalize_us_phone() returns trigger language plpgsql as $$
 declare digits text;
 begin
@@ -59,6 +68,8 @@ drop trigger if exists cms_users_normalize_phone on cms_users;
 create trigger cms_users_normalize_phone before insert or update of phone on cms_users for each row execute function normalize_us_phone();
 drop trigger if exists cms_requests_normalize_phone on cms_access_requests;
 create trigger cms_requests_normalize_phone before insert or update of phone on cms_access_requests for each row execute function normalize_us_phone();
+drop trigger if exists cms_invites_normalize_phone on cms_invites;
+create trigger cms_invites_normalize_phone before insert or update of phone on cms_invites for each row execute function normalize_us_phone();
 update cms_users set phone = phone where phone is not null;
 update cms_access_requests set phone = phone where phone is not null;
 
@@ -253,6 +264,7 @@ alter table facts enable row level security;
 alter table cms_users enable row level security;
 alter table cms_user_sites enable row level security;
 alter table cms_access_requests enable row level security;
+alter table cms_invites enable row level security;
 alter table brand_settings enable row level security;
 alter table global_settings enable row level security;
 alter table faqs enable row level security;
@@ -293,6 +305,27 @@ language sql security definer set search_path = public as $$
 $$;
 grant execute on function cms_touch_login() to authenticated;
 
+create or replace function cms_claim_invite() returns boolean
+language plpgsql security definer set search_path = public as $$
+declare
+  auth_phone text;
+  invitation cms_invites%rowtype;
+begin
+  select phone into auth_phone from auth.users where id = auth.uid();
+  select * into invitation from cms_invites where phone = auth_phone;
+  if invitation.phone is null then return false; end if;
+  insert into cms_users (user_id, display_name, phone, role, active)
+  values (auth.uid(), invitation.display_name, auth_phone, invitation.role, true)
+  on conflict (user_id) do update set display_name = excluded.display_name, phone = excluded.phone, role = excluded.role, active = true;
+  insert into cms_user_sites (user_id, brand)
+  select auth.uid(), unnest(invitation.sites)
+  on conflict do nothing;
+  delete from cms_invites where phone = auth_phone;
+  delete from cms_access_requests where user_id = auth.uid();
+  return true;
+end $$;
+grant execute on function cms_claim_invite() to authenticated;
+
 drop policy if exists "anon read brand_content" on brand_content;
 create policy "anon read brand_content" on brand_content for select to anon using (true);
 drop policy if exists "anon read published events" on events;
@@ -327,11 +360,15 @@ drop policy if exists "read cms access requests" on cms_access_requests;
 create policy "read cms access requests" on cms_access_requests for select to authenticated using (user_id = auth.uid() or cms_is_admin());
 drop policy if exists "manage cms access requests" on cms_access_requests;
 create policy "manage cms access requests" on cms_access_requests for delete to authenticated using (cms_is_admin());
+drop policy if exists "cms admin invites" on cms_invites;
+create policy "cms admin invites" on cms_invites for all to authenticated using (cms_is_admin()) with check (cms_is_admin());
 
 drop policy if exists "cms brand content" on brand_content;
 create policy "cms brand content" on brand_content for select to authenticated using (cms_can_brand(brand));
 drop policy if exists "cms write brand content" on brand_content;
 create policy "cms write brand content" on brand_content for update to authenticated using (cms_can_write() and cms_can_brand(brand)) with check (cms_can_write() and cms_can_brand(brand));
+drop policy if exists "cms add brand content" on brand_content;
+create policy "cms add brand content" on brand_content for insert to authenticated with check (cms_can_write() and cms_can_brand(brand));
 
 drop policy if exists "cms events" on events;
 create policy "cms events" on events for all to authenticated using (cms_is_active() and cms_can_sites(show_on_sites)) with check (cms_can_write() and cms_can_sites(show_on_sites));

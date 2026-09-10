@@ -2,6 +2,14 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { supabaseBrowser } from "@/lib/supabase";
+import lighthouse from "@content/lighthouse.json";
+import paradise from "@content/paradise.json";
+import sundance from "@content/sundance.json";
+import islandView from "@content/island-view.json";
+import fastrac from "@content/fastrac.json";
+import waterTaxi from "@content/water-taxi.json";
+import tackleBox from "@content/tackle-box.json";
+import boaterwise from "@content/boaterwise.json";
 
 type Role = "admin" | "director" | "site_manager" | "editor" | "viewer";
 type Profile = { user_id: string; display_name: string; phone?: string; role: Role; active: boolean };
@@ -9,6 +17,7 @@ type BrandRow = { brand: string; content: Record<string, any>; draft_content?: R
 type Tab = "overview" | "sites" | "media" | "alerts" | "faqs" | "packages" | "events" | "global" | "staff" | "activity";
 const BRAND_NAMES: Record<string, string> = { lighthouse: "Lighthouse Resort & Marina", paradise: "Paradise on Lake Texoma", sundance: "Sundance Camp", "island-view": "Island View Park", fastrac: "Fastrac Cruises", "water-taxi": "Texoma Water Taxi", "tackle-box": "Tackle Box Outfitters", boaterwise: "BoaterWise" };
 const ALL_BRANDS = Object.keys(BRAND_NAMES);
+const LOCAL_CONTENT: Record<string, Record<string, any>> = { lighthouse, paradise, sundance, "island-view": islandView, fastrac, "water-taxi": waterTaxi, "tackle-box": tackleBox, boaterwise } as any;
 const NAV: [Tab, string][] = [["overview","Overview"],["sites","Site content"],["media","Media"],["alerts","Announcement bars"],["faqs","FAQs"],["packages","Packages"],["events","Events"],["global","Global footer & TAP"],["staff","Staff"],["activity","Activity"]];
 let sb = supabaseBrowser();
 
@@ -60,6 +69,7 @@ function formatDate(value?: string) { return value ? new Intl.DateTimeFormat("en
 export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; supabaseKey: string }) {
   sb ??= supabaseBrowser(supabaseUrl, supabaseKey);
   const [session, setSession] = useState<any>(null);
+  const [authReady, setAuthReady] = useState(false);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [assignments, setAssignments] = useState<string[]>([]);
   const [tab, setTab] = useState<Tab>("overview");
@@ -74,10 +84,13 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
     const { data: p, error: profileError } = await sb.from("cms_users").select("*").eq("user_id", activeSession.user.id).maybeSingle();
     if (profileError) { setProfile(null); setStatus("Access check failed: " + profileError.message); return; }
     if (!p?.active) {
+      const { data: claimed } = await sb.rpc("cms_claim_invite");
+      if (claimed) { location.reload(); return; }
       const { error: requestError } = await sb.from("cms_access_requests").upsert({ user_id: activeSession.user.id, phone: toE164US(activeSession.user.phone) });
       if (requestError) { setStatus("Access request failed: " + requestError.message); return; }
       setProfile(null); setStatus("Access requested"); return;
     }
+    await sb.from("cms_access_requests").delete().eq("user_id", activeSession.user.id);
     await sb.rpc("cms_touch_login");
     const { data: siteRows } = await sb.from("cms_user_sites").select("brand").eq("user_id", activeSession.user.id);
     const allowed = p.role === "admin" || p.role === "director" ? ALL_BRANDS : (siteRows ?? []).map((r) => r.brand);
@@ -94,9 +107,13 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
       sb.from("cms_audit_log").select("*").order("created_at", { ascending: false }).limit(75),
       p.role === "admin" ? sb.from("cms_users").select("*,cms_user_sites(brand)").order("display_name") : Promise.resolve({ data: [] }),
       p.role === "admin" ? sb.from("cms_access_requests").select("*").order("requested_at") : Promise.resolve({ data: [] }),
+      p.role === "admin" ? sb.from("cms_invites").select("*").order("created_at") : Promise.resolve({ data: [] }),
     ]);
     setProfile(p); setAssignments(allowed);
-    setData({ brands: queries[0].data ?? [], media: queries[1].data ?? [], alerts: queries[2].data ?? [], faqs: queries[3].data ?? [], packages: queries[4].data ?? [], events: queries[5].data ?? [], global: queries[6].data ?? [], settings: queries[7].data ?? [], revisions: queries[8].data ?? [], audit: queries[9].data ?? [], users: queries[10].data ?? [], requests: queries[11].data ?? [] });
+    const userIds = new Set((queries[10].data ?? []).map((u: any) => u.user_id));
+    const storedBrands = queries[0].data ?? [];
+    const brands = allowed.map((brand) => storedBrands.find((row: any) => row.brand === brand) ?? { brand, content: LOCAL_CONTENT[brand], draft_content: LOCAL_CONTENT[brand] });
+    setData({ brands, media: queries[1].data ?? [], alerts: queries[2].data ?? [], faqs: queries[3].data ?? [], packages: queries[4].data ?? [], events: queries[5].data ?? [], global: queries[6].data ?? [], settings: queries[7].data ?? [], revisions: queries[8].data ?? [], audit: queries[9].data ?? [], users: queries[10].data ?? [], requests: (queries[11].data ?? []).filter((r: any) => !userIds.has(r.user_id)), invites: queries[12].data ?? [] });
     setStatus("Live");
   }, []);
 
@@ -107,11 +124,13 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
       if (!active) return;
       sessionRef.current = data.session;
       setSession(data.session);
+      setAuthReady(true);
       if (data.session) load(data.session); else setStatus("Signed out");
     });
     const { data: listener } = sb.auth.onAuthStateChange((event, next) => {
       sessionRef.current = next;
       setSession(next);
+      setAuthReady(true);
       if (!next) { setProfile(null); setStatus("Signed out"); return; }
       if (event === "SIGNED_IN" || event === "USER_UPDATED") setTimeout(() => load(next), 0);
     });
@@ -119,6 +138,7 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
   }, [load]);
 
   if (!sb) return <CmsMessage title="CMS setup needed">Add the public Supabase URL and anonymous key to this deployment.</CmsMessage>;
+  if (!authReady) return <CmsMessage title="Opening CMS">Checking your secure session…</CmsMessage>;
   if (!session) return <PhoneLogin />;
   if (!profile && status.startsWith("Access check failed")) return <CmsMessage title="Unable to verify access"><p>{status}</p><button className="cms-button cms-button-muted" onClick={() => location.reload()}>Try again</button></CmsMessage>;
   if (!profile) return <CmsMessage title="Access requested">Your phone number is verified. An administrator needs to approve CMS access before you can continue.<button className="cms-button cms-button-muted" onClick={() => sb!.auth.signOut()}>Use another number</button></CmsMessage>;
@@ -140,7 +160,7 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
         {tab === "packages" && <CollectionEditor type="packages" rows={data.packages ?? []} assignments={assignments} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
         {tab === "events" && <CollectionEditor type="events" rows={data.events ?? []} assignments={assignments} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
         {tab === "global" && <GlobalEditor rows={data.global ?? []} settings={data.settings ?? []} assignments={assignments} leader={profile.role === "admin" || profile.role === "director"} onChanged={() => load()} />}
-        {tab === "staff" && <StaffEditor users={data.users ?? []} requests={data.requests ?? []} onChanged={() => load()} />}
+        {tab === "staff" && <StaffEditor users={data.users ?? []} requests={data.requests ?? []} invites={data.invites ?? []} onChanged={() => load()} />}
         {tab === "activity" && <Activity rows={data.audit ?? []} revisions={data.revisions ?? []} onChanged={() => load()} />}
       </main>
     </div>
@@ -193,7 +213,7 @@ function SiteEditor({ rows, canWrite, onChanged }: { rows: BrandRow[]; canWrite:
     setSaved(publish ? "Publishing…" : "Saving…");
     if (publish) await sb!.from("content_revisions").insert({ entity_type: "brand_content", entity_id: brand, brand, snapshot: row.content, action: "publish", created_by: (await sb!.auth.getUser()).data.user?.id });
     const update = publish ? { content: draftRef.current, draft_content: draftRef.current, published_at: new Date().toISOString() } : { draft_content: draftRef.current };
-    const { error } = await sb!.from("brand_content").update(update).eq("brand", brand);
+    const { error } = await sb!.from("brand_content").upsert({ brand, ...update });
     if (!error) await log(publish ? "publish" : "save_draft", "brand_content", brand, brand);
     if (!error && publish) await refreshPublicSite(brand);
     setSaved(error ? error.message : publish ? "Live" : "Draft saved"); if (!error) onChanged();
@@ -254,8 +274,22 @@ function GlobalEditor({ rows, settings, assignments, leader, onChanged }: { rows
   return <div className="cms-stack"><section className="cms-panel"><p className="cms-kicker">Shared across the family</p><h2>TAP promotion</h2><div className="cms-form-grid"><Field label="Image URL" wide><input value={tap.image ?? ""} onChange={(e) => setTap({...tap,image:e.target.value})} /></Field><Field label="Heading"><input value={tap.heading ?? ""} onChange={(e) => setTap({...tap,heading:e.target.value})} /></Field><Field label="Button label"><input value={tap.button_label ?? ""} onChange={(e) => setTap({...tap,button_label:e.target.value})} /></Field><Field label="Description" wide><textarea rows={3} value={tap.body ?? ""} onChange={(e) => setTap({...tap,body:e.target.value})} /></Field><Field label="Destination URL" wide><input value={tap.button_url ?? ""} onChange={(e) => setTap({...tap,button_url:e.target.value})} /></Field></div>{leader && <button className="cms-button" onClick={saveTap}>Publish to all sites</button>}</section><section className="cms-panel"><p className="cms-kicker">Shared footer links</p><h2>Brand family footer</h2><div className="cms-form-grid">{Object.keys(existingFooter).map((key) => <Field key={key} label={key.replaceAll("_"," ")}><input value={footer[key] ?? ""} onChange={(e) => setFooter({...footer,[key]:e.target.value})} /></Field>)}</div>{leader && <button className="cms-button" onClick={saveFooter}>Publish footer to all sites</button>}</section><section className="cms-panel"><p className="cms-kicker">Site information</p><h2>Contact and social details</h2><select value={brand} onChange={(e) => setBrand(e.target.value)}>{assignments.map((b) => <option key={b} value={b}>{BRAND_NAMES[b]}</option>)}</select><div className="cms-form-grid">{["street_address","city","region","postal_code","phone","phone_e164","email","facebook","instagram","tiktok"].map((key) => <Field key={key} label={key.replaceAll("_"," ")}><input value={contact[key] ?? ""} onChange={(e) => setContact({...contact,[key]:e.target.value})} /></Field>)}</div><p className="cms-form-note">Blank social fields automatically fall back to Texoma Destinations.</p><button className="cms-button" onClick={saveContact}>Save site details</button></section></div>;
 }
 
-function StaffEditor({ users, requests, onChanged }: { users: any[]; requests: any[]; onChanged: () => void }) {
-  async function approve(req: any) { const { error } = await sb!.from("cms_users").insert({ user_id: req.user_id, phone: req.phone, display_name: req.phone, role: "viewer", active: true }); if (!error) { await sb!.from("cms_access_requests").delete().eq("user_id", req.user_id); await log("approve","cms_users",req.user_id); onChanged(); } else alert(error.message); }
+function StaffEditor({ users, requests, invites, onChanged }: { users: any[]; requests: any[]; invites: any[]; onChanged: () => void }) {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [role, setRole] = useState<Role>("site_manager");
+  const [sites, setSites] = useState<string[]>([]);
+  async function invite() {
+    const normalized = toE164US(phone);
+    if (!normalized || !name.trim()) return alert("Enter a name and valid 10-digit U.S. mobile number.");
+    if (role === "site_manager" && sites.length === 0) return alert("Choose at least one site for a site manager.");
+    const { data: auth } = await sb!.auth.getUser();
+    const { error } = await sb!.from("cms_invites").upsert({ phone: normalized, display_name: name.trim(), role, sites: role === "site_manager" ? sites : [], invited_by: auth.user?.id });
+    if (error) return alert(error.message);
+    await log("invite", "cms_users", normalized, undefined, { role, sites });
+    setName(""); setPhone(""); setRole("site_manager"); setSites([]); onChanged();
+  }
+  async function approve(req: any) { const { error } = await sb!.from("cms_users").insert({ user_id: req.user_id, phone: req.phone, display_name: req.phone, role: "site_manager", active: true }); if (!error) { await sb!.from("cms_access_requests").delete().eq("user_id", req.user_id); await log("approve","cms_users",req.user_id); onChanged(); } else alert(error.message); }
   async function update(user: any, patch: any) { const { error } = await sb!.from("cms_users").update(patch).eq("user_id", user.user_id); if (error) alert(error.message); else { await log("update","cms_users",user.user_id); onChanged(); } }
   async function updateSites(user: any, brand: string, checked: boolean) {
     if (checked) {
@@ -267,7 +301,7 @@ function StaffEditor({ users, requests, onChanged }: { users: any[]; requests: a
     }
     await log("assign_sites","cms_users",user.user_id,brand); onChanged();
   }
-  return <div className="cms-stack">{requests.length > 0 && <section className="cms-panel"><h2>Access requests</h2>{requests.map((r) => <div className="cms-staff-row" key={r.user_id}><span><strong>{r.phone}</strong><small>Requested {formatDate(r.requested_at)}</small></span><button className="cms-button" onClick={() => approve(r)}>Approve as viewer</button></div>)}</section>}<section className="cms-panel"><h2>Staff accounts</h2>{users.map((u) => <div className="cms-staff-card" key={u.user_id}><div className="cms-staff-row"><span><strong>{u.display_name || u.phone}</strong><small>Last login {formatDate(u.last_login_at)}</small></span><select value={u.role} onChange={(e) => update(u,{role:e.target.value})}>{["admin","director","site_manager","editor","viewer"].map((r) => <option key={r} value={r}>{r.replace("_"," ")}</option>)}</select><label><input type="checkbox" checked={u.active} onChange={(e) => update(u,{active:e.target.checked})} /> Active</label></div>{!["admin","director"].includes(u.role) && <div className="cms-staff-sites">{ALL_BRANDS.map((brand) => <label key={brand}><input type="checkbox" checked={(u.cms_user_sites ?? []).some((s:any) => s.brand === brand)} onChange={(e) => updateSites(u,brand,e.target.checked)} />{BRAND_NAMES[brand]}</label>)}</div>}</div>)}</section></div>;
+  return <div className="cms-stack"><section className="cms-panel"><p className="cms-kicker">Invite staff</p><h2>Add a CMS user</h2><div className="cms-form-grid"><Field label="Name"><input value={name} onChange={(e) => setName(e.target.value)} /></Field><Field label="Mobile number"><input value={phone} onChange={(e) => setPhone(e.target.value)} inputMode="tel" placeholder="903 555 0123" /></Field><Field label="Role"><select value={role} onChange={(e) => setRole(e.target.value as Role)}>{["admin","director","site_manager"].map((r) => <option key={r} value={r}>{r.replace("_"," ")}</option>)}</select></Field></div>{role === "site_manager" && <div className="cms-staff-sites">{ALL_BRANDS.map((brand) => <label key={brand}><input type="checkbox" checked={sites.includes(brand)} onChange={(e) => setSites(e.target.checked ? [...sites, brand] : sites.filter((s) => s !== brand))} />{BRAND_NAMES[brand]}</label>)}</div>}<button className="cms-button" onClick={invite}>Add staff member</button>{invites.length > 0 && <p className="cms-form-note">Pending invitations: {invites.map((i) => `${i.display_name} (${i.phone})`).join(", ")}</p>}</section>{requests.length > 0 && <section className="cms-panel"><h2>Uninvited access requests</h2>{requests.map((r) => <div className="cms-staff-row" key={r.user_id}><span><strong>{r.phone}</strong><small>Requested {formatDate(r.requested_at)}</small></span><button className="cms-button" onClick={() => approve(r)}>Approve as site manager</button></div>)}</section>}<section className="cms-panel"><h2>Staff accounts</h2>{users.map((u) => <div className="cms-staff-card" key={u.user_id}><div className="cms-staff-row"><span><strong>{u.display_name || u.phone}</strong><small>Last login {formatDate(u.last_login_at)}</small></span><select value={u.role} onChange={(e) => update(u,{role:e.target.value})}>{["admin","director","site_manager"].map((r) => <option key={r} value={r}>{r.replace("_"," ")}</option>)}</select><label><input type="checkbox" checked={u.active} onChange={(e) => update(u,{active:e.target.checked})} /> Active</label></div>{u.role === "site_manager" && <div className="cms-staff-sites">{ALL_BRANDS.map((brand) => <label key={brand}><input type="checkbox" checked={(u.cms_user_sites ?? []).some((s:any) => s.brand === brand)} onChange={(e) => updateSites(u,brand,e.target.checked)} />{BRAND_NAMES[brand]}</label>)}</div>}</div>)}</section></div>;
 }
 function Activity({ rows, revisions, onChanged }: { rows: any[]; revisions: any[]; onChanged: () => void }) {
   async function restore(revision: any) { const { error } = await sb!.from("brand_content").update({ draft_content: revision.snapshot }).eq("brand", revision.brand); if (error) alert(error.message); else { await log("restore_draft","brand_content",revision.brand,revision.brand,{revision:revision.id}); onChanged(); } }
