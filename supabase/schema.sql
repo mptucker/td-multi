@@ -41,6 +41,27 @@ create table if not exists cms_access_requests (
   requested_at timestamptz not null default now()
 );
 
+create or replace function normalize_us_phone() returns trigger language plpgsql as $$
+declare digits text;
+begin
+  if new.phone is null then return new; end if;
+  digits := regexp_replace(new.phone, '[^0-9]', '', 'g');
+  if length(digits) = 10 then
+    new.phone := '+1' || digits;
+  elsif length(digits) = 11 and left(digits, 1) = '1' then
+    new.phone := '+' || digits;
+  else
+    raise exception 'Phone number must be a valid 10-digit US number';
+  end if;
+  return new;
+end $$;
+drop trigger if exists cms_users_normalize_phone on cms_users;
+create trigger cms_users_normalize_phone before insert or update of phone on cms_users for each row execute function normalize_us_phone();
+drop trigger if exists cms_requests_normalize_phone on cms_access_requests;
+create trigger cms_requests_normalize_phone before insert or update of phone on cms_access_requests for each row execute function normalize_us_phone();
+update cms_users set phone = phone where phone is not null;
+update cms_access_requests set phone = phone where phone is not null;
+
 create table if not exists brand_settings (
   brand text primary key,
   street_address text,

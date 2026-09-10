@@ -12,6 +12,13 @@ const ALL_BRANDS = Object.keys(BRAND_NAMES);
 const NAV: [Tab, string][] = [["overview","Overview"],["sites","Site content"],["media","Media"],["alerts","Announcement bars"],["faqs","FAQs"],["packages","Packages"],["events","Events"],["global","Global footer & TAP"],["staff","Staff"],["activity","Activity"]];
 let sb = supabaseBrowser();
 
+function toE164US(value?: string | null) {
+  const digits = String(value ?? "").replace(/\D/g, "");
+  if (digits.length === 10) return "+1" + digits;
+  if (digits.length === 11 && digits.startsWith("1")) return "+" + digits;
+  return null;
+}
+
 function setAtPath(source: Record<string, any>, path: string, value: string) {
   const next = structuredClone(source);
   const keys = path.split(".");
@@ -62,9 +69,11 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
   const load = useCallback(async (activeSession = session) => {
     if (!sb || !activeSession) return;
     setStatus("Loading workspace…");
-    const { data: p } = await sb.from("cms_users").select("*").eq("user_id", activeSession.user.id).maybeSingle();
+    const { data: p, error: profileError } = await sb.from("cms_users").select("*").eq("user_id", activeSession.user.id).maybeSingle();
+    if (profileError) { setProfile(null); setStatus("Access check failed: " + profileError.message); return; }
     if (!p?.active) {
-      await sb.from("cms_access_requests").upsert({ user_id: activeSession.user.id, phone: activeSession.user.phone });
+      const { error: requestError } = await sb.from("cms_access_requests").upsert({ user_id: activeSession.user.id, phone: toE164US(activeSession.user.phone) });
+      if (requestError) { setStatus("Access request failed: " + requestError.message); return; }
       setProfile(null); setStatus("Access requested"); return;
     }
     await sb.rpc("cms_touch_login");
@@ -98,6 +107,7 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
 
   if (!sb) return <CmsMessage title="CMS setup needed">Add the public Supabase URL and anonymous key to this deployment.</CmsMessage>;
   if (!session) return <PhoneLogin />;
+  if (!profile && status.startsWith("Access check failed")) return <CmsMessage title="Unable to verify access"><p>{status}</p><button className="cms-button cms-button-muted" onClick={() => location.reload()}>Try again</button></CmsMessage>;
   if (!profile) return <CmsMessage title="Access requested">Your phone number is verified. An administrator needs to approve CMS access before you can continue.<button className="cms-button cms-button-muted" onClick={() => sb!.auth.signOut()}>Use another number</button></CmsMessage>;
 
   return (
@@ -131,8 +141,8 @@ function PhoneLogin() {
   const [message, setMessage] = useState("");
   async function send() {
     setMessage("Sending code…");
-    const normalized = phone.replace(/\D/g, "");
-    const value = normalized.length === 10 ? "+1" + normalized : phone.startsWith("+") ? phone : "+" + normalized;
+    const value = toE164US(phone);
+    if (!value) { setMessage("Enter a valid 10-digit U.S. mobile number."); return; }
     const { error } = await sb!.auth.signInWithOtp({ phone: value });
     if (error) setMessage(error.message); else { setPhone(value); setSent(true); setMessage("Code sent"); }
   }
