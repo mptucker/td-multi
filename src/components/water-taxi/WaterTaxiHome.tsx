@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { BrandConfig, BrandContent } from "@/config/types";
 import { HubLink } from "@/components/HubLink";
+import { FAQJsonLd } from "@/components/Sections";
 
 const destinations = [
   "Highport Marina", "North Island", "Treasure Island", "Wood Island",
@@ -18,6 +19,7 @@ const extras = [
 export function WaterTaxiHome({ brand, content }: { brand: BrandConfig; content: BrandContent }) {
   const faqs = content.plan?.faqs ?? [];
   return <>
+    <FAQJsonLd faqs={faqs} />
     <section className="wt-hero">
       <div className="wt-hero-copy">
         <p className="wt-kicker"><span /> Lake Texoma’s on-demand ride</p>

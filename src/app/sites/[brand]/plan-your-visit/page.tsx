@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { loadPage } from "../_shared";
-import { ContactMap, FAQList, HubHandoff, PageTitle, RuleGroups } from "@/components/Sections";
+import { BreadcrumbJsonLd, ContactMap, FAQJsonLd, FAQList, HubHandoff, PageTitle, RuleGroups } from "@/components/Sections";
+import { subpageMetadata } from "@/lib/seo";
 
 export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: Promise<{ brand: string }> }): Promise<Metadata> {
-  const { content } = await loadPage(params, "plan");
-  return { title: content.plan!.title, description: content.plan!.subtitle, alternates: { canonical: "/plan-your-visit" } };
+  const { brand, content } = await loadPage(params, "plan");
+  return subpageMetadata(brand, content.plan!.title, content.plan!.subtitle, "/plan-your-visit", content.seo.ogImage);
 }
 
 export default async function PlanPage({ params }: { params: Promise<{ brand: string }> }) {
@@ -14,6 +15,8 @@ export default async function PlanPage({ params }: { params: Promise<{ brand: st
   const p = content.plan!;
   return (
     <>
+      <BreadcrumbJsonLd brand={brand} page="plan" path="/plan-your-visit" />
+      <FAQJsonLd faqs={p.faqs} />
       <PageTitle eyebrow="Plan your visit" title={p.title} subtitle={p.subtitle} />
       <ContactMap brand={brand} directions={p.directions} />
       <section className="container py-8">

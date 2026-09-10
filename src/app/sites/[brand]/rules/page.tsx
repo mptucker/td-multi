@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { loadPage } from "../_shared";
 import { hubUrl } from "@/config/hub-links";
-import { HubHandoff, PageTitle, RuleGroups } from "@/components/Sections";
+import { BreadcrumbJsonLd, HubHandoff, PageTitle, RuleGroups } from "@/components/Sections";
+import { subpageMetadata } from "@/lib/seo";
 
 export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: Promise<{ brand: string }> }): Promise<Metadata> {
-  const { content } = await loadPage(params, "rules");
-  return { title: content.rules!.title, description: content.rules!.subtitle, alternates: { canonical: "/rules" } };
+  const { brand, content } = await loadPage(params, "rules");
+  return subpageMetadata(brand, content.rules!.title, content.rules!.subtitle, "/rules", content.seo.ogImage);
 }
 
 export default async function RulesPage({ params }: { params: Promise<{ brand: string }> }) {
@@ -15,6 +16,7 @@ export default async function RulesPage({ params }: { params: Promise<{ brand: s
   const r = content.rules!;
   return (
     <>
+      <BreadcrumbJsonLd brand={brand} page="rules" path="/rules" />
       <PageTitle eyebrow="Rules & policies" title={r.title} subtitle={r.subtitle} />
       <section className="container py-8">
         <RuleGroups groups={r.groups} facts={facts} />

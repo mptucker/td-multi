@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { BrandConfig, BrandContent } from "@/config/types";
 import { HubLink } from "@/components/HubLink";
+import { FAQJsonLd } from "@/components/Sections";
 
 const departments = [
   { title: "Hook, line & sinker", note: "A huge selection of rods, reels, terminal tackle, striper lures, soft plastics, nets and filet knives—plus local advice on what to throw.", image: "/tackle-box/tackle.webp", alt: "Fishing tackle stocked at Tackle Box Outfitters" },
@@ -21,6 +22,7 @@ export function TackleBoxHome({ brand, content }: { brand: BrandConfig; content:
 
   return (
     <>
+      <FAQJsonLd faqs={plan.faqs} />
       <section className="tb-hero">
         <div className="tb-hero-planks" aria-hidden />
         <div className="tb-hero-grid">

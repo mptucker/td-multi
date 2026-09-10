@@ -16,12 +16,17 @@ export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
   const path = url.pathname;
 
+  if (path.startsWith("/sites/")) {
+    const res = NextResponse.next();
+    res.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+    return res;
+  }
+
   if (
     path.startsWith("/_next") ||
     path.startsWith("/api") ||
     path.startsWith("/admin") ||
     path.startsWith("/brands/") ||
-    path.startsWith("/sites/") ||
     /\.(png|jpg|jpeg|svg|ico|webp|txt|xml|json|webmanifest)$/.test(path)
   ) {
     return NextResponse.next();

@@ -11,9 +11,11 @@ import type {
   Review,
   RuleGroup,
   Stat,
+  PageKey,
 } from "@/config/types";
 import { HubLink } from "./HubLink";
 import { hubUrl } from "@/config/hub-links";
+import { absoluteBrandAsset, BRAND_TOPICS, PAGE_LABELS } from "@/lib/seo";
 
 /* ------------------------------------------------------------------ Hero */
 export function Hero({
@@ -361,31 +363,91 @@ export function ContactMap({ brand, directions }: { brand: BrandConfig; directio
 }
 
 /* -------------------------------------------------------------- JSON-LD */
-export function LocalBusinessJsonLd({ brand, description, image }: { brand: BrandConfig; description: string; image: string }) {
+export function BrandEntityJsonLd({ brand, description, image }: { brand: BrandConfig; description: string; image: string }) {
   const n = brand.nap;
+  const origin = `https://${brand.canonicalDomain}`;
+  const organizationId = "https://texomadestinations.com/#organization";
+  const businessId = `${origin}/#business`;
+  const websiteId = `${origin}/#website`;
   const data = {
     "@context": "https://schema.org",
-    "@type": brand.schemaType,
-    name: n.displayName,
-    legalName: n.legalName,
-    description,
-    image,
-    url: `https://${brand.canonicalDomain}/`,
-    telephone: n.phoneE164,
-    email: n.email,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: n.streetAddress,
-      addressLocality: n.city,
-      addressRegion: n.region,
-      postalCode: n.postalCode,
-      addressCountry: "US",
-    },
-    geo: { "@type": "GeoCoordinates", latitude: n.geo.lat, longitude: n.geo.lng },
-    hasMap: n.googleMapsUrl,
-    sameAs: [n.facebook, n.instagram, `https://texomadestinations.com${brand.hubPropertySlug ? `/properties/${brand.hubPropertySlug}` : ""}`].filter(Boolean),
-    parentOrganization: { "@type": "Organization", name: "Texoma Destinations, LLC", url: "https://texomadestinations.com" },
-    potentialAction: { "@type": "ReserveAction", target: hubUrl(brand.primaryIntent, brand, { campaign: "schema" }) },
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": organizationId,
+        name: "Texoma Destinations",
+        legalName: "Texoma Destinations, LLC",
+        url: "https://texomadestinations.com/",
+      },
+      {
+        "@type": "WebSite",
+        "@id": websiteId,
+        url: `${origin}/`,
+        name: n.displayName,
+        description,
+        inLanguage: "en-US",
+        publisher: { "@id": businessId },
+      },
+      {
+        "@type": brand.schemaType,
+        "@id": businessId,
+        name: n.displayName,
+        alternateName: n.shortName,
+        legalName: n.legalName,
+        description,
+        image: absoluteBrandAsset(brand.canonicalDomain, image),
+        logo: absoluteBrandAsset(brand.canonicalDomain, brand.logo.src),
+        url: `${origin}/`,
+        telephone: n.phoneE164,
+        email: n.email,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: n.streetAddress,
+          addressLocality: n.city,
+          addressRegion: n.region,
+          postalCode: n.postalCode,
+          addressCountry: "US",
+        },
+        geo: { "@type": "GeoCoordinates", latitude: n.geo.lat, longitude: n.geo.lng },
+        areaServed: { "@type": "Place", name: "Lake Texoma" },
+        hasMap: n.googleMapsUrl,
+        sameAs: [n.facebook, n.instagram, `https://texomadestinations.com${brand.hubPropertySlug ? `/properties/${brand.hubPropertySlug}` : ""}`].filter(Boolean),
+        parentOrganization: { "@id": organizationId },
+        knowsAbout: BRAND_TOPICS[brand.slug],
+        contactPoint: [
+          { "@type": "ContactPoint", telephone: n.phoneE164, contactType: "customer service", areaServed: "US", availableLanguage: "English" },
+          ...(n.altPhones ?? []).map((phone) => ({ "@type": "ContactPoint", telephone: phone.phoneE164, contactType: phone.label, areaServed: "US", availableLanguage: "English" })),
+        ],
+        potentialAction: { "@type": "ReserveAction", target: hubUrl(brand.primaryIntent, brand, { campaign: "schema" }) },
+      },
+    ],
+  };
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
+}
+
+export function FAQJsonLd({ faqs }: { faqs: FAQ[] }) {
+  if (!faqs.length) return null;
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: { "@type": "Answer", text: faq.a },
+    })),
+  };
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
+}
+
+export function BreadcrumbJsonLd({ brand, page, path }: { brand: BrandConfig; page: PageKey; path: string }) {
+  const origin = `https://${brand.canonicalDomain}`;
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: brand.nap.displayName, item: `${origin}/` },
+      { "@type": "ListItem", position: 2, name: PAGE_LABELS[page], item: `${origin}${path}` },
+    ],
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { BrandConfig, BrandContent, FactItem } from "@/config/types";
 import { HubLink } from "@/components/HubLink";
+import { FAQJsonLd } from "@/components/Sections";
 
 const trustMarks = [
   { src: "/boaterwise/nsbc.png", alt: "National Safe Boating Council", note: "NSBC-certified instructors and curriculum" },
@@ -15,6 +16,7 @@ export function BoaterWiseHome({ brand, content }: { brand: BrandConfig; content
 
   return (
     <>
+      <FAQJsonLd faqs={plan.faqs} />
       <section className="bw-hero">
         <Image src="/boaterwise/training-hero.webp" alt="A BoaterWise captain coaching students aboard a pontoon on Lake Texoma" fill priority sizes="100vw" className="object-cover" />
         <div className="bw-hero-wash" />

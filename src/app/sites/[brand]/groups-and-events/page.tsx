@@ -2,13 +2,14 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { loadPage } from "../_shared";
 import { HubLink } from "@/components/HubLink";
-import { HubHandoff, PageTitle } from "@/components/Sections";
+import { BreadcrumbJsonLd, HubHandoff, PageTitle } from "@/components/Sections";
+import { subpageMetadata } from "@/lib/seo";
 
 export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: Promise<{ brand: string }> }): Promise<Metadata> {
-  const { content } = await loadPage(params, "groups");
-  return { title: content.groups!.title, description: content.groups!.subtitle, alternates: { canonical: "/groups-and-events" } };
+  const { brand, content } = await loadPage(params, "groups");
+  return subpageMetadata(brand, content.groups!.title, content.groups!.subtitle, "/groups-and-events", content.seo.ogImage);
 }
 
 const anchor = (t: string) => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -18,6 +19,7 @@ export default async function GroupsPage({ params }: { params: Promise<{ brand: 
   const g = content.groups!;
   return (
     <>
+      <BreadcrumbJsonLd brand={brand} page="groups" path="/groups-and-events" />
       <PageTitle eyebrow="Groups & events" title={g.title} subtitle={g.subtitle} />
       <section className="container grid gap-8 py-8 md:grid-cols-12">
         <div className="prose-brand text-lg text-muted leading-relaxed md:col-span-7">{g.intro.map((p, i) => <p key={i}>{p}</p>)}</div>

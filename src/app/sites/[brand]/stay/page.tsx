@@ -2,13 +2,14 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { loadPage } from "../_shared";
 import { HubLink } from "@/components/HubLink";
-import { HubHandoff, PageTitle } from "@/components/Sections";
+import { BreadcrumbJsonLd, HubHandoff, PageTitle } from "@/components/Sections";
+import { subpageMetadata } from "@/lib/seo";
 
 export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: Promise<{ brand: string }> }): Promise<Metadata> {
-  const { content } = await loadPage(params, "stay");
-  return { title: content.stay!.title, description: content.stay!.subtitle, alternates: { canonical: "/stay" } };
+  const { brand, content } = await loadPage(params, "stay");
+  return subpageMetadata(brand, content.stay!.title, content.stay!.subtitle, "/stay", content.seo.ogImage);
 }
 
 const anchor = (t: string) => t.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -18,6 +19,7 @@ export default async function StayPage({ params }: { params: Promise<{ brand: st
   const s = content.stay!;
   return (
     <>
+      <BreadcrumbJsonLd brand={brand} page="stay" path="/stay" />
       <PageTitle eyebrow={brand.mostTag} title={s.title} subtitle={s.subtitle} />
       <div className="container space-y-10 py-8">
         {s.sections.map((sec, i) => {
