@@ -10,6 +10,7 @@ import { Footer } from "@/components/Footer";
 import { BrandEntityJsonLd } from "@/components/Sections";
 import { MembershipBand } from "@/components/MembershipBand";
 import { absoluteBrandAsset, BRAND_TOPICS, isPreviewHost } from "@/lib/seo";
+import { GA4_MEASUREMENT_IDS } from "@/config/analytics";
 
 export const revalidate = 60; // ISR: CMS edits appear within a minute
 
@@ -54,10 +55,21 @@ export default async function BrandLayout({ children, params }: { children: Reac
     getGlobalSetting("footer", null as null | Record<string, string>),
   ]);
   const gtm = brand.gtmId ?? process.env.NEXT_PUBLIC_GTM_ID;
+  const host = ((await headers()).get("host") ?? "").split(":")[0].toLowerCase();
+  const analyticsEnabled = host === brand.canonicalDomain || host === `www.${brand.canonicalDomain}`;
+  const ga4 = analyticsEnabled ? GA4_MEASUREMENT_IDS[brand.slug] : null;
 
   return (
     <>
       <BrandStyle brand={brand} />
+      {ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}
+      {ga4 && (
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ga4}',{send_page_view:true});gtag('set','user_properties',{brand_site:'${brand.slug}'});`,
+          }}
+        />
+      )}
       {gtm && (
         <script
           dangerouslySetInnerHTML={{
@@ -67,7 +79,7 @@ export default async function BrandLayout({ children, params }: { children: Reac
       )}
       <script
         dangerouslySetInnerHTML={{
-          __html: `document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('a[href]'):null;if(!a)return;var h=a.getAttribute('href')||'';var intent=a.dataset.intent||(/^tel:/.test(h)?'phone':/^sms:/.test(h)?'text':/maps\.(google|apple)|google\.com\/maps/.test(h)?'directions':'');if(!intent&&!/^https?:/.test(h))return;window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'brand_conversion_click',brand:'${brand.slug}',link_intent:intent||'outbound',link_url:a.href,link_text:(a.textContent||'').trim().slice(0,100)});});`,
+          __html: `document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('a[href]'):null;if(!a)return;var h=a.getAttribute('href')||'';var intent=a.dataset.intent||(/^tel:/.test(h)?'phone':/^sms:/.test(h)?'text':/maps\.(google|apple)|google\.com\/maps/.test(h)?'directions':'');if(!intent&&!/^https?:/.test(h))return;var detail={brand:'${brand.slug}',link_intent:intent||'outbound',link_url:a.href,link_text:(a.textContent||'').trim().slice(0,100)};window.dataLayer=window.dataLayer||[];if(typeof window.gtag==='function')window.gtag('event','brand_conversion_click',detail);else window.dataLayer.push(Object.assign({event:'brand_conversion_click'},detail));});`,
         }}
       />
       <div className="brand-site min-h-screen" data-brand={brand.slug}>
