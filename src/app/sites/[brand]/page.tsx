@@ -7,6 +7,7 @@ import { TackleBoxHome } from "@/components/tackle-box/TackleBoxHome";
 import { SundanceHome } from "@/components/sundance/SundanceHome";
 import { WaterTaxiHome } from "@/components/water-taxi/WaterTaxiHome";
 import { BigWaterHome } from "@/components/bigwater/BigWaterHome";
+import { TowBoatUSNtxHome } from "@/components/towboatus-ntx/TowBoatUSNtxHome";
 
 export const revalidate = 60;
 
@@ -17,6 +18,7 @@ export default async function HomePage({ params }: { params: Promise<{ brand: st
   const showPackages = brand.pages.includes("packages");
 
   if (brand.slug === "bigwater") return <BigWaterHome content={content as any} />;
+  if (brand.slug === "towboatus-ntx") return <TowBoatUSNtxHome />;
 
   if (brand.slug === "island-view") {
     return <IslandViewHome brand={brand} content={content} facts={facts} events={events} packages={packages} />;

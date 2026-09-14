@@ -430,6 +430,20 @@ export const BRANDS: Record<BrandSlug, BrandConfig> = {
     primaryLabel: "Explore our brands",
     schemaType: "Organization",
   },
+  "towboatus-ntx": {
+    slug: "towboatus-ntx",
+    domains: ["towboatusntx.com", "www.towboatusntx.com", "towboatus-ntx.localhost"],
+    canonicalDomain: "towboatusntx.com",
+    tagline: "On the water when you need us most",
+    mostTag: "24/7/365 Marine Assistance",
+    theme: { primary: "#0d2240", primaryDark: "#08182a", accent: "#cc0000", accent2: "#005e9e", bg: "#f4f6f8", surface: "#ffffff", ink: "#0d2240", muted: "#617083", fontDisplay: "Barlow Condensed", fontBody: "Barlow", fontHref: gf("family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&family=Bebas+Neue&family=Teko:wght@400;500;600;700"), radius: "soft", header: "dark" },
+    logo: { src: "/bigwater/TBUS-ALL-FULL.png", width: 1200, height: 280, onDark: "/bigwater/TBUS-ALL-WHITE.png" },
+    nap: { legalName: "Big Water Cowboys, LLC", displayName: "TowBoatUS North Texas", shortName: "TowBoatUS NTX", streetAddress: "", city: "Pottsboro", region: "TX", postalCode: "75076", phone: "903.419.0911", phoneE164: "+19034190911", email: "info@towboatuslaketexoma.com", geo: { lat: 33.8167, lng: -96.5833 }, googleMapsUrl: "https://maps.google.com/?q=Lake+Texoma", facebook: "https://www.facebook.com/TowBoatUSLakeTexoma", hours: ["Open 24 hours, 365 days a year"] },
+    pages: ["home"],
+    primaryIntent: "companies",
+    primaryLabel: "Get help now",
+    schemaType: "LocalBusiness",
+  },
 };
 
 export const BRAND_SLUGS = Object.keys(BRANDS) as BrandSlug[];

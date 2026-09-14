@@ -17,7 +17,8 @@ export type BrandSlug =
   | "tackle-box"
   | "boaterwise"
   | "water-taxi"
-  | "bigwater";
+  | "bigwater"
+  | "towboatus-ntx";
 
 /** Pages a brand may enable. Order here = nav order. */
 export type PageKey = "home" | "stay" | "plan" | "groups" | "rules" | "packages";

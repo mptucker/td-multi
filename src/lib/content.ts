@@ -30,6 +30,7 @@ import tackleBox from "@content/tackle-box.json";
 import boaterwise from "@content/boaterwise.json";
 import waterTaxi from "@content/water-taxi.json";
 import bigwater from "@content/bigwater.json";
+import towboatusNtx from "@content/towboatus-ntx.json";
 import eventsJson from "@content/events.json";
 import packagesJson from "@content/packages.json";
 import alertsJson from "@content/alerts.json";
@@ -45,6 +46,7 @@ const CONTENT: Record<BrandSlug, BrandContent> = {
   boaterwise: boaterwise as unknown as BrandContent,
   "water-taxi": waterTaxi as unknown as BrandContent,
   bigwater: bigwater as unknown as BrandContent,
+  "towboatus-ntx": towboatusNtx as unknown as BrandContent,
 };
 
 export function getBrand(slug: BrandSlug): BrandConfig {

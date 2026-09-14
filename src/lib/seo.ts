@@ -11,6 +11,7 @@ export const BRAND_UPDATED: Record<BrandSlug, string> = {
   boaterwise: "2026-09-10",
   "water-taxi": "2026-09-07",
   bigwater: "2026-09-14",
+  "towboatus-ntx": "2026-09-14",
 };
 
 export const BRAND_TOPICS: Record<BrandSlug, string[]> = {
@@ -23,6 +24,7 @@ export const BRAND_TOPICS: Record<BrandSlug, string[]> = {
   boaterwise: ["Lake Texoma boating lessons", "hands-on boat training", "pontoon boat training", "private boating instruction", "NSBC on-water course"],
   "water-taxi": ["Lake Texoma water taxi", "Lake Texoma island transportation", "dock-to-dock boat service", "Highport Marina water taxi", "private boat ride Lake Texoma"],
   bigwater: ["BigWater.co", "Lake Texoma marine brands", "Big Water Marine", "Big Water Boat Club", "TowBoatUS North Texas"],
+  "towboatus-ntx": ["boat towing North Texas", "TowBoatUS Lake Texoma", "TowBoatUS Bois d'Arc", "TowBoatUS Cedar Creek", "marine salvage Texas", "24 hour boat towing"],
 };
 
 export const PAGE_LABELS: Record<PageKey, string> = {

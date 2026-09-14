@@ -1,0 +1,17 @@
+{
+  "slug": "towboatus-ntx",
+  "seo": {
+    "title": "TowBoatUS Big Water Cowboys | 24/7 Boat Towing · Lake Texoma · Bois d’Arc · Cedar Creek",
+    "description": "Professional 24/7 boat towing, ungrounding, fuel delivery, jump starts and marine salvage across Lake Texoma, Bois d’Arc Lake and Cedar Creek Reservoir.",
+    "ogImage": "/bigwater/TBUS-ALL-FULL.png"
+  },
+  "home": {
+    "heroImage": { "src": "/bigwater/TBUS-ALL-FULL.png", "alt": "TowBoatUS North Texas" },
+    "heroTitle": "On the water when you need us most",
+    "heroSubtitle": "Professional marine assistance across three North Texas lakes.",
+    "intro": { "title": "Three lakes. One trusted team.", "body": ["Big Water Cowboys operates three TowBoatUS ports across North Texas and Southern Oklahoma."] },
+    "stats": [], "features": [], "gallery": [], "reviews": [],
+    "hubHandoff": { "title": "Need help?", "body": "Our dispatch team is available around the clock.", "ctas": [] }
+  },
+  "footerBlurb": "On the water when you need us most."
+}

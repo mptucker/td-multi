@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import "./globals.css";
+import "@/components/towboatus-ntx/exact/exact.css";
 
 /**
  * Root layout is intentionally thin: the brand layout at /sites/[brand]/layout.tsx owns

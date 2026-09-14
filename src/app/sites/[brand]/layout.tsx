@@ -60,7 +60,7 @@ export default async function BrandLayout({ children, params }: { children: Reac
   const analyticsEnabled = host === brand.canonicalDomain || host === `www.${brand.canonicalDomain}`;
   const ga4 = analyticsEnabled ? GA4_MEASUREMENT_IDS[brand.slug] : null;
 
-  if (brand.slug === "bigwater") return <><BrandStyle brand={brand} />{ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}{children}<BigWaterFooter /></>;
+  if (brand.slug === "bigwater" || brand.slug === "towboatus-ntx") return <><BrandStyle brand={brand} />{ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}{ga4 && <script dangerouslySetInnerHTML={{__html:`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ga4}');`}} />}{children}<BigWaterFooter /></>;
 
   return (
     <>

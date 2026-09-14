@@ -1,0 +1,235 @@
+
+/* ═══════════════════════════════════════════════════════════
+   DESIGN TOKENS — TowBoatUS Big Water Cowboys
+═══════════════════════════════════════════════════════════ */
+
+@theme {
+  /* Colors - Official BoatUS Brand Colors (2025 Brand Guide) */
+  --color-red: #CC0000;
+  --color-red-dark: #A00000;
+  --color-blue: #005E9E;
+  --color-blue-dark: #004A7C;
+  --color-seafoam: #47BAC1;
+  /* Navy palette for dark sections */
+  --color-navy: #0D2240;
+  --color-navy-deep: #0A1929;
+  --color-navy-mid: #183050;
+  --color-steel: #254670;
+  /* Accent colors */
+  --color-gold: #C9A84C;
+  --color-gold-lt: #DDBF6A;
+  /* Grays */
+  --color-g100: #EEF1F4;
+  --color-g300: #CBD5E0;
+  --color-g500: #718096;
+  --color-g700: #2D3748;
+  --color-off-white: #F4F6F8;
+  --color-green: #2E7D52;
+
+  /* Fonts */
+  --font-condensed: "Barlow Condensed", sans-serif;
+  --font-sans: "Barlow", sans-serif;
+  --font-display: "Oswald", sans-serif;
+  --font-headline: var(--font-bebas), "Bebas Neue", sans-serif;
+  --font-accent: var(--font-teko), "Teko", sans-serif;
+
+  /* Custom breakpoints to match prototype */
+  --breakpoint-sm: 640px;
+  --breakpoint-lg: 900px;
+  --breakpoint-xl: 1280px;
+}
+
+.tbus-exact {
+  --font-barlow: "Barlow", sans-serif;
+  --font-barlow-condensed: "Barlow Condensed", sans-serif;
+  --font-oswald: "Oswald", sans-serif;
+  --font-bebas: "Bebas Neue", sans-serif;
+  --font-teko: "Teko", sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL STYLES
+═══════════════════════════════════════════════════════════ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.tbus-exact {
+  font-family: var(--font-sans);
+  background: white;
+  color: var(--color-navy);
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.tbus-exact img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.tbus-exact a {
+  color: inherit;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════════════════ */
+
+@keyframes blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.5); }
+}
+
+@keyframes wdrift {
+  0% { transform: translateX(-4%) scaleY(1); }
+  50% { transform: translateX(4%) scaleY(2); }
+  100% { transform: translateX(-4%) scaleY(1); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-blink {
+  animation: blink 1.6s ease-in-out infinite;
+}
+
+.animate-wdrift {
+  animation: wdrift linear infinite;
+}
+
+.animate-fadeUp {
+  animation: fadeUp 0.55s ease both;
+}
+
+/* Staggered delays for hero animations */
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-150 { animation-delay: 0.15s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-280 { animation-delay: 0.28s; }
+.animate-delay-380 { animation-delay: 0.38s; }
+
+/* ═══════════════════════════════════════════════════════════
+   HERO IMAGE RESPONSIVE POSITIONING
+═══════════════════════════════════════════════════════════ */
+
+/* Tablet breakpoint: 640px to 1099px */
+.hero-bg-tablet {
+  display: none;
+}
+
+.hero-bg-mid {
+  display: none;
+}
+
+@media (min-width: 640px) and (max-width: 1099px) {
+  .hero-bg-tablet {
+    display: block;
+  }
+  .hero-bg-mid {
+    display: none !important;
+  }
+  .hero-bg-desktop {
+    display: none !important;
+  }
+}
+
+/* Mid breakpoint: 1100px to 1279px */
+@media (min-width: 1100px) and (max-width: 1279px) {
+  .hero-bg-tablet {
+    display: none !important;
+  }
+  .hero-bg-mid {
+    display: block;
+  }
+  .hero-bg-desktop {
+    display: none !important;
+  }
+}
+
+/* Desktop: 1280px and above */
+@media (min-width: 1280px) {
+  .hero-bg-tablet {
+    display: none !important;
+  }
+  .hero-bg-mid {
+    display: none !important;
+  }
+  .hero-bg-desktop {
+    display: block;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TEXT COLOR OVERRIDES - Force proper contrast
+═══════════════════════════════════════════════════════════ */
+
+/* Force white text on ALL dark backgrounds - nuclear option */
+.tbus-exact .bg-navy-deep *:not(#hero-h1 *),
+.tbus-exact .bg-navy-deep a,
+.tbus-exact .bg-navy-deep nav a,
+.tbus-exact .bg-navy-mid *:not(#hero-h1 *),
+.tbus-exact .bg-navy-mid a,
+.tbus-exact footer *,
+.tbus-exact footer a,
+.tbus-exact footer li,
+.tbus-exact footer ul,
+.tbus-exact section[class*="bg-navy"] *:not(#hero-h1 *),
+.tbus-exact section[class*="bg-navy"] a,
+.tbus-exact section[class*="bg-navy"] p,
+.tbus-exact section[class*="bg-navy"] div,
+.tbus-exact section[class*="bg-navy"] span:not(#hero-h1 span),
+.tbus-exact [class*="bg-navy"] a[href^="tel"],
+.tbus-exact [class*="bg-navy"] a[href^="#"],
+.tbus-exact [class*="bg-navy"] a[href^="http"] {
+  color: rgb(255, 255, 255) !important;
+}
+
+/* Exception for elements that should keep their specific colors */
+.tbus-exact .text-red,
+.tbus-exact .text-blue,
+.tbus-exact .text-gold,
+.tbus-exact .text-gold-lt,
+.tbus-exact [class*="text-red"],
+.tbus-exact [class*="text-blue"],
+.tbus-exact [class*="text-gold"],
+.tbus-exact .bg-red,
+.tbus-exact .bg-blue,
+.tbus-exact .bg-gold {
+  color: inherit !important;
+}
+
+/* Hero headline specific color enforcement */
+#hero-h1 .text-red {
+  color: var(--color-red) !important;
+}
+
+#hero-h1 .text-blue {
+  color: var(--color-blue) !important;
+}
+
+#hero-h1 .text-white {
+  color: rgb(255, 255, 255) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLLBAR HIDE (for emergency bar)
+═══════════════════════════════════════════════════════════ */
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

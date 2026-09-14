@@ -1,0 +1,27 @@
+import type { GroupedOperators, Location } from "./types";
+
+export interface ImageRecord {
+  id: string; category: string; title: string; description: string | null; file_name: string;
+  storage_path: string; public_url: string; width: number | null; height: number | null;
+  file_size: number; mime_type: string; alt_text: string | null; location_id: string | null;
+  is_featured: boolean; sort_order: number | null; active: boolean; created_at: string;
+}
+
+export const locations: Location[] = [
+  { id:"texoma",slug:"lake-texoma",name:"TowBoatUS Lake Texoma",short_name:"Lake Texoma",state:"Texas / Oklahoma Border",county:"Grayson County",phone:"903-419-0911",website_url:"https://towboatuslaketexoma.com",surface_acres:"89K",shoreline_miles:"580+",description:"One of the largest reservoirs in the Southwest — 89,000 acres, 580 miles of shoreline, and one of Texas's busiest boating destinations. Our USCG-licensed captains know every arm, cove, and hazard.",badge_label:"Flagship Location",hero_image_path:null,sort_order:1,active:true,created_at:"2026-01-01" },
+  { id:"bois-darc",slug:"bois-darc",name:"TowBoatUS Bois d'Arc Lake",short_name:"Bois d'Arc Lake",state:"Fannin County, Texas",county:"Fannin County",phone:"903-664-0911",website_url:null,surface_acres:"16.6K",shoreline_miles:"~67",description:"Texas's newest major reservoir, and Big Water Cowboys was here from the start. We're the established towing presence on Bois d'Arc, serving a rapidly growing boating destination in Fannin County.",badge_label:"Now Serving",hero_image_path:null,sort_order:2,active:true,created_at:"2026-01-01" },
+  { id:"cedar-creek",slug:"cedar-creek",name:"TowBoatUS Cedar Creek",short_name:"Cedar Creek",state:"Henderson County, Texas",county:"Henderson & Kaufman Counties",phone:"903-608-0911",website_url:null,surface_acres:"33K",shoreline_miles:"320+",description:"One of East Texas's most popular weekend destinations. Our Big Water Cowboys crew brings the same USCG-licensed professionalism and full BoatUS-network reliability to Cedar Creek boaters.",badge_label:"East Texas",hero_image_path:null,sort_order:3,active:true,created_at:"2026-01-01" },
+];
+
+const op = (id:string,name:string,region:"big-water-cowboys"|"north-texas"|"oklahoma",phone:string|null,website_url:string|null,facebook_url:string|null,is_ours:boolean,sort_order:number) => ({id,name,region,phone,website_url,facebook_url,is_ours,sort_order,active:true});
+export const operators: GroupedOperators = {
+  "big-water-cowboys": [op("bwc-texoma","TowBoatUS Lake Texoma","big-water-cowboys","903-419-0911","https://towboatuslaketexoma.com",null,true,1),op("bwc-cedar","TowBoatUS Cedar Creek Reservoir","big-water-cowboys","903-608-0911",null,null,true,2),op("bwc-bois","TowBoatUS Bois d'Arc Lake","big-water-cowboys","903-664-0911",null,null,true,3)],
+  "north-texas": [op("lewisville","TowBoatUS Lewisville, Ray Roberts & Grapevine","north-texas","972-757-5004","https://towboatuslakelewisville.com",null,false,1),op("granbury","TowBoatUS Lake Granbury","north-texas","817-992-9116",null,"https://facebook.com/TowBoatUSLakeGranbury/",false,2),op("eagle","TowBoatUS Eagle Mountain Lake","north-texas","(954) 830-5196",null,"https://facebook.com/BoatworxInc/",false,3),op("travis","TowBoatUS Lake Travis","north-texas","(512) TOW-BOAT","https://towboatlaketravis.com",null,false,4)],
+  oklahoma: [op("eufaula","TowBoatUS Lake Eufaula","oklahoma","918-404-7322","https://towboatuseufaulaok.com",null,false,1),op("grand","TowBoatUS Grand Lake","oklahoma","918-782-8600","https://grandlaketowing72.wixsite.com/towboat-us-grand-lak",null,false,2),op("gibson","TowBoatUS Fort Gibson Lake","oklahoma","918-782-8600",null,"https://facebook.com/TowBoatUSFortGibson/",false,3),op("tenkiller","TowBoatUS Tenkiller Lake","oklahoma","918-782-8600",null,"https://facebook.com/towboatustenkillerlake/",false,4)],
+};
+
+const image = (id:string,category:string,url:string,alt:string): ImageRecord => ({id,category,title:alt,description:null,file_name:url.split("/").pop()!,storage_path:"",public_url:url,width:null,height:null,file_size:0,mime_type:"image/jpeg",alt_text:alt,location_id:null,is_featured:true,sort_order:1,active:true,created_at:"2026-01-01"});
+export const heroImages = [image("hero","hero","https://foeivkpkohkjpgwxpfdu.supabase.co/storage/v1/object/public/tbus-assets/hero/towboatus-1774554028515.jpg","TowBoatUS")];
+export const heroImagesMobile = [image("hero-mobile","hero-mobile","https://foeivkpkohkjpgwxpfdu.supabase.co/storage/v1/object/public/tbus-assets/hero-mobile/towboatus-hero-mobile-1774562321272.jpg","TowBoatUS Hero Mobile")];
+export const coverageMapImages = [image("coverage","coverage-map","https://foeivkpkohkjpgwxpfdu.supabase.co/storage/v1/object/public/tbus-assets/coverage-map/towboatus-nationwide-coverage-map-1774465973292.jpg","TowBoatUS Nationwide Coverage Map")];
+export const fleetImages = [image("fleet","team","https://foeivkpkohkjpgwxpfdu.supabase.co/storage/v1/object/public/tbus-assets/team/towboatus-lake-texoma-bois-d-arc-cedar-creek-fleet-1774460670649.jpeg","TowBoatUS Lake Texoma, Bois d'Arc, Cedar Creek Fleet")];

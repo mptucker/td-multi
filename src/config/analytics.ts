@@ -11,4 +11,5 @@ export const GA4_MEASUREMENT_IDS: Record<BrandSlug, string> = {
   "tackle-box": "G-MW3EGLZLL2",
   "water-taxi": "G-C34MP392N2",
   bigwater: "",
+  "towboatus-ntx": "G-8V8DWE1NZR",
 };
