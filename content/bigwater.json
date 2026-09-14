@@ -8,12 +8,17 @@
     "brands": [
       { "name": "Big Water Marine", "description": "Premium boats. Superior service. Genuine care. Lake Texoma's destination dealership where every customer becomes part of the Big Water family.", "href": "https://bigwatermarine.com", "logo": "/bigwater/BWM_Logo_Final_Round.png" },
       { "name": "Big Water Boat Club", "description": "Lake Texoma's premier boat club. Affordable access to the best boats on the lake—no ownership hassles, no lockout dates, just time on the water.", "href": "https://bigwatermarine.com/boatclub", "logo": "/bigwater/BWBC_Final2.png" },
-      { "name": "Big Water Cowboys", "description": "TowBoatUS North Texas serving Lake Texoma, Cedar Creek Reservoir and Bois d'Arc with 24/7 towing, dive, salvage, transport and recovery.", "href": "https://towboatusntx.com", "logo": "/bigwater/C6_TowBoatUS-Logo.png" },
+      { "name": "Big Water Cowboys", "description": "The locally owned marine towing and salvage company behind three TowBoatUS ports across North Texas and Southern Oklahoma.", "href": "https://towboatusntx.com", "logo": "/bigwater/BWC-LOGO_white.png", "links": [
+        { "label": "Lake Texoma", "href": "https://towboatuslaketexoma.com", "logo": "/bigwater/TBUS-LT-FULL.png" },
+        { "label": "Bois d’Arc", "href": "https://towboatusntx.com", "logo": "/bigwater/TBUS-BD-FULL.png" },
+        { "label": "Cedar Creek", "href": "https://towboatusntx.com", "logo": "/bigwater/TBUS-CC-FULL.png" }
+      ] },
       { "name": "What's Next", "description": "More is coming. Premium lifestyle brands, limited releases and experiences for those who Go Big.", "href": "", "logo": "/bigwater/BW_3lines.png" }
     ],
     "statement": "Go Big. It's not a tagline — it's how we operate.",
     "phone": "903.419.1019",
-    "phoneHref": "tel:+19034191019"
+    "phoneHref": "tel:+19034191019",
+    "boatClubLinks": { "learn": "https://bigwatermarine.com/boatclub", "benefits": "https://texomadestinations.com/tap" }
   },
   "footerBlurb": "Go Big."
 }

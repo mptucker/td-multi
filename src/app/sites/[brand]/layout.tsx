@@ -11,6 +11,7 @@ import { BrandEntityJsonLd } from "@/components/Sections";
 import { MembershipBand } from "@/components/MembershipBand";
 import { absoluteBrandAsset, BRAND_TOPICS, isPreviewHost } from "@/lib/seo";
 import { GA4_MEASUREMENT_IDS } from "@/config/analytics";
+import { BigWaterFooter } from "@/components/bigwater/BigWaterFooter";
 
 export const revalidate = 60; // ISR: CMS edits appear within a minute
 
@@ -59,7 +60,7 @@ export default async function BrandLayout({ children, params }: { children: Reac
   const analyticsEnabled = host === brand.canonicalDomain || host === `www.${brand.canonicalDomain}`;
   const ga4 = analyticsEnabled ? GA4_MEASUREMENT_IDS[brand.slug] : null;
 
-  if (brand.slug === "bigwater") return <><BrandStyle brand={brand} />{ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}{children}</>;
+  if (brand.slug === "bigwater") return <><BrandStyle brand={brand} />{ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}{children}<BigWaterFooter /></>;
 
   return (
     <>

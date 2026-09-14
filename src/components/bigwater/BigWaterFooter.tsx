@@ -1,0 +1,5 @@
+import Image from "next/image";
+
+export function BigWaterFooter() {
+  return <footer className="bwco-family-footer"><div className="bwco-footer-brand"><Image src="/bigwater/BWco_Logo.png" width={1000} height={246} alt="BigWater.co" /><p>Premium marine lifestyle brands built around life on the water.</p></div><div><h2>BigWater.co Brands</h2><a href="https://bigwatermarine.com">Big Water Marine</a><a href="https://bigwatermarine.com/boatclub">Big Water Boat Club</a><a href="https://texomadestinations.com/tap">Boat Club benefits, TAP & signup</a></div><div><h2>Big Water Cowboys</h2><a href="https://towboatusntx.com">TowBoatUS North Texas</a><a href="https://towboatuslaketexoma.com">TowBoatUS Lake Texoma</a><a href="https://towboatusntx.com">TowBoatUS Bois d’Arc</a><a href="https://towboatusntx.com">TowBoatUS Cedar Creek</a></div><div><h2>Lake Texoma</h2><p>Planning a stay or experience?</p><a href="https://texomadestinations.com">Explore Texoma Destinations →</a></div><small>© {new Date().getFullYear()} BigWater.co. All rights reserved.</small></footer>;
+}
