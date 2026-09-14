@@ -12,6 +12,7 @@ import { MembershipBand } from "@/components/MembershipBand";
 import { absoluteBrandAsset, BRAND_TOPICS, isPreviewHost } from "@/lib/seo";
 import { GA4_MEASUREMENT_IDS } from "@/config/analytics";
 import { BigWaterFooter } from "@/components/bigwater/BigWaterFooter";
+import { BigWaterStructuredData } from "@/components/bigwater/BigWaterStructuredData";
 
 export const revalidate = 60; // ISR: CMS edits appear within a minute
 
@@ -38,10 +39,19 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     openGraph: { title: c.seo.title, description: c.seo.description, url: "/", images: [{ url: image, alt: brand.nap.displayName }], siteName: brand.nap.displayName, locale: "en_US", type: "website" },
     twitter: { card: "summary_large_image", title: c.seo.title, description: c.seo.description, images: [image] },
     icons: { icon: brand.logo.src },
+    authors: [{ name: brand.nap.legalName, url: `https://${brand.canonicalDomain}/` }],
+    creator: brand.nap.legalName,
+    publisher: brand.nap.legalName,
     robots: preview
       ? { index: false, follow: false, noarchive: true, nocache: true }
       : { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
-    category: "travel",
+    category: brand.slug === "bigwater" || brand.slug === "towboatus-ntx" ? "Marine Services" : "travel",
+    other: {
+      "geo.region": `US-${brand.nap.region}`,
+      "geo.placename": `${brand.nap.city}, ${brand.nap.region}`,
+      "geo.position": `${brand.nap.geo.lat};${brand.nap.geo.lng}`,
+      ICBM: `${brand.nap.geo.lat}, ${brand.nap.geo.lng}`,
+    },
   };
 }
 
@@ -60,7 +70,9 @@ export default async function BrandLayout({ children, params }: { children: Reac
   const analyticsEnabled = host === brand.canonicalDomain || host === `www.${brand.canonicalDomain}`;
   const ga4 = analyticsEnabled ? GA4_MEASUREMENT_IDS[brand.slug] : null;
 
-  if (brand.slug === "bigwater" || brand.slug === "towboatus-ntx") return <><BrandStyle brand={brand} />{ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}{ga4 && <script dangerouslySetInnerHTML={{__html:`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ga4}');`}} />}{children}<BigWaterFooter /></>;
+  const clickTracking = `document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('a[href]'):null;if(!a)return;var h=a.getAttribute('href')||'';var intent=a.dataset.intent||(/^tel:/.test(h)?'phone':/^sms:/.test(h)?'text':/maps\.(google|apple)|google\.com\/maps/.test(h)?'directions':'');if(!intent&&!/^https?:/.test(h))return;var detail={brand:'${brand.slug}',link_intent:intent||'outbound',link_url:a.href,link_text:(a.textContent||'').trim().slice(0,100)};window.dataLayer=window.dataLayer||[];if(typeof window.gtag==='function')window.gtag('event','brand_conversion_click',detail);else window.dataLayer.push(Object.assign({event:'brand_conversion_click'},detail));});`;
+
+  if (brand.slug === "bigwater" || brand.slug === "towboatus-ntx") return <><BrandStyle brand={brand} />{ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}{ga4 && <script dangerouslySetInnerHTML={{__html:`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ga4}',{send_page_view:true});gtag('set','user_properties',{brand_site:'${brand.slug}'});`}} />}{brand.slug === "bigwater" && <BigWaterStructuredData />}<script dangerouslySetInnerHTML={{ __html: clickTracking }} />{children}<BigWaterFooter /></>;
 
   return (
     <>
@@ -82,7 +94,7 @@ export default async function BrandLayout({ children, params }: { children: Reac
       )}
       <script
         dangerouslySetInnerHTML={{
-          __html: `document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('a[href]'):null;if(!a)return;var h=a.getAttribute('href')||'';var intent=a.dataset.intent||(/^tel:/.test(h)?'phone':/^sms:/.test(h)?'text':/maps\.(google|apple)|google\.com\/maps/.test(h)?'directions':'');if(!intent&&!/^https?:/.test(h))return;var detail={brand:'${brand.slug}',link_intent:intent||'outbound',link_url:a.href,link_text:(a.textContent||'').trim().slice(0,100)};window.dataLayer=window.dataLayer||[];if(typeof window.gtag==='function')window.gtag('event','brand_conversion_click',detail);else window.dataLayer.push(Object.assign({event:'brand_conversion_click'},detail));});`,
+          __html: clickTracking,
         }}
       />
       <div className="brand-site min-h-screen" data-brand={brand.slug}>

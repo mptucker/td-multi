@@ -82,7 +82,7 @@ export default function StructuredData({ locations }: StructuredDataProps) {
   // Main organization schema with enhanced GEO properties
   const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "MarineBusinessService", "ProfessionalService"],
+    "@type": ["LocalBusiness", "ProfessionalService"],
     "@id": "https://towboatusntx.com/#organization",
     name: "TowBoatUS Big Water Cowboys",
     alternateName: [
@@ -104,7 +104,7 @@ export default function StructuredData({ locations }: StructuredDataProps) {
     },
     image: [
       "https://towboatusntx.com/logo-full.png",
-      "https://towboatusntx.com/og-image.jpg",
+      "https://towboatusntx.com/bigwater/TBUS-ALL-FULL.png",
     ],
     telephone: locations[0]?.phone || "903-419-0911",
     email: "info@towboatuslaketexoma.com",
@@ -188,7 +188,6 @@ export default function StructuredData({ locations }: StructuredDataProps) {
     // Primary business address
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Lake Texoma Marina",
       addressLocality: "Pottsboro",
       addressRegion: "TX",
       postalCode: "75076",
@@ -237,7 +236,11 @@ export default function StructuredData({ locations }: StructuredDataProps) {
             description:
               "Disabled vessel towed to the nearest marina, ramp, or destination of your choice. Mechanical failure, engine trouble, loss of power — we'll get you there.",
             provider: { "@id": "https://towboatusntx.com/#organization" },
-            areaServed: { "@id": "https://towboatusntx.com/#organization" },
+            areaServed: [
+              { "@type": "Lake", name: "Lake Texoma" },
+              { "@type": "Lake", name: "Bois d'Arc Lake" },
+              { "@type": "Lake", name: "Cedar Creek Reservoir" },
+            ],
             serviceType: "Marine Towing",
           },
         },
@@ -374,12 +377,6 @@ export default function StructuredData({ locations }: StructuredDataProps) {
       },
     ],
     // Additional business properties
-    foundingDate: "2020",
-    numberOfEmployees: {
-      "@type": "QuantitativeValue",
-      minValue: 5,
-      maxValue: 15,
-    },
     knowsAbout: [
       "Boat Towing",
       "Marine Salvage",
@@ -411,14 +408,6 @@ export default function StructuredData({ locations }: StructuredDataProps) {
     copyrightYear: new Date().getFullYear(),
     copyrightHolder: {
       "@id": "https://towboatusntx.com/#organization",
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: "https://towboatusntx.com/?q={search_term_string}",
-      },
-      "query-input": "required name=search_term_string",
     },
   };
 
@@ -477,7 +466,6 @@ export default function StructuredData({ locations }: StructuredDataProps) {
         "@type": "Lake",
         name: location.name,
       },
-      maximumAttendeeCapacity: location.surface_acres,
       additionalProperty: [
         {
           "@type": "PropertyValue",
@@ -548,53 +536,6 @@ export default function StructuredData({ locations }: StructuredDataProps) {
     },
   ];
 
-  // Aggregate review/rating placeholder (can be populated with real data later)
-  const reviewSchema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://towboatusntx.com/#organization",
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      bestRating: "5",
-      worstRating: "1",
-      ratingCount: "47",
-      reviewCount: "47",
-    },
-    review: [
-      {
-        "@type": "Review",
-        author: {
-          "@type": "Person",
-          name: "Lake Texoma Boater",
-        },
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5",
-        },
-        reviewBody:
-          "Incredible service! Called when our engine died in the middle of Lake Texoma. Captain arrived quickly and towed us safely back to the marina. Professional, courteous, and fast. Highly recommend!",
-        datePublished: "2024-08-15",
-      },
-      {
-        "@type": "Review",
-        author: {
-          "@type": "Person",
-          name: "Cedar Creek Fisherman",
-        },
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5",
-        },
-        reviewBody:
-          "These guys are the real deal. Had a battery die on Cedar Creek and they had someone out to us in under 30 minutes. Got us jumped and back fishing. Worth every penny of the BoatUS membership!",
-        datePublished: "2024-09-22",
-      },
-    ],
-  };
-
   // Emergency service schema
   const emergencyServiceSchema = {
     "@context": "https://schema.org",
@@ -634,10 +575,6 @@ export default function StructuredData({ locations }: StructuredDataProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
       />
       <script
         type="application/ld+json"

@@ -10,6 +10,6 @@ export const GA4_MEASUREMENT_IDS: Record<BrandSlug, string> = {
   sundance: "G-58NHSD0MEH",
   "tackle-box": "G-MW3EGLZLL2",
   "water-taxi": "G-C34MP392N2",
-  bigwater: "",
+  bigwater: "G-K2395DWDQ4",
   "towboatus-ntx": "G-8V8DWE1NZR",
 };

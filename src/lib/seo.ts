@@ -23,8 +23,8 @@ export const BRAND_TOPICS: Record<BrandSlug, string[]> = {
   "tackle-box": ["Lake Texoma bait shop", "Lake Texoma tackle shop", "ethanol-free fuel Pottsboro", "live bait Pottsboro", "Lake Texoma fishing license"],
   boaterwise: ["Lake Texoma boating lessons", "hands-on boat training", "pontoon boat training", "private boating instruction", "NSBC on-water course"],
   "water-taxi": ["Lake Texoma water taxi", "Lake Texoma island transportation", "dock-to-dock boat service", "Highport Marina water taxi", "private boat ride Lake Texoma"],
-  bigwater: ["BigWater.co", "Lake Texoma marine brands", "Big Water Marine", "Big Water Boat Club", "TowBoatUS North Texas"],
-  "towboatus-ntx": ["boat towing North Texas", "TowBoatUS Lake Texoma", "TowBoatUS Bois d'Arc", "TowBoatUS Cedar Creek", "marine salvage Texas", "24 hour boat towing"],
+  bigwater: ["BigWater.co", "Lake Texoma marine brands", "Big Water Marine", "Big Water Boat Club", "Lake Texoma boat sales", "Lake Texoma boat club", "TowBoatUS North Texas", "marine towing North Texas"],
+  "towboatus-ntx": ["boat towing North Texas", "TowBoatUS Lake Texoma", "TowBoatUS Bois d'Arc", "TowBoatUS Cedar Creek", "marine salvage Texas", "24 hour boat towing", "Lake Texoma boat rescue", "on-water fuel delivery", "boat ungrounding North Texas"],
 };
 
 export const PAGE_LABELS: Record<PageKey, string> = {
