@@ -16,7 +16,8 @@ export type BrandSlug =
   | "fastrac"
   | "tackle-box"
   | "boaterwise"
-  | "water-taxi";
+  | "water-taxi"
+  | "bigwater";
 
 /** Pages a brand may enable. Order here = nav order. */
 export type PageKey = "home" | "stay" | "plan" | "groups" | "rules" | "packages";

@@ -1,0 +1,19 @@
+{
+  "slug": "bigwater",
+  "seo": { "title": "BigWater.co — The Premium Marine Lifestyle", "description": "BigWater.co brings together premium marine brands serving Lake Texoma and North Texas.", "ogImage": "/bigwater/BWco_Logo.png" },
+  "home": {
+    "eyebrow": "Lake Texoma & Beyond",
+    "portfolioEyebrow": "The Portfolio",
+    "portfolioTitle": "Premium brands. One vision.",
+    "brands": [
+      { "name": "Big Water Marine", "description": "Premium boats. Superior service. Genuine care. Lake Texoma's destination dealership where every customer becomes part of the Big Water family.", "href": "https://bigwatermarine.com", "logo": "/bigwater/BWM_Logo_Final_Round.png" },
+      { "name": "Big Water Boat Club", "description": "Lake Texoma's premier boat club. Affordable access to the best boats on the lake—no ownership hassles, no lockout dates, just time on the water.", "href": "https://bigwatermarine.com/boatclub", "logo": "/bigwater/BWBC_Final2.png" },
+      { "name": "Big Water Cowboys", "description": "TowBoatUS North Texas serving Lake Texoma, Cedar Creek Reservoir and Bois d'Arc with 24/7 towing, dive, salvage, transport and recovery.", "href": "https://towboatusntx.com", "logo": "/bigwater/C6_TowBoatUS-Logo.png" },
+      { "name": "What's Next", "description": "More is coming. Premium lifestyle brands, limited releases and experiences for those who Go Big.", "href": "", "logo": "/bigwater/BW_3lines.png" }
+    ],
+    "statement": "Go Big. It's not a tagline — it's how we operate.",
+    "phone": "903.419.1019",
+    "phoneHref": "tel:+19034191019"
+  },
+  "footerBlurb": "Go Big."
+}

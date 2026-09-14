@@ -59,6 +59,8 @@ export default async function BrandLayout({ children, params }: { children: Reac
   const analyticsEnabled = host === brand.canonicalDomain || host === `www.${brand.canonicalDomain}`;
   const ga4 = analyticsEnabled ? GA4_MEASUREMENT_IDS[brand.slug] : null;
 
+  if (brand.slug === "bigwater") return <><BrandStyle brand={brand} />{ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}{children}</>;
+
   return (
     <>
       <BrandStyle brand={brand} />

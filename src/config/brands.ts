@@ -416,6 +416,20 @@ export const BRANDS: Record<BrandSlug, BrandConfig> = {
     secondaryLabel: "See cruises & charters",
     schemaType: "TaxiService",
   },
+  bigwater: {
+    slug: "bigwater",
+    domains: ["bigwater.co", "www.bigwater.co", "bigwater.localhost"],
+    canonicalDomain: "bigwater.co",
+    tagline: "The Premium Marine Lifestyle",
+    mostTag: "Go Big",
+    theme: { primary: "#0a0a0a", primaryDark: "#0f1923", accent: "#c9a96e", accent2: "#dfc08a", bg: "#0a0a0a", surface: "#111820", ink: "#e8e4dc", muted: "#8a8a8a", fontDisplay: "Cormorant Garamond", fontBody: "Libre Franklin", fontHref: gf("family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Libre+Franklin:wght@200;300;400;500"), radius: "sharp", header: "dark" },
+    logo: { src: "/bigwater/BWco_Logo.png", width: 1000, height: 246 },
+    nap: { legalName: "BigWater.co", displayName: "BigWater.co", shortName: "BigWater", streetAddress: "", city: "Pottsboro", region: "TX", postalCode: "75076", phone: "903.419.1019", phoneE164: "+19034191019", geo: { lat: 33.7593, lng: -96.6694 }, googleMapsUrl: "https://maps.google.com/?q=Pottsboro%2C+TX", hours: ["By appointment"] },
+    pages: ["home"],
+    primaryIntent: "companies",
+    primaryLabel: "Explore our brands",
+    schemaType: "Organization",
+  },
 };
 
 export const BRAND_SLUGS = Object.keys(BRANDS) as BrandSlug[];

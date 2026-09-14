@@ -17,7 +17,7 @@ if (!url || !key) {
 const sb = createClient(url, key, { auth: { persistSession: false } });
 const load = async (f) => JSON.parse(await readFile(new URL(`../content/${f}`, import.meta.url), "utf8"));
 
-const brands = ["lighthouse", "paradise", "sundance", "island-view", "fastrac", "tackle-box", "boaterwise", "water-taxi"];
+const brands = ["lighthouse", "paradise", "sundance", "island-view", "fastrac", "tackle-box", "boaterwise", "water-taxi", "bigwater"];
 for (const b of brands) {
   const content = await load(`${b}.json`);
   const { error } = await sb.from("brand_content").upsert({ brand: b, content });

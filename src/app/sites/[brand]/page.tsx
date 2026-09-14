@@ -6,6 +6,7 @@ import { BoaterWiseHome } from "@/components/boaterwise/BoaterWiseHome";
 import { TackleBoxHome } from "@/components/tackle-box/TackleBoxHome";
 import { SundanceHome } from "@/components/sundance/SundanceHome";
 import { WaterTaxiHome } from "@/components/water-taxi/WaterTaxiHome";
+import { BigWaterHome } from "@/components/bigwater/BigWaterHome";
 
 export const revalidate = 60;
 
@@ -14,6 +15,8 @@ export default async function HomePage({ params }: { params: Promise<{ brand: st
   const h = content.home;
   const [events, packages] = await Promise.all([getEvents(brand.slug, 3), getPackages(brand.slug)]);
   const showPackages = brand.pages.includes("packages");
+
+  if (brand.slug === "bigwater") return <BigWaterHome content={content as any} />;
 
   if (brand.slug === "island-view") {
     return <IslandViewHome brand={brand} content={content} facts={facts} events={events} packages={packages} />;
