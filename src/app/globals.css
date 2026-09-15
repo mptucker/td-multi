@@ -1063,6 +1063,15 @@ h1, h2, h3, .display { font-family: var(--font-display); letter-spacing: -0.01em
 @media (max-width: 760px) { .cms-app { grid-template-columns: 1fr; } .cms-sidebar { position: static; height: auto; padding: 16px; } .cms-sidebar nav { display: flex; overflow-x: auto; padding-block: 14px; } .cms-sidebar nav button { width: auto; white-space: nowrap; } .cms-user { display: none; } .cms-main { padding: 24px 16px 50px; } .cms-metrics, .cms-site-grid, .cms-form-grid { grid-template-columns: 1fr; } .cms-media-grid { grid-template-columns: repeat(2,1fr); } .cms-upload { grid-template-columns: 1fr; } .cms-table > button { grid-template-columns: 1fr auto; } .cms-table > button > span:last-child { display: none; } .cms-preview-panel iframe { height: 650px; } }
 
 /* BigWater.co portfolio — intentionally independent of the TD template system. */
+.special-alert { position:relative; z-index:100; min-height:44px; color:#fff; font-family:system-ui,sans-serif; }
+.special-alert > div { display:flex; min-height:44px; align-items:center; justify-content:center; gap:14px; max-width:1280px; margin:auto; padding:8px 52px; text-align:center; }
+.special-alert strong { font-size:.82rem; line-height:1.35; }
+.special-alert code { border-radius:4px; padding:3px 8px; background:#0003; color:inherit; font:800 .78rem/1.2 ui-monospace,monospace; }
+.special-alert a { color:inherit; font-size:.78rem; font-weight:800; text-decoration:underline; text-underline-offset:3px; white-space:nowrap; }
+.special-alert button { position:absolute; right:18px; top:50%; translate:0 -50%; border:0; padding:4px 8px; background:transparent; color:inherit; font-size:1.35rem; cursor:pointer; }
+.special-alert-bigwater { --special-alert-height:44px; background:#9d772f; color:#fff; }
+.special-alert-towboatus-ntx { background:#cc0000; color:#fff; font-family:"Barlow",sans-serif; }
+@media(max-width:700px){.special-alert > div{padding:9px 42px 9px 16px;flex-wrap:wrap;gap:5px 10px}.special-alert-bigwater{--special-alert-height:68px;min-height:68px}.special-alert-bigwater>div{min-height:68px}.special-alert button{right:8px}}
 .bwco-site { --gold:#c9a96e; --cream:#e8e4dc; min-height:100vh; overflow:hidden; background:#0a0a0a; color:var(--cream); font-family:"Libre Franklin",sans-serif; font-weight:300; }
 .bwco-nav { position:fixed; z-index:20; inset:0 0 auto; display:flex; align-items:center; justify-content:space-between; padding:28px 48px; }
 .bwco-nav img { width:150px; height:auto; opacity:.62; }
