@@ -64,6 +64,17 @@ begin
   end if;
   return new;
 end $$;
+create or replace function cms_normalize_phone(raw_phone text) returns text
+language sql immutable set search_path = public as $$
+  select case
+    when length(regexp_replace(raw_phone, '[^0-9]', '', 'g')) = 10
+      then '+1' || regexp_replace(raw_phone, '[^0-9]', '', 'g')
+    when length(regexp_replace(raw_phone, '[^0-9]', '', 'g')) = 11
+      and left(regexp_replace(raw_phone, '[^0-9]', '', 'g'), 1) = '1'
+      then '+' || regexp_replace(raw_phone, '[^0-9]', '', 'g')
+    else null
+  end
+$$;
 drop trigger if exists cms_users_normalize_phone on cms_users;
 create trigger cms_users_normalize_phone before insert or update of phone on cms_users for each row execute function normalize_us_phone();
 drop trigger if exists cms_requests_normalize_phone on cms_access_requests;
@@ -305,24 +316,40 @@ language sql security definer set search_path = public as $$
 $$;
 grant execute on function cms_touch_login() to authenticated;
 
-create or replace function cms_claim_invite() returns boolean
+create or replace function cms_apply_invite(target_user_id uuid) returns boolean
 language plpgsql security definer set search_path = public as $$
 declare
   auth_phone text;
   invitation cms_invites%rowtype;
 begin
-  select phone into auth_phone from auth.users where id = auth.uid();
-  select * into invitation from cms_invites where phone = auth_phone;
+  if auth.uid() is null or (target_user_id <> auth.uid() and not cms_is_admin()) then
+    raise exception 'Not authorized to grant this invitation';
+  end if;
+  select cms_normalize_phone(phone) into auth_phone
+  from auth.users where id = target_user_id and phone_confirmed_at is not null;
+  if auth_phone is null then return false; end if;
+  select * into invitation from cms_invites
+  where cms_normalize_phone(phone) = auth_phone
+  order by created_at desc limit 1 for update;
   if invitation.phone is null then return false; end if;
   insert into cms_users (user_id, display_name, phone, role, active)
-  values (auth.uid(), invitation.display_name, auth_phone, invitation.role, true)
+  values (target_user_id, invitation.display_name, auth_phone, invitation.role, true)
   on conflict (user_id) do update set display_name = excluded.display_name, phone = excluded.phone, role = excluded.role, active = true;
+  delete from cms_user_sites where user_id = target_user_id;
   insert into cms_user_sites (user_id, brand)
-  select auth.uid(), unnest(invitation.sites)
+  select target_user_id, unnest(invitation.sites)
   on conflict do nothing;
-  delete from cms_invites where phone = auth_phone;
-  delete from cms_access_requests where user_id = auth.uid();
+  delete from cms_invites where phone = invitation.phone;
+  delete from cms_access_requests where user_id = target_user_id;
   return true;
+end $$;
+revoke all on function cms_apply_invite(uuid) from public;
+grant execute on function cms_apply_invite(uuid) to authenticated;
+
+create or replace function cms_claim_invite() returns boolean
+language plpgsql security definer set search_path = public as $$
+begin
+  return cms_apply_invite(auth.uid());
 end $$;
 grant execute on function cms_claim_invite() to authenticated;
 
@@ -356,6 +383,8 @@ drop policy if exists "cms manage assignments" on cms_user_sites;
 create policy "cms manage assignments" on cms_user_sites for all to authenticated using (cms_is_admin()) with check (cms_is_admin());
 drop policy if exists "request cms access" on cms_access_requests;
 create policy "request cms access" on cms_access_requests for insert to authenticated with check (user_id = auth.uid());
+drop policy if exists "update own cms access request" on cms_access_requests;
+create policy "update own cms access request" on cms_access_requests for update to authenticated using (user_id = auth.uid()) with check (user_id = auth.uid());
 drop policy if exists "read cms access requests" on cms_access_requests;
 create policy "read cms access requests" on cms_access_requests for select to authenticated using (user_id = auth.uid() or cms_is_admin());
 drop policy if exists "manage cms access requests" on cms_access_requests;

@@ -86,7 +86,8 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
     const { data: p, error: profileError } = await sb.from("cms_users").select("*").eq("user_id", activeSession.user.id).maybeSingle();
     if (profileError) { setProfile(null); setStatus("Access check failed: " + profileError.message); return; }
     if (!p?.active) {
-      const { data: claimed } = await sb.rpc("cms_claim_invite");
+      const { data: claimed, error: claimError } = await sb.rpc("cms_claim_invite");
+      if (claimError) { setProfile(null); setStatus("Invitation check failed: " + claimError.message); return; }
       if (claimed) { location.reload(); return; }
       const { error: requestError } = await sb.from("cms_access_requests").upsert({ user_id: activeSession.user.id, phone: toE164US(activeSession.user.phone) });
       if (requestError) { setStatus("Access request failed: " + requestError.message); return; }
@@ -142,7 +143,7 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
   if (!sb) return <CmsMessage title="CMS setup needed">Add the public Supabase URL and anonymous key to this deployment.</CmsMessage>;
   if (!authReady) return <CmsMessage title="Opening CMS">Checking your secure session…</CmsMessage>;
   if (!session) return <PhoneLogin />;
-  if (!profile && status.startsWith("Access check failed")) return <CmsMessage title="Unable to verify access"><p>{status}</p><button className="cms-button cms-button-muted" onClick={() => location.reload()}>Try again</button></CmsMessage>;
+  if (!profile && (status.startsWith("Access check failed") || status.startsWith("Invitation check failed"))) return <CmsMessage title="Unable to verify access"><p>{status}</p><button className="cms-button cms-button-muted" onClick={() => location.reload()}>Try again</button></CmsMessage>;
   if (!profile) return <CmsMessage title="Access requested">Your phone number is verified. An administrator needs to approve CMS access before you can continue.<button className="cms-button cms-button-muted" onClick={() => sb!.auth.signOut()}>Use another number</button></CmsMessage>;
 
   return (
@@ -282,6 +283,14 @@ function StaffEditor({ users, requests, invites, onChanged }: { users: any[]; re
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState<Role>("site_manager");
   const [sites, setSites] = useState<string[]>([]);
+  const inviteFor = (request: any) => invites.find((item) => toE164US(item.phone) === toE164US(request.phone));
+  async function grantInvite(request: any) {
+    const { data: granted, error } = await sb!.rpc("cms_apply_invite", { target_user_id: request.user_id });
+    if (error) return alert(error.message);
+    if (!granted) return alert("The invitation could not be matched to a verified phone number. Check the number in Supabase Auth and the invitation.");
+    await log("approve_invite", "cms_users", request.user_id);
+    onChanged();
+  }
   async function invite() {
     const normalized = toE164US(phone);
     if (!normalized || !name.trim()) return alert("Enter a name and valid 10-digit U.S. mobile number.");
@@ -289,10 +298,15 @@ function StaffEditor({ users, requests, invites, onChanged }: { users: any[]; re
     const { data: auth } = await sb!.auth.getUser();
     const { error } = await sb!.from("cms_invites").upsert({ phone: normalized, display_name: name.trim(), role, sites: role === "site_manager" ? sites : [], invited_by: auth.user?.id });
     if (error) return alert(error.message);
+    const matchingRequest = requests.find((request) => toE164US(request.phone) === normalized);
+    if (matchingRequest) {
+      const { data: granted, error: grantError } = await sb!.rpc("cms_apply_invite", { target_user_id: matchingRequest.user_id });
+      if (grantError) return alert("Invitation saved, but access was not granted: " + grantError.message);
+      if (!granted) return alert("Invitation saved, but the verified sign-in number did not match. Check the number in Supabase Auth.");
+    }
     await log("invite", "cms_users", normalized, undefined, { role, sites });
     setName(""); setPhone(""); setRole("site_manager"); setSites([]); onChanged();
   }
-  async function approve(req: any) { const { error } = await sb!.from("cms_users").insert({ user_id: req.user_id, phone: req.phone, display_name: req.phone, role: "site_manager", active: true }); if (!error) { await sb!.from("cms_access_requests").delete().eq("user_id", req.user_id); await log("approve","cms_users",req.user_id); onChanged(); } else alert(error.message); }
   async function update(user: any, patch: any) { const { error } = await sb!.from("cms_users").update(patch).eq("user_id", user.user_id); if (error) alert(error.message); else { await log("update","cms_users",user.user_id); onChanged(); } }
   async function updateSites(user: any, brand: string, checked: boolean) {
     if (checked) {
@@ -304,7 +318,7 @@ function StaffEditor({ users, requests, invites, onChanged }: { users: any[]; re
     }
     await log("assign_sites","cms_users",user.user_id,brand); onChanged();
   }
-  return <div className="cms-stack"><section className="cms-panel"><p className="cms-kicker">Invite staff</p><h2>Add a CMS user</h2><div className="cms-form-grid"><Field label="Name"><input value={name} onChange={(e) => setName(e.target.value)} /></Field><Field label="Mobile number"><input value={phone} onChange={(e) => setPhone(e.target.value)} inputMode="tel" placeholder="903 555 0123" /></Field><Field label="Role"><select value={role} onChange={(e) => setRole(e.target.value as Role)}>{["admin","director","site_manager"].map((r) => <option key={r} value={r}>{r.replace("_"," ")}</option>)}</select></Field></div>{role === "site_manager" && <div className="cms-staff-sites">{ALL_BRANDS.map((brand) => <label key={brand}><input type="checkbox" checked={sites.includes(brand)} onChange={(e) => setSites(e.target.checked ? [...sites, brand] : sites.filter((s) => s !== brand))} />{BRAND_NAMES[brand]}</label>)}</div>}<button className="cms-button" onClick={invite}>Add staff member</button>{invites.length > 0 && <p className="cms-form-note">Pending invitations: {invites.map((i) => `${i.display_name} (${i.phone})`).join(", ")}</p>}</section>{requests.length > 0 && <section className="cms-panel"><h2>Uninvited access requests</h2>{requests.map((r) => <div className="cms-staff-row" key={r.user_id}><span><strong>{r.phone}</strong><small>Requested {formatDate(r.requested_at)}</small></span><button className="cms-button" onClick={() => approve(r)}>Approve as site manager</button></div>)}</section>}<section className="cms-panel"><h2>Staff accounts</h2>{users.map((u) => <div className="cms-staff-card" key={u.user_id}><div className="cms-staff-row"><span><strong>{u.display_name || u.phone}</strong><small>Last login {formatDate(u.last_login_at)}</small></span><select value={u.role} onChange={(e) => update(u,{role:e.target.value})}>{["admin","director","site_manager"].map((r) => <option key={r} value={r}>{r.replace("_"," ")}</option>)}</select><label><input type="checkbox" checked={u.active} onChange={(e) => update(u,{active:e.target.checked})} /> Active</label></div>{u.role === "site_manager" && <div className="cms-staff-sites">{ALL_BRANDS.map((brand) => <label key={brand}><input type="checkbox" checked={(u.cms_user_sites ?? []).some((s:any) => s.brand === brand)} onChange={(e) => updateSites(u,brand,e.target.checked)} />{BRAND_NAMES[brand]}</label>)}</div>}</div>)}</section></div>;
+  return <div className="cms-stack"><section className="cms-panel"><p className="cms-kicker">Invite staff</p><h2>Add a CMS user</h2><div className="cms-form-grid"><Field label="Name"><input value={name} onChange={(e) => setName(e.target.value)} /></Field><Field label="Mobile number"><input value={phone} onChange={(e) => setPhone(e.target.value)} inputMode="tel" placeholder="903 555 0123" /></Field><Field label="Role"><select value={role} onChange={(e) => setRole(e.target.value as Role)}>{["admin","director","site_manager"].map((r) => <option key={r} value={r}>{r.replace("_"," ")}</option>)}</select></Field></div>{role === "site_manager" && <div className="cms-staff-sites">{ALL_BRANDS.map((brand) => <label key={brand}><input type="checkbox" checked={sites.includes(brand)} onChange={(e) => setSites(e.target.checked ? [...sites, brand] : sites.filter((s) => s !== brand))} />{BRAND_NAMES[brand]}</label>)}</div>}<button className="cms-button" onClick={invite}>Add staff member</button>{invites.length > 0 && <p className="cms-form-note">Pending invitations: {invites.map((i) => `${i.display_name} (${i.phone})`).join(", ")}</p>}</section>{requests.length > 0 && <section className="cms-panel"><h2>Access requests</h2>{requests.map((request) => { const invitation = inviteFor(request); return <div className="cms-staff-row" key={request.user_id}><span><strong>{invitation?.display_name || request.phone}</strong><small>{request.phone} · Requested {formatDate(request.requested_at)}{invitation ? ` · Invited as ${invitation.role.replace("_", " ")}` : " · No invitation yet"}</small></span>{invitation ? <button className="cms-button" onClick={() => grantInvite(request)}>Grant invited access</button> : <button className="cms-button" onClick={() => { setPhone(request.phone); setName(""); setRole("site_manager"); setSites([]); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Set up access</button>}</div>; })}</section>}<section className="cms-panel"><h2>Staff accounts</h2>{users.map((u) => <div className="cms-staff-card" key={u.user_id}><div className="cms-staff-row"><span><strong>{u.display_name || u.phone}</strong><small>Last login {formatDate(u.last_login_at)}</small></span><select value={u.role} onChange={(e) => update(u,{role:e.target.value})}>{["admin","director","site_manager"].map((r) => <option key={r} value={r}>{r.replace("_"," ")}</option>)}</select><label><input type="checkbox" checked={u.active} onChange={(e) => update(u,{active:e.target.checked})} /> Active</label></div>{u.role === "site_manager" && <div className="cms-staff-sites">{ALL_BRANDS.map((brand) => <label key={brand}><input type="checkbox" checked={(u.cms_user_sites ?? []).some((s:any) => s.brand === brand)} onChange={(e) => updateSites(u,brand,e.target.checked)} />{BRAND_NAMES[brand]}</label>)}</div>}</div>)}</section></div>;
 }
 function Activity({ rows, revisions, onChanged }: { rows: any[]; revisions: any[]; onChanged: () => void }) {
   async function restore(revision: any) { const { error } = await sb!.from("brand_content").update({ draft_content: revision.snapshot }).eq("brand", revision.brand); if (error) alert(error.message); else { await log("restore_draft","brand_content",revision.brand,revision.brand,{revision:revision.id}); onChanged(); } }
