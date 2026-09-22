@@ -78,9 +78,6 @@ export const REDIRECTS: Record<BrandSlug, Record<string, string>> = {
     "/reserve/account/profile": `${HUB}/reserve/account/profile`,
   },
   fastrac: {
-    "/public-cruises": "/stay#public",
-    "/private-charters": "/groups-and-events",
-    "/experiences": "/stay",
     "/themed-cruises": "/stay#themed",
     "/events": "/packages",
     "/contact": "/plan-your-visit#contact",
@@ -94,7 +91,7 @@ export const REDIRECTS: Record<BrandSlug, Record<string, string>> = {
     "/reserve": `${HUB}/things-to-do#/charters-cruises`,
     "/reserve/cart": `${HUB}/reserve/cart`,
     "/reserve/account/profile": `${HUB}/reserve/account/profile`,
-    // /cruises/* individual posts and /product/* handled by prefix → /stay
+    // Active cruise detail URLs are preserved by the Fastrac route tree.
     // /booking/ is KEPT LIVE on fastrac.com until the hub exposes a water-taxi booking route.
   },
   "tackle-box": {
@@ -110,8 +107,5 @@ export const REDIRECTS: Record<BrandSlug, Record<string, string>> = {
 export const PREFIX_REDIRECTS: Partial<Record<BrandSlug, { from: string; to: string }[]>> = {
   paradise: [{ from: "/stay/", to: "/stay#glamping" }],
   sundance: [{ from: "/cabin-", to: "/stay#cabins" }],
-  fastrac: [
-    { from: "/cruises/", to: "/stay" },
-    { from: "/product/", to: "/stay" },
-  ],
+  fastrac: [{ from: "/product/", to: "/stay" }],
 };

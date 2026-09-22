@@ -3,10 +3,10 @@
   "seo": {
     "title": "Fastrac Cruises | Lake Texoma Cruises & Private Charters",
     "description": "Book Lake Texoma sunset, dinner, sightseeing and seasonal cruises or a private charter for 2–70 guests, departing Lighthouse Marina in Pottsboro.",
-    "ogImage": "https://texomadestinations.com/wp-content/uploads/2023/06/DJI_0886-hero.jpg"
+    "ogImage": "/fastrac/island-girl-aerial-current.jpg"
   },
   "home": {
-    "heroImage": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/DJI_0886-hero.jpg", "alt": "The Island Girl cruising Lake Texoma at sunset" },
+    "heroImage": { "src": "/fastrac/island-girl-aerial-current.jpg", "alt": "Island Girl at Lighthouse Marina on Lake Texoma" },
     "heroKicker": "The Most Amazing way to see Lake Texoma",
     "heroTitle": "Catch a sunset. Catch some fun.",
     "heroSubtitle": "Lake Texoma's only cruise and charter service — ticketed sunset and dinner cruises nearly year-round, private charters for two to seventy, and the water taxi that gets you to the islands.",
@@ -28,14 +28,14 @@
         "title": "Sunset & dinner cruises",
         "icon": "🌅",
         "body": "Friday and Saturday evenings in season. The 90-minute Sunset Cruise aboard the Sight-Sea-Er II is $35 for all ages; the Dinner Cruise on the Island Girl adds a full dinner, dessert and soft drinks for $60 (kids 3–12 $40). BYOB.",
-        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3022.jpg",
+        "image": "/fastrac/guests-sunset-current.jpg",
         "cta": { "label": "See dates & tickets", "intent": "cruises" }
       },
       {
         "title": "Lake Tour Experience",
         "icon": "🗺️",
         "body": "A narrated 90-minute history tour — $30 per person, or private on the Mellow Yellow (up to 18) or Sight-Sea-Er (up to 36). Add a boxed lunch.",
-        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/lake-day.jpg",
+        "image": "/fastrac/island-girl-aerial-current.jpg",
         "cta": { "label": "Book a Lake Tour", "intent": "cruises" }
       },
       {
@@ -49,14 +49,14 @@
         "title": "Private charters",
         "icon": "🥂",
         "body": "Weddings and receptions, corporate outings, reunions, memorials, birthdays. Pick the date, time, menu and boat; we bring the captain, crew and wait service. Island Girl from $500/hr, Sight-Sea-Er II from $350/hr.",
-        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/DJI_0886-hero.jpg",
+        "image": "/fastrac/island-girl-dock-current.jpg",
         "cta": { "label": "Request a charter quote", "href": "/groups-and-events" }
       },
       {
         "title": "Lake Day & Boat Ride experiences",
         "icon": "🏝️",
         "body": "Four hours to a secluded beach with captain and crew, kayaks and catering as add-ons — $1,000 for up to 12, $40 per extra guest to 36. Or a private Boat Ride for up to six from $150 an hour with your own itinerary.",
-        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/boat-ride.jpg",
+        "image": "/fastrac/guests-sunset-current.jpg",
         "cta": { "label": "Book a Lake Day", "intent": "water-taxi-book" }
       },
       {
@@ -68,11 +68,11 @@
       }
     ],
     "gallery": [
-      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/DJI_0886-hero.jpg", "alt": "Island Girl underway" },
-      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3022.jpg", "alt": "Guests on a sunset cruise" },
-      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/lake-day.jpg", "alt": "Lake Day beach experience" },
-      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/boat-ride.jpg", "alt": "Private boat ride" },
-      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A3330.jpg", "alt": "Cruise at golden hour" }
+      { "src": "/fastrac/island-girl-aerial-current.jpg", "alt": "Island Girl at Lighthouse Marina" },
+      { "src": "/fastrac/guests-sunset-current.jpg", "alt": "Guests enjoying the Lake Texoma sunset" },
+      { "src": "/fastrac/guests-family-current.jpg", "alt": "A young guest in the Island Girl wheelhouse" },
+      { "src": "/fastrac/island-girl-guest-2-current.jpg", "alt": "Island Girl cruising Lake Texoma" },
+      { "src": "/fastrac/island-girl-dock-current.jpg", "alt": "Island Girl ready at the charter dock" }
     ],
     "reviews": [
       { "quote": "The dinner cruise was the highlight of our anniversary weekend. Great food, great captain, unreal sunset.", "author": "Anniversary couple", "source": "Google review" },
@@ -100,7 +100,7 @@
           "Sunset Cruise — 1.5 hours on the Sight-Sea-Er II, $35 all ages, snacks sold aboard. Dinner Cruise — 1.5 hours on the Island Girl with dinner, dessert and soft drinks, $60 adults / $40 kids 3–12. Lake Tour — 90 narrated minutes, $30. Sights & Sips — light snacks and drinks, $49 / $39 under 12. All BYOB for adult beverages."
         ],
         "bullets": ["Fri & Sat nights in season", "Sunset $35", "Dinner $60 / $40", "Lake Tour $30", "BYOB", "72-hour cancellation"],
-        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3022.jpg", "alt": "Sunset cruise" },
+        "image": { "src": "/fastrac/guests-sunset-current.jpg", "alt": "Guests enjoying a Lake Texoma sunset cruise" },
         "cta": { "label": "See dates & buy tickets", "intent": "cruises" },
         "factKey": "fastrac.dinner_price"
       },
@@ -120,7 +120,7 @@
           "Private charters require 14 days' notice to cancel without penalty."
         ],
         "bullets": ["Island Girl to 70", "Sight-Sea-Er II to 36", "Last Call to 10", "Captain & crew included", "Catering available", "14-day cancellation"],
-        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/DJI_0886-hero.jpg", "alt": "Island Girl" },
+        "image": { "src": "/fastrac/island-girl-dock-current.jpg", "alt": "Island Girl at Lighthouse Marina" },
         "cta": { "label": "Request a charter quote", "href": "/groups-and-events" },
         "factKey": "fastrac.island_girl"
       },
@@ -130,7 +130,7 @@
           "Lake Day Experience: four hours to a secluded beach on the Sight-Sea-Er or Mellow Yellow with captain and crew — $1,000 for up to 12, $40 per additional guest up to 36, kayaks and catering optional. Boat Ride Experience: one to six hours for up to six with your own itinerary, $150 an hour. Texoma Water Taxi: $25 per person each way between Highport Marina and the islands, or $150 an hour private for up to six, sunrise to sunset."
         ],
         "bullets": ["Lake Day 4 hrs from $1,000", "Boat Ride $150/hr", "Water Taxi $25 pp", "Pets OK on taxi & Lake Day"],
-        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/lake-day.jpg", "alt": "Lake Day" },
+        "image": { "src": "/fastrac/guests-sunset-current.jpg", "alt": "Guests aboard a private Lake Texoma experience" },
         "cta": { "label": "Book a Lake Day or ride", "intent": "water-taxi-book" }
       }
     ],
@@ -179,9 +179,9 @@
       "Charters book around the public schedule, so weekend evenings in summer go first. Private charters require 14 days' notice to cancel without penalty. Send a quote request and our events team will reply with dates and options."
     ],
     "venues": [
-      { "name": "Island Girl", "capacity": "Up to 70 · seated dinner 48", "details": ["Texoma's largest party boat", "Climate-controlled interior, two decks", "Bathrooms aboard, handicapped accessible", "Catering partners, DJs & live music", "From $500/hour"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/DJI_0886-hero.jpg", "alt": "Island Girl" } },
-      { "name": "Sight-Sea-Er II", "capacity": "Up to 36", "details": ["55' Trident tritoon", "Galley, restroom, climate-controlled cabin", "Lake Tours & Lake Days", "From $350/hour"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/lake-day.jpg", "alt": "Sight-Sea-Er II" } },
-      { "name": "Last Call & Mellow Yellow", "capacity": "10 · 18", "details": ["Last Call 55' yacht: appetizer, BBQ or taco-bar menus; romantic 4-course for two", "Mellow Yellow: covered bench seating for 18", "Jolt: six-passenger water taxi"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/boat-ride.jpg", "alt": "Small charter" } }
+      { "name": "Island Girl", "capacity": "Up to 70 · seated dinner 48", "details": ["Texoma's largest party boat", "Climate-controlled interior, two decks", "Bathrooms aboard, handicapped accessible", "Catering partners, DJs & live music", "From $500/hour"], "image": { "src": "/fastrac/island-girl-dock-current.jpg", "alt": "Island Girl at Lighthouse Marina" } },
+      { "name": "Sight-Sea-Er II", "capacity": "Up to 36", "details": ["55' Trident tritoon", "Galley, restroom, climate-controlled cabin", "Lake Tours & Lake Days", "From $350/hour"], "image": { "src": "/fastrac/island-girl-aerial-current.jpg", "alt": "Fastrac charter fleet at Lighthouse Marina" } },
+      { "name": "Last Call & Mellow Yellow", "capacity": "10 · 18", "details": ["Last Call 55' yacht: appetizer, BBQ or taco-bar menus; romantic 4-course for two", "Mellow Yellow: covered bench seating for 18", "Jolt: six-passenger water taxi"], "image": { "src": "/fastrac/guests-sunset-current.jpg", "alt": "Guests aboard a Fastrac charter" } }
     ],
     "eventTypes": ["Weddings & receptions", "Corporate outings", "Reunions", "Birthdays & anniversaries", "Proposals & elopements", "Memorials", "Bachelor & bachelorette parties"],
     "cta": { "label": "Request a private charter quote", "intent": "events" },

@@ -6,7 +6,7 @@ export const BRAND_UPDATED: Record<BrandSlug, string> = {
   paradise: "2026-09-03",
   sundance: "2026-09-10",
   "island-view": "2026-09-10",
-  fastrac: "2026-09-03",
+  fastrac: "2026-09-22",
   "tackle-box": "2026-09-10",
   boaterwise: "2026-09-10",
   "water-taxi": "2026-09-07",
