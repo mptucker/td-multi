@@ -3,10 +3,10 @@
   "seo": {
     "title": "Paradise on Lake Texoma | Glamping, Cabins & RV Sites",
     "description": "Waterfront glamping, distinctive cabins, RV sites, primitive camping, a hammock garden and community spaces across 200 wooded acres near Pottsboro, Texas.",
-    "ogImage": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A5430-hero.jpg"
+    "ogImage": "/paradise/glamping-porch-lake.jpg"
   },
   "home": {
-    "heroImage": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A5430-hero.jpg", "alt": "Sunset over the glamping Kabanas at Paradise on Lake Texoma" },
+    "heroImage": { "src": "/paradise/glamping-porch-lake.jpg", "alt": "Waterfront glamping porch at Paradise on Lake Texoma" },
     "heroKicker": "The Most Relaxing place on Lake Texoma",
     "heroTitle": "Kick your feet up. this is Paradise.",
     "heroSubtitle": "Two hundred gated acres of oaks, hammocks and water views, a slow-cooked sunset every evening, and nothing on the schedule but the marshmallows.",

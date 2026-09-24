@@ -3,7 +3,7 @@ import type { BrandConfig, BrandSlug, PageKey } from "@/config/types";
 
 export const BRAND_UPDATED: Record<BrandSlug, string> = {
   lighthouse: "2026-09-03",
-  paradise: "2026-09-03",
+  paradise: "2026-09-24",
   sundance: "2026-09-10",
   "island-view": "2026-09-10",
   fastrac: "2026-09-22",

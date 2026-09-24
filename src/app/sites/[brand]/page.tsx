@@ -10,6 +10,7 @@ import { BigWaterHome } from "@/components/bigwater/BigWaterHome";
 import { TowBoatUSNtxHome } from "@/components/towboatus-ntx/TowBoatUSNtxHome";
 import { FastracHome } from "@/components/fastrac/FastracHome";
 import { FastracStructuredData } from "@/components/fastrac/FastracStructuredData";
+import { ParadiseHome } from "@/components/paradise/ParadiseHome";
 
 export const revalidate = 60;
 
@@ -22,6 +23,7 @@ export default async function HomePage({ params }: { params: Promise<{ brand: st
   if (brand.slug === "bigwater") return <BigWaterHome content={content as any} />;
   if (brand.slug === "towboatus-ntx") return <TowBoatUSNtxHome />;
   if (brand.slug === "fastrac") return <><FastracStructuredData /><FastracHome /></>;
+  if (brand.slug === "paradise") return <ParadiseHome brand={brand} />;
 
   if (brand.slug === "island-view") {
     return <IslandViewHome brand={brand} content={content} facts={facts} events={events} packages={packages} />;
