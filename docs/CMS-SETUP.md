@@ -22,3 +22,48 @@ configuration. It does not use ADMIN_PASSWORD.
 
 The first administrator is intentionally bootstrapped in SQL so an anonymous
 visitor can never claim the initial admin role.
+
+## TowBoatUS North Texas / TIDE
+
+TowBoatUS operational content remains in the existing TIDE Supabase project.
+Configure `TBUS_SUPABASE_URL`, `TBUS_SUPABASE_ANON_KEY`, and
+`TBUS_SUPABASE_SERVICE_ROLE_KEY` in Vercel. The public page reads published
+`tbus_*` records with the TIDE anonymous key. The shared CMS authenticates staff
+against the primary CMS project, then proxies authorized TowBoatUS edits to
+TIDE server-side; the TIDE service-role key is never sent to the browser.
+
+## Prompt-driven Site Studio
+
+`/studio` uses the same phone sign-in, roles, and per-site assignments as the
+CMS, but it changes site source code rather than CMS content. Editors and site
+managers can request a change; only directors and administrators can approve a
+reviewed preview for production.
+
+Add these server-only variables to the `td-multi` Vercel project for Production,
+Preview, and Development:
+
+~~~text
+OPENAI_API_KEY=...
+OPENAI_STUDIO_MODEL=gpt-6-astra
+GITHUB_STUDIO_TOKEN=...
+GITHUB_STUDIO_REPO=mptucker/td-multi
+GITHUB_STUDIO_BASE_BRANCH=master
+~~~
+
+Use a fine-grained GitHub token restricted to `mptucker/td-multi` with:
+
+- Contents: read and write
+- Pull requests: read and write
+- Deployments: read
+- Commit statuses: read
+
+Studio creates a separate `studio/...` branch and pull request for every
+request. The repository's existing Vercel integration builds that branch. The
+review screen discovers the Vercel URL from the commit status and keeps the
+change out of production until a director or administrator clicks the explicit
+approval button.
+
+Studio's server-side allowlist blocks changes to authentication, API routes,
+Supabase code and migrations, middleware, environment files, package files,
+analytics, and deployment configuration. It accepts screenshots as context but
+does not create images.

@@ -10,23 +10,24 @@ import WhyBigWater from "./exact/sections/WhyBigWater";
 import Network from "./exact/sections/Network";
 import FAQ from "./exact/sections/FAQ";
 import StructuredData from "./exact/seo/StructuredData";
-import { coverageMapImages, fleetImages, heroImages, heroImagesMobile, locations, operators } from "./exact/data";
+import type { TowBoatUSData } from "@/lib/towboatus";
 
-export function TowBoatUSNtxHome() {
+export function TowBoatUSNtxHome({ data }: { data: TowBoatUSData }) {
+  const { locations, operators, config, coverageMapImages, fleetImages, heroImages, heroImagesMobile } = data;
   return <div className="tbus-exact">
     <StructuredData locations={locations} />
-    <EmergencyBar locations={locations} dispatchUrl="https://tide.towboatuslaketexoma.com/request" />
+    <EmergencyBar locations={locations} dispatchUrl={config.dispatch_url} />
     <Header />
     <main>
-      <Hero locations={locations} boatusJoinUrl="https://www.boatus.com/towing/membership?sourcecode=WT13014A" heroImages={heroImages} heroImagesMobile={heroImagesMobile} />
+      <Hero locations={locations} boatusJoinUrl={config.boatus_join_url} heroImages={heroImages} heroImagesMobile={heroImagesMobile} />
       <CoverageStrip locations={locations} />
       <Locations locations={locations} />
       <Services />
-      <Membership boatusJoinUrl="https://www.boatus.com/towing/membership?sourcecode=WT13014A" boatusTowingUrl="https://www.boatus.com/towing/membership?sourcecode=WT13014A" coverageMapImages={coverageMapImages} />
+      <Membership boatusJoinUrl={config.boatus_join_url} boatusTowingUrl={config.boatus_towing_url} coverageMapImages={coverageMapImages} />
       <WhyBigWater fleetImages={fleetImages} />
-      <Network operators={operators} nationalDispatchPhone="800-391-4869" />
+      <Network operators={operators} nationalDispatchPhone={config.national_dispatch_phone} />
       <FAQ />
     </main>
-    <Footer locations={locations} nationalDispatchPhone="800-391-4869" />
+    <Footer locations={locations} nationalDispatchPhone={config.national_dispatch_phone} />
   </div>;
 }

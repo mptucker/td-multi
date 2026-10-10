@@ -33,7 +33,8 @@ src/config/hub-links.ts     THE deep-link contract — every CTA resolves here (
 * **Facts registry:** every operational number (cabin counts, prices, hours) has a key, owner and `last_verified` date (`content/facts.json` / `facts` table). Rules pages show the verification date.
 * **Booking:** never re-implemented. `hubUrl(intent, brand)` builds the exact hub URL (e.g. `/where-to-stay/cabins#/paradise`) and stamps `utm_source=<brand domain>&utm_medium=brand-site&utm_campaign=<placement>&property=<slug>`.
 * **SEO:** per-brand `<title>`/description/OG, canonical to the brand domain, `LocalBusiness`-family JSON-LD with NAP + `parentOrganization`, 308 redirects for every legacy URL, no duplicated property descriptions between brands or the hub.
-* **Admin (`/admin`):** password-gated CRUD for events, packages, alert bars and facts, plus a "Hub deep links" QA table. Writes use the Supabase service-role key server-side; reads use anon + RLS.
+* **Admin (`/admin`):** phone-authenticated publishing for site content, media, events, packages, announcement bars, FAQs, staff permissions, and operational data.
+* **Site Studio (`/studio`):** authenticated, prompt-driven visual and content changes to the actual site source. Each request becomes an isolated GitHub branch, pull request, and Vercel preview; a director or administrator must explicitly approve it for production.
 
 ## Run locally
 
@@ -43,13 +44,16 @@ npm install
 npm run dev
 # open http://localhost:3000/?brand=paradise   (or paradise.localhost:3000)
 # every brand:  http://localhost:3000/          → directory
-# admin:        http://localhost:3000/admin     (set ADMIN_PASSWORD)
+# admin:        http://localhost:3000/admin
+# site studio:  http://localhost:3000/studio
 ```
 
 ## Deploy (Vercel)
 
 1. Import the repo; framework preset Next.js; no build changes.
-2. Add env vars from `.env.example` (`NEXT_PUBLIC_GTM_ID`, Supabase keys, `ADMIN_PASSWORD`, `REVALIDATE_SECRET`).
+2. Add the environment variables from `.env.example`. TowBoatUS additionally
+   needs the three server-only `TBUS_SUPABASE_*` values from the existing TIDE
+   project.
 3. Add each brand domain (apex + www) to the same Vercel project. Middleware maps host → brand; nothing else to configure.
 4. Preview deployments: `https://<preview>.vercel.app/?brand=sundance` or `/sites/sundance`.
 
@@ -78,4 +82,5 @@ Without Supabase the sites are fully static from `content/*.json` (ISR every 60 
 * `docs/content-audit.md` — legacy-site and hub audit, fact conflicts, ownership.
 * `docs/url-inventory-and-redirects.md` — every indexed legacy URL and its destination.
 * `docs/seo-search-ownership.md` — which site owns which query; migration checklist.
+* `docs/production-domain-cutover-guide.md` — IT runbook for moving brand domains to the production Vercel deployment.
 * `docs/brand-guides/` — style guide + voice for every brand.

@@ -10,7 +10,7 @@ import type { BrandSlug } from "@/config/types";
  *   ?brand=paradise            →  sets a cookie, then routes
  *   paradise.localhost:3000    →  matched by brandFromHost()
  *   /sites/paradise/...       →  always allowed (Vercel preview URLs, QA)
- * /admin and /api are never rewritten.
+ * /admin, /studio and /api are never rewritten.
  */
 export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
@@ -26,6 +26,7 @@ export function middleware(req: NextRequest) {
     path.startsWith("/_next") ||
     path.startsWith("/api") ||
     path.startsWith("/admin") ||
+    path.startsWith("/studio") ||
     path.startsWith("/brands/") ||
     /\.(png|jpg|jpeg|svg|ico|webp|txt|xml|json|webmanifest)$/.test(path)
   ) {

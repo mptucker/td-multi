@@ -11,6 +11,7 @@ import { TowBoatUSNtxHome } from "@/components/towboatus-ntx/TowBoatUSNtxHome";
 import { FastracHome } from "@/components/fastrac/FastracHome";
 import { FastracStructuredData } from "@/components/fastrac/FastracStructuredData";
 import { ParadiseHome } from "@/components/paradise/ParadiseHome";
+import { getTowBoatUSData } from "@/lib/towboatus";
 
 export const revalidate = 60;
 
@@ -21,7 +22,7 @@ export default async function HomePage({ params }: { params: Promise<{ brand: st
   const showPackages = brand.pages.includes("packages");
 
   if (brand.slug === "bigwater") return <BigWaterHome content={content as any} />;
-  if (brand.slug === "towboatus-ntx") return <TowBoatUSNtxHome />;
+  if (brand.slug === "towboatus-ntx") return <TowBoatUSNtxHome data={await getTowBoatUSData()} />;
   if (brand.slug === "fastrac") return <><FastracStructuredData /><FastracHome /></>;
   if (brand.slug === "paradise") return <ParadiseHome brand={brand} />;
 
