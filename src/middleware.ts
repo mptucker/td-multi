@@ -22,6 +22,13 @@ export function middleware(req: NextRequest) {
     return res;
   }
 
+  // Texoma Explorer: a static app in public/explorer, shared by every brand host and embedded via iframe.
+  if (path === "/explorer") {
+    url.pathname = "/explorer/index.html";
+    return NextResponse.rewrite(url);
+  }
+  if (path.startsWith("/explorer/")) return NextResponse.next();
+
   if (
     path.startsWith("/_next") ||
     path.startsWith("/api") ||
