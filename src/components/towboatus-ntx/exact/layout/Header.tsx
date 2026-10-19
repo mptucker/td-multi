@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { TexomaNetwork } from "@/components/TexomaNetwork";
+import type { BrandNetworkSettings } from "@/config/types";
 
 const navLinks = [
   { href: "#locations", label: "Our Lakes" },
@@ -12,7 +14,7 @@ const navLinks = [
   { href: "#about", label: "About" },
 ];
 
-export default function Header() {
+export default function Header({ network }: { network: BrandNetworkSettings }) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   // Close nav on outside click
@@ -37,20 +39,23 @@ export default function Header() {
     <header className="relative z-[900] bg-[#06111a] border-b-[0.5px] border-white/[0.08]">
       <div className="max-w-[1400px] mx-auto flex items-center justify-between py-[14px] px-8">
         {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center no-underline shrink-0"
-          aria-label="Big Water Cowboys TowBoatUS Home"
-        >
-          <Image
-            src="/towboatus-ntx/logo-white.png"
-            alt="TowBoatUS Big Water Cowboys"
-            width={200}
-            height={50}
-            className="h-11 w-auto"
-            priority
-          />
-        </Link>
+        <div className="tbus-nav-lockup flex items-center shrink-0">
+          <Link
+            href="/"
+            className="flex items-center no-underline shrink-0"
+            aria-label="Big Water Cowboys TowBoatUS Home"
+          >
+            <Image
+              src="/towboatus-ntx/logo-white.png"
+              alt="TowBoatUS Big Water Cowboys"
+              width={200}
+              height={50}
+              className="h-11 w-auto"
+              priority
+            />
+          </Link>
+          <TexomaNetwork settings={network} currentBrand="towboatus-ntx" />
+        </div>
 
         {/* Desktop navigation - hidden on mobile */}
         <nav className="hidden lg:flex items-center gap-7" aria-label="Main navigation">

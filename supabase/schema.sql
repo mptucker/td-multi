@@ -443,7 +443,8 @@ update brand_content set draft_content = content where draft_content is null;
 
 insert into global_settings (key, value) values
   ('tap', '{"enabled":true,"image":"/brands/tap-pass.png","heading":"Get more from every Texoma trip.","body":"TAP members unlock day-use access and savings on stays, rentals, cruises and experiences across the Texoma Destinations family.","button_label":"Explore TAP membership","button_url":"https://texomadestinations.com/tap"}'::jsonb),
-  ('footer', '{"family_heading":"The Texoma Destinations family","hub_label":"Book everything at texomadestinations.com","hub_url":"https://texomadestinations.com/","bigwater_heading":"BigWater.co — Premium Marine Lifestyle","bigwater_url":"https://bigwater.co/","marine_label":"Big Water Marine","marine_url":"https://bigwatermarine.com/","tow_label":"TowBoatUS North Texas","tow_url":"https://towboatusntx.com/"}'::jsonb)
+  ('footer', '{"family_heading":"The Texoma Destinations family","hub_label":"Book everything at texomadestinations.com","hub_url":"https://texomadestinations.com/","bigwater_heading":"BigWater.co — Premium Marine Lifestyle","bigwater_url":"https://bigwater.co/","marine_label":"Big Water Marine","marine_url":"https://bigwatermarine.com/","tow_label":"TowBoatUS North Texas","tow_url":"https://towboatusntx.com/"}'::jsonb),
+  ('brand_network', '{"enabled":true,"heading":"The Most Texoma.","strapline":"One lake. Every way to enjoy it.","hub_label":"Explore Texoma Destinations","hub_url":"https://texomadestinations.com/","items":[]}'::jsonb)
 on conflict (key) do nothing;
 
 -- Optional: Database Webhook on events/packages/alerts/facts → POST https://<site>/api/revalidate?secret=...

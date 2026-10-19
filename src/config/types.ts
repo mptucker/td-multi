@@ -119,6 +119,29 @@ export interface BrandConfig {
   gtmId?: string;
 }
 
+export type BrandNetworkCategory = "stay-play" | "on-water" | "shop-explore";
+
+export interface BrandNetworkItem {
+  id: string;
+  display_name: string;
+  url: string;
+  category: BrandNetworkCategory;
+  description?: string;
+  sort_order: number;
+  visible: boolean;
+  /** Empty means the item appears from every participating site. */
+  show_on_sites: BrandSlug[];
+}
+
+export interface BrandNetworkSettings {
+  enabled: boolean;
+  heading: string;
+  strapline: string;
+  hub_label: string;
+  hub_url: string;
+  items: BrandNetworkItem[];
+}
+
 /* ---------- Content (what the CMS / JSON provides) ---------- */
 
 export interface CTA {

@@ -1,5 +1,5 @@
 import { loadPage } from "./_shared";
-import { getEvents, getPackages } from "@/lib/content";
+import { getBrandNetwork, getEvents, getPackages } from "@/lib/content";
 import { FeatureGrid, Gallery, Hero, HubHandoff, Intro, Reviews, StatsBar, EventsList, PackagesList } from "@/components/Sections";
 import { IslandViewHome } from "@/components/island-view/IslandViewHome";
 import { BoaterWiseHome } from "@/components/boaterwise/BoaterWiseHome";
@@ -21,8 +21,8 @@ export default async function HomePage({ params }: { params: Promise<{ brand: st
   const [events, packages] = await Promise.all([getEvents(brand.slug, 3), getPackages(brand.slug)]);
   const showPackages = brand.pages.includes("packages");
 
-  if (brand.slug === "bigwater") return <BigWaterHome content={content as any} />;
-  if (brand.slug === "towboatus-ntx") return <TowBoatUSNtxHome data={await getTowBoatUSData()} />;
+  if (brand.slug === "bigwater") return <BigWaterHome content={content as any} network={await getBrandNetwork()} />;
+  if (brand.slug === "towboatus-ntx") return <TowBoatUSNtxHome data={await getTowBoatUSData()} network={await getBrandNetwork()} />;
   if (brand.slug === "fastrac") return <><FastracStructuredData /><FastracHome /></>;
   if (brand.slug === "paradise") return <ParadiseHome brand={brand} />;
 

@@ -13,15 +13,17 @@ import boaterwise from "@content/boaterwise.json";
 import bigwater from "@content/bigwater.json";
 import towboatusNtx from "@content/towboatus-ntx.json";
 import { TowBoatUSAdmin } from "@/components/admin/TowBoatUSAdmin";
+import { BRAND_NETWORK_CATEGORY_LABELS, DEFAULT_BRAND_NETWORK } from "@/config/brand-network";
+import type { BrandNetworkCategory, BrandNetworkSettings } from "@/config/types";
 
 type Role = "admin" | "director" | "site_manager" | "editor" | "viewer";
 type Profile = { user_id: string; display_name: string; phone?: string; role: Role; active: boolean };
 type BrandRow = { brand: string; content: Record<string, any>; draft_content?: Record<string, any>; published_at?: string; updated_at?: string };
-type Tab = "overview" | "sites" | "media" | "alerts" | "faqs" | "packages" | "events" | "global" | "towboatus" | "staff" | "activity";
+type Tab = "overview" | "sites" | "media" | "alerts" | "faqs" | "packages" | "events" | "global" | "network" | "towboatus" | "staff" | "activity";
 const BRAND_NAMES: Record<string, string> = { lighthouse: "Lighthouse Resort & Marina", paradise: "Paradise on Lake Texoma", sundance: "Sundance Camp", "island-view": "Island View Park", fastrac: "Fastrac Cruises", "water-taxi": "Texoma Water Taxi", "tackle-box": "Tackle Box Outfitters", boaterwise: "BoaterWise", bigwater: "BigWater.co", "towboatus-ntx": "TowBoatUS North Texas" };
 const ALL_BRANDS = Object.keys(BRAND_NAMES);
 const LOCAL_CONTENT: Record<string, Record<string, any>> = { lighthouse, paradise, sundance, "island-view": islandView, fastrac, "water-taxi": waterTaxi, "tackle-box": tackleBox, boaterwise, bigwater, "towboatus-ntx": towboatusNtx } as any;
-const NAV: [Tab, string][] = [["overview","Overview"],["sites","Site content"],["media","Media"],["alerts","Announcement bars"],["faqs","FAQs"],["packages","Packages"],["events","Events"],["global","Global footer & TAP"],["towboatus","TowBoatUS operations"],["staff","Staff"],["activity","Activity"]];
+const NAV: [Tab, string][] = [["overview","Overview"],["sites","Site content"],["media","Media"],["alerts","Announcement bars"],["faqs","FAQs"],["packages","Packages"],["events","Events"],["global","Global footer & TAP"],["network","Brand Network"],["towboatus","TowBoatUS operations"],["staff","Staff"],["activity","Activity"]];
 let sb = supabaseBrowser();
 
 function toE164US(value?: string | null) {
@@ -169,6 +171,7 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
         {tab === "packages" && <CollectionEditor type="packages" rows={data.packages ?? []} assignments={assignments} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
         {tab === "events" && <CollectionEditor type="events" rows={data.events ?? []} assignments={assignments} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
         {tab === "global" && <GlobalEditor rows={data.global ?? []} settings={data.settings ?? []} assignments={assignments} leader={profile.role === "admin" || profile.role === "director"} onChanged={() => load()} />}
+        {tab === "network" && <BrandNetworkEditor rows={data.global ?? []} leader={profile.role === "admin" || profile.role === "director"} onChanged={() => load()} />}
         {tab === "towboatus" && <TowBoatUSAdmin client={sb!} locations={data.tbusLocations ?? []} operators={data.tbusOperators ?? []} config={data.tbusConfig ?? []} images={data.tbusImages ?? []} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
         {tab === "staff" && <StaffEditor users={data.users ?? []} requests={data.requests ?? []} invites={data.invites ?? []} onChanged={() => load()} />}
         {tab === "activity" && <Activity rows={data.audit ?? []} revisions={data.revisions ?? []} onChanged={() => load()} />}
@@ -199,7 +202,7 @@ function PhoneLogin() {
 
 function CmsMessage({ title, children }: { title: string; children: React.ReactNode }) { return <div className="cms-login"><div className="cms-login-card"><div className="cms-mark">TD</div><h1>{title}</h1><div className="cms-message-body">{children}</div></div></div>; }
 function tabDescription(tab: Tab) {
-  return ({ overview: "What is live, scheduled, and waiting for attention.", sites: "Edit approved copy and images without changing page design.", media: "Upload, reuse, and archive brand photography.", alerts: "Schedule one dismissible message across one or more sites.", faqs: "Maintain site-specific answers and search-friendly FAQ data.", packages: "Publish the same offer consistently across selected brands.", events: "Schedule event information and tracked registration links.", global: "Manage shared TAP content and each brand’s contact details.", towboatus: "Manage TowBoatUS locations, network listings, operational links, and photography.", staff: "Approve access, assign roles, and limit site access.", activity: "A record of publishing and content changes." } as Record<Tab,string>)[tab];
+  return ({ overview: "What is live, scheduled, and waiting for attention.", sites: "Edit approved copy and images without changing page design.", media: "Upload, reuse, and archive brand photography.", alerts: "Schedule one dismissible message across one or more sites.", faqs: "Maintain site-specific answers and search-friendly FAQ data.", packages: "Publish the same offer consistently across selected brands.", events: "Schedule event information and tracked registration links.", global: "Manage shared TAP content and each brand’s contact details.", network: "Manage the shared Texoma Destinations discovery panel across every site.", towboatus: "Manage TowBoatUS locations, network listings, operational links, and photography.", staff: "Approve access, assign roles, and limit site access.", activity: "A record of publishing and content changes." } as Record<Tab,string>)[tab];
 }
 
 function Overview({ data, assignments }: { data: Record<string, any[]>; assignments: string[] }) {
@@ -283,6 +286,45 @@ function GlobalEditor({ rows, settings, assignments, leader, onChanged }: { rows
   async function saveFooter() { const { error } = await sb!.from("global_settings").upsert({ key: "footer", value: footer }); if (error) alert(error.message); else { await log("update","global_settings","footer"); onChanged(); } }
   async function saveContact() { const { error } = await sb!.from("brand_settings").upsert(contact); if (error) alert(error.message); else { await log("update","brand_settings",brand,brand); onChanged(); } }
   return <div className="cms-stack"><section className="cms-panel"><p className="cms-kicker">Shared across the family</p><h2>TAP promotion</h2><div className="cms-form-grid"><Field label="Image URL" wide><input value={tap.image ?? ""} onChange={(e) => setTap({...tap,image:e.target.value})} /></Field><Field label="Heading"><input value={tap.heading ?? ""} onChange={(e) => setTap({...tap,heading:e.target.value})} /></Field><Field label="Button label"><input value={tap.button_label ?? ""} onChange={(e) => setTap({...tap,button_label:e.target.value})} /></Field><Field label="Description" wide><textarea rows={3} value={tap.body ?? ""} onChange={(e) => setTap({...tap,body:e.target.value})} /></Field><Field label="Destination URL" wide><input value={tap.button_url ?? ""} onChange={(e) => setTap({...tap,button_url:e.target.value})} /></Field></div>{leader && <button className="cms-button" onClick={saveTap}>Publish to all sites</button>}</section><section className="cms-panel"><p className="cms-kicker">Shared footer links</p><h2>Brand family footer</h2><div className="cms-form-grid">{Object.keys(existingFooter).map((key) => <Field key={key} label={key.replaceAll("_"," ")}><input value={footer[key] ?? ""} onChange={(e) => setFooter({...footer,[key]:e.target.value})} /></Field>)}</div>{leader && <button className="cms-button" onClick={saveFooter}>Publish footer to all sites</button>}</section><section className="cms-panel"><p className="cms-kicker">Site information</p><h2>Contact and social details</h2><select value={brand} onChange={(e) => setBrand(e.target.value)}>{assignments.map((b) => <option key={b} value={b}>{BRAND_NAMES[b]}</option>)}</select><div className="cms-form-grid">{["street_address","city","region","postal_code","phone","phone_e164","email","facebook","instagram","tiktok"].map((key) => <Field key={key} label={key.replaceAll("_"," ")}><input value={contact[key] ?? ""} onChange={(e) => setContact({...contact,[key]:e.target.value})} /></Field>)}</div><p className="cms-form-note">Blank social fields automatically fall back to Texoma Destinations.</p><button className="cms-button" onClick={saveContact}>Save site details</button></section></div>;
+}
+
+function BrandNetworkEditor({ rows, leader, onChanged }: { rows: any[]; leader: boolean; onChanged: () => void }) {
+  const stored = rows.find((row) => row.key === "brand_network")?.value as Partial<BrandNetworkSettings> | undefined;
+  const initial: BrandNetworkSettings = { ...DEFAULT_BRAND_NETWORK, ...stored, items: stored?.items?.length ? stored.items : DEFAULT_BRAND_NETWORK.items };
+  const [network, setNetwork] = useState<BrandNetworkSettings>(initial);
+  const [status, setStatus] = useState("All changes saved");
+  useEffect(() => { setNetwork(initial); setStatus("All changes saved"); }, [rows]);
+  const setItem = (id: string, patch: Record<string, unknown>) => {
+    setNetwork((current) => ({ ...current, items: current.items.map((item) => item.id === id ? { ...item, ...patch } : item) }));
+    setStatus("Unsaved changes");
+  };
+  const addItem = () => {
+    setNetwork((current) => ({ ...current, items: [...current.items, { id: crypto.randomUUID(), display_name: "New destination", url: "https://", category: "stay-play", description: "", sort_order: current.items.length * 10 + 10, visible: true, show_on_sites: [...ALL_BRANDS] } as BrandNetworkSettings["items"][number]] }));
+    setStatus("Unsaved changes");
+  };
+  async function save() {
+    setStatus("Publishing…");
+    const { error } = await sb!.from("global_settings").upsert({ key: "brand_network", value: network });
+    if (error) { setStatus(error.message); return; }
+    await log("update", "global_settings", "brand_network", undefined, { destinations: network.items.length, enabled: network.enabled });
+    await refreshPublicSite();
+    setStatus("Live");
+    onChanged();
+  }
+  return <div className="cms-stack cms-network-editor">
+    <section className="cms-panel cms-network-intro">
+      <div><p className="cms-kicker">Shared across the family</p><h2>The Most Texoma discovery panel</h2><p>These destinations appear when a visitor opens the “A Texoma Destinations Property” endorsement in a site header.</p></div>
+      <label className="cms-publish-check"><input type="checkbox" checked={network.enabled} disabled={!leader} onChange={(e) => { setNetwork({ ...network, enabled: e.target.checked }); setStatus("Unsaved changes"); }} /> Enable across all sites</label>
+    </section>
+    <section className="cms-panel"><div className="cms-form-grid"><Field label="Panel heading"><input value={network.heading} disabled={!leader} onChange={(e) => { setNetwork({ ...network, heading: e.target.value }); setStatus("Unsaved changes"); }} /></Field><Field label="Strapline"><input value={network.strapline} disabled={!leader} onChange={(e) => { setNetwork({ ...network, strapline: e.target.value }); setStatus("Unsaved changes"); }} /></Field><Field label="Hub link label"><input value={network.hub_label} disabled={!leader} onChange={(e) => { setNetwork({ ...network, hub_label: e.target.value }); setStatus("Unsaved changes"); }} /></Field><Field label="Hub URL"><input type="url" value={network.hub_url} disabled={!leader} onChange={(e) => { setNetwork({ ...network, hub_url: e.target.value }); setStatus("Unsaved changes"); }} /></Field></div></section>
+    <div className="cms-network-list">{[...network.items].sort((a,b) => a.category.localeCompare(b.category) || a.sort_order - b.sort_order).map((item) => <section className="cms-panel cms-network-card" key={item.id}>
+      <div className="cms-network-card-head"><strong>{item.display_name}</strong><span>{BRAND_NETWORK_CATEGORY_LABELS[item.category]}</span>{leader && <button type="button" onClick={() => { setNetwork((current) => ({ ...current, items: current.items.filter((candidate) => candidate.id !== item.id) })); setStatus("Unsaved changes"); }}>Remove</button>}</div>
+      <div className="cms-form-grid"><Field label="Property name"><input value={item.display_name} disabled={!leader} onChange={(e) => setItem(item.id, { display_name: e.target.value })} /></Field><Field label="Website URL"><input type="url" value={item.url} disabled={!leader} onChange={(e) => setItem(item.id, { url: e.target.value })} /></Field><Field label="Category"><select value={item.category} disabled={!leader} onChange={(e) => setItem(item.id, { category: e.target.value as BrandNetworkCategory })}>{Object.entries(BRAND_NETWORK_CATEGORY_LABELS).map(([value,label]) => <option key={value} value={value}>{label}</option>)}</select></Field><Field label="Display order"><input type="number" value={item.sort_order} disabled={!leader} onChange={(e) => setItem(item.id, { sort_order: Number(e.target.value) })} /></Field><Field label="Short description" wide><input value={item.description ?? ""} disabled={!leader} onChange={(e) => setItem(item.id, { description: e.target.value })} /></Field></div>
+      <fieldset className="cms-sites-field"><legend>Show this destination on</legend>{ALL_BRANDS.map((brand) => <label key={brand}><input type="checkbox" disabled={!leader} checked={item.show_on_sites.includes(brand as any)} onChange={(e) => setItem(item.id, { show_on_sites: e.target.checked ? [...item.show_on_sites, brand] : item.show_on_sites.filter((site) => site !== brand) })} />{BRAND_NAMES[brand]}</label>)}</fieldset>
+      <label className="cms-publish-check"><input type="checkbox" disabled={!leader} checked={item.visible} onChange={(e) => setItem(item.id, { visible: e.target.checked })} /> Visible in the network panel</label>
+    </section>)}</div>
+    <footer className="cms-network-actions"><span>{status}</span>{leader && <><button className="cms-button cms-button-muted" type="button" onClick={addItem}>Add destination</button><button className="cms-button" type="button" onClick={save}>Publish network</button></>}</footer>
+  </div>;
 }
 
 function StaffEditor({ users, requests, invites, onChanged }: { users: any[]; requests: any[]; invites: any[]; onChanged: () => void }) {

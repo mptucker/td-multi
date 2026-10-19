@@ -11,13 +11,14 @@ import Network from "./exact/sections/Network";
 import FAQ from "./exact/sections/FAQ";
 import StructuredData from "./exact/seo/StructuredData";
 import type { TowBoatUSData } from "@/lib/towboatus";
+import type { BrandNetworkSettings } from "@/config/types";
 
-export function TowBoatUSNtxHome({ data }: { data: TowBoatUSData }) {
+export function TowBoatUSNtxHome({ data, network }: { data: TowBoatUSData; network: BrandNetworkSettings }) {
   const { locations, operators, config, coverageMapImages, fleetImages, heroImages, heroImagesMobile } = data;
   return <div className="tbus-exact">
     <StructuredData locations={locations} />
     <EmergencyBar locations={locations} dispatchUrl={config.dispatch_url} />
-    <Header />
+    <Header network={network} />
     <main>
       <Hero locations={locations} boatusJoinUrl={config.boatus_join_url} heroImages={heroImages} heroImagesMobile={heroImagesMobile} />
       <CoverageStrip locations={locations} />

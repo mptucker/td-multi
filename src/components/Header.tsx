@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { AlertItem, BrandConfig } from "@/config/types";
+import type { AlertItem, BrandConfig, BrandNetworkSettings } from "@/config/types";
 import { PAGE_LABELS, PAGE_LABEL_OVERRIDES, PAGE_PATHS } from "@/config/brands";
 import { hubUrl } from "@/config/hub-links";
 import { DismissibleAlert } from "./DismissibleAlert";
+import { TexomaNetwork } from "./TexomaNetwork";
 
 export function AlertBar({ alert, brand }: { alert: AlertItem | null; brand: string }) {
   if (!alert) return null;
@@ -22,26 +23,28 @@ export function AlertBar({ alert, brand }: { alert: AlertItem | null; brand: str
   );
 }
 
-export function Header({ brand }: { brand: BrandConfig }) {
+export function Header({ brand, network }: { brand: BrandConfig; network: BrandNetworkSettings }) {
   const dark = brand.theme.header === "dark";
   const nav = brand.pages.filter((p) => p !== "home");
   const labels = { ...PAGE_LABELS, ...(PAGE_LABEL_OVERRIDES[brand.slug] ?? {}) };
   return (
     <header className={`${dark ? "bg-primary text-white" : "bg-surface text-ink"} sticky top-0 z-40 shadow-sm`}>
       <div className="container flex items-center justify-between gap-6 py-3">
-        <Link href="/" className="brand-lockup flex items-center shrink-0" aria-label={`${brand.nap.displayName} home`}>
-          <span className={`inline-flex rounded-md px-2 py-1 ${dark ? "bg-white/95" : ""}`}>
-            <Image
-              src={brand.logo.src}
-              alt={brand.nap.displayName}
-              width={brand.logo.width}
-              height={brand.logo.height}
-              priority
-              className="h-10 md:h-12 w-auto"
-            />
-          </span>
-          <span className="brand-endorsement">A Texoma<br />Destinations property</span>
-        </Link>
+        <div className="brand-lockup-wrap flex items-center shrink-0">
+          <Link href="/" className="brand-lockup flex items-center shrink-0" aria-label={`${brand.nap.displayName} home`}>
+            <span className={`inline-flex rounded-md px-2 py-1 ${dark ? "bg-white/95" : ""}`}>
+              <Image
+                src={brand.logo.src}
+                alt={brand.nap.displayName}
+                width={brand.logo.width}
+                height={brand.logo.height}
+                priority
+                className="h-10 md:h-12 w-auto"
+              />
+            </span>
+          </Link>
+          <TexomaNetwork settings={network} currentBrand={brand.slug} />
+        </div>
         <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold">
           {nav.map((p) => (
             <Link key={p} href={PAGE_PATHS[p]} className="opacity-90 hover:opacity-100 hover:underline underline-offset-4">

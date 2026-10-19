@@ -14,11 +14,13 @@ import type {
   AlertItem,
   BrandConfig,
   BrandContent,
+  BrandNetworkSettings,
   BrandSlug,
   EventItem,
   FactItem,
   PackageItem,
 } from "@/config/types";
+import { DEFAULT_BRAND_NETWORK } from "@/config/brand-network";
 import { supabaseAnon } from "./supabase";
 
 import lighthouse from "@content/lighthouse.json";
@@ -83,6 +85,16 @@ export async function getGlobalSetting<T>(key: string, fallback: T): Promise<T> 
   if (!sb) return fallback;
   const { data } = await sb.from("global_settings").select("value").eq("key", key).maybeSingle();
   return (data?.value as T) ?? fallback;
+}
+
+export async function getBrandNetwork(): Promise<BrandNetworkSettings> {
+  const stored = await getGlobalSetting<Partial<BrandNetworkSettings> | null>("brand_network", null);
+  if (!stored) return DEFAULT_BRAND_NETWORK;
+  return {
+    ...DEFAULT_BRAND_NETWORK,
+    ...stored,
+    items: Array.isArray(stored.items) && stored.items.length ? stored.items : DEFAULT_BRAND_NETWORK.items,
+  };
 }
 
 export async function getContent(slug: BrandSlug): Promise<BrandContent> {

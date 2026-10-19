@@ -1,12 +1,12 @@
 import type { ReactNode } from "react";
-import type { AlertItem, BrandConfig } from "@/config/types";
+import type { AlertItem, BrandConfig, BrandNetworkSettings } from "@/config/types";
 import { AlertBar, Header } from "@/components/Header";
 
-export function FastracShell({ children, brand, alert }: { children: ReactNode; brand: BrandConfig; alert: AlertItem | null }) {
+export function FastracShell({ children, brand, alert, network }: { children: ReactNode; brand: BrandConfig; alert: AlertItem | null; network: BrandNetworkSettings }) {
   return (
     <div className="fastrac-site" data-brand="fastrac">
       <AlertBar alert={alert} brand="fastrac" />
-      <Header brand={brand} />
+      <Header brand={brand} network={network} />
       <main>{children}</main>
       <section className="fc-contact" id="contact">
         <div>
