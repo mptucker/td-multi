@@ -1300,11 +1300,12 @@ h1, h2, h3, .display { font-family: var(--font-display); letter-spacing: -0.01em
 .tbus-nav-lockup{gap:.35rem}.tbus-nav-lockup .td-network-trigger{color:#ffffffa6}.tbus-nav-lockup .td-network-panel{font-family:var(--font-sans,Arial,sans-serif)}
 @keyframes td-network-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 @media(max-width:760px){
-  .td-network-trigger.brand-endorsement{display:flex!important;margin-left:.35rem;padding-left:.5rem;font-size:.48rem;line-height:1.15;letter-spacing:.08em}
-  .td-network-trigger>span{display:none}.td-network-trigger::before{content:"TD family";white-space:nowrap}.td-network-trigger i{width:16px;height:16px}
+  .td-network-trigger.brand-endorsement{display:flex!important;margin-left:.35rem;padding-left:.5rem;font-size:.43rem;line-height:1.12;letter-spacing:.065em}
+  .td-network-trigger>span{display:block;white-space:nowrap}.td-network-trigger::before{content:none}.td-network-trigger i{width:16px;height:16px;flex:0 0 auto}
   .td-network-panel{max-height:calc(100svh - 70px)}.td-network-inner{width:calc(100% - 32px);padding:24px 0 20px}.td-network-inner>header{display:block;padding-bottom:18px}.td-network-inner>header>a{font-size:2.55rem}.td-network-inner>header>p{margin-top:8px;font-size:.84rem}.td-network-groups{grid-template-columns:1fr;gap:22px;padding:22px 0}.td-network-group>a{padding:8px 0}.td-network-group>a small{display:none}.td-network-inner>footer{align-items:flex-start;flex-direction:column;gap:10px}
-  .bwco-nav{align-items:flex-start}.bwco-nav-lockup{align-items:center}.bwco-nav .td-network-trigger{margin-left:.5rem;padding-left:.6rem}.bwco-nav .td-network-trigger::before{content:"TD family"}.tbus-nav-lockup .td-network-trigger{margin-left:.5rem;padding-left:.6rem}
+  .bwco-nav{align-items:flex-start}.bwco-nav-lockup{align-items:center}.bwco-nav .td-network-trigger{margin-left:.5rem;padding-left:.6rem}.tbus-nav-lockup .td-network-trigger{margin-left:.5rem;padding-left:.6rem}
 }
+@media(max-width:430px){.td-network-trigger i{display:none}.td-network-trigger.brand-endorsement{margin-left:.25rem;padding-left:.4rem;font-size:.4rem}.tbus-nav-lockup>a img{height:2.25rem}}
 @media(prefers-reduced-motion:reduce){.td-network-panel,.td-network-trigger i,.td-network-group>a{animation:none!important;transition:none!important}}
 
 /* CMS controls for the shared destination network. */
