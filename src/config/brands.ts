@@ -55,7 +55,7 @@ export const BRANDS: Record<BrandSlug, BrandConfig> = {
       instagram: "https://instagram.com/texomadestinations",
       hours: ["Office & reservations: 9am–5pm daily (off-peak)", "Fuel dock & rentals: 9am–5pm daily (off-peak); extended summer hours"],
     },
-    pages: ["home", "stay", "plan", "groups", "rules", "packages"],
+    pages: ["home", "property", "cabins", "rv", "slips", "boats", "map", "rules", "stay", "plan", "groups", "packages"],
     hubPropertySlug: "lighthouse",
     hubLocationSlug: "lighthouse",
     primaryIntent: "cabins",
@@ -465,6 +465,12 @@ export function isBrandSlug(s: string): s is BrandSlug {
 
 /** Nav labels per page key (brand can override in content later if needed). */
 export const PAGE_LABELS: Record<string, string> = {
+  property: "The property",
+  cabins: "Cabins",
+  rv: "RV sites",
+  slips: "Boat slips",
+  boats: "Boat rentals",
+  map: "Property map",
   home: "Home",
   stay: "Stay & Experience",
   plan: "Plan Your Visit",
@@ -474,6 +480,12 @@ export const PAGE_LABELS: Record<string, string> = {
 };
 
 export const PAGE_PATHS: Record<string, string> = {
+  property: "/property",
+  cabins: "/cabins",
+  rv: "/rv-sites",
+  slips: "/boat-slips",
+  boats: "/boat-rentals",
+  map: "/property-map",
   home: "/",
   stay: "/stay",
   plan: "/plan-your-visit",

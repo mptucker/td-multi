@@ -11,6 +11,7 @@ import { TowBoatUSNtxHome } from "@/components/towboatus-ntx/TowBoatUSNtxHome";
 import { FastracHome } from "@/components/fastrac/FastracHome";
 import { FastracStructuredData } from "@/components/fastrac/FastracStructuredData";
 import { ParadiseHome } from "@/components/paradise/ParadiseHome";
+import { LighthouseHome } from "@/components/lighthouse/LighthouseHome";
 import { getTowBoatUSData } from "@/lib/towboatus";
 
 export const revalidate = 60;
@@ -20,6 +21,7 @@ export default async function HomePage({ params }: { params: Promise<{ brand: st
   const h = content.home;
   const [events, packages] = await Promise.all([getEvents(brand.slug, 3), getPackages(brand.slug)]);
   const showPackages = brand.pages.includes("packages");
+  if (brand.slug === "lighthouse") return <LighthouseHome brand={brand} content={content} events={events} packages={packages} />;
 
   if (brand.slug === "bigwater") return <BigWaterHome content={content as any} network={await getBrandNetwork()} />;
   if (brand.slug === "towboatus-ntx") return <TowBoatUSNtxHome data={await getTowBoatUSData()} network={await getBrandNetwork()} />;

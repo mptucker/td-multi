@@ -3,18 +3,18 @@
   "seo": {
     "title": "Lighthouse Resort & Marina | Cabins & Boat Rentals",
     "description": "Lake Texoma cabins, waterfront RV sites, covered slips, a year-round fuel dock, and tritoon and kayak rentals at Lighthouse Resort in Pottsboro, Texas.",
-    "ogImage": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5887-hero.jpg"
+    "ogImage": "/lighthouse/marina-panorama.jpg"
   },
   "home": {
-    "heroImage": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/Q0A5887-hero.jpg", "alt": "Lighthouse Resort & Marina on Lake Texoma at sunset" },
+    "heroImage": { "src": "/lighthouse/marina-panorama.jpg", "alt": "Lighthouse marina, wooded shoreline, and Lake Texoma" },
     "heroKicker": "The Most Exciting place on Lake Texoma",
-    "heroTitle": "Lake Texoma's family fun spot.",
-    "heroSubtitle": "Cabins from a one-room waterfront hideaway to a six-bedroom lake house, a marina that never closes for the season, and the newest rental fleet on the water — all in Little Mineral, minutes from the dam.",
+    "heroTitle": "Your kind of lake life.",
+    "heroSubtitle": "Cabins, waterfront RV sites, and boats ready for your crew. A whole Lake Texoma weekend, together in one place.",
     "intro": {
-      "title": "A working marina with a resort wrapped around it",
+      "title": "Lake Texoma’s family fun spot. With everything close at hand.",
       "body": [
-        "Lighthouse started life as Preston Fishing Camp, one of the first commercial marinas on Lake Texoma after the lake filled in 1944. Eight of the original Corps of Engineers cabins are still here, joined over the decades by everything a family weekend needs: furnished cabins, waterfront RV sites, a general store and year-round fuel dock, covered slips, a fishing pier and a lakefront playground.",
-        "It's the busiest of the Texoma Destinations properties in the best way — there is always a boat coming in, a guide cleaning fish, kids on the pier and a sunset cruise loading at the charter dock. If you want the full lake experience without driving anywhere, this is it."
+        "Settle into a cabin or pull up in your RV. Walk down to the marina. Rent a boat, cast from the pier, or simply spend a little more time together. It all comes together on one point in Little Mineral, near Denison Dam.",
+        "Lighthouse began as Preston Fishing Camp after the lake filled in 1944. Today, that same love of the lake runs through every cabin, dock, and family weekend."
       ]
     },
     "stats": [
@@ -28,57 +28,53 @@
         "title": "Cabins for every size of crew",
         "icon": "🏠",
         "body": "One-room waterfront cabins for a fishing trip, two- and three-bedroom family cabins, and six-bedroom houses for the whole reunion. All climate-controlled with cable, linens, dishes, a grill and a coffee pot; several are pet friendly.",
-        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A9286.jpg",
+        "image": "/lighthouse/cabins.jpg",
         "cta": { "label": "Browse Lighthouse cabins", "intent": "cabins" }
       },
       {
         "title": "Waterfront RV sites",
         "icon": "🚐",
         "body": "Graveled sites steps from the shoreline and the marina with 30/50-amp power, water, a picnic table and fire ring, and a dump station on property. Pull in, plug in, and walk to the fuel dock for ice.",
-        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_2461.jpg",
+        "image": "/lighthouse/rv-waterfront.jpg",
         "cta": { "label": "Find an RV site", "intent": "rv" }
       },
       {
         "title": "The newest rental fleet on the lake",
         "icon": "🚤",
         "body": "Berkshire and Trifecta tritoons for up to 12, a Highfield RIB, tubes, kayaks and paddleboards. Half-day and full-day rentals leave from the marina; TAP Navigator and Boat Club members save 10–50%.",
-        "image": "https://texomadestinations.com/wp-content/uploads/2023/05/Berkshire_STS_250CL-2-1.jpg",
+        "image": "/lighthouse/tritoon.jpg",
         "cta": { "label": "Reserve a tritoon", "intent": "boats" }
       },
       {
         "title": "Marina, fuel dock & store",
         "icon": "⛽",
         "body": "One of the only Lake Texoma fuel docks open year-round, with ValvTect marine fuel, oil, tackle, bait, beer and wine, groceries, ice, firewood and fishing licenses. Covered 20–50 foot slips lease month-to-month or prepaid — the only marina on the lake that offers both.",
-        "image": "https://texomadestinations.com/wp-content/uploads/2023/07/marina-boat-slips.jpg",
+        "image": "/lighthouse/slips.jpg",
         "cta": { "label": "Slips, fuel & the store", "intent": "marina" }
       },
       {
         "title": "Cruises from the charter dock",
         "icon": "🌅",
         "body": "Fastrac's sunset, dinner, eagle-watching and murder-mystery cruises all depart from the Lighthouse charter dock. Stay the night and walk to the boat.",
-        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A3022.jpg",
+        "image": "/lighthouse/cruise.jpg",
         "cta": { "label": "See cruise dates", "intent": "cruises" }
       },
       {
         "title": "Striper Capital of the World",
         "icon": "🎣",
         "body": "Lighthouse is home base for many of Texoma's top striper guides. Book a guide, buy your license at the store, and clean your catch at the fish-cleaning station on the way back to the cabin.",
-        "image": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A8377.jpg",
+        "image": "/lighthouse/fishing.jpg",
         "cta": { "label": "Find a fishing guide", "intent": "fishing" }
       }
     ],
     "gallery": [
-      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/DJI_0936.jpg", "alt": "Aerial of Lighthouse Resort & Marina" },
-      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A9286.jpg", "alt": "Cabin interior" },
-      { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/marina-boat-slips.jpg", "alt": "Covered boat slips" },
-      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A2122.jpg", "alt": "Kids on the fishing pier" },
-      { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A8658-hero.jpg", "alt": "Lighthouse Marina fuel dock" }
+      { "src": "/lighthouse/marina-panorama.jpg", "alt": "Lighthouse Resort marina and shoreline" },
+      { "src": "/lighthouse/cabins.jpg", "alt": "A family arriving at a Lighthouse cabin" },
+      { "src": "/lighthouse/slips.jpg", "alt": "Covered boat slips" },
+      { "src": "/lighthouse/fishing.jpg", "alt": "A child examining a freshly caught fish" },
+      { "src": "/lighthouse/hero.jpg", "alt": "The lighthouse at the resort entrance" }
     ],
-    "reviews": [
-      { "quote": "Rented a tritoon for the day, grabbed lunch at the store, and the kids fished off the pier until dark. Easiest lake weekend we've ever had.", "author": "Family from Frisco", "source": "Google review" },
-      { "quote": "We've kept our boat in a covered slip here for years. Fuel dock is open when nobody else's is.", "author": "Slip tenant", "source": "Google review" },
-      { "quote": "The six-bedroom cabin fit all fourteen of us for the reunion — and the Lodge was perfect for the dinner.", "author": "Reunion organizer", "source": "Facebook" }
-    ],
+    "reviews": [],
     "hubHandoff": {
       "title": "Check dates, rent a boat, book it all in one place",
       "body": "Cabins, RV sites, tritoons and cruises for Lighthouse are all booked on texomadestinations.com — live availability, Pay Now & Save rates and TAP member discounts included. Slip leases and the fuel dock are handled right here at the marina.",
@@ -100,7 +96,7 @@
           "Every cabin includes cable television, towels and linens, basic dishes, cookware and utensils, a BBQ grill, refrigerator, microwave and coffee pot unless noted. Several cabins are pet friendly for a $35 per-pet fee. Free Wi-Fi is available across the resort, though signal varies by cabin."
         ],
         "bullets": ["1–6 bedrooms", "Sleeps 1–16", "Climate controlled", "Cable & Wi-Fi", "Grill & fire ring", "Some pet friendly"],
-        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A9286.jpg", "alt": "Lighthouse cabin" },
+        "image": { "src": "/lighthouse/cabins.jpg", "alt": "Family arriving at a Lighthouse cabin" },
         "cta": { "label": "Browse cabins & dates", "intent": "cabins" },
         "factKey": "lighthouse.cabin_count"
       },
@@ -110,7 +106,7 @@
           "Nineteen waterfront and lake-view gravel sites with 30- or 50-amp electric, water, a picnic table and fire ring, and a dump station on property. Up to six people (four adults) per site. Pull straight through to the boat ramp, or walk to the fuel dock for ice and firewood. Lighthouse has no tent camping."
         ],
         "bullets": ["30 & 50 amp", "Water hookups", "Dump station", "Fire ring & grill", "Lake view", "Pet friendly"],
-        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/IMG_2461.jpg", "alt": "Waterfront RV sites" },
+        "image": { "src": "/lighthouse/rv-waterfront.jpg", "alt": "Waterfront RV sites" },
         "cta": { "label": "Find an RV site", "intent": "rv" },
         "factKey": "lighthouse.rv_count"
       },
@@ -121,7 +117,7 @@
           "TAP Navigator members save 10% on boat rentals; Big Water Boat Club members save 50% with no blackout dates."
         ],
         "bullets": ["Tritoons up to 12", "Half & full day", "Tubes & lake toys", "Kayaks & SUPs", "Min age 21", "Club members 50% off"],
-        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/05/Berkshire_STS_250CL-2-1.jpg", "alt": "Berkshire tritoon" },
+        "image": { "src": "/lighthouse/tritoon.jpg", "alt": "Berkshire tritoon" },
         "cta": { "label": "Reserve a tritoon", "intent": "boats" },
         "factKey": "lighthouse.rental_public_rates"
       },
@@ -132,7 +128,7 @@
           "Transient slips for overnight cabin guests are available — ask at check-in."
         ],
         "bullets": ["20'–50' covered", "Power & water included", "Month-to-month or prepaid", "Boathouses & lifts", "Trailer storage", "Waitlist"],
-        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/marina-boat-slips.jpg", "alt": "Covered slips at Lighthouse Marina" },
+        "image": { "src": "/lighthouse/slips.jpg", "alt": "Covered slips at Lighthouse Marina" },
         "cta": { "label": "Slip pricing & waitlist", "intent": "marina" },
         "factKey": "lighthouse.slips"
       },
@@ -142,7 +138,7 @@
           "One of the only fuel docks on the lake open year-round, pumping ValvTect marine fuel. The store stocks oil and marine supplies, live and frozen bait, rods and tackle, groceries and sandwiches, beer and wine, ice, charcoal, firewood, gifts and apparel — plus Lake Texoma fishing licenses. TAP members save 5–10¢ per gallon and 5–10% in the store."
         ],
         "bullets": ["Open year-round", "ValvTect fuel", "Bait & tackle", "Beer, wine & groceries", "Ice & firewood", "Fishing licenses"],
-        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A8658-hero.jpg", "alt": "Fuel dock" },
+        "image": { "src": "/lighthouse/marina-panorama.jpg", "alt": "Marina and fuel dock at Lighthouse" },
         "cta": { "label": "Marina details", "intent": "marina" }
       },
       {
@@ -151,7 +147,7 @@
           "A lakefront playground, community fire pit, fishing pier, boat ramp and PWC ramp, fish-cleaning station and pavilion. Lighthouse sits in Little Mineral near the dam — striper water — and is home base for many of the lake's best guides. Sand bass, crappie, black bass and blue cats round out the catch."
         ],
         "bullets": ["Fishing pier", "Cleaning station", "Playground", "Community fire pit", "Boat & PWC ramps", "Guide services"],
-        "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A8377.jpg", "alt": "Striper fishing" },
+        "image": { "src": "/lighthouse/fishing.jpg", "alt": "A family fishing moment" },
         "cta": { "label": "Find a fishing guide", "intent": "fishing" }
       }
     ],
@@ -227,5 +223,6 @@
     "subtitle": "The cruises leave from our dock, so stay the night and make a weekend of it.",
     "intro": "Events and packages below are managed centrally by Texoma Destinations and booked inside your reservation or at the cruise link."
   },
+  "propertyMap": { "src": "/lighthouse/property-map.png", "alt": "Official Lighthouse property map showing numbered cabins, RV sites, marina slips, office, ramps, store, and rental docks" },
   "footerBlurb": "Lighthouse Resort & Marina has served Lake Texoma families since the 1940s from Little Mineral near Denison Dam — cabins, RV sites, boat rentals, a year-round fuel dock and covered slips. Part of the Texoma Destinations family; stays and rentals are booked at texomadestinations.com."
 }

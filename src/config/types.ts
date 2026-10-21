@@ -21,7 +21,7 @@ export type BrandSlug =
   | "towboatus-ntx";
 
 /** Pages a brand may enable. Order here = nav order. */
-export type PageKey = "home" | "stay" | "plan" | "groups" | "rules" | "packages";
+export type PageKey = "home" | "stay" | "plan" | "groups" | "rules" | "packages" | "property" | "cabins" | "rv" | "slips" | "boats" | "map";
 
 /** Hub CTA intents. Each resolves to an exact texomadestinations.com URL in hub-links.ts. */
 export type HubIntent =
@@ -260,6 +260,7 @@ export interface BrandContent {
   groups?: GroupsContent;
   rules?: RulesContent;
   packages?: PackagesContent;
+  propertyMap?: GalleryImage;
   footerBlurb: string;
 }
 

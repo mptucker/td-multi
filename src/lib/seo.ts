@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { BrandConfig, BrandSlug, PageKey } from "@/config/types";
 
 export const BRAND_UPDATED: Record<BrandSlug, string> = {
-  lighthouse: "2026-09-03",
+  lighthouse: "2026-10-21",
   paradise: "2026-09-24",
   sundance: "2026-09-10",
   "island-view": "2026-09-10",
@@ -28,6 +28,12 @@ export const BRAND_TOPICS: Record<BrandSlug, string[]> = {
 };
 
 export const PAGE_LABELS: Record<PageKey, string> = {
+  property: "The property",
+  cabins: "Cabins",
+  rv: "RV sites",
+  slips: "Boat slips",
+  boats: "Boat rentals",
+  map: "Property map",
   home: "Home",
   stay: "Stay & Experience",
   plan: "Plan Your Visit",

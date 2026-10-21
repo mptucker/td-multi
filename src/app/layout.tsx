@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import "./globals.css";
+import "@/components/lighthouse/lighthouse.css";
 import "@/components/towboatus-ntx/exact/exact.css";
 
 /**

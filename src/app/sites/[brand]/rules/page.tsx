@@ -3,6 +3,7 @@ import { loadPage } from "../_shared";
 import { hubUrl } from "@/config/hub-links";
 import { BreadcrumbJsonLd, HubHandoff, PageTitle, RuleGroups } from "@/components/Sections";
 import { subpageMetadata } from "@/lib/seo";
+import { LighthouseRules } from "@/components/lighthouse/LighthouseJourneyPage";
 
 export const revalidate = 60;
 
@@ -14,6 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ brand: st
 export default async function RulesPage({ params }: { params: Promise<{ brand: string }> }) {
   const { brand, content, facts } = await loadPage(params, "rules");
   const r = content.rules!;
+  if (brand.slug === "lighthouse") return <LighthouseRules brand={brand} content={content} />;
   return (
     <>
       <BreadcrumbJsonLd brand={brand} page="rules" path="/rules" />
