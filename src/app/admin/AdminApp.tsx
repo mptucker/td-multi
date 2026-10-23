@@ -13,17 +13,18 @@ import boaterwise from "@content/boaterwise.json";
 import bigwater from "@content/bigwater.json";
 import towboatusNtx from "@content/towboatus-ntx.json";
 import { TowBoatUSAdmin } from "@/components/admin/TowBoatUSAdmin";
+import { AnalyticsDashboard } from "@/components/admin/AnalyticsDashboard";
 import { BRAND_NETWORK_CATEGORY_LABELS, DEFAULT_BRAND_NETWORK } from "@/config/brand-network";
 import type { BrandNetworkCategory, BrandNetworkSettings } from "@/config/types";
 
 type Role = "admin" | "director" | "site_manager" | "editor" | "viewer";
 type Profile = { user_id: string; display_name: string; phone?: string; role: Role; active: boolean };
 type BrandRow = { brand: string; content: Record<string, any>; draft_content?: Record<string, any>; published_at?: string; updated_at?: string };
-type Tab = "overview" | "sites" | "media" | "alerts" | "faqs" | "packages" | "events" | "global" | "network" | "towboatus" | "staff" | "activity";
+type Tab = "overview" | "analytics" | "sites" | "media" | "alerts" | "faqs" | "packages" | "events" | "global" | "network" | "towboatus" | "staff" | "activity";
 const BRAND_NAMES: Record<string, string> = { lighthouse: "Lighthouse Resort & Marina", paradise: "Paradise on Lake Texoma", sundance: "Sundance Camp", "island-view": "Island View Park", fastrac: "Fastrac Cruises", "water-taxi": "Texoma Water Taxi", "tackle-box": "Tackle Box Outfitters", boaterwise: "BoaterWise", bigwater: "BigWater.co", "towboatus-ntx": "TowBoatUS North Texas" };
 const ALL_BRANDS = Object.keys(BRAND_NAMES);
 const LOCAL_CONTENT: Record<string, Record<string, any>> = { lighthouse, paradise, sundance, "island-view": islandView, fastrac, "water-taxi": waterTaxi, "tackle-box": tackleBox, boaterwise, bigwater, "towboatus-ntx": towboatusNtx } as any;
-const NAV: [Tab, string][] = [["overview","Overview"],["sites","Site content"],["media","Media"],["alerts","Announcement bars"],["faqs","FAQs"],["packages","Packages"],["events","Events"],["global","Global footer & TAP"],["network","Brand Network"],["towboatus","TowBoatUS operations"],["staff","Staff"],["activity","Activity"]];
+const NAV: [Tab, string][] = [["overview","Overview"],["analytics","Analytics"],["sites","Site content"],["media","Media"],["alerts","Announcement bars"],["faqs","FAQs"],["packages","Packages"],["events","Events"],["global","Global footer & TAP"],["network","Brand Network"],["towboatus","TowBoatUS operations"],["staff","Staff"],["activity","Activity"]];
 let sb = supabaseBrowser();
 
 function toE164US(value?: string | null) {
@@ -164,6 +165,7 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
       <main className="cms-main">
         <header className="cms-topbar"><div><h1>{NAV.find(([key]) => key === tab)?.[1]}</h1><p>{tabDescription(tab)}</p></div><span className="cms-live-dot">{status}</span></header>
         {tab === "overview" && <Overview data={data} assignments={assignments} />}
+        {tab === "analytics" && <AnalyticsDashboard assignments={assignments} brandNames={BRAND_NAMES} accessToken={session.access_token} />}
         {tab === "sites" && <SiteEditor rows={(data.brands ?? []) as BrandRow[]} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
         {tab === "media" && <MediaLibrary rows={data.media ?? []} assignments={assignments} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
         {tab === "alerts" && <CollectionEditor type="alerts" rows={data.alerts ?? []} assignments={assignments} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
@@ -202,7 +204,7 @@ function PhoneLogin() {
 
 function CmsMessage({ title, children }: { title: string; children: React.ReactNode }) { return <div className="cms-login"><div className="cms-login-card"><div className="cms-mark">TD</div><h1>{title}</h1><div className="cms-message-body">{children}</div></div></div>; }
 function tabDescription(tab: Tab) {
-  return ({ overview: "What is live, scheduled, and waiting for attention.", sites: "Edit approved copy and images without changing page design.", media: "Upload, reuse, and archive brand photography.", alerts: "Schedule one dismissible message across one or more sites.", faqs: "Maintain site-specific answers and search-friendly FAQ data.", packages: "Publish the same offer consistently across selected brands.", events: "Schedule event information and tracked registration links.", global: "Manage shared TAP content and each brand’s contact details.", network: "Manage the shared Texoma Destinations discovery panel across every site.", towboatus: "Manage TowBoatUS locations, network listings, operational links, and photography.", staff: "Approve access, assign roles, and limit site access.", activity: "A record of publishing and content changes." } as Record<Tab,string>)[tab];
+  return ({ overview: "What is live, scheduled, and waiting for attention.", analytics: "Understand traffic, engagement, and conversion activity for your assigned brand sites.", sites: "Edit approved copy and images without changing page design.", media: "Upload, reuse, and archive brand photography.", alerts: "Schedule one dismissible message across one or more sites.", faqs: "Maintain site-specific answers and search-friendly FAQ data.", packages: "Publish the same offer consistently across selected brands.", events: "Schedule event information and tracked registration links.", global: "Manage shared TAP content and each brand’s contact details.", network: "Manage the shared Texoma Destinations discovery panel across every site.", towboatus: "Manage TowBoatUS locations, network listings, operational links, and photography.", staff: "Approve access, assign roles, and limit site access.", activity: "A record of publishing and content changes." } as Record<Tab,string>)[tab];
 }
 
 function Overview({ data, assignments }: { data: Record<string, any[]>; assignments: string[] }) {

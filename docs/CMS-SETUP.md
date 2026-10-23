@@ -67,3 +67,10 @@ Studio's server-side allowlist blocks changes to authentication, API routes,
 Supabase code and migrations, middleware, environment files, package files,
 analytics, and deployment configuration. It accepts screenshots as context but
 does not create images.
+
+## Google Analytics reporting
+
+The CMS Analytics tab uses the Google Analytics Data API with server-only
+service-account credentials and the user's existing site assignments. Complete
+the Google and Vercel configuration in
+[`docs/GA4-CMS-ANALYTICS.md`](./GA4-CMS-ANALYTICS.md).
