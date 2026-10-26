@@ -16,6 +16,7 @@ import { BigWaterStructuredData } from "@/components/bigwater/BigWaterStructured
 import { SpecialBrandAlert } from "@/components/SpecialBrandAlert";
 import { FastracShell } from "@/components/fastrac/FastracShell";
 import { LighthouseHeader } from "@/components/lighthouse/LighthouseHeader";
+import { TexomaCollectiveShell } from "@/components/texomaco/TexomaCollectiveSite";
 
 export const revalidate = 60; // ISR: CMS edits appear within a minute
 
@@ -75,6 +76,8 @@ export default async function BrandLayout({ children, params }: { children: Reac
   const ga4 = analyticsEnabled ? GA4_MEASUREMENT_IDS[brand.slug] : null;
 
   const clickTracking = String.raw`document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('a[href]'):null;if(!a)return;var h=a.getAttribute('href')||'';var intent=a.dataset.intent||(/^tel:/.test(h)?'phone':/^sms:/.test(h)?'text':/maps\.(google|apple)|google\.com\/maps/.test(h)?'directions':'');if(!intent&&!/^https?:/.test(h))return;var detail={brand:'${brand.slug}',link_intent:intent||'outbound',link_url:a.href,link_text:(a.textContent||'').trim().slice(0,100)};window.dataLayer=window.dataLayer||[];if(typeof window.gtag==='function')window.gtag('event','brand_conversion_click',detail);else window.dataLayer.push(Object.assign({event:'brand_conversion_click'},detail));});`;
+
+  if (brand.slug === "texomaco") return <><BrandStyle brand={brand} />{ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}{ga4 && <script dangerouslySetInnerHTML={{__html:`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ga4}',{send_page_view:true});`}} />}<script dangerouslySetInnerHTML={{ __html: clickTracking }} /><BrandEntityJsonLd brand={brand} description={content.seo.description} image={content.seo.ogImage} /><TexomaCollectiveShell brand={brand} content={content as any} alert={alert}>{children}</TexomaCollectiveShell></>;
 
   if (brand.slug === "fastrac") return <><BrandStyle brand={brand} />{ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}{ga4 && <script dangerouslySetInnerHTML={{__html:`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ga4}',{send_page_view:true});gtag('set','user_properties',{brand_site:'fastrac'});`}} />}<script dangerouslySetInnerHTML={{ __html: clickTracking }} /><BrandEntityJsonLd brand={brand} description={content.seo.description} image={content.seo.ogImage} /><div className="brand-site min-h-screen" data-brand="fastrac"><FastracShell brand={brand} alert={alert} network={network}>{children}</FastracShell>{tap?.enabled !== false && <MembershipBand brand={brand} settings={tap ?? undefined} />}<Footer brand={brand} blurb={content.footerBlurb} settings={footer ?? undefined} /></div></>;
 

@@ -12,6 +12,7 @@ export const BRAND_UPDATED: Record<BrandSlug, string> = {
   "water-taxi": "2026-09-07",
   bigwater: "2026-09-14",
   "towboatus-ntx": "2026-09-14",
+  texomaco: "2026-10-26",
 };
 
 export const BRAND_TOPICS: Record<BrandSlug, string[]> = {
@@ -25,6 +26,7 @@ export const BRAND_TOPICS: Record<BrandSlug, string[]> = {
   "water-taxi": ["Lake Texoma water taxi", "Lake Texoma island transportation", "dock-to-dock boat service", "Highport Marina water taxi", "private boat ride Lake Texoma"],
   bigwater: ["BigWater.co", "Lake Texoma marine brands", "Big Water Marine", "Big Water Boat Club", "Lake Texoma boat sales", "Lake Texoma boat club", "TowBoatUS North Texas", "marine towing North Texas"],
   "towboatus-ntx": ["boat towing North Texas", "TowBoatUS Lake Texoma", "TowBoatUS Bois d'Arc", "TowBoatUS Cedar Creek", "marine salvage Texas", "24 hour boat towing", "Lake Texoma boat rescue", "on-water fuel delivery", "boat ungrounding North Texas"],
+  texomaco: ["Lake Texoma", "Texoma tourism", "Lake Texoma events", "Lake Texoma weddings", "Texoma business partnerships", "Texas Oklahoma tourism", "group events Lake Texoma"],
 };
 
 export const PAGE_LABELS: Record<PageKey, string> = {
@@ -40,6 +42,16 @@ export const PAGE_LABELS: Record<PageKey, string> = {
   groups: "Groups & Events",
   rules: "Rules & Policies",
   packages: "Packages & Events",
+  about: "About",
+  services: "Services",
+  partners: "Partners",
+  "groups-events": "Groups & Events",
+  events: "Events",
+  explore: "Explore",
+  contact: "Contact",
+  faq: "FAQ",
+  privacy: "Privacy",
+  terms: "Terms",
 };
 
 export function isPreviewHost(host: string | null | undefined, productionDomains: string[]): boolean {

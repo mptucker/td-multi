@@ -29,6 +29,7 @@ const BRAND_NAMES: Record<string, string> = {
   boaterwise: "BoaterWise",
   bigwater: "BigWater.co",
   "towboatus-ntx": "TowBoatUS North Texas",
+  texomaco: "Texoma Collective",
 };
 const ALL_BRANDS = Object.keys(BRAND_NAMES);
 let sb = supabaseBrowser();

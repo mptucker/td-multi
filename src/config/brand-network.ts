@@ -6,7 +6,7 @@ export const BRAND_NETWORK_CATEGORY_LABELS = {
   "shop-explore": "Shop & Explore",
 } as const;
 
-const allSites = ["lighthouse", "paradise", "sundance", "island-view", "fastrac", "water-taxi", "tackle-box", "boaterwise", "bigwater", "towboatus-ntx"] as const;
+const allSites = ["lighthouse", "paradise", "sundance", "island-view", "fastrac", "water-taxi", "tackle-box", "boaterwise", "bigwater", "towboatus-ntx", "texomaco"] as const;
 
 export const DEFAULT_BRAND_NETWORK: BrandNetworkSettings = {
   enabled: true,

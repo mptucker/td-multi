@@ -18,10 +18,33 @@ export type BrandSlug =
   | "boaterwise"
   | "water-taxi"
   | "bigwater"
-  | "towboatus-ntx";
+  | "towboatus-ntx"
+  | "texomaco";
 
 /** Pages a brand may enable. Order here = nav order. */
-export type PageKey = "home" | "stay" | "plan" | "groups" | "rules" | "packages" | "property" | "cabins" | "rv" | "slips" | "boats" | "map";
+export type PageKey =
+  | "home"
+  | "stay"
+  | "plan"
+  | "groups"
+  | "rules"
+  | "packages"
+  | "property"
+  | "cabins"
+  | "rv"
+  | "slips"
+  | "boats"
+  | "map"
+  | "about"
+  | "services"
+  | "partners"
+  | "groups-events"
+  | "events"
+  | "explore"
+  | "contact"
+  | "faq"
+  | "privacy"
+  | "terms";
 
 /** Hub CTA intents. Each resolves to an exact texomadestinations.com URL in hub-links.ts. */
 export type HubIntent =

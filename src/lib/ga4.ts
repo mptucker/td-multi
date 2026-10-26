@@ -36,7 +36,7 @@ export type AnalyticsReport = {
 let tokenCache: TokenCache | null = null;
 const reportCache = new Map<string, CachedReport>();
 
-const PROPERTY_ENV_KEYS: Record<BrandSlug, string> = {
+const PROPERTY_ENV_KEYS: Partial<Record<BrandSlug, string>> = {
   lighthouse: "GA4_PROPERTY_ID_LIGHTHOUSE",
   paradise: "GA4_PROPERTY_ID_PARADISE",
   sundance: "GA4_PROPERTY_ID_SUNDANCE",
@@ -64,7 +64,8 @@ function serviceAccount(): ServiceAccount | null {
 
 export function ga4PropertyId(brand: BrandSlug): string | null {
   const map = parseJson<Partial<Record<BrandSlug, string>>>(process.env.GA4_PROPERTY_IDS);
-  const value = map?.[brand] || process.env[PROPERTY_ENV_KEYS[brand]];
+  const envKey = PROPERTY_ENV_KEYS[brand];
+  const value = map?.[brand] || (envKey ? process.env[envKey] : undefined);
   const normalized = value?.replace(/^properties\//, "").trim();
   return normalized && /^\d+$/.test(normalized) ? normalized : null;
 }

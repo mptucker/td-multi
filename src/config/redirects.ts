@@ -10,6 +10,7 @@ import type { BrandSlug } from "./types";
 const HUB = "https://texomadestinations.com";
 
 export const REDIRECTS: Record<BrandSlug, Record<string, string>> = {
+  texomaco: {},
   "towboatus-ntx": {
     "/request": "https://tide.towboatuslaketexoma.com",
   },

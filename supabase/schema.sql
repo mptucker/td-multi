@@ -171,6 +171,25 @@ create table if not exists conversion_clicks (
   created_at timestamptz not null default now()
 );
 
+create table if not exists inquiries (
+  id uuid primary key default gen_random_uuid(),
+  brand text not null,
+  inquiry_type text not null check (inquiry_type in ('partner','group_event','general')),
+  name text not null,
+  organization text,
+  email text not null,
+  phone text,
+  town text,
+  region text check (region is null or region in ('TX','OK')),
+  message text not null,
+  consent boolean not null default false,
+  status text not null default 'new' check (status in ('new','contacted','closed','spam')),
+  source_path text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+create index if not exists inquiries_brand_created_idx on inquiries (brand, created_at desc);
+
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values ('brand-media', 'brand-media', true, 15728640, array['image/jpeg','image/png','image/webp','image/avif'])
 on conflict (id) do update set public = true;
@@ -260,7 +279,7 @@ create or replace function set_updated_at() returns trigger language plpgsql as 
 begin new.updated_at = now(); return new; end $$;
 do $$ declare t text;
 begin
-  foreach t in array array['brand_content','events','packages','alerts','facts','cms_users','brand_settings','global_settings','faqs','media_assets'] loop
+  foreach t in array array['brand_content','events','packages','alerts','facts','cms_users','brand_settings','global_settings','faqs','media_assets','inquiries'] loop
     execute format('drop trigger if exists %I_updated on %I', t, t);
     execute format('create trigger %I_updated before update on %I for each row execute function set_updated_at()', t, t);
   end loop;
@@ -283,6 +302,7 @@ alter table media_assets enable row level security;
 alter table content_revisions enable row level security;
 alter table cms_audit_log enable row level security;
 alter table conversion_clicks enable row level security;
+alter table inquiries enable row level security;
 
 create or replace function cms_is_active() returns boolean
 language sql stable security definer set search_path = public as $$
@@ -431,6 +451,10 @@ drop policy if exists "public click insert" on conversion_clicks;
 create policy "public click insert" on conversion_clicks for insert to anon, authenticated with check (true);
 drop policy if exists "leaders read clicks" on conversion_clicks;
 create policy "leaders read clicks" on conversion_clicks for select to authenticated using (cms_is_leader());
+drop policy if exists "cms inquiries" on inquiries;
+create policy "cms inquiries" on inquiries for select to authenticated using (cms_is_active() and cms_can_brand(brand));
+drop policy if exists "cms update inquiries" on inquiries;
+create policy "cms update inquiries" on inquiries for update to authenticated using (cms_can_write() and cms_can_brand(brand)) with check (cms_can_write() and cms_can_brand(brand));
 
 drop policy if exists "cms storage read" on storage.objects;
 create policy "cms storage read" on storage.objects for select to authenticated using (bucket_id = 'brand-media' and cms_is_active());
