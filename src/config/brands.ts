@@ -461,7 +461,7 @@ export const BRANDS: Record<BrandSlug, BrandConfig> = {
       muted: "#60727a",
       fontDisplay: "Fraunces",
       fontBody: "DM Sans",
-      fontHref: gf("family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700"),
+      fontHref: gf("family=DM+Sans:opsz,wght@9..40,400..800&family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&family=Yellowtail"),
       radius: "round",
       header: "light",
     },

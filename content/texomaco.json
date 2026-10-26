@@ -3,12 +3,12 @@
   "seo": {
     "title": "Texoma Collective | The Destination, Together",
     "description": "Meet the people, places, businesses and stories shaping Lake Texoma across Texas and Oklahoma.",
-    "ogImage": "/lighthouse/marina-panorama.jpg"
+    "ogImage": "/brands/texoma-collective.png"
   },
   "home": {
     "heroImage": {
-      "src": "/lighthouse/marina-panorama.jpg",
-      "alt": "Lake Texoma shoreline and marina beneath a wide blue sky"
+      "src": "/texomaco/pin.png",
+      "alt": "The Texoma Collective pin: sun, lake and rivers"
     },
     "heroKicker": "Two states. One lake. A shared story.",
     "heroTitle": "The Destination, Together.",
@@ -22,24 +22,49 @@
     },
     "stats": [],
     "features": [],
-    "gallery": [
-      { "src": "/water-taxi/family.webp", "alt": "A family enjoying a day together on Lake Texoma" },
-      { "src": "/fastrac/guests-sunset-current.jpg", "alt": "Friends enjoying a Lake Texoma sunset cruise" },
-      { "src": "/tackle-box/hero.webp", "alt": "A family preparing for a Lake Texoma fishing trip" }
-    ],
+    "gallery": [],
     "reviews": [],
-    "hubHandoff": { "title": "More Texoma.", "body": "More ways to explore. More reasons to stay. More stories worth sharing.", "ctas": [] },
-    "pillars": ["Tourism", "Marketing", "Events", "Sales", "Growth"],
+    "hubHandoff": {
+      "title": "More Texoma.",
+      "body": "More ways to explore. More reasons to stay. More stories worth sharing.",
+      "ctas": []
+    },
+    "pillars": [
+      "Tourism",
+      "Marketing",
+      "Events",
+      "Sales",
+      "Growth"
+    ],
     "paths": [
-      { "number": "01", "title": "Find your Texoma", "body": "Start with the water, the towns, the food, the people and the moments that make this place feel like its own world.", "href": "/explore", "label": "Explore the lake", "image": "/paradise/aerial-peninsula.jpg" },
-      { "number": "02", "title": "Build something here", "body": "Connect your business to a lakewide network built around discovery, referrals, collaboration and meaningful visitor experiences.", "href": "/partners", "label": "Partner with us", "image": "/tackle-box/interior.webp" },
-      { "number": "03", "title": "Bring people together", "body": "Start a conversation about a wedding, retreat, group experience or event on Lake Texoma.", "href": "/groups-events", "label": "Plan a group or event", "image": "/lighthouse/cruise.jpg" }
+      {
+        "number": "01",
+        "title": "Find your Texoma",
+        "body": "Start with the water, the towns, the food, the people and the moments that make this place feel like its own world.",
+        "href": "/explore",
+        "label": "Explore the lake"
+      },
+      {
+        "number": "02",
+        "title": "Build something here",
+        "body": "Connect your business to a lakewide network built around discovery, referrals, collaboration and meaningful visitor experiences.",
+        "href": "/partners",
+        "label": "Partner with us"
+      },
+      {
+        "number": "03",
+        "title": "Bring people together",
+        "body": "Start a conversation about a wedding, retreat, group experience or event on Lake Texoma.",
+        "href": "/groups-events",
+        "label": "Plan a group or event"
+      }
     ],
     "moreTexoma": {
       "eyebrow": "Our shared destination",
       "title": "More Texoma.",
       "body": "Stronger businesses. A brighter lake. Together."
-    }
+    },
+    "mission": "To market businesses, grow businesses, and tell the stories that make people fall in love with Texoma — creating a stronger community, a vibrant local economy, and a brighter future for the lake we call home."
   },
   "pages": {
     "about": {
@@ -51,27 +76,89 @@
         "Texoma Collective brings that knowledge together with a shared passion: telling the stories of our lake, championing its people and helping others discover what makes this community worth knowing."
       ],
       "roles": [
-        { "name": "Texoma Destinations", "label": "Founding partner", "body": "Owns and develops a family of Lake Texoma properties and brands." },
-        { "name": "Texoma Destinations Property Management", "label": "The operator", "body": "Manages resorts, marinas, stays and lake properties." },
-        { "name": "Texoma Collective", "label": "The storyteller and connector", "body": "Markets the destination, grows regional partners and brings tourism, marketing, events and sales together." }
+        {
+          "name": "Texoma Destinations",
+          "label": "Founding partner",
+          "body": "A founding partner of the Collective and its anchor client."
+        },
+        {
+          "name": "Texoma Destinations Property Management",
+          "label": "The operator",
+          "body": "Manages resorts, marinas, stays and lake properties."
+        },
+        {
+          "name": "Texoma Collective",
+          "label": "The storyteller and connector",
+          "body": "Markets the destination, grows regional partners and brings tourism, marketing, events and sales together."
+        }
       ],
       "team": [
-        { "name": "Cortney Gumm", "role": "Marketing Director" },
-        { "name": "Kayla Pope", "role": "Event Director" },
-        { "name": "Avery Dosse", "role": "Content Manager" }
-      ]
+        {
+          "name": "Cortney Gumm",
+          "role": "Marketing Director"
+        },
+        {
+          "name": "Kayla Pope",
+          "role": "Event Director"
+        },
+        {
+          "name": "Avery Dosse",
+          "role": "Content Manager"
+        }
+      ],
+      "mark": {
+        "eyebrow": "The meaning behind the mark",
+        "title": "A place. A connection. A story.",
+        "caption": "A stylized interpretation of our lake and rivers.",
+        "items": [
+          {
+            "name": "The pin",
+            "body": "Lake Texoma is our anchor. The location pin keeps our identity rooted in a real place."
+          },
+          {
+            "name": "The sun",
+            "body": "Warmth, possibility, and the outdoor life that draws people to the lake."
+          },
+          {
+            "name": "The flowing channels",
+            "body": "A symbolic nod to the Red and Washita rivers connecting through Lake Texoma."
+          },
+          {
+            "name": "The collective",
+            "body": "People, businesses, visitors, and stories coming together around a shared love of this place."
+          }
+        ]
+      }
     },
     "services": {
       "eyebrow": "What the Collective does",
       "title": "One lakewide ecosystem. Six ways to create value.",
       "intro": "We begin with what a business is trying to grow, then connect it to the right tourism opportunities.",
       "values": [
-        { "title": "Be Found", "body": "Discovery through directories, websites, guides and visitor-facing platforms." },
-        { "title": "Get Business", "body": "Referrals, leads, packages, group opportunities and direct sales." },
-        { "title": "Get Included", "body": "Eligibility for programs, Collections, campaigns, itineraries and tourism products." },
-        { "title": "Get Activated", "body": "Events, consumer activations, familiarization opportunities and destination experiences." },
-        { "title": "Get Connected", "body": "Introductions, collaborations and tourism partnerships across the region." },
-        { "title": "Get Smarter", "body": "Visitor trends, seasonal information, booking insights and tourism intelligence." }
+        {
+          "title": "Be Found",
+          "body": "Discovery through directories, websites, guides and visitor-facing platforms."
+        },
+        {
+          "title": "Get Business",
+          "body": "Referrals, leads, packages, group opportunities and direct sales."
+        },
+        {
+          "title": "Get Included",
+          "body": "Eligibility for programs, Collections, campaigns, itineraries and tourism products."
+        },
+        {
+          "title": "Get Activated",
+          "body": "Events, consumer activations, familiarization opportunities and destination experiences."
+        },
+        {
+          "title": "Get Connected",
+          "body": "Introductions, collaborations and tourism partnerships across the region."
+        },
+        {
+          "title": "Get Smarter",
+          "body": "Visitor trends, seasonal information, booking insights and tourism intelligence."
+        }
       ]
     },
     "partners": {
@@ -79,11 +166,56 @@
       "title": "Do not just join. Get connected to the right opportunity.",
       "intro": "A fishing guide may need qualified groups. A marina may need weekday traffic. A restaurant may need visitors to discover it after they arrive. We learn the need first, then build the connection.",
       "tiers": [
-        { "name": "Connect", "for": "For businesses that want visitors to discover them.", "benefits": ["A polished Texoma Collective business profile", "Eligibility for referrals, packages and commission opportunities", "Eligibility for relevant Collections and TAP benefits", "Submit news, events and offers for consideration"] },
-        { "name": "Discover", "for": "For businesses that want to appear where visitors plan and explore.", "benefits": ["Everything in Connect", "Interactive map placement", "Save-to-trip visibility", "TAP and seasonal publication directory listings"] },
-        { "name": "Grow", "for": "For businesses ready to participate in destination promotions.", "benefits": ["Everything in Discover", "Preferred access to eligible advertising placements", "Consideration for seasonal and themed campaigns", "Opportunities to contribute to getaway promotions"] },
-        { "name": "Elevate", "for": "For businesses that want dedicated attention throughout the year.", "benefits": ["Everything in Grow", "An annual dedicated business story", "Scheduled promotional spotlights", "Featured digital placement and enhanced publication listings"] },
-        { "name": "Strategic Partner", "for": "For organizations with a stake in Texoma's tourism growth.", "benefits": ["Strategic recognition across agreed platforms", "Quarterly destination conversations", "An annual impact recap", "Tailored promotional and collaborative opportunities"] }
+        {
+          "name": "Connect",
+          "for": "For businesses that want visitors to discover them.",
+          "benefits": [
+            "A polished Texoma Collective business profile",
+            "Eligibility for referrals, packages and commission opportunities",
+            "Eligibility for relevant Collections and TAP benefits",
+            "Submit news, events and offers for consideration"
+          ]
+        },
+        {
+          "name": "Discover",
+          "for": "For businesses that want to appear where visitors plan and explore.",
+          "benefits": [
+            "Everything in Connect",
+            "Interactive map placement",
+            "Save-to-trip visibility",
+            "TAP and seasonal publication directory listings"
+          ]
+        },
+        {
+          "name": "Grow",
+          "for": "For businesses ready to participate in destination promotions.",
+          "benefits": [
+            "Everything in Discover",
+            "Preferred access to eligible advertising placements",
+            "Consideration for seasonal and themed campaigns",
+            "Opportunities to contribute to getaway promotions"
+          ]
+        },
+        {
+          "name": "Elevate",
+          "for": "For businesses that want dedicated attention throughout the year.",
+          "benefits": [
+            "Everything in Grow",
+            "An annual dedicated business story",
+            "Scheduled promotional spotlights",
+            "Featured digital placement and enhanced publication listings"
+          ]
+        },
+        {
+          "name": "Strategic Partner",
+          "for": "For organizations with a stake in Texoma's tourism growth.",
+          "benefits": [
+            "Strategic recognition across agreed platforms",
+            "Quarterly destination conversations",
+            "An annual impact recap",
+            "Tailored promotional and collaborative opportunities"
+          ]
+        }
       ],
       "editorialNote": "Paid placement and independent editorial storytelling remain clearly identified and separate."
     },
@@ -92,8 +224,16 @@
       "title": "Bring the people. We will help connect the place and the possibilities.",
       "intro": "Texoma Collective supports group inquiries, destination events, partnerships and experiences across the Lake Texoma region.",
       "collections": [
-        { "title": "Texoma Wedding Collection", "body": "A curated wedding marketplace connecting couples with Texoma places, professionals and experiences.", "status": "In development" },
-        { "title": "Red River Collection", "body": "A future Collection built around shared destination stories and experiences.", "status": "In development" }
+        {
+          "title": "Texoma Wedding Collection",
+          "body": "A curated wedding marketplace connecting couples with Texoma places, professionals and experiences.",
+          "status": "In development"
+        },
+        {
+          "title": "Red River Collection",
+          "body": "A future Collection built around shared destination stories and experiences.",
+          "status": "In development"
+        }
       ]
     },
     "explore": {
@@ -101,14 +241,46 @@
       "title": "There is more than one way into the story.",
       "intro": "Follow what brings you here, then leave room for the part you did not expect.",
       "pillars": [
-        { "title": "On the Water", "body": "Cruises, fishing, beaches, boating and the lake itself.", "image": "/lighthouse/kayaking.jpg", "href": "https://texomadestinations.com/things-to-do" },
-        { "title": "Stay Texoma", "body": "Cabins, camps, RV sites, resorts and weekends that stretch a little longer.", "image": "/paradise/sunset-deck-chairs.jpg", "href": "https://texomadestinations.com/where-to-stay" },
-        { "title": "Taste Texoma", "body": "Local tables, dockside stops and the flavors around the lake.", "image": "/fastrac/guests-family-current.jpg", "href": "https://texomadestinations.com" },
-        { "title": "People of Texoma", "body": "The makers, guides, owners and neighbors who give the lake its character.", "image": "/tackle-box/guide.webp", "href": "/about" },
-        { "title": "What's Happening", "body": "Events, gatherings and reasons to make the trip now.", "image": "/lighthouse/cruise.jpg", "href": "/events" },
-        { "title": "Know Before You Go", "body": "A better trip starts with a little local context.", "image": "/water-taxi/service-area.webp", "href": "/faq" },
-        { "title": "Two States. One Lake.", "body": "Texas and Oklahoma meet in one shared destination.", "image": "/paradise/aerial-peninsula.jpg", "href": "/about" },
-        { "title": "Stay Another Day", "body": "One more cove, one more town, one more story worth bringing home.", "image": "/fastrac/guests-sunset-current.jpg", "href": "https://texomadestinations.com" }
+        {
+          "title": "On the Water",
+          "body": "Cruises, fishing, beaches, boating and the lake itself.",
+          "href": "https://texomadestinations.com/things-to-do"
+        },
+        {
+          "title": "Stay Texoma",
+          "body": "Cabins, camps, RV sites, resorts and weekends that stretch a little longer.",
+          "href": "https://texomadestinations.com/where-to-stay"
+        },
+        {
+          "title": "Taste Texoma",
+          "body": "Local tables, dockside stops and the flavors around the lake.",
+          "href": "https://texomadestinations.com"
+        },
+        {
+          "title": "People of Texoma",
+          "body": "The makers, guides, owners and neighbors who give the lake its character.",
+          "href": "/about"
+        },
+        {
+          "title": "What's Happening",
+          "body": "Events, gatherings and reasons to make the trip now.",
+          "href": "/events"
+        },
+        {
+          "title": "Know Before You Go",
+          "body": "A better trip starts with a little local context.",
+          "href": "/faq"
+        },
+        {
+          "title": "Two States. One Lake.",
+          "body": "Texas and Oklahoma meet in one shared destination.",
+          "href": "/about"
+        },
+        {
+          "title": "Stay Another Day",
+          "body": "One more cove, one more town, one more story worth bringing home.",
+          "href": "https://texomadestinations.com"
+        }
       ]
     },
     "contact": {
@@ -121,19 +293,40 @@
       "eyebrow": "Good to know",
       "title": "Questions about the Collective.",
       "items": [
-        { "q": "What is Texoma Collective?", "a": "Texoma Collective is the tourism, marketing, events and sales organization connecting Lake Texoma's visitors, businesses, places and stories." },
-        { "q": "Is Texoma Collective a booking site?", "a": "No. Stays and experiences are booked through the participating business or Texoma Destinations. Texoma Collective helps people discover and connect." },
-        { "q": "Who can become a partner?", "a": "The partner network is designed for tourism-facing businesses and organizations across the Lake Texoma region in Texas and Oklahoma." },
-        { "q": "Can the team help with a group or event?", "a": "Yes. Use the group and event inquiry option to start a conversation about your plans." }
+        {
+          "q": "What is Texoma Collective?",
+          "a": "Texoma Collective is the tourism, marketing, events and sales organization connecting Lake Texoma's visitors, businesses, places and stories."
+        },
+        {
+          "q": "Is Texoma Collective a booking site?",
+          "a": "No. Stays and experiences are booked through the participating business or Texoma Destinations. Texoma Collective helps people discover and connect."
+        },
+        {
+          "q": "Who can become a partner?",
+          "a": "The partner network is designed for tourism-facing businesses and organizations across the Lake Texoma region in Texas and Oklahoma."
+        },
+        {
+          "q": "Can the team help with a group or event?",
+          "a": "Yes. Use the group and event inquiry option to start a conversation about your plans."
+        }
       ]
     },
     "privacy": {
       "title": "Privacy",
-      "body": ["[OPEN] Legal privacy copy is pending review before production launch."]
+      "body": [
+        "[OPEN] Legal privacy copy is pending review before production launch."
+      ]
     },
     "terms": {
       "title": "Terms",
-      "body": ["[OPEN] Legal terms copy is pending review before production launch."]
+      "body": [
+        "[OPEN] Legal terms copy is pending review before production launch."
+      ]
+    },
+    "events": {
+      "eyebrow": "What's happening",
+      "title": "The lake gives us reasons to gather.",
+      "intro": "Collective events, partner events and Collections appear here as dates are confirmed."
     }
   },
   "footerBlurb": "Rooted here. Made to be shared."
