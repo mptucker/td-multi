@@ -4,11 +4,13 @@ import { loadPage } from "../_shared";
 import { HubLink } from "@/components/HubLink";
 import { BreadcrumbJsonLd, HubHandoff, PageTitle } from "@/components/Sections";
 import { subpageMetadata } from "@/lib/seo";
+import { LighthouseGroupsPage } from "@/components/lighthouse/LighthouseGroupsPage";
 
 export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: Promise<{ brand: string }> }): Promise<Metadata> {
   const { brand, content } = await loadPage(params, "groups");
+  if (brand.slug === "lighthouse") return subpageMetadata(brand, "Lake Texoma Group Getaways at Lighthouse Resort", "Plan a company fishing weekend, family reunion, group cruise, celebration, or Lake Texoma getaway with lodging and gathering space at Lighthouse Resort & Marina.", "/groups-and-events", "/lighthouse/events/groups-hero-cruise.webp");
   return subpageMetadata(brand, content.groups!.title, content.groups!.subtitle, "/groups-and-events", content.seo.ogImage);
 }
 
@@ -16,6 +18,7 @@ const anchor = (t: string) => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replac
 
 export default async function GroupsPage({ params }: { params: Promise<{ brand: string }> }) {
   const { brand, content } = await loadPage(params, "groups");
+  if (brand.slug === "lighthouse") return <LighthouseGroupsPage brand={brand} content={content} />;
   const g = content.groups!;
   return (
     <>

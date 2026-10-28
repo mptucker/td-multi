@@ -35,6 +35,7 @@ export type PageKey =
   | "slips"
   | "boats"
   | "map"
+  | "lodge"
   | "about"
   | "services"
   | "partners"

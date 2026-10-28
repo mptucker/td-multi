@@ -25,7 +25,7 @@ export const REDIRECTS: Record<BrandSlug, Record<string, string>> = {
     "/about-us": "/property#story",
     "/lake-texoma-events": "/packages",
     "/event-space": "/groups-and-events",
-    "/lighthouse-lodge": "/groups-and-events#lodge",
+    "/lighthouse-lodge": "/lodge",
     "/recreation": "/property#recreation",
     "/fishing": "/property#recreation",
     "/professional-guide-service": `${HUB}/things-to-do#/fishing`,

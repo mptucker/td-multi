@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { BrandConfig, BrandSlug, PageKey } from "@/config/types";
 
 export const BRAND_UPDATED: Record<BrandSlug, string> = {
-  lighthouse: "2026-10-21",
+  lighthouse: "2026-10-28",
   paradise: "2026-09-24",
   sundance: "2026-09-10",
   "island-view": "2026-09-10",
@@ -16,7 +16,7 @@ export const BRAND_UPDATED: Record<BrandSlug, string> = {
 };
 
 export const BRAND_TOPICS: Record<BrandSlug, string[]> = {
-  lighthouse: ["Lake Texoma resort", "Lake Texoma cabins", "Lake Texoma boat rentals", "Lake Texoma marina", "Pottsboro RV sites"],
+  lighthouse: ["Lake Texoma resort", "Lake Texoma cabins", "Lake Texoma boat rentals", "Lake Texoma marina", "Pottsboro RV sites", "Lake Texoma event venue", "Lake Texoma wedding venue", "Lighthouse Lodge"],
   paradise: ["Lake Texoma glamping", "Lake Texoma cabins", "Lake Texoma RV sites", "primitive camping Lake Texoma", "Pottsboro camping"],
   sundance: ["Lake Texoma tiny cabins", "Lake Texoma group camping", "Lake Texoma retreats", "Pottsboro glamping", "waterfront camping"],
   "island-view": ["Lake Texoma beach", "Lake Texoma day pass", "kayak rentals Lake Texoma", "paddleboard rentals Lake Texoma", "Pottsboro day trip"],
@@ -36,6 +36,7 @@ export const PAGE_LABELS: Record<PageKey, string> = {
   slips: "Boat slips",
   boats: "Boat rentals",
   map: "Property map",
+  lodge: "The Lodge",
   home: "Home",
   stay: "Stay & Experience",
   plan: "Plan Your Visit",

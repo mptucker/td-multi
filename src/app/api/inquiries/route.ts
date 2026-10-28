@@ -32,7 +32,8 @@ export async function POST(request: NextRequest) {
   const region = clean("region", 2);
   const message = clean("message", 3000);
   const brand = clean("brand", 40);
-  if (brand !== "texomaco" || !["partner", "group_event", "general"].includes(inquiryType) || name.length < 2 || !emailPattern.test(email) || message.length < 12 || body.consent !== "yes" || (region && !["TX", "OK"].includes(region))) {
+  const allowedInquiry = (brand === "texomaco" && ["partner", "group_event", "general"].includes(inquiryType)) || (brand === "lighthouse" && inquiryType === "group_event");
+  if (!allowedInquiry || name.length < 2 || !emailPattern.test(email) || message.length < 12 || body.consent !== "yes" || (region && !["TX", "OK"].includes(region))) {
     return NextResponse.json({ error: "Please complete the required fields." }, { status: 400 });
   }
 
@@ -53,7 +54,7 @@ export async function POST(request: NextRequest) {
   });
   if (error) {
     console.error("Inquiry insert failed", error);
-    return NextResponse.json({ error: "We could not save your inquiry. Please call 903.200.1408." }, { status: 500 });
+    return NextResponse.json({ error: `We could not save your inquiry. Please call ${brand === "lighthouse" ? "903.361.5070" : "903.200.1408"}.` }, { status: 500 });
   }
   return NextResponse.json({ ok: true }, { status: 201 });
 }

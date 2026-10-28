@@ -4,6 +4,7 @@ import { loadPage } from "../_shared";
 import { subpageMetadata } from "@/lib/seo";
 import { LIGHTHOUSE_JOURNEYS } from "@/components/lighthouse/data";
 import { LighthouseJourneyPage } from "@/components/lighthouse/LighthouseJourneyPage";
+import { LighthouseLodgePage } from "@/components/lighthouse/LighthouseLodgePage";
 import { TexomaCollectivePage } from "@/components/texomaco/TexomaCollectiveSite";
 import { getEvents } from "@/lib/content";
 
@@ -32,6 +33,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     return subpageMetadata(resolved.brand, data?.title ?? resolved.texomaPage, data?.intro ?? resolved.content.seo.description, `/${resolved.texomaPage}`, resolved.content.seo.ogImage);
   }
   const { brand, journey } = resolved;
+  if (journey.key === "lodge") return subpageMetadata(brand, "Lighthouse Lodge | Lake Texoma Event Venue", "Explore the Lighthouse Lodge in Pottsboro, Texas: an open-vendor, BYOB Lake Texoma venue for company parties, reunions, showers, celebrations, and weddings.", "/lodge", journey.image);
   return subpageMetadata(brand, `${journey.label} at Lighthouse Resort`, journey.description, journey.path, journey.image);
 }
 
@@ -39,5 +41,6 @@ export default async function JourneyPage({ params }: Params) {
   const resolved = await resolve(params);
   if ("texomaPage" in resolved) return <TexomaCollectivePage page={resolved.texomaPage} content={resolved.content as any} events={await getEvents("texomaco", 24)} />;
   const { brand, content, journey } = resolved;
+  if (journey.key === "lodge") return <LighthouseLodgePage brand={brand} content={content} />;
   return <LighthouseJourneyPage brand={brand} content={content} journey={journey} />;
 }

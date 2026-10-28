@@ -190,19 +190,19 @@
     ]
   },
   "groups": {
-    "title": "Weddings, reunions and retreats with a marina view",
-    "subtitle": "Three venues on one property, cabins for the whole guest list, and a cruise boat at the dock.",
+    "title": "Bring your people. Make a weekend of it.",
+    "subtitle": "Lodging, lake experiences, gathering spaces, and more time together at Lighthouse Resort & Marina.",
     "intro": [
-      "The Lighthouse Lodge is 1,600 square feet inside with a full bar, three big bay doors and a huge deck over the water — up to 80 guests, formal seating for 40, room for a band. Cove Point is two fenced acres of lawn with a gazebo for elopements and lakeside gatherings of 50. Lighthouse Fireside is the intimate option: a gazebo with electricity for 25.",
-      "All three are open-vendor, and our catering partners can handle everything from barbecue to plated dinners. Add a Fastrac private charter for the rehearsal dinner or a sunset send-off. Showings are by appointment; call the events team to start."
+      "Company fishing weekends, family reunions, and celebrations deserve a little more time together. Lighthouse brings cabins, RV sites, lake experiences, and gathering space together in one Lake Texoma home base.",
+      "Choose the pieces that fit your group and dates. Activities are not fixed packages, and availability varies; the events team can help you explore the possibilities."
     ],
     "venues": [
-      { "name": "Lighthouse Lodge", "capacity": "Up to 80 guests · seats 40", "details": ["1,600 sq ft interior + waterfront deck", "Full bar", "Three bay doors", "Live music options", "Catering & bar service available"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Beach-Dinner-hero.jpg", "alt": "Lighthouse Lodge dinner" } },
+      { "name": "Lighthouse Lodge", "capacity": "Seats 50 · up to 70 comfortably", "details": ["Covered deck with water views", "Tables, chairs, and tablecloths included", "BYOB and open-vendor", "Kitchen, climate control, and two restrooms", "Wheelchair accessible"], "image": { "src": "/lighthouse/events/lodge-exterior.webp", "alt": "The red-roofed Lighthouse Lodge among oak trees" } },
       { "name": "Cove Point", "capacity": "Up to 50 guests", "details": ["~2 fenced acres of lawn", "Gazebo", "Lake view & access", "Open vendor", "Elopements & gatherings"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/06/Q0A2122.jpg", "alt": "Cove Point lawn" } },
       { "name": "Lighthouse Fireside", "capacity": "Up to 25 guests", "details": ["Gazebo with electricity", "Fire pit", "Open vendor", "Perfect for rehearsal dinners"], "image": { "src": "https://texomadestinations.com/wp-content/uploads/2023/07/events-table-night.jpg", "alt": "Fireside evening" } }
     ],
     "eventTypes": ["Weddings & receptions", "Elopements", "Family reunions", "Corporate retreats", "Fishing tournaments", "Birthday & anniversary parties"],
-    "cta": { "label": "Plan your event", "intent": "events" },
+    "cta": { "label": "Plan your group getaway", "href": "/groups-and-events#group-inquiry" },
     "contactPhone": "903.200.1408"
   },
   "rules": {
@@ -236,7 +236,17 @@
     "boatRentals": { "src": "/lighthouse/tritoon.jpg", "alt": "A family cruising on a Berkshire tritoon" },
     "boatDetail": { "src": "/lighthouse/boat-current.jpg", "alt": "A parent and child sharing a moment at the helm of a tritoon" },
     "kayaking": { "src": "/lighthouse/kayaking.jpg", "alt": "Family paddling kayaks together on Lake Texoma" },
-    "resortEntrance": { "src": "/lighthouse/hero.jpg", "alt": "The red-and-white lighthouse at the resort entrance" }
+    "resortEntrance": { "src": "/lighthouse/hero.jpg", "alt": "The red-and-white lighthouse at the resort entrance" },
+    "groupsHero": { "src": "/lighthouse/events/groups-hero-cruise.webp", "alt": "A group enjoying an evening cruise on Lake Texoma" },
+    "groupsFishing": { "src": "/lighthouse/events/groups-fishing.webp", "alt": "A company fishing group gathered around the day's catch" },
+    "groupsFamily": { "src": "/lighthouse/events/groups-family.webp", "alt": "A family relaxing by a fire outside a Lighthouse cabin" },
+    "groupsCruise": { "src": "/lighthouse/events/groups-cruise.webp", "alt": "Guests sharing a meal aboard a Lake Texoma cruise" },
+    "groupsLodging": { "src": "/lighthouse/events/groups-lodging.webp", "alt": "The shared porch outside Lighthouse cabins" },
+    "lodgeHero": { "src": "/lighthouse/events/lodge-hero.webp", "alt": "A group gathering on the covered deck at the Lighthouse Lodge" },
+    "lodgeExterior": { "src": "/lighthouse/events/lodge-exterior.webp", "alt": "The red-roofed Lighthouse Lodge among oak trees" },
+    "lodgeInterior": { "src": "/lighthouse/events/lodge-interior.webp", "alt": "The wood-lined Lodge interior arranged with tables and chairs" },
+    "lodgeDeck": { "src": "/lighthouse/events/lodge-deck-view.webp", "alt": "The covered Lodge deck overlooking Lake Texoma" },
+    "lodgeGathering": { "src": "/lighthouse/events/lodge-deck-gathering.webp", "alt": "Guests enjoying a company gathering on the Lodge deck" }
   },
   "propertyMap": { "src": "/lighthouse/property-map.png", "alt": "Official Lighthouse property map showing numbered cabins, RV sites, marina slips, office, ramps, store, and rental docks" },
   "footerBlurb": "Lighthouse Resort & Marina has served Lake Texoma families since the 1940s from Little Mineral near Denison Dam — cabins, RV sites, boat rentals, a year-round fuel dock and covered slips. Part of the Texoma Destinations family; stays and rentals are booked at texomadestinations.com."
