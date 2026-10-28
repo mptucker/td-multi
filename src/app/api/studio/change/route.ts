@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     let screenshot: { mime: string; base64: string } | undefined;
     if (upload instanceof File && upload.size) {
       if (!/^image\/(png|jpeg|webp)$/.test(upload.type)) return NextResponse.json({ error: "Use a PNG, JPEG, or WebP screenshot." }, { status: 400 });
-      if (upload.size > 8 * 1024 * 1024) return NextResponse.json({ error: "The screenshot must be smaller than 8 MB." }, { status: 400 });
+      if (upload.size > 4 * 1024 * 1024) return NextResponse.json({ error: "The screenshot must be smaller than 4 MB." }, { status: 400 });
       screenshot = { mime: upload.type, base64: Buffer.from(await upload.arrayBuffer()).toString("base64") };
     }
 

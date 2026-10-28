@@ -17,6 +17,7 @@ import { TowBoatUSAdmin } from "@/components/admin/TowBoatUSAdmin";
 import { AnalyticsDashboard } from "@/components/admin/AnalyticsDashboard";
 import { BRAND_NETWORK_CATEGORY_LABELS, DEFAULT_BRAND_NETWORK } from "@/config/brand-network";
 import type { BrandNetworkCategory, BrandNetworkSettings } from "@/config/types";
+import { mergeContent } from "@/lib/content-merge";
 
 type Role = "admin" | "director" | "site_manager" | "editor" | "viewer";
 type Profile = { user_id: string; display_name: string; phone?: string; role: Role; active: boolean };
@@ -46,6 +47,9 @@ function setAtPath(source: Record<string, any>, path: string, value: string) {
   });
   return next;
 }
+function getAtPath(source: Record<string, any>, path: string) {
+  return path.split(".").reduce<any>((node, key) => node?.[/^\d+$/.test(key) ? Number(key) : key], source);
+}
 function editableFields(value: any, prefix = ""): { path: string; label: string; value: string; kind: "text" | "image" | "url" }[] {
   if (!value || typeof value !== "object") return [];
   return Object.entries(value).flatMap(([key, child]) => {
@@ -57,6 +61,14 @@ function editableFields(value: any, prefix = ""): { path: string; label: string;
     }
     return editableFields(child, path);
   });
+}
+function fieldsForBrand(brand: string, content: Record<string, any>) {
+  const fields = editableFields(content);
+  if (brand !== "lighthouse") return fields;
+  // The Lighthouse experience is a custom narrative site. These legacy fields
+  // remain in the content model for backwards compatibility but are not rendered.
+  const legacyPrefixes = ["home.stats", "home.features", "home.gallery", "home.reviews", "home.hubHandoff"];
+  return fields.filter((field) => !legacyPrefixes.some((prefix) => field.path === prefix || field.path.startsWith(prefix + ".")));
 }
 function contentWarnings(content: Record<string, any>) {
   const fields = editableFields(content);
@@ -118,6 +130,8 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
       p.role === "admin" ? sb.from("cms_access_requests").select("*").order("requested_at") : Promise.resolve({ data: [] }),
       p.role === "admin" ? sb.from("cms_invites").select("*").order("created_at") : Promise.resolve({ data: [] }),
     ]);
+    const failed = queries.map((result: any, index) => result?.error ? { index, message: result.error.message } : null).filter(Boolean) as { index: number; message: string }[];
+    if (failed.length) console.error("CMS workspace queries failed", failed);
     let tbusData: { locations?: any[]; operators?: any[]; config?: any[]; images?: any[] } = {};
     if (allowed.includes("towboatus-ntx")) {
       const response = await fetch("/api/admin/towboatus", { headers: { authorization: "Bearer " + activeSession.access_token } });
@@ -126,9 +140,14 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
     setProfile(p); setAssignments(allowed);
     const userIds = new Set((queries[11].data ?? []).map((u: any) => u.user_id));
     const storedBrands = queries[0].data ?? [];
-    const brands = allowed.map((brand) => storedBrands.find((row: any) => row.brand === brand) ?? { brand, content: LOCAL_CONTENT[brand], draft_content: LOCAL_CONTENT[brand] });
+    const brands = allowed.map((brand) => {
+      const stored = storedBrands.find((row: any) => row.brand === brand);
+      const base = LOCAL_CONTENT[brand];
+      if (!stored) return { brand, content: base, draft_content: base };
+      return { ...stored, content: mergeContent(base, stored.content), draft_content: mergeContent(base, stored.draft_content ?? stored.content) };
+    });
     setData({ brands, media: queries[1].data ?? [], alerts: queries[2].data ?? [], faqs: queries[3].data ?? [], packages: queries[4].data ?? [], events: queries[5].data ?? [], inquiries: queries[6].data ?? [], global: queries[7].data ?? [], settings: queries[8].data ?? [], revisions: queries[9].data ?? [], audit: queries[10].data ?? [], users: queries[11].data ?? [], requests: (queries[12].data ?? []).filter((r: any) => !userIds.has(r.user_id)), invites: queries[13].data ?? [], tbusLocations: tbusData.locations ?? [], tbusOperators: tbusData.operators ?? [], tbusConfig: tbusData.config ?? [], tbusImages: tbusData.images ?? [] });
-    setStatus("Live");
+    setStatus(failed.length ? `Loaded with ${failed.length} data warning${failed.length === 1 ? "" : "s"}` : "Live");
   }, []);
 
   useEffect(() => {
@@ -168,7 +187,7 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
         <header className="cms-topbar"><div><h1>{NAV.find(([key]) => key === tab)?.[1]}</h1><p>{tabDescription(tab)}</p></div><span className="cms-live-dot">{status}</span></header>
         {tab === "overview" && <Overview data={data} assignments={assignments} />}
         {tab === "analytics" && <AnalyticsDashboard assignments={assignments} brandNames={BRAND_NAMES} accessToken={session.access_token} />}
-        {tab === "sites" && <SiteEditor rows={(data.brands ?? []) as BrandRow[]} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
+        {tab === "sites" && <SiteEditor rows={(data.brands ?? []) as BrandRow[]} media={data.media ?? []} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
         {tab === "media" && <MediaLibrary rows={data.media ?? []} assignments={assignments} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
         {tab === "alerts" && <CollectionEditor type="alerts" rows={data.alerts ?? []} assignments={assignments} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
         {tab === "faqs" && <CollectionEditor type="faqs" rows={data.faqs ?? []} assignments={assignments} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
@@ -227,14 +246,37 @@ function Overview({ data, assignments }: { data: Record<string, any[]>; assignme
 }
 function Metric({ value, label }: { value: number; label: string }) { return <div className="cms-metric"><strong>{value}</strong><span>{label}</span></div>; }
 
-function SiteEditor({ rows, canWrite, onChanged }: { rows: BrandRow[]; canWrite: boolean; onChanged: () => void }) {
+async function uploadMediaFile(brand: string, file: File, alt: string) {
+  if (!/^image\/(jpeg|png|webp|avif)$/.test(file.type)) throw new Error("Choose a JPEG, PNG, WebP, or AVIF image.");
+  if (file.size > 15 * 1024 * 1024) throw new Error("Choose an image under 15 MB.");
+  const dimensions = await new Promise<{width:number;height:number}>((resolve, reject) => { const image = new Image(); const url = URL.createObjectURL(file); image.onload = () => { resolve({width:image.naturalWidth,height:image.naturalHeight}); URL.revokeObjectURL(url); }; image.onerror = () => { URL.revokeObjectURL(url); reject(new Error("The image could not be read.")); }; image.src = url; });
+  if (dimensions.width < 800 || dimensions.height < 500) throw new Error("Choose an image at least 800 × 500 pixels.");
+  const path = `${brand || "shared"}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, "-")}`;
+  const { error: uploadError } = await sb!.storage.from("brand-media").upload(path, file, { contentType: file.type });
+  if (uploadError) throw new Error(uploadError.message);
+  const publicUrl = sb!.storage.from("brand-media").getPublicUrl(path).data.publicUrl;
+  const user = (await sb!.auth.getUser()).data.user;
+  const record = { brand: brand || null, storage_path: path, public_url: publicUrl, filename: file.name, mime_type: file.type, width: dimensions.width, height: dimensions.height, alt_text: alt.trim(), created_by: user?.id };
+  const { data, error } = await sb!.from("media_assets").insert(record).select("*").single();
+  if (error) throw new Error(error.message);
+  await log("upload", "media_assets", path, brand);
+  return data ?? record;
+}
+
+function SiteEditor({ rows, media, canWrite, onChanged }: { rows: BrandRow[]; media: any[]; canWrite: boolean; onChanged: () => void }) {
   const [brand, setBrand] = useState(rows[0]?.brand ?? "");
   const row = rows.find((r) => r.brand === brand) ?? rows[0];
   const [draft, setDraft] = useState<Record<string, any>>(row?.draft_content ?? row?.content ?? {});
   const [view, setView] = useState<"desktop"|"mobile">("desktop");
   const [saved, setSaved] = useState("All changes saved");
+  const [previewNonce, setPreviewNonce] = useState(0);
+  const [picker, setPicker] = useState<string | null>(null);
+  const [mediaRows, setMediaRows] = useState(media);
+  const [uploadAlt, setUploadAlt] = useState("");
+  const [uploading, setUploading] = useState(false);
   const draftRef = useRef(draft); draftRef.current = draft;
-  useEffect(() => { if (row) { setBrand(row.brand); setDraft(row.draft_content ?? row.content); } }, [row?.brand]);
+  useEffect(() => { if (row) { setBrand(row.brand); setDraft(row.draft_content ?? row.content); setSaved("All changes saved"); setPicker(null); } }, [row?.brand]);
+  useEffect(() => setMediaRows(media), [media]);
   useEffect(() => { if (!canWrite || !brand) return; const timer = setInterval(() => save(false), 300000); return () => clearInterval(timer); }, [brand, canWrite]);
   async function save(publish: boolean) {
     setSaved(publish ? "Publishing…" : "Saving…");
@@ -243,27 +285,46 @@ function SiteEditor({ rows, canWrite, onChanged }: { rows: BrandRow[]; canWrite:
     const update = publish ? { content: draftRef.current, draft_content: draftRef.current, published_at: new Date().toISOString() } : { content: publishedContent, draft_content: draftRef.current };
     const { error } = await sb!.from("brand_content").upsert({ brand, ...update });
     if (!error) await log(publish ? "publish" : "save_draft", "brand_content", brand, brand);
-    if (!error && publish) await refreshPublicSite(brand);
+    if (!error && publish) { await refreshPublicSite(brand); setPreviewNonce(Date.now()); }
     setSaved(error ? error.message : publish ? "Live" : "Draft saved"); if (!error) onChanged();
   }
+  function change(path: string, value: string) { setDraft((current) => setAtPath(current, path, value)); setSaved("Unsaved changes"); }
+  function chooseImage(path: string, url: string, alt?: string) {
+    setDraft((current) => {
+      let next = setAtPath(current, path, url);
+      const altPath = path.endsWith(".src") ? path.slice(0, -4) + ".alt" : "";
+      if (alt && altPath && getAtPath(next, altPath) !== undefined) next = setAtPath(next, altPath, alt);
+      return next;
+    });
+    setSaved("Unsaved changes"); setPicker(null); setUploadAlt("");
+  }
+  async function uploadIntoField(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0]; event.target.value = "";
+    if (!file || !picker || !uploadAlt.trim()) return;
+    setUploading(true);
+    try { const asset = await uploadMediaFile(brand, file, uploadAlt); setMediaRows((current) => [asset, ...current]); chooseImage(picker, asset.public_url, asset.alt_text); }
+    catch (error) { setSaved(error instanceof Error ? error.message : "The image could not be uploaded."); }
+    finally { setUploading(false); }
+  }
   if (!row) return <Empty title="No site content is available">Ask an administrator to assign a site to your account.</Empty>;
-  const fields = editableFields(draft);
+  const fields = fieldsForBrand(brand, draft);
   const warnings = contentWarnings(draft);
-  return <div className="cms-editor-grid"><section className="cms-panel cms-fields"><div className="cms-editor-actions"><select value={brand} onChange={(e) => { const next = rows.find((r) => r.brand === e.target.value)!; setBrand(next.brand); setDraft(next.draft_content ?? next.content); }}><option value="" disabled>Choose a site</option>{rows.map((r) => <option key={r.brand} value={r.brand}>{BRAND_NAMES[r.brand]}</option>)}</select><span>{saved}</span></div>{warnings.length > 0 && <div className="cms-warnings"><strong>Check before publishing</strong>{warnings.map((warning) => <span key={warning}>{warning}</span>)}</div>}<div className="cms-field-list">{fields.map((field) => <label key={field.path}><span>{field.label}</span>{field.kind === "image" && field.value && <img src={field.value} alt="" />}{field.value.length > 90 && field.kind === "text" ? <textarea rows={4} value={field.value} disabled={!canWrite} onChange={(e) => { setDraft(setAtPath(draft, field.path, e.target.value)); setSaved("Unsaved changes"); }} /> : <input type="text" inputMode={/phoneHref/i.test(field.path) ? "tel" : undefined} value={field.value} disabled={!canWrite} onChange={(e) => { setDraft(setAtPath(draft, field.path, e.target.value)); setSaved("Unsaved changes"); }} />}</label>)}</div><footer className="cms-sticky-actions"><button className="cms-button cms-button-muted" disabled={!canWrite} onClick={() => save(false)}>Save draft</button><button className="cms-button" disabled={!canWrite || warnings.length > 0} title={warnings.length ? "Resolve content warnings before publishing" : ""} onClick={() => save(true)}>Publish now</button></footer></section><section className="cms-preview-panel"><div><strong>Live preview</strong><span><button className={view === "desktop" ? "active" : ""} onClick={() => setView("desktop")}>Desktop</button><button className={view === "mobile" ? "active" : ""} onClick={() => setView("mobile")}>Mobile</button></span></div><iframe title={BRAND_NAMES[brand] + " preview"} className={view} src={"/sites/" + brand + "?cms_preview=1"} /></section></div>;
+  const availableMedia = mediaRows.filter((item) => !item.brand || item.brand === brand);
+  return <div className="cms-editor-grid"><section className="cms-panel cms-fields"><div className="cms-editor-actions"><select value={brand} onChange={(e) => setBrand(e.target.value)}><option value="" disabled>Choose a site</option>{rows.map((r) => <option key={r.brand} value={r.brand}>{BRAND_NAMES[r.brand]}</option>)}</select><span className={saved === "Unsaved changes" ? "cms-unsaved" : ""}>{saved}</span></div><div className="cms-editor-help"><strong>Structured content and photography</strong><span>Choose or upload photography here. Some custom presentation copy is intentionally managed in AI Site Studio. Publishing updates the live site; the preview at right shows what is currently live.</span></div>{warnings.length > 0 && <div className="cms-warnings"><strong>Check before publishing</strong>{warnings.map((warning) => <span key={warning}>{warning}</span>)}</div>}<div className="cms-field-list">{fields.map((field) => field.kind === "image" ? <div className="cms-image-field" key={field.path}><span>{field.label}</span><div>{field.value ? <img src={field.value} alt="" /> : <span className="cms-image-empty">No image selected</span>}<div><button className="cms-button cms-button-muted" type="button" disabled={!canWrite} onClick={() => { setPicker(field.path); setUploadAlt(String(getAtPath(draft, field.path.endsWith(".src") ? field.path.slice(0,-4)+".alt" : "") ?? "")); }}>Choose or upload</button><details><summary>Image path</summary><input value={field.value} disabled={!canWrite} onChange={(e) => change(field.path, e.target.value)} /></details></div></div></div> : <label key={field.path}><span>{field.label}</span>{field.value.length > 90 && field.kind === "text" ? <textarea rows={4} value={field.value} disabled={!canWrite} onChange={(e) => change(field.path, e.target.value)} /> : <input type={field.kind === "url" ? "url" : "text"} inputMode={/phoneHref/i.test(field.path) ? "tel" : undefined} value={field.value} disabled={!canWrite} onChange={(e) => change(field.path, e.target.value)} />}</label>)}</div><footer className="cms-sticky-actions"><button className="cms-link-button" type="button" disabled={!canWrite} onClick={() => { setDraft(row.content ?? LOCAL_CONTENT[brand]); setSaved("Draft reset to live content"); }}>Reset draft</button><button className="cms-button cms-button-muted" disabled={!canWrite || saved === "Saving…"} onClick={() => save(false)}>Save draft</button><button className="cms-button" disabled={!canWrite || warnings.length > 0 || saved === "Publishing…"} title={warnings.length ? "Resolve content warnings before publishing" : ""} onClick={() => save(true)}>Publish now</button></footer></section><section className="cms-preview-panel"><div><div><strong>Current live site</strong><a href={"/sites/" + brand} target="_blank">Open full site ↗</a></div><span><button className={view === "desktop" ? "active" : ""} onClick={() => setView("desktop")}>Desktop</button><button className={view === "mobile" ? "active" : ""} onClick={() => setView("mobile")}>Mobile</button></span></div><iframe key={`${brand}-${previewNonce}`} title={BRAND_NAMES[brand] + " live site"} className={view} src={"/sites/" + brand + "?cms_preview=1&v=" + previewNonce} /></section>{picker && <div className="cms-media-modal" role="dialog" aria-modal="true" aria-label="Choose an image"><section><header><div><p className="cms-kicker">{BRAND_NAMES[brand]}</p><h2>Choose an image</h2></div><button type="button" onClick={() => setPicker(null)} aria-label="Close image library">×</button></header><div className="cms-inline-upload"><label><span>Alt text</span><input value={uploadAlt} onChange={(e) => setUploadAlt(e.target.value)} placeholder="Describe the image for accessibility" /></label><label className={`cms-button ${!uploadAlt.trim() || uploading ? "disabled" : ""}`}>{uploading ? "Uploading…" : "Upload new image"}<input hidden type="file" accept="image/jpeg,image/png,image/webp,image/avif" disabled={!uploadAlt.trim() || uploading} onChange={uploadIntoField} /></label></div>{availableMedia.length ? <div className="cms-picker-grid">{availableMedia.map((item) => <button key={item.id ?? item.public_url} type="button" onClick={() => chooseImage(picker, item.public_url, item.alt_text)}><img src={item.public_url} alt={item.alt_text} /><span>{item.alt_text}</span></button>)}</div> : <Empty title="No uploaded images yet">Add the first image above, or close this window to keep the current site image.</Empty>}</section></div>}</div>;
 }
 
 function MediaLibrary({ rows, assignments, canWrite, onChanged }: { rows: any[]; assignments: string[]; canWrite: boolean; onChanged: () => void }) {
-  const [brand, setBrand] = useState(assignments[0] ?? ""); const [alt, setAlt] = useState(""); const [busy, setBusy] = useState(false);
+  const [brand, setBrand] = useState(assignments[0] ?? ""); const [alt, setAlt] = useState(""); const [busy, setBusy] = useState(false); const [filter, setFilter] = useState("all"); const [search, setSearch] = useState(""); const [message, setMessage] = useState("");
   async function upload(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0]; if (!file || !alt.trim()) return;
-    if (file.size > 15 * 1024 * 1024) return alert("Choose an image under 15 MB.");
-    const dimensions = await new Promise<{width:number;height:number}>((resolve, reject) => { const image = new Image(); const url = URL.createObjectURL(file); image.onload = () => { resolve({width:image.naturalWidth,height:image.naturalHeight}); URL.revokeObjectURL(url); }; image.onerror = reject; image.src = url; });
-    if (dimensions.width < 800 || dimensions.height < 500) return alert("This image is too small. Choose one at least 800 × 500 pixels.");
-    setBusy(true); const path = (brand || "shared") + "/" + Date.now() + "-" + file.name.replace(/[^a-zA-Z0-9._-]/g, "-");
-    const { error: uploadError } = await sb!.storage.from("brand-media").upload(path, file, { contentType: file.type });
-    if (!uploadError) { const publicUrl = sb!.storage.from("brand-media").getPublicUrl(path).data.publicUrl; const user = (await sb!.auth.getUser()).data.user; const { error } = await sb!.from("media_assets").insert({ brand: brand || null, storage_path: path, public_url: publicUrl, filename: file.name, mime_type: file.type, width: dimensions.width, height: dimensions.height, alt_text: alt.trim(), created_by: user?.id }); if (!error) { await log("upload", "media_assets", path, brand); setAlt(""); onChanged(); } else alert(error.message); } else alert(uploadError.message); setBusy(false);
+    const file = e.target.files?.[0]; e.target.value = ""; if (!file || !alt.trim()) return;
+    setBusy(true); setMessage("Uploading and checking image…");
+    try { await uploadMediaFile(brand, file, alt); setAlt(""); setMessage("Image uploaded."); onChanged(); }
+    catch (error) { setMessage(error instanceof Error ? error.message : "The image could not be uploaded."); }
+    finally { setBusy(false); }
   }
-  return <><section className="cms-panel cms-upload"><div><h2>Upload an image</h2><p>Images are shared in the library but remain assigned to a brand. Alt text is required.</p></div><select value={brand} onChange={(e) => setBrand(e.target.value)}>{assignments.map((b) => <option key={b} value={b}>{BRAND_NAMES[b]}</option>)}</select><input value={alt} onChange={(e) => setAlt(e.target.value)} placeholder="Describe the image for accessibility" /><label className={"cms-button " + (!alt || !canWrite ? "disabled" : "")}>{busy ? "Uploading…" : "Choose image"}<input hidden type="file" accept="image/jpeg,image/png,image/webp,image/avif" disabled={!alt || !canWrite || busy} onChange={upload} /></label></section><div className="cms-media-grid">{rows.map((item) => <article key={item.id}><img src={item.public_url} alt={item.alt_text} /><div><strong>{item.alt_text}</strong><span>{BRAND_NAMES[item.brand] ?? "Shared"} · {item.filename}</span><button onClick={() => navigator.clipboard.writeText(item.public_url)}>Copy URL</button></div></article>)}</div></>;
+  async function archive(item: any) { if (!confirm(`Archive ${item.filename}? Existing pages using this URL will not be changed.`)) return; const { error } = await sb!.from("media_assets").update({ archived: true }).eq("id", item.id); if (error) setMessage(error.message); else { await log("archive", "media_assets", item.id, item.brand); onChanged(); } }
+  const visible = rows.filter((item) => (filter === "all" || item.brand === filter) && (!search.trim() || `${item.alt_text} ${item.filename}`.toLowerCase().includes(search.toLowerCase())));
+  return <><section className="cms-panel cms-upload"><div><h2>Upload an image</h2><p>Choose the site, add useful alt text, then select a JPEG, PNG, WebP, or AVIF file.</p></div><select value={brand} onChange={(e) => setBrand(e.target.value)}>{assignments.map((b) => <option key={b} value={b}>{BRAND_NAMES[b]}</option>)}</select><input value={alt} onChange={(e) => setAlt(e.target.value)} placeholder="Describe what is visible in the image" /><label className={"cms-button " + (!alt.trim() || !canWrite || busy ? "disabled" : "")}>{busy ? "Uploading…" : "Choose image"}<input hidden type="file" accept="image/jpeg,image/png,image/webp,image/avif" disabled={!alt.trim() || !canWrite || busy} onChange={upload} /></label>{message && <span className="cms-upload-message">{message}</span>}</section><div className="cms-media-toolbar"><select value={filter} onChange={(e) => setFilter(e.target.value)}><option value="all">All assigned sites</option>{assignments.map((b) => <option key={b} value={b}>{BRAND_NAMES[b]}</option>)}</select><input type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search filenames or alt text" /><span>{visible.length} image{visible.length === 1 ? "" : "s"}</span></div>{visible.length ? <div className="cms-media-grid">{visible.map((item) => <article key={item.id}><img src={item.public_url} alt={item.alt_text} /><div><strong>{item.alt_text}</strong><span>{BRAND_NAMES[item.brand] ?? "Shared"} · {item.filename}{item.width ? ` · ${item.width}×${item.height}` : ""}</span><div className="cms-media-actions"><button onClick={async () => { await navigator.clipboard.writeText(item.public_url); setMessage("Image URL copied."); }}>Copy URL</button>{canWrite && <button onClick={() => archive(item)}>Archive</button>}</div></div></article>)}</div> : <Empty title="No images found">Try another site or search term, or upload a new image above.</Empty>}</>;
 }
 
 function CollectionEditor({ type, rows, assignments, canWrite, onChanged }: { type: "alerts"|"faqs"|"packages"|"events"; rows: any[]; assignments: string[]; canWrite: boolean; onChanged: () => void }) {

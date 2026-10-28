@@ -223,6 +223,21 @@
     "subtitle": "The cruises leave from our dock, so stay the night and make a weekend of it.",
     "intro": "Events and packages below are managed centrally by Texoma Destinations and booked inside your reservation or at the cruise link."
   },
+  "media": {
+    "homeBoat": { "src": "/lighthouse/tritoon.jpg", "alt": "Family cruising on a Berkshire tritoon" },
+    "homeCabins": { "src": "/lighthouse/cabins.jpg", "alt": "Family unpacking at a Lighthouse cabin" },
+    "homeRv": { "src": "/lighthouse/rv-waterfront.jpg", "alt": "Waterfront RV sites at Lighthouse" },
+    "marina": { "src": "/lighthouse/marina-panorama.jpg", "alt": "Lighthouse marina, boat docks, and wooded shoreline" },
+    "fishing": { "src": "/lighthouse/fishing.jpg", "alt": "A child exploring a freshly caught fish with an adult" },
+    "cruise": { "src": "/lighthouse/cruise.jpg", "alt": "Guests enjoying an evening aboard Fastrac's Island Girl" },
+    "cabins": { "src": "/lighthouse/cabins.jpg", "alt": "A family arriving at a wooden Lighthouse cabin" },
+    "rv": { "src": "/lighthouse/rv-waterfront.jpg", "alt": "RV sites beside Lake Texoma at Lighthouse" },
+    "slips": { "src": "/lighthouse/slips.jpg", "alt": "Boats in covered Lighthouse Marina slips" },
+    "boatRentals": { "src": "/lighthouse/tritoon.jpg", "alt": "A family cruising on a Berkshire tritoon" },
+    "boatDetail": { "src": "/lighthouse/boat-current.jpg", "alt": "A parent and child sharing a moment at the helm of a tritoon" },
+    "kayaking": { "src": "/lighthouse/kayaking.jpg", "alt": "Family paddling kayaks together on Lake Texoma" },
+    "resortEntrance": { "src": "/lighthouse/hero.jpg", "alt": "The red-and-white lighthouse at the resort entrance" }
+  },
   "propertyMap": { "src": "/lighthouse/property-map.png", "alt": "Official Lighthouse property map showing numbered cabins, RV sites, marina slips, office, ramps, store, and rental docks" },
   "footerBlurb": "Lighthouse Resort & Marina has served Lake Texoma families since the 1940s from Little Mineral near Denison Dam — cabins, RV sites, boat rentals, a year-round fuel dock and covered slips. Part of the Texoma Destinations family; stays and rentals are booked at texomadestinations.com."
 }

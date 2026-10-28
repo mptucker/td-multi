@@ -10,6 +10,19 @@ export type StudioProposal = { summary: string; verification: string[]; changes:
 type ResponseItem = { type?: string; name?: string; call_id?: string; arguments?: string };
 type OpenAIResponse = { id: string; output?: ResponseItem[]; error?: { message?: string }; incomplete_details?: unknown };
 
+function parseJson<T>(value: string, context: string): T {
+  try { return JSON.parse(value) as T; }
+  catch { throw new Error(`${context} returned malformed JSON. Please retry the request; no site files were changed.`); }
+}
+
+async function readOpenAIResponse(response: Response) {
+  const text = await response.text();
+  if (!text.trim()) throw new Error(`The AI service returned an empty response (${response.status}). Please retry.`);
+  const result = parseJson<OpenAIResponse>(text, "The AI service");
+  if (!response.ok) throw new Error(result.error?.message || `OpenAI request failed (${response.status}).`);
+  return result;
+}
+
 const tool = (name: string, description: string, properties: Record<string, unknown>, required: string[]) => ({
   type: "function",
   name,
@@ -25,6 +38,7 @@ export async function createStudioProposal(args: {
   prompt: string;
   screenshot?: { mime: string; base64: string };
 }) {
+  const deadline = Date.now() + 240_000;
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error("OPENAI_API_KEY is not configured.");
   const allFiles = await import("./github").then(({ listRepositoryFiles }) => listRepositoryFiles(args.repository));
@@ -59,29 +73,38 @@ export async function createStudioProposal(args: {
 
   let previousResponseId: string | undefined;
   let input: unknown = [{ role: "user", content }];
-  for (let turn = 0; turn < 14; turn += 1) {
-    const response = await fetch("https://api.openai.com/v1/responses", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: process.env.OPENAI_STUDIO_MODEL || "gpt-6-astra",
-        instructions: `You are the guarded visual website editor for Texoma Destinations. ${STUDIO_GUARDRAILS}`,
-        input,
-        tools,
-        tool_choice: "required",
-        parallel_tool_calls: false,
-        store: true,
-        ...(previousResponseId ? { previous_response_id: previousResponseId } : {}),
-      }),
-    });
-    const result = await response.json() as OpenAIResponse;
-    if (!response.ok) throw new Error(result.error?.message || `OpenAI request failed (${response.status}).`);
+  for (let turn = 0; turn < 12; turn += 1) {
+    const remaining = deadline - Date.now();
+    if (remaining < 5_000) throw new Error("Studio needed more inspection time than this request allows. Try a more specific page or section, or attach a cropped screenshot.");
+    let response: Response;
+    try {
+      response = await fetch("https://api.openai.com/v1/responses", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+        signal: AbortSignal.timeout(Math.min(55_000, remaining - 1_000)),
+        body: JSON.stringify({
+          model: process.env.OPENAI_STUDIO_MODEL || "gpt-6-astra",
+          instructions: `You are the guarded visual website editor for Texoma Destinations. ${STUDIO_GUARDRAILS}`,
+          input,
+          tools,
+          tool_choice: "required",
+          parallel_tool_calls: false,
+          store: true,
+          ...(previousResponseId ? { previous_response_id: previousResponseId } : {}),
+        }),
+      });
+    } catch (error) {
+      if (error instanceof Error && (error.name === "TimeoutError" || error.name === "AbortError")) throw new Error("The AI service took too long to respond. Please retry; no site files were changed.");
+      throw error;
+    }
+    const result = await readOpenAIResponse(response);
     previousResponseId = result.id;
     const call = result.output?.find((item) => item.type === "function_call");
     if (!call?.name || !call.call_id) throw new Error("Studio did not return a source change proposal.");
-    const parameters = JSON.parse(call.arguments || "{}");
+    const parameters = parseJson<Record<string, any>>(call.arguments || "{}", `Studio tool ${call.name}`);
     if (call.name === "submit_changes") {
       const proposal = parameters as StudioProposal;
+      if (!proposal || typeof proposal.summary !== "string" || !Array.isArray(proposal.verification) || !Array.isArray(proposal.changes) || !Array.isArray(proposal.new_files)) throw new Error("Studio returned an incomplete change proposal. Please retry; no site files were changed.");
       for (const change of proposal.changes) {
         if (!isStudioPathAllowed(args.brand, change.path)) throw new Error(`Studio attempted to edit protected file ${change.path}.`);
         validateStudioReplacement(change.path, change.find, change.replace);

@@ -13,3 +13,4 @@ export const LIGHTHOUSE_JOURNEYS = [
 export type LighthouseJourney = (typeof LIGHTHOUSE_JOURNEYS)[number];
 export const lighthouseSection = (content: BrandContent, intent: HubIntent) => content.stay?.sections.find((section) => section.cta?.intent === intent);
 export const lighthouseMap = (content: BrandContent) => content.propertyMap ?? { src: "/lighthouse/property-map.png", alt: "Lighthouse property map showing numbered cabins, RV sites, marina slips, office, ramps, store, and rental docks" };
+export const lighthouseImage = (content: BrandContent, key: string, fallback: { src: string; alt: string }) => content.media?.[key] ?? fallback;

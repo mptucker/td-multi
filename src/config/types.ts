@@ -284,6 +284,8 @@ export interface BrandContent {
   rules?: RulesContent;
   packages?: PackagesContent;
   propertyMap?: GalleryImage;
+  /** Named photography used by custom presentations and exposed in the CMS. */
+  media?: Record<string, GalleryImage>;
   footerBlurb: string;
 }
 

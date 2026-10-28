@@ -34,6 +34,18 @@ const BRAND_NAMES: Record<string, string> = {
 const ALL_BRANDS = Object.keys(BRAND_NAMES);
 let sb = supabaseBrowser();
 
+async function readApiJson<T extends Record<string, any>>(response: Response): Promise<T> {
+  const text = await response.text();
+  if (!text.trim()) throw new Error(response.ok ? "The server returned an empty response. Please try again." : `The request failed (${response.status}) without an error message.`);
+  try { return JSON.parse(text) as T; }
+  catch {
+    const looksLikeHtml = /^\s*</.test(text);
+    throw new Error(looksLikeHtml
+      ? `The server interrupted this request (${response.status}). A large screenshot or a long AI run may have exceeded the deployment limit; please retry once or use a smaller screenshot.`
+      : "Studio received an unreadable response. Please retry; if it repeats, ask an administrator to check the deployment logs.");
+  }
+}
+
 function toE164US(value: string) {
   const digits = value.replace(/\D/g, "");
   if (digits.length === 10) return "+1" + digits;
@@ -109,9 +121,18 @@ function StudioWorkspace({ profile, brands, accessToken, onSignOut }: { profile:
   useEffect(() => () => { if (imagePreview) URL.revokeObjectURL(imagePreview); }, [imagePreview]);
 
   function chooseScreenshot(file: File | null) {
+    if (file && !["image/png", "image/jpeg", "image/webp"].includes(file.type)) {
+      setMessage("Choose a PNG, JPEG, or WebP screenshot.");
+      return;
+    }
+    if (file && file.size > 4 * 1024 * 1024) {
+      setMessage("That screenshot is over 4 MB. Crop or compress it, then try again.");
+      return;
+    }
     setScreenshot(file);
     if (imagePreview) URL.revokeObjectURL(imagePreview);
     setImagePreview(file ? URL.createObjectURL(file) : null);
+    if (file) setMessage("Screenshot added.");
   }
 
   async function submit() {
@@ -122,7 +143,7 @@ function StudioWorkspace({ profile, brands, accessToken, onSignOut }: { profile:
     if (screenshot) body.set("screenshot", screenshot);
     try {
       const response = await fetch("/api/studio/change", { method: "POST", headers: { authorization: `Bearer ${accessToken}` }, body });
-      const data = await response.json();
+      const data = await readApiJson<StudioResult & { error?: string }>(response);
       if (!response.ok) throw new Error(data.error || "Studio could not prepare the preview.");
       setResult(data); setMessage("Change prepared. Vercel is building an isolated preview.");
     } catch (error) { setMessage(error instanceof Error ? error.message : "Studio could not prepare the preview."); }
@@ -133,7 +154,8 @@ function StudioWorkspace({ profile, brands, accessToken, onSignOut }: { profile:
     if (!result) return;
     setMessage("Checking the preview deployment…");
     const response = await fetch(`/api/studio/status?pr=${result.pullRequestNumber}`, { headers: { authorization: `Bearer ${accessToken}` } });
-    const data = await response.json();
+    let data: Record<string, any>;
+    try { data = await readApiJson(response); } catch (error) { setMessage(error instanceof Error ? error.message : "Could not check the preview."); return; }
     if (!response.ok) { setMessage(data.error || "Could not check the preview."); return; }
     setResult({ ...result, ...data });
     setMessage(data.previewState === "success" ? "Preview is ready to review." : data.previewState === "failure" || data.previewState === "error" ? "The preview build failed. Open the source review for details." : "The preview is still building. Check again in a moment.");
@@ -144,7 +166,7 @@ function StudioWorkspace({ profile, brands, accessToken, onSignOut }: { profile:
     setBusy(true); setMessage("Sending the approved change to production…");
     try {
       const response = await fetch("/api/studio/approve", { method: "POST", headers: { authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" }, body: JSON.stringify({ pullRequestNumber: result.pullRequestNumber, confirmation: "PUBLISH" }) });
-      const data = await response.json();
+      const data = await readApiJson<Record<string, any>>(response);
       if (!response.ok) throw new Error(data.error || "Could not publish this change.");
       setResult({ ...result, status: "published" }); setMessage("Approved. The production deployment is now underway.");
     } catch (error) { setMessage(error instanceof Error ? error.message : "Could not publish this change."); }
@@ -163,7 +185,7 @@ function StudioWorkspace({ profile, brands, accessToken, onSignOut }: { profile:
           <div className="studio-step"><span>01</span><div><label htmlFor="studio-site">Choose the site</label><select id="studio-site" value={brand} onChange={(event) => setBrand(event.target.value)} disabled={busy}>{brands.map((item) => <option key={item} value={item}>{BRAND_NAMES[item]}</option>)}</select></div></div>
           <div className="studio-step"><span>02</span><div><label htmlFor="studio-route">Page or section <small>optional</small></label><input id="studio-route" value={route} onChange={(event) => setRoute(event.target.value)} placeholder="Home page, hero, /stay, membership section…" disabled={busy}/></div></div>
           <div className="studio-step studio-step-prompt"><span>03</span><div><label htmlFor="studio-prompt">What should change?</label><textarea id="studio-prompt" rows={8} value={prompt} onChange={(event) => setPrompt(event.target.value)} placeholder="Talk to Studio like you would talk to a designer…" disabled={busy}/><div className="studio-suggestions">{suggestions.slice(0,3).map((item) => <button type="button" key={item} onClick={() => setPrompt(item)}>{item}</button>)}</div></div></div>
-          <div className="studio-step"><span>04</span><div><label>Show us what you mean <small>optional</small></label><button type="button" className="studio-upload" onClick={() => inputRef.current?.click()} disabled={busy}>{imagePreview ? <img src={imagePreview} alt="Screenshot selected for this request"/> : <><b>＋</b><strong>Add a screenshot</strong><small>PNG, JPEG or WebP · up to 8 MB</small></>}</button><input ref={inputRef} hidden type="file" accept="image/png,image/jpeg,image/webp" onChange={(event) => chooseScreenshot(event.target.files?.[0] || null)}/>{imagePreview && <button type="button" className="studio-remove" onClick={() => chooseScreenshot(null)}>Remove screenshot</button>}</div></div>
+          <div className="studio-step"><span>04</span><div><label>Show us what you mean <small>optional</small></label><button type="button" className="studio-upload" onClick={() => inputRef.current?.click()} disabled={busy}>{imagePreview ? <img src={imagePreview} alt="Screenshot selected for this request"/> : <><b>＋</b><strong>Add a screenshot</strong><small>PNG, JPEG or WebP · up to 4 MB</small></>}</button><input ref={inputRef} hidden type="file" accept="image/png,image/jpeg,image/webp" onChange={(event) => chooseScreenshot(event.target.files?.[0] || null)}/>{imagePreview && <button type="button" className="studio-remove" onClick={() => chooseScreenshot(null)}>Remove screenshot</button>}</div></div>
           <footer className="studio-submit"><p><strong>Nothing changes live yet.</strong> Studio creates a separate preview for review.</p><button onClick={submit} disabled={!canRequest || busy || !brand || prompt.trim().length < 8}>{busy ? "Building preview…" : "Prepare preview →"}</button></footer>
         </section>
         <aside className="studio-review">
