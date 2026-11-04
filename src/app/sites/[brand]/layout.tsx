@@ -17,6 +17,8 @@ import { SpecialBrandAlert } from "@/components/SpecialBrandAlert";
 import { FastracShell } from "@/components/fastrac/FastracShell";
 import { LighthouseHeader } from "@/components/lighthouse/LighthouseHeader";
 import { TexomaCollectiveShell } from "@/components/texomaco/TexomaCollectiveSite";
+import { DocklineWidget } from "@/components/DocklineWidget";
+import type { DocklineWidgetSettings } from "@/config/dockline";
 
 export const revalidate = 60; // ISR: CMS edits appear within a minute
 
@@ -62,14 +64,17 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 export default async function BrandLayout({ children, params }: { children: ReactNode } & Params) {
   const { brand: slug } = await params;
   if (!isBrandSlug(slug)) notFound();
-  const [brand, content, alert, tap, footer, network] = await Promise.all([
+  const [brand, content, alert, tap, footer, network, dockline] = await Promise.all([
     getBrandWithSettings(slug),
     getContent(slug),
     getAlert(slug),
     getGlobalSetting("tap", null as null | { enabled?: boolean; image?: string; heading?: string; body?: string; button_label?: string; button_url?: string }),
     getGlobalSetting("footer", null as null | Record<string, string>),
     getBrandNetwork(),
+    getGlobalSetting("dockline_widget", null as null | Partial<DocklineWidgetSettings>),
   ]);
+  // "Text us" button, managed in /admin → Shared settings.
+  const textUs = <DocklineWidget brand={slug} settings={dockline} />;
   const gtm = brand.gtmId ?? process.env.NEXT_PUBLIC_GTM_ID;
   const host = ((await headers()).get("host") ?? "").split(":")[0].toLowerCase();
   const analyticsEnabled = host === brand.canonicalDomain || host === `www.${brand.canonicalDomain}`;
@@ -77,11 +82,11 @@ export default async function BrandLayout({ children, params }: { children: Reac
 
   const clickTracking = String.raw`document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('a[href]'):null;if(!a)return;var h=a.getAttribute('href')||'';var intent=a.dataset.intent||(/^tel:/.test(h)?'phone':/^sms:/.test(h)?'text':/maps\.(google|apple)|google\.com\/maps/.test(h)?'directions':'');if(!intent&&!/^https?:/.test(h))return;var detail={brand:'${brand.slug}',link_intent:intent||'outbound',link_url:a.href,link_text:(a.textContent||'').trim().slice(0,100)};window.dataLayer=window.dataLayer||[];if(typeof window.gtag==='function')window.gtag('event','brand_conversion_click',detail);else window.dataLayer.push(Object.assign({event:'brand_conversion_click'},detail));});`;
 
-  if (brand.slug === "texomaco") return <><BrandStyle brand={brand} />{ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}{ga4 && <script dangerouslySetInnerHTML={{__html:`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ga4}',{send_page_view:true});`}} />}<script dangerouslySetInnerHTML={{ __html: clickTracking }} /><BrandEntityJsonLd brand={brand} description={content.seo.description} image={content.seo.ogImage} /><TexomaCollectiveShell brand={brand} content={content as any} alert={alert}>{children}</TexomaCollectiveShell></>;
+  if (brand.slug === "texomaco") return <><BrandStyle brand={brand} />{ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}{ga4 && <script dangerouslySetInnerHTML={{__html:`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ga4}',{send_page_view:true});`}} />}<script dangerouslySetInnerHTML={{ __html: clickTracking }} /><BrandEntityJsonLd brand={brand} description={content.seo.description} image={content.seo.ogImage} /><TexomaCollectiveShell brand={brand} content={content as any} alert={alert}>{children}</TexomaCollectiveShell>{textUs}</>;
 
-  if (brand.slug === "fastrac") return <><BrandStyle brand={brand} />{ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}{ga4 && <script dangerouslySetInnerHTML={{__html:`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ga4}',{send_page_view:true});gtag('set','user_properties',{brand_site:'fastrac'});`}} />}<script dangerouslySetInnerHTML={{ __html: clickTracking }} /><BrandEntityJsonLd brand={brand} description={content.seo.description} image={content.seo.ogImage} /><div className="brand-site min-h-screen" data-brand="fastrac"><FastracShell brand={brand} alert={alert} network={network}>{children}</FastracShell>{tap?.enabled !== false && <MembershipBand brand={brand} settings={tap ?? undefined} />}<Footer brand={brand} blurb={content.footerBlurb} settings={footer ?? undefined} /></div></>;
+  if (brand.slug === "fastrac") return <><BrandStyle brand={brand} />{ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}{ga4 && <script dangerouslySetInnerHTML={{__html:`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ga4}',{send_page_view:true});gtag('set','user_properties',{brand_site:'fastrac'});`}} />}<script dangerouslySetInnerHTML={{ __html: clickTracking }} /><BrandEntityJsonLd brand={brand} description={content.seo.description} image={content.seo.ogImage} /><div className="brand-site min-h-screen" data-brand="fastrac"><FastracShell brand={brand} alert={alert} network={network}>{children}</FastracShell>{tap?.enabled !== false && <MembershipBand brand={brand} settings={tap ?? undefined} />}<Footer brand={brand} blurb={content.footerBlurb} settings={footer ?? undefined} /></div>{textUs}</>;
 
-  if (brand.slug === "bigwater" || brand.slug === "towboatus-ntx") return <><BrandStyle brand={brand} />{ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}{ga4 && <script dangerouslySetInnerHTML={{__html:`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ga4}',{send_page_view:true});gtag('set','user_properties',{brand_site:'${brand.slug}'});`}} />}{brand.slug === "bigwater" && <BigWaterStructuredData />}<script dangerouslySetInnerHTML={{ __html: clickTracking }} /><SpecialBrandAlert alert={alert} brand={brand.slug} />{children}<BigWaterFooter /></>;
+  if (brand.slug === "bigwater" || brand.slug === "towboatus-ntx") return <><BrandStyle brand={brand} />{ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />}{ga4 && <script dangerouslySetInnerHTML={{__html:`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ga4}',{send_page_view:true});gtag('set','user_properties',{brand_site:'${brand.slug}'});`}} />}{brand.slug === "bigwater" && <BigWaterStructuredData />}<script dangerouslySetInnerHTML={{ __html: clickTracking }} /><SpecialBrandAlert alert={alert} brand={brand.slug} />{children}<BigWaterFooter />{textUs}</>;
 
   return (
     <>
@@ -114,6 +119,7 @@ export default async function BrandLayout({ children, params }: { children: Reac
         {tap?.enabled !== false && <MembershipBand brand={brand} settings={tap ?? undefined} />}
         <Footer brand={brand} blurb={content.footerBlurb} settings={footer ?? undefined} />
       </div>
+      {textUs}
     </>
   );
 }
