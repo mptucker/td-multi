@@ -3,16 +3,33 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 let anon: SupabaseClient | null = null;
 let service: SupabaseClient | null = null;
 
-/**
- * Where the sites read Supabase, with the same fallbacks as /admin and /studio.
- * In production NEXT_PUBLIC_SUPABASE_ANON_KEY is a Sensitive Vercel variable
- * that the server can't read, so without these fallbacks every page quietly
- * used the copy built into the code and ignored everything saved in the CMS.
+export function hasSupabase(): boolean {
+  return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+}
+
+/** Read-only client (RLS: anon can select published rows). */
+export function supabaseAnon(): SupabaseClient | null {
+  if (!hasSupabase()) return null;
+  anon ??= createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
+    auth: { persistSession: false },
+  });
+  return anon;
+}
+
+let fresh: SupabaseClient | null = null;
+
+/*
+ * Shared settings (the Dockline "Text us" button, footer, TAP) are read with the
+ * same fallbacks as /admin and /studio. In production NEXT_PUBLIC_SUPABASE_ANON_KEY
+ * is a Sensitive Vercel variable the server can't read, so the button saved in
+ * /admin never showed. Page content still uses supabaseAnon() and the copy in the
+ * code until each site's CMS content is checked (Lighthouse's CMS copy is older
+ * than its redesign).
  */
-export function supabaseUrl(): string {
+function sharedSettingsUrl(): string {
   return process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "";
 }
-export function supabaseKey(): string {
+function sharedSettingsKey(): string {
   return (
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
@@ -22,21 +39,6 @@ export function supabaseKey(): string {
   );
 }
 
-export function hasSupabase(): boolean {
-  return /^https:\/\//.test(supabaseUrl()) && Boolean(supabaseKey());
-}
-
-/** Read-only client (RLS: anon can select published rows). */
-export function supabaseAnon(): SupabaseClient | null {
-  if (!hasSupabase()) return null;
-  anon ??= createClient(supabaseUrl(), supabaseKey(), {
-    auth: { persistSession: false },
-  });
-  return anon;
-}
-
-let fresh: SupabaseClient | null = null;
-
 /**
  * Read-only client that skips Next's fetch cache. Used for small shared
  * settings (global_settings) so a CMS change shows on every site right away;
@@ -44,8 +46,10 @@ let fresh: SupabaseClient | null = null;
  * it was saved.
  */
 export function supabaseAnonFresh(): SupabaseClient | null {
-  if (!hasSupabase()) return null;
-  fresh ??= createClient(supabaseUrl(), supabaseKey(), {
+  const url = sharedSettingsUrl();
+  const key = sharedSettingsKey();
+  if (!/^https:\/\//.test(url) || !key) return null;
+  fresh ??= createClient(url, key, {
     auth: { persistSession: false },
     global: { fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }) },
   });
@@ -54,8 +58,8 @@ export function supabaseAnonFresh(): SupabaseClient | null {
 
 /** Server-only client for the admin UI and seed script. Never import from a client component. */
 export function supabaseService(): SupabaseClient | null {
-  if (!/^https:\/\//.test(supabaseUrl()) || !process.env.SUPABASE_SERVICE_ROLE_KEY) return null;
-  service ??= createClient(supabaseUrl(), process.env.SUPABASE_SERVICE_ROLE_KEY, {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) return null;
+  service ??= createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {
     auth: { persistSession: false },
   });
   return service;
@@ -72,7 +76,7 @@ export function supabaseBrowser(url?: string, key?: string): SupabaseClient | nu
 /** Server client scoped to a staff member's JWT; all reads remain subject to RLS. */
 export function supabaseAuthenticated(accessToken: string): SupabaseClient | null {
   if (!hasSupabase()) return null;
-  return createClient(supabaseUrl(), supabaseKey(), {
+  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
     global: { headers: { Authorization: "Bearer " + accessToken } },
     auth: { persistSession: false, autoRefreshToken: false },
   });
