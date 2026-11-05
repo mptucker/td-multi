@@ -3,14 +3,33 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 let anon: SupabaseClient | null = null;
 let service: SupabaseClient | null = null;
 
+/**
+ * Where the sites read Supabase, with the same fallbacks as /admin and /studio.
+ * In production NEXT_PUBLIC_SUPABASE_ANON_KEY is a Sensitive Vercel variable
+ * that the server can't read, so without these fallbacks every page quietly
+ * used the copy built into the code and ignored everything saved in the CMS.
+ */
+export function supabaseUrl(): string {
+  return process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "";
+}
+export function supabaseKey(): string {
+  return (
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+    process.env.SUPABASE_PUBLISHABLE_KEY ||
+    process.env.SUPABASE_ANON_KEY ||
+    ""
+  );
+}
+
 export function hasSupabase(): boolean {
-  return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+  return /^https:\/\//.test(supabaseUrl()) && Boolean(supabaseKey());
 }
 
 /** Read-only client (RLS: anon can select published rows). */
 export function supabaseAnon(): SupabaseClient | null {
   if (!hasSupabase()) return null;
-  anon ??= createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
+  anon ??= createClient(supabaseUrl(), supabaseKey(), {
     auth: { persistSession: false },
   });
   return anon;
@@ -26,7 +45,7 @@ let fresh: SupabaseClient | null = null;
  */
 export function supabaseAnonFresh(): SupabaseClient | null {
   if (!hasSupabase()) return null;
-  fresh ??= createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
+  fresh ??= createClient(supabaseUrl(), supabaseKey(), {
     auth: { persistSession: false },
     global: { fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }) },
   });
@@ -35,8 +54,8 @@ export function supabaseAnonFresh(): SupabaseClient | null {
 
 /** Server-only client for the admin UI and seed script. Never import from a client component. */
 export function supabaseService(): SupabaseClient | null {
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) return null;
-  service ??= createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {
+  if (!/^https:\/\//.test(supabaseUrl()) || !process.env.SUPABASE_SERVICE_ROLE_KEY) return null;
+  service ??= createClient(supabaseUrl(), process.env.SUPABASE_SERVICE_ROLE_KEY, {
     auth: { persistSession: false },
   });
   return service;
@@ -53,7 +72,7 @@ export function supabaseBrowser(url?: string, key?: string): SupabaseClient | nu
 /** Server client scoped to a staff member's JWT; all reads remain subject to RLS. */
 export function supabaseAuthenticated(accessToken: string): SupabaseClient | null {
   if (!hasSupabase()) return null;
-  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
+  return createClient(supabaseUrl(), supabaseKey(), {
     global: { headers: { Authorization: "Bearer " + accessToken } },
     auth: { persistSession: false, autoRefreshToken: false },
   });
