@@ -16,6 +16,23 @@ export function supabaseAnon(): SupabaseClient | null {
   return anon;
 }
 
+let fresh: SupabaseClient | null = null;
+
+/**
+ * Read-only client that skips Next's fetch cache. Used for small shared
+ * settings (global_settings) so a CMS change shows on every site right away;
+ * the cached client kept serving a missing "dockline_widget" row long after
+ * it was saved.
+ */
+export function supabaseAnonFresh(): SupabaseClient | null {
+  if (!hasSupabase()) return null;
+  fresh ??= createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
+    auth: { persistSession: false },
+    global: { fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }) },
+  });
+  return fresh;
+}
+
 /** Server-only client for the admin UI and seed script. Never import from a client component. */
 export function supabaseService(): SupabaseClient | null {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) return null;
