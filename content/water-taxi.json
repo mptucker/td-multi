@@ -85,18 +85,18 @@
       "title": "How to get a ride",
       "body": [
         "Text or call 903.361.0775 with where you are and where you're headed. For a guaranteed pickup time — holiday weekends especially — book online ahead. Your captain takes card, Venmo or cash on the boat; tips appreciated.",
-        "Rides run rain or shine, sunrise to sunset; night trips can be arranged with a $20 surcharge. Memorial Day, Fourth of July and Labor Day weekends add $5 per person."
+        "Rides run rain or shine, sunrise to sunset; night trips can be arranged with a $25/hr surcharge. Memorial Day, Fourth of July and Labor Day weekends add $5 per person."
       ]
     },
     "directions": [
-      "Highport Marina / Island Bar & Grill · Pelican's Landing at Cedar Bayou · Marina Del Rey · Flowing Wells · Grandpappy Point",
+      "Highport Marina / Island Bar & Grill · Pelican's Landing at Cedar Bayou · Willow Springs · Flowing Wells · Grandpappy Point",
       "Buncombe Creek · Alberta Creek · Catfish Bay · East & West Burns Run",
       "Island View Park · Lighthouse Resort & Marina",
       "North (Party) Island · Treasure Island · Wood Island"
     ],
     "essentials": [
       { "title": "Rates", "items": ["$25 per person each way, Highport ↔ islands", "$150 per hour private, up to 6, dock to dock", "Round trips are two bookings"], "factKey": "watertaxi.rates" },
-      { "title": "Surcharges", "items": ["$20 per trip after dark", "$5 per person on Memorial Day, July 4th and Labor Day weekends"], "factKey": "watertaxi.surcharges" },
+      { "title": "Surcharges", "items": ["$25 per hour after dark", "$5 per person on Memorial Day, July 4th and Labor Day weekends"], "factKey": "watertaxi.surcharges" },
       { "title": "Capacity", "items": ["Jolt: up to 6", "Mellow Yellow: up to 18 (covered, bench seating)", "Leashed pets welcome on private trips"] },
       { "title": "Kids", "items": ["Children 12 and under wear life jackets aboard the taxi — we have them", "All ages welcome on the island shuttle"] }
     ],
@@ -114,7 +114,7 @@
       { "title": "Booking & payment", "items": ["72 hours' notice to cancel a booked ride", "Card, Venmo or cash on the boat", "Rides run rain or shine; captain may cancel for unsafe weather with a full refund"], "factKey": "fastrac.cancel_public" },
       { "title": "Aboard", "items": ["Life jackets for kids 12 and under", "Capacity limits are firm — Coast Guard rules", "No glass on the islands", "Leashed pets on private trips only"] }
     ],
-    "policyNote": "Texoma Water Taxi is operated by Fastrac Charters & Cruises, part of the Texoma Destinations family."
+    "policyNote": "Texoma Water Taxi is operated by Fastrac Cruises, part of the Texoma Destinations family."
   },
   "footerBlurb": "Texoma Water Taxi by Fastrac is Lake Texoma's only on-demand water taxi — island shuttles from Highport Marina, private rides anywhere in the service area, boat drop-offs and beverage delivery, sunrise to sunset. Part of the Texoma Destinations family."
 }

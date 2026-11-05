@@ -1,7 +1,7 @@
 /**
  * CONTENT LAYER
  * ---------------------------------------------------------------------------
- * Brand page copy   → content/<brand>.json  (versioned in git; the CMS may override later)
+ * Brand page copy   → content/<brand>.json  (versioned in git; the source of truth)
  * Events / packages / alerts / facts → Supabase tables when configured, else content/*.json.
  *
  * Everything is fetched on the server with `cache: "force-cache"` semantics via Next's
@@ -34,7 +34,6 @@ import waterTaxi from "@content/water-taxi.json";
 import bigwater from "@content/bigwater.json";
 import towboatusNtx from "@content/towboatus-ntx.json";
 import texomaco from "@content/texomaco.json";
-import { mergeContent } from "@/lib/content-merge";
 import eventsJson from "@content/events.json";
 import packagesJson from "@content/packages.json";
 import alertsJson from "@content/alerts.json";
@@ -104,8 +103,6 @@ export async function getContent(slug: BrandSlug): Promise<BrandContent> {
   const sb = supabaseAnon();
   let result = CONTENT[slug];
   if (sb) {
-    const { data } = await sb.from("brand_content").select("content").eq("brand", slug).maybeSingle();
-    if (data?.content) result = mergeContent(CONTENT[slug], data.content) as BrandContent;
     const { data: faqs } = await sb.from("faqs").select("question,answer").eq("brand", slug).eq("published", true).order("sort_order");
     if (faqs?.length && result.plan) result = { ...result, plan: { ...result.plan, faqs: faqs.map((faq) => ({ q: faq.question, a: faq.answer })) } };
   }

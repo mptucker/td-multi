@@ -32,7 +32,7 @@ These are existing official Lighthouse / Texoma Destinations images, downloaded 
 - Existing anonymous testimonials had no verifiable individual source links. They are omitted from the redesign and the local reviews array is empty.
 - No new prices, occupancy figures, testimonials, or availability claims were invented. Existing operational details remain owned by the content/facts registry and booking system.
 - Existing cruise information contains differing departure descriptions. The property page asks guests to confirm their departure dock when booking.
-- A populated Supabase `brand_content` row still overrides the local JSON by design. Deploying code does not overwrite that row; editorial hero copy and the new map field may be synchronized through the existing CMS workflow.
+- Git provides the complete Lighthouse model and is the runtime source of truth. Supabase holds private editing drafts; publishing from the CMS writes the completed change to `content/lighthouse.json` as a small Git commit and starts a Vercel deployment.
 
 ## Interaction and accessibility
 

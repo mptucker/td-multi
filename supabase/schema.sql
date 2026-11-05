@@ -375,6 +375,8 @@ grant execute on function cms_claim_invite() to authenticated;
 
 drop policy if exists "anon read brand_content" on brand_content;
 create policy "anon read brand_content" on brand_content for select to anon using (true);
+revoke select on table brand_content from anon;
+grant select (brand, content, published_at, updated_at) on table brand_content to anon;
 drop policy if exists "anon read published events" on events;
 create policy "anon read published events" on events for select to anon using (published);
 drop policy if exists "anon read published packages" on packages;

@@ -23,6 +23,32 @@ configuration. It does not use ADMIN_PASSWORD.
 The first administrator is intentionally bootstrapped in SQL so an anonymous
 visitor can never claim the initial admin role.
 
+## Content authority and synchronization
+
+Git owns each site's complete content model in `content/<brand>.json` and is the
+runtime source of truth. Supabase `brand_content` rows are private editing
+workspaces. **Save draft** writes a versioned patch to Supabase; **Commit &
+deploy** writes the completed content to the selected site's JSON file on the
+configured Git branch. That commit starts the normal Vercel deployment and the
+CMS clears its temporary patch after Git accepts the change.
+
+Do not seed full content documents into `brand_content` after the patch
+migration. The CMS automatically computes and saves the smallest draft. A
+legacy full document without `__cmsPatch: 1` is ignored rather than allowed to
+roll a site backward.
+
+Before a content-model deployment:
+
+1. Run `node scripts/audit-cms-content.mjs <production-env-file>`.
+2. Review unpublished differences so recent editor work is preserved.
+3. Run any new migration in `supabase/`.
+4. Deploy, then rerun the audit and confirm `storageFormat` is
+   `versioned-patch` for stored brands.
+
+Use `--collections` to audit events, packages, announcements, facts, FAQs, and
+shared settings. Git JSON remains the fallback; published CMS collections are
+the live operational source when Supabase is configured.
+
 ## TowBoatUS North Texas / TIDE
 
 TowBoatUS operational content remains in the existing TIDE Supabase project.

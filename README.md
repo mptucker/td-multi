@@ -29,7 +29,7 @@ src/config/hub-links.ts     THE deep-link contract — every CTA resolves here (
 ```
 
 * **Design system:** Tailwind v4 + CSS variables. Each brand sets `theme` (colors, Google Fonts, radius, header style) in `src/config/brands.ts`; components never hard-code a color.
-* **Content:** unique, hand-written copy per brand lives in `content/<brand>.json` (typed by `BrandContent` in `src/config/types.ts`). Events, packages, alert bars and the facts registry are shared tables with a **"show on sites"** array — the "choose which sites this displays on" requirement.
+* **Content:** unique, hand-written copy per brand lives in `content/<brand>.json` (typed by `BrandContent` in `src/config/types.ts`). Git is authoritative: CMS drafts stay private in Supabase, and publishing creates a small commit for that site's JSON file so Vercel deploys the recorded version. Events, packages, alert bars and the facts registry are shared tables with a **"show on sites"** array — the "choose which sites this displays on" requirement.
 * **Facts registry:** every operational number (cabin counts, prices, hours) has a key, owner and `last_verified` date (`content/facts.json` / `facts` table). Rules pages show the verification date.
 * **Booking:** never re-implemented. `hubUrl(intent, brand)` builds the exact hub URL (e.g. `/where-to-stay/cabins#/paradise`) and stamps `utm_source=<brand domain>&utm_medium=brand-site&utm_campaign=<placement>&property=<slug>`.
 * **SEO:** per-brand `<title>`/description/OG, canonical to the brand domain, `LocalBusiness`-family JSON-LD with NAP + `parentOrganization`, 308 redirects for every legacy URL, no duplicated property descriptions between brands or the hub.
@@ -67,6 +67,9 @@ NEXT_PUBLIC_SUPABASE_URL=… SUPABASE_SERVICE_ROLE_KEY=… npm run seed
 ```
 
 Without Supabase the sites are fully static from `content/*.json` (ISR every 60 s is a no-op).
+Run new files in `supabase/` before deploying the code that depends on them. Use
+`node scripts/audit-cms-content.mjs <production-env-file>` to compare effective
+CMS content with the Git baseline without printing credentials.
 
 ## Adding or changing things
 
