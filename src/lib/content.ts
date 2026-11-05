@@ -21,7 +21,7 @@ import type {
   PackageItem,
 } from "@/config/types";
 import { DEFAULT_BRAND_NETWORK } from "@/config/brand-network";
-import { supabaseAnon } from "./supabase";
+import { supabaseAnon, supabaseAnonFresh } from "./supabase";
 
 import lighthouse from "@content/lighthouse.json";
 import paradise from "@content/paradise.json";
@@ -84,7 +84,7 @@ export async function getBrandWithSettings(slug: BrandSlug): Promise<BrandConfig
 }
 
 export async function getGlobalSetting<T>(key: string, fallback: T): Promise<T> {
-  const sb = supabaseAnon();
+  const sb = supabaseAnonFresh();
   if (!sb) return fallback;
   const { data } = await sb.from("global_settings").select("value").eq("key", key).maybeSingle();
   return (data?.value as T) ?? fallback;
