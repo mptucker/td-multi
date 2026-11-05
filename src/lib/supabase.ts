@@ -18,6 +18,27 @@ export function supabaseAnon(): SupabaseClient | null {
 
 let fresh: SupabaseClient | null = null;
 
+/*
+ * Shared settings (the Dockline "Text us" button, footer, TAP) are read with the
+ * same fallbacks as /admin and /studio. In production NEXT_PUBLIC_SUPABASE_ANON_KEY
+ * is a Sensitive Vercel variable the server can't read, so the button saved in
+ * /admin never showed. Page content still uses supabaseAnon() and the copy in the
+ * code until each site's CMS content is checked (Lighthouse's CMS copy is older
+ * than its redesign).
+ */
+function sharedSettingsUrl(): string {
+  return process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "";
+}
+function sharedSettingsKey(): string {
+  return (
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+    process.env.SUPABASE_PUBLISHABLE_KEY ||
+    process.env.SUPABASE_ANON_KEY ||
+    ""
+  );
+}
+
 /**
  * Read-only client that skips Next's fetch cache. Used for small shared
  * settings (global_settings) so a CMS change shows on every site right away;
@@ -25,8 +46,10 @@ let fresh: SupabaseClient | null = null;
  * it was saved.
  */
 export function supabaseAnonFresh(): SupabaseClient | null {
-  if (!hasSupabase()) return null;
-  fresh ??= createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
+  const url = sharedSettingsUrl();
+  const key = sharedSettingsKey();
+  if (!/^https:\/\//.test(url) || !key) return null;
+  fresh ??= createClient(url, key, {
     auth: { persistSession: false },
     global: { fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }) },
   });
