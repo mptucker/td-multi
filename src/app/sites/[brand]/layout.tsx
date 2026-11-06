@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     alternates: { canonical: "/" },
     openGraph: { title: c.seo.title, description: c.seo.description, url: "/", images: [{ url: image, alt: brand.nap.displayName }], siteName: brand.nap.displayName, locale: "en_US", type: "website" },
     twitter: { card: "summary_large_image", title: c.seo.title, description: c.seo.description, images: [image] },
-    icons: { icon: brand.logo.src },
+    icons: { icon: brand.slug === "texomaco" ? "/texomaco/pin.png" : brand.logo.src },
     authors: [{ name: brand.nap.legalName, url: `https://${brand.canonicalDomain}/` }],
     creator: brand.nap.legalName,
     publisher: brand.nap.legalName,

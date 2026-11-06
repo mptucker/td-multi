@@ -64,7 +64,8 @@
       "title": "More Texoma.",
       "body": "Stronger businesses. A brighter lake. Together."
     },
-    "mission": "To market businesses, grow businesses, and tell the stories that make people fall in love with Texoma — creating a stronger community, a vibrant local economy, and a brighter future for the lake we call home."
+    "mission": "We tell the stories that make people fall in love with Texoma.",
+    "missionBody": "By connecting visitors with local people, places and businesses, we help good ideas travel farther and strengthen the lake community we share."
   },
   "pages": {
     "about": {
@@ -92,20 +93,7 @@
           "body": "Markets the destination, grows regional partners and brings tourism, marketing, events and sales together."
         }
       ],
-      "team": [
-        {
-          "name": "Cortney Gumm",
-          "role": "Marketing Director"
-        },
-        {
-          "name": "Kayla Pope",
-          "role": "Event Director"
-        },
-        {
-          "name": "Avery Dosse",
-          "role": "Content Manager"
-        }
-      ],
+      "team": [],
       "mark": {
         "eyebrow": "The meaning behind the mark",
         "title": "A place. A connection. A story.",
@@ -137,27 +125,27 @@
       "values": [
         {
           "title": "Be Found",
-          "body": "Discovery through directories, websites, guides and visitor-facing platforms."
+          "body": "Help visitors find you through business profiles, destination pages, directories and trip-planning touchpoints."
         },
         {
           "title": "Get Business",
-          "body": "Referrals, leads, packages, group opportunities and direct sales."
+          "body": "Request qualified referrals, group leads, package opportunities and connections that can turn interest into business."
         },
         {
           "title": "Get Included",
-          "body": "Eligibility for programs, Collections, campaigns, itineraries and tourism products."
+          "body": "Be considered for relevant itineraries, Collections, campaigns, visitor programs and tourism products as they become available."
         },
         {
           "title": "Get Activated",
-          "body": "Events, consumer activations, familiarization opportunities and destination experiences."
+          "body": "Explore event participation, visitor activations, familiarization opportunities and destination experiences that fit your goals."
         },
         {
           "title": "Get Connected",
-          "body": "Introductions, collaborations and tourism partnerships across the region."
+          "body": "Ask for introductions, collaborations and tourism partnerships across the Texas and Oklahoma sides of the lake."
         },
         {
           "title": "Get Smarter",
-          "body": "Visitor trends, seasonal information, booking insights and tourism intelligence."
+          "body": "Use available visitor trends, seasonal context and tourism insights to make better marketing decisions."
         }
       ]
     },
@@ -217,12 +205,14 @@
           ]
         }
       ],
+      "availabilityNote": "Profiles, referrals and partner conversations are available now. Maps, save-to-trip tools, publications, campaigns, Collections and dedicated stories are scheduled only when the applicable platform or program is active; timing and eligibility are confirmed in writing before enrollment.",
       "editorialNote": "Paid placement and independent editorial storytelling remain clearly identified and separate."
     },
     "groups-events": {
       "eyebrow": "Gather at the lake",
       "title": "Bring the people. We will help connect the place and the possibilities.",
-      "intro": "Texoma Collective supports group inquiries, destination events, partnerships and experiences across the Lake Texoma region.",
+      "intro": "Planning help and regional introductions are available now. Tell us about your group, wedding, retreat or event and we will connect you with relevant places and partners around Lake Texoma.",
+      "availability": "Today, visitors can submit a group or event inquiry for personal routing by the Collective team. The named Collections below are concepts in development and are not yet bookable products.",
       "collections": [
         {
           "title": "Texoma Wedding Collection",
@@ -244,42 +234,54 @@
         {
           "title": "On the Water",
           "body": "Cruises, fishing, beaches, boating and the lake itself.",
-          "href": "https://texomadestinations.com/things-to-do"
+          "href": "https://texomadestinations.com/things-to-do",
+          "label": "Explore water experiences",
+          "handoff": "Texoma Destinations guide"
         },
         {
           "title": "Stay Texoma",
           "body": "Cabins, camps, RV sites, resorts and weekends that stretch a little longer.",
-          "href": "https://texomadestinations.com/where-to-stay"
+          "href": "https://texomadestinations.com/where-to-stay",
+          "label": "Browse places to stay",
+          "handoff": "Texoma Destinations guide"
         },
         {
-          "title": "Taste Texoma",
-          "body": "Local tables, dockside stops and the flavors around the lake.",
-          "href": "https://texomadestinations.com"
+          "title": "Plan with Texoma Destinations",
+          "body": "Continue to the regional visitor guide for stays, experiences and more ways to plan the trip.",
+          "href": "https://texomadestinations.com",
+          "label": "Open the destination guide",
+          "handoff": "External destination guide"
         },
         {
-          "title": "People of Texoma",
-          "body": "The makers, guides, owners and neighbors who give the lake its character.",
-          "href": "/about"
+          "title": "Meet the Collective",
+          "body": "Learn why the Collective connects businesses, visitors and stories across the lake.",
+          "href": "/about",
+          "label": "About the Collective"
         },
         {
-          "title": "What's Happening",
-          "body": "Events, gatherings and reasons to make the trip now.",
-          "href": "/events"
+          "title": "Plan a Group or Event",
+          "body": "Bring us the shape of your gathering and we will help connect the place and possibilities.",
+          "href": "/groups-events",
+          "label": "Start planning"
         },
         {
-          "title": "Know Before You Go",
-          "body": "A better trip starts with a little local context.",
-          "href": "/faq"
+          "title": "About the Collective",
+          "body": "Answers about partnerships, booking, the region and how the Collective can help.",
+          "href": "/faq",
+          "label": "Read Collective FAQs"
         },
         {
           "title": "Two States. One Lake.",
-          "body": "Texas and Oklahoma meet in one shared destination.",
-          "href": "/about"
+          "body": "See how Texas and Oklahoma connect through one shared lake destination.",
+          "href": "/about",
+          "label": "Why the Collective"
         },
         {
-          "title": "Stay Another Day",
-          "body": "One more cove, one more town, one more story worth bringing home.",
-          "href": "https://texomadestinations.com"
+          "title": "More Texoma Ideas",
+          "body": "Find more stays, experiences and reasons to spend another day around the lake.",
+          "href": "https://texomadestinations.com",
+          "label": "Keep exploring",
+          "handoff": "Texoma Destinations guide"
         }
       ]
     },
@@ -287,7 +289,10 @@
       "eyebrow": "Start here",
       "title": "Tell us what you are trying to make happen.",
       "intro": "Choose the kind of conversation you need and the Texoma Collective team will route it to the right person.",
-      "email": "[OPEN] Public email address"
+      "email": "Contact through the inquiry form",
+      "callPhone": "903.200.1408",
+      "textPhone": "903.414.6040",
+      "contactNote": "Call the Collective office at 903.200.1408. The Text us widget is a separate messaging line, and replies come from 903.414.6040."
     },
     "faq": {
       "eyebrow": "Good to know",
@@ -314,13 +319,24 @@
     "privacy": {
       "title": "Privacy",
       "body": [
-        "[OPEN] Legal privacy copy is pending review before production launch."
+        "Effective November 6, 2026.",
+        "Texoma Collective collects information you choose to provide through our inquiry forms, including your name, organization, email address, phone number, location and message. We also receive basic technical and usage information through security, hosting and analytics services so we can operate and improve the website.",
+        "We use this information to respond to requests, route inquiries to the appropriate Texoma Collective or participating business contact, provide requested information, understand website performance, prevent misuse and maintain our records.",
+        "We may share an inquiry with Texoma Destinations, participating businesses or service providers when reasonably necessary to answer the request or deliver the service you asked about. We do not sell personal information. Third-party services, linked websites and the Text us service maintain their own privacy practices.",
+        "We retain information only as long as reasonably necessary for the purposes described above, legal obligations, security and dispute resolution. You may ask us to review or delete information you submitted by calling 903.200.1408 or writing to Texoma Collective, 81750 N State Hwy 289, Suite 106, Pottsboro, TX 75076.",
+        "This website is intended for a general audience and is not directed to children under 13. We may update this notice as our services change; the effective date above identifies the current version."
       ]
     },
     "terms": {
       "title": "Terms",
       "body": [
-        "[OPEN] Legal terms copy is pending review before production launch."
+        "Effective November 6, 2026.",
+        "This website provides general information about Texoma Collective, Lake Texoma businesses, events, visitor resources and partnership opportunities. Using the website means you agree to these terms. If you do not agree, please do not use the website.",
+        "Texoma Collective is a destination marketing and connection organization, not the operator of every business, property, event or experience described here. Availability, pricing, schedules, eligibility and other details may change. Confirm material details directly with the responsible provider before making plans or purchases.",
+        "Links to Texoma Destinations, participating businesses and other third parties are provided for convenience. Those services have their own terms and policies, and Texoma Collective is not responsible for third-party content, transactions or performance.",
+        "Website content, branding and original materials are owned by or licensed to Texoma Collective and may not be copied, republished or used commercially without permission. You may use the website for lawful personal or business-inquiry purposes and may not interfere with its operation, submit deceptive information or attempt unauthorized access.",
+        "Information is provided as available without a promise that every page will be error-free or continuously available. To the extent permitted by law, Texoma Collective is not liable for indirect or consequential losses arising from use of the website or reliance on third-party information.",
+        "These terms are governed by Texas law. Questions may be directed to Texoma Collective at 903.200.1408 or 81750 N State Hwy 289, Suite 106, Pottsboro, TX 75076. We may update these terms as the website and services change; the effective date above identifies the current version."
       ]
     },
     "events": {

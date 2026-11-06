@@ -39,7 +39,9 @@ export async function POST(request: Request) {
 
   const brand = payload.brand as BrandSlug;
   const repository = studioRepository();
-  if (!repository) return NextResponse.json({ error: "Git publishing is not configured for this deployment." }, { status: 503 });
+  if (!repository) return NextResponse.json({
+    error: "Publishing is unavailable because this production project is not connected to GitHub. Ask an administrator to add the Studio GitHub token in Vercel and redeploy.",
+  }, { status: 503 });
   const path = `content/${brand}.json`;
 
   try {

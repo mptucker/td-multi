@@ -14,7 +14,6 @@ const NAV = [
   ["/services", "Services"],
   ["/partners", "Partners"],
   ["/groups-events", "Groups & Events"],
-  ["/events", "Events"],
   ["/explore", "Explore"],
 ] as const;
 
@@ -223,8 +222,9 @@ export function TexomaCollectiveHome({ content, events }: { content: TCContent; 
         <div data-reveal>
           <Kicker>Our mission</Kicker>
           <blockquote className={styles.missionQuote}>
-            <Highlight text={h.mission ?? ""} marks={["market businesses", "grow businesses", "tell the stories"]} />
+            <Highlight text={h.mission ?? ""} marks={["tell the stories", "fall in love with Texoma"]} />
           </blockquote>
+          {h.missionBody && <p className={styles.missionBody}>{h.missionBody}</p>}
           <p className={styles.scriptLine}>{h.intro?.title}</p>
           <Link className={styles.textLink} href="/about">Meet the Collective <span aria-hidden="true">→</span></Link>
         </div>
@@ -383,7 +383,7 @@ function About({ data }: { data: any }) {
         <WaveEdge color="var(--tc-bg)" className={styles.edgeBottom} />
       </section>
 
-      <section className={styles.team}>
+      {data.team?.length > 0 && <section className={styles.team}>
         <div data-reveal><Kicker>The team</Kicker><h2>Lake lovers, parents and storytellers.</h2></div>
         <div className={styles.teamGrid}>
           {data.team.map((person: any, i: number) => (
@@ -394,7 +394,7 @@ function About({ data }: { data: any }) {
             </article>
           ))}
         </div>
-      </section>
+      </section>}
     </>
   );
 }
@@ -413,7 +413,7 @@ function Services({ data }: { data: any }) {
           </article>
         ))}
       </section>
-      <Callout kicker="Where we start" title="Sell the solution. Not the membership." body="The right starting point is the opportunity a business needs: discovery, referrals, visitors, collaboration or insight." href="/contact?type=partner" label="Tell us what you need" />
+      <Callout kicker="Where we start" title="Start with what your business needs." body="Tell us whether you need discovery, referrals, visitor traffic, collaboration or better destination insight. We will identify the most relevant next step." href="/contact?type=partner" label="Tell us what you need" />
     </>
   );
 }
@@ -439,6 +439,7 @@ function Partners({ data }: { data: any }) {
             </li>
           ))}
         </ol>
+        {data.availabilityNote && <p className={styles.editorialNote}>{data.availabilityNote}</p>}
         <p className={styles.editorialNote}>{data.editorialNote}</p>
       </section>
       <Callout kicker="Your business. The right opportunity." title="Tell us what you are trying to grow." body="A useful partnership begins with a real conversation." href="/contact?type=partner" label="Start a partner inquiry" />
@@ -455,6 +456,7 @@ function GroupsEvents({ data }: { data: any }) {
           <Kicker>Collections</Kicker>
           <h2>The Collective is who we are. <span className={styles.script}>The Collections are what we create.</span></h2>
         </div>
+        {data.availability && <p className={styles.editorialNote}>{data.availability}</p>}
         <div className={styles.collectionGrid}>
           {data.collections.map((item: any, i: number) => (
             <article key={item.title} className={tone(i + 2)} data-reveal>
@@ -480,8 +482,8 @@ function Events({ data, events }: { data: any; events: EventItem[] }) {
           <div className={styles.emptyState} data-reveal>
             <Image src="/texomaco/pin.png" alt="" width={700} height={941} />
             <Kicker>The calendar is taking shape</Kicker>
-            <h2>No public dates yet.</h2>
-            <p>Have an event, partnership or group idea? Start a conversation with the Collective.</p>
+            <h2>Dates are shared when they are confirmed.</h2>
+            <p>There are no confirmed public dates listed right now. Have a group, event or partnership idea? Start a conversation with the Collective.</p>
             <Link className={styles.btn} href="/contact?type=group_event">Contact the events team</Link>
           </div>
         )}
@@ -502,7 +504,8 @@ function Explore({ data }: { data: any }) {
             <span className={styles.postcardBody}>
               <strong>{p.title}</strong>
               <span>{p.body}</span>
-              <em>Explore <span aria-hidden="true">→</span></em>
+              <em>{p.label ?? "Explore"} <span aria-hidden="true">→</span></em>
+              {p.handoff && <small>{p.handoff}</small>}
             </span>
           </SmartLink>
         ))}
@@ -520,9 +523,11 @@ function Contact({ data }: { data: any }) {
           <h2>Come by. Call us. <span className={styles.script}>Tell us the idea.</span></h2>
           <dl>
             <div><dt>Visit</dt><dd><address>81750 N State Hwy 289, Suite 106<br />Pottsboro, TX 75076</address></dd></div>
-            <div><dt>Call</dt><dd><a href="tel:+19032001408">903.200.1408</a></dd></div>
+            <div><dt>Call</dt><dd><a href="tel:+19032001408">{data.callPhone ?? "903.200.1408"}</a></dd></div>
+            <div><dt>Text</dt><dd><a href="sms:+19034146040">{data.textPhone ?? "903.414.6040"}</a></dd></div>
             <div><dt>Hours</dt><dd>Tuesday–Saturday, 9am–6pm</dd></div>
           </dl>
+          {data.contactNote && <p>{data.contactNote}</p>}
         </div>
         <InquiryForm />
       </section>

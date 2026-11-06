@@ -49,7 +49,7 @@ export function InquiryForm({ defaultType = "general" }: { defaultType?: Inquiry
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/texomaco/pin.png" alt="" width={70} height={94} />
           <h3>Thank you.</h3>
-          <p>Your note is with the Texoma Collective team. We will be in touch soon.</p>
+          <p>Your inquiry was saved to the Texoma Collective team inbox. We will be in touch soon.</p>
         </div>
       </div>
     );
@@ -57,8 +57,8 @@ export function InquiryForm({ defaultType = "general" }: { defaultType?: Inquiry
 
   return (
     <form className={styles.form} onSubmit={submit}>
-      <div className={styles.honeypot} aria-hidden="true">
-        <label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
+      <div className={styles.honeypot} aria-hidden="true" hidden>
+        <label>Website<input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" /></label>
       </div>
       <fieldset className={styles.typePicker}>
         <legend>What kind of conversation?</legend>

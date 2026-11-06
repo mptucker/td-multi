@@ -16,7 +16,8 @@ export async function POST(request: Request) {
   if (!user) return NextResponse.json({ error: "Sign in to use Studio." }, { status: 401 });
   if (!canWrite(user)) return NextResponse.json({ error: "Your account has view-only access." }, { status: 403 });
   const repository = studioRepository();
-  if (!repository) return NextResponse.json({ error: "Studio is not connected to GitHub yet." }, { status: 503 });
+  if (!repository) return NextResponse.json({ error: "Studio is not connected to GitHub in this production project. Ask an administrator to add the Studio GitHub token in Vercel and redeploy." }, { status: 503 });
+  if (!process.env.OPENAI_API_KEY) return NextResponse.json({ error: "Studio's AI connection is not configured in this production project. Ask an administrator to add the OpenAI API key in Vercel and redeploy." }, { status: 503 });
 
   try {
     const form = await request.formData();

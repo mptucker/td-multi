@@ -465,7 +465,7 @@ export const BRANDS: Record<BrandSlug, BrandConfig> = {
       radius: "round",
       header: "light",
     },
-    logo: { src: "/brands/texoma-collective.png", width: 1800, height: 520 },
+    logo: { src: "/brands/texoma-collective.png", width: 1841, height: 728 },
     nap: {
       legalName: "Texoma Collective",
       displayName: "Texoma Collective",

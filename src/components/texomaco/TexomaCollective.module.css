@@ -152,6 +152,9 @@
 .missionPin img { position: relative; width: min(100%, 240px); height: auto; animation: bob 5s ease-in-out infinite; }
 .missionQuote { margin: 0; font-family: var(--tc-display); font-weight: 600; font-variation-settings: "SOFT" 100, "opsz" 72; font-size: clamp(1.7rem, 3.3vw, 3rem); line-height: 1.22; color: var(--tc-primary); }
 .missionQuote mark { background: linear-gradient(transparent 62%, rgb(210 160 82 / .55) 62%, rgb(210 160 82 / .55) 90%, transparent 90%); color: inherit; padding: 0 .05em; }
+.missionBody { max-width: 44rem; margin: 1.25rem 0 0; color: var(--tc-muted); font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.75; }
+
+.postcardBody small { display: block; margin-top: .4rem; color: var(--tc-muted); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 
 /* Postcard rail */
 .railSection { padding: 0 0 clamp(5rem, 9vw, 8rem); }
