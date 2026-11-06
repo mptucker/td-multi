@@ -1,8 +1,38 @@
 import { NextRequest, NextResponse } from "next/server";
+import { BRANDS } from "@/config/brands";
 import { supabaseService } from "@/lib/supabase";
 
 const attempts = new Map<string, { count: number; resetAt: number }>();
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const allowedOrigins = new Set([
+  ...Object.values(BRANDS).flatMap((brand) => brand.domains.map((domain) => `https://${domain}`)),
+  "https://td-brand-sites.vercel.app",
+]);
+
+function responseHeaders(request: Request): Record<string, string> {
+  const origin = request.headers.get("origin");
+  return origin && allowedOrigins.has(origin)
+    ? { "Access-Control-Allow-Origin": origin, Vary: "Origin" }
+    : {};
+}
+
+function json(request: Request, body: Record<string, unknown>, status = 200) {
+  return NextResponse.json(body, { status, headers: responseHeaders(request) });
+}
+
+export function OPTIONS(request: Request) {
+  const origin = request.headers.get("origin");
+  if (!origin || !allowedOrigins.has(origin)) return new NextResponse(null, { status: 403 });
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      ...responseHeaders(request),
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Max-Age": "86400",
+    },
+  });
+}
 
 function limited(request: NextRequest) {
   const key = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
@@ -17,10 +47,10 @@ function limited(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  if (limited(request)) return NextResponse.json({ error: "Please wait a few minutes before trying again." }, { status: 429 });
+  if (limited(request)) return json(request, { error: "Please wait a few minutes before trying again." }, 429);
   const body = await request.json().catch(() => null) as Record<string, unknown> | null;
-  if (!body) return NextResponse.json({ error: "The inquiry could not be read." }, { status: 400 });
-  if (String(body.website || "").trim()) return NextResponse.json({ ok: true });
+  if (!body) return json(request, { error: "The inquiry could not be read." }, 400);
+  if (String(body.website || "").trim()) return json(request, { ok: true });
 
   const clean = (key: string, max: number) => String(body[key] || "").trim().slice(0, max);
   const inquiryType = clean("inquiryType", 30);
@@ -34,11 +64,11 @@ export async function POST(request: NextRequest) {
   const brand = clean("brand", 40);
   const allowedInquiry = (brand === "texomaco" && ["partner", "group_event", "general"].includes(inquiryType)) || (brand === "lighthouse" && inquiryType === "group_event");
   if (!allowedInquiry || name.length < 2 || !emailPattern.test(email) || message.length < 12 || body.consent !== "yes" || (region && !["TX", "OK"].includes(region))) {
-    return NextResponse.json({ error: "Please complete the required fields." }, { status: 400 });
+    return json(request, { error: "Please complete the required fields." }, 400);
   }
 
   const supabase = supabaseService();
-  if (!supabase) return NextResponse.json({ error: "Inquiry intake is not configured on this preview." }, { status: 503 });
+  if (!supabase) return json(request, { error: "Inquiry intake is not configured on this preview." }, 503);
   const { error } = await supabase.from("inquiries").insert({
     brand,
     inquiry_type: inquiryType,
@@ -54,7 +84,7 @@ export async function POST(request: NextRequest) {
   });
   if (error) {
     console.error("Inquiry insert failed", error);
-    return NextResponse.json({ error: `We could not save your inquiry. Please call ${brand === "lighthouse" ? "903.361.5070" : "903.200.1408"}.` }, { status: 500 });
+    return json(request, { error: "We could not save your inquiry. Please try again in a few minutes or use the Text us widget." }, 500);
   }
-  return NextResponse.json({ ok: true }, { status: 201 });
+  return json(request, { ok: true }, 201);
 }

@@ -30,9 +30,10 @@ export function LighthouseInquiryForm({ variant }: Props) {
     ].join("\n");
 
     try {
-      const response = await fetch("/api/inquiries", {
+      const apiOrigin = (process.env.NEXT_PUBLIC_INQUIRY_API_ORIGIN || "").replace(/\/$/, "");
+      const response = await fetch(`${apiOrigin}/api/inquiries`, {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "text/plain;charset=UTF-8" },
         body: JSON.stringify({
           brand: "lighthouse",
           inquiryType: "group_event",

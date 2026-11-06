@@ -77,7 +77,6 @@ export function TexomaCollectiveShell({ brand, content, alert, children }: { bra
         </div>
         <div>
           <h3>Start a conversation</h3>
-          <a href={`tel:${brand.nap.phoneE164}`}>{brand.nap.phone}</a>
           <Link href="/contact?type=partner">Business partnership</Link>
           <Link href="/contact?type=group_event">Group or event</Link>
           <Link href="/contact">General question</Link>
@@ -520,14 +519,12 @@ function Contact({ data }: { data: any }) {
       <PageHero eyebrow={data.eyebrow} title={data.title} intro={data.intro} tone="sunset" />
       <section className={styles.contactGrid}>
         <div className={styles.contactInfo} data-reveal>
-          <h2>Come by. Call us. <span className={styles.script}>Tell us the idea.</span></h2>
+          <h2>Come by. <span className={styles.script}>Send us the idea.</span></h2>
           <dl>
             <div><dt>Visit</dt><dd><address>81750 N State Hwy 289, Suite 106<br />Pottsboro, TX 75076</address></dd></div>
-            <div><dt>Call</dt><dd><a href="tel:+19032001408">{data.callPhone ?? "903.200.1408"}</a></dd></div>
-            <div><dt>Text</dt><dd><a href="sms:+19034146040">{data.textPhone ?? "903.414.6040"}</a></dd></div>
             <div><dt>Hours</dt><dd>Tuesday–Saturday, 9am–6pm</dd></div>
           </dl>
-          {data.contactNote && <p>{data.contactNote}</p>}
+          <p>Use the form to reach the Collective team, or open the Text us widget for a message.</p>
         </div>
         <InquiryForm />
       </section>
