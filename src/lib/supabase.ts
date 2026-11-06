@@ -49,8 +49,9 @@ export function supabaseAnonFresh(): SupabaseClient | null {
 
 /** Server-only client for the admin UI and seed script. Never import from a client component. */
 export function supabaseService(): SupabaseClient | null {
-  if (!/^https:\/\//.test(supabaseUrl()) || !process.env.SUPABASE_SERVICE_ROLE_KEY) return null;
-  service ??= createClient(supabaseUrl(), process.env.SUPABASE_SERVICE_ROLE_KEY, {
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY;
+  if (!/^https:\/\//.test(supabaseUrl()) || !serviceKey) return null;
+  service ??= createClient(supabaseUrl(), serviceKey, {
     auth: { persistSession: false },
   });
   return service;
