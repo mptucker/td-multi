@@ -27,7 +27,8 @@ export function InquiryForm({ defaultType = "general" }: { defaultType?: Inquiry
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
     try {
-      const apiOrigin = (process.env.NEXT_PUBLIC_INQUIRY_API_ORIGIN || "").replace(/\/$/, "");
+      const isLocal = location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname.endsWith(".localhost");
+      const apiOrigin = isLocal ? "" : "https://td-multi.vercel.app";
       const response = await fetch(`${apiOrigin}/api/inquiries`, {
         method: "POST",
         headers: { "content-type": "text/plain;charset=UTF-8" },
