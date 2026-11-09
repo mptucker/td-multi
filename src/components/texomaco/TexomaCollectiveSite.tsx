@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { AlertItem, BrandConfig, BrandContent, EventItem } from "@/config/types";
 import { DismissibleAlert } from "@/components/DismissibleAlert";
 import { InquiryForm } from "./InquiryForm";
+import { TexomaTripPlanner } from "./TexomaTripPlanner";
 import { PillarArt, River, Scene, StampBadge, SunMark, ValueIcon, WaveEdge } from "./Art";
 import { Rail, RevealObserver } from "./Interactive";
 import styles from "./TexomaCollective.module.css";
@@ -494,7 +495,32 @@ function Events({ data, events }: { data: any; events: EventItem[] }) {
 function Explore({ data }: { data: any }) {
   return (
     <>
-      <PageHero eyebrow={data.eyebrow} title={data.title} intro={data.intro} tone="day" color="teal" />
+      <section className={styles.exploreHero}>
+        <div className={styles.exploreHeroCopy} data-reveal>
+          <Kicker light>{data.eyebrow}</Kicker>
+          <h1>{data.title}</h1>
+          <p>{data.intro}</p>
+          <a className={styles.exploreJump} href="#trip-planner-title">Start with the map <span aria-hidden="true">↓</span></a>
+        </div>
+        <div className={styles.exploreHeroImage} data-reveal>
+          <Image src="/lighthouse/marina-panorama.jpg" alt="Lake Texoma marina and shoreline" fill sizes="(max-width: 800px) 100vw, 52vw" priority />
+          <span>Two states. One lake. Your trip.</span>
+        </div>
+        <WaveEdge color="var(--tc-deep)" className={styles.edgeBottom} />
+      </section>
+      <section className={styles.tripPlanner} aria-labelledby="trip-planner-title">
+        <div className={styles.tripPlannerIntro} data-reveal>
+          <p className={styles.kicker}>The Collective map</p>
+          <h2 id="trip-planner-title">Find your place.<br /><span className={styles.script}>Make it a trip.</span></h2>
+          <p>Explore approved Texoma Collective partners, open the details that fit your trip, and save a personal lake itinerary you can share with the whole crew.</p>
+          <ol>
+            <li><span>01</span>Explore the map</li>
+            <li><span>02</span>Add partners to My Trip</li>
+            <li><span>03</span>Save and share the plan</li>
+          </ol>
+        </div>
+        <TexomaTripPlanner />
+      </section>
       <section className={styles.exploreGrid}>
         {data.pillars.map((p: any, i: number) => (
           <SmartLink key={p.title} href={p.href} className={`${styles.postcard} ${styles.postcardGrid} ${tone(i)}`}>

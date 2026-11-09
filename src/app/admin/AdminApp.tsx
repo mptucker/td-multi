@@ -16,6 +16,7 @@ import texomaco from "@content/texomaco.json";
 import bigwatermarine from "@content/bigwatermarine.json";
 import { TowBoatUSAdmin } from "@/components/admin/TowBoatUSAdmin";
 import { AnalyticsDashboard } from "@/components/admin/AnalyticsDashboard";
+import { PartnerDirectoryAdmin } from "@/components/admin/PartnerDirectoryAdmin";
 import { BRAND_NETWORK_CATEGORY_LABELS, DEFAULT_BRAND_NETWORK } from "@/config/brand-network";
 import type { BrandNetworkCategory, BrandNetworkSettings } from "@/config/types";
 import { diffContent, isVersionedContentPatch, mergeContent, stripContentPatchVersion, versionContentPatch } from "@/lib/content-merge";
@@ -24,11 +25,11 @@ import { DEFAULT_DOCKLINE_WIDGET, type DocklineWidgetSettings } from "@/config/d
 type Role = "admin" | "director" | "site_manager" | "editor" | "viewer";
 type Profile = { user_id: string; display_name: string; phone?: string; role: Role; active: boolean };
 type BrandRow = { brand: string; content: Record<string, any>; draft_content?: Record<string, any>; published_at?: string; updated_at?: string };
-type Tab = "overview" | "analytics" | "sites" | "media" | "alerts" | "faqs" | "packages" | "events" | "inquiries" | "global" | "network" | "towboatus" | "staff" | "activity";
+type Tab = "overview" | "analytics" | "sites" | "media" | "alerts" | "faqs" | "packages" | "events" | "inquiries" | "global" | "network" | "partners" | "towboatus" | "staff" | "activity";
 const BRAND_NAMES: Record<string, string> = { lighthouse: "Lighthouse Resort & Marina", paradise: "Paradise on Lake Texoma", sundance: "Sundance Camp", "island-view": "Island View Park", fastrac: "Fastrac Cruises", "water-taxi": "Texoma Water Taxi", "tackle-box": "Tackle Box Outfitters", boaterwise: "BoaterWise", bigwater: "BigWater.co", "towboatus-ntx": "TowBoatUS North Texas", texomaco: "Texoma Collective", bigwatermarine: "Big Water Marine" };
 const ALL_BRANDS = Object.keys(BRAND_NAMES);
 const LOCAL_CONTENT: Record<string, Record<string, any>> = { lighthouse, paradise, sundance, "island-view": islandView, fastrac, "water-taxi": waterTaxi, "tackle-box": tackleBox, boaterwise, bigwater, "towboatus-ntx": towboatusNtx, texomaco, bigwatermarine } as any;
-const NAV: [Tab, string][] = [["overview","Overview"],["analytics","Analytics"],["sites","Site content"],["media","Media"],["alerts","Announcement bars"],["faqs","FAQs"],["packages","Packages"],["events","Events"],["inquiries","Inquiries"],["global","Global footer & TAP"],["network","Brand Network"],["towboatus","TowBoatUS operations"],["staff","Staff"],["activity","Activity"]];
+const NAV: [Tab, string][] = [["overview","Overview"],["analytics","Analytics"],["sites","Site content"],["media","Media"],["alerts","Announcement bars"],["faqs","FAQs"],["packages","Packages"],["events","Events"],["inquiries","Inquiries"],["global","Global footer & TAP"],["network","Brand Network"],["partners","Collective Partner Map"],["towboatus","TowBoatUS operations"],["staff","Staff"],["activity","Activity"]];
 let sb = supabaseBrowser();
 
 function toE164US(value?: string | null) {
@@ -113,7 +114,7 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
   const [assignments, setAssignments] = useState<string[]>([]);
   const [tab, setTab] = useState<Tab>("overview");
   const [status, setStatus] = useState("Loading…");
-  const [data, setData] = useState<Record<string, any[]>>({});
+  const [data, setData] = useState<Record<string, any>>({});
   const sessionRef = useRef<any>(null);
 
   const load = useCallback(async (activeSession?: any) => {
@@ -149,6 +150,9 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
       p.role === "admin" ? sb.from("cms_users").select("*,cms_user_sites(brand)").order("display_name") : Promise.resolve({ data: [] }),
       p.role === "admin" ? sb.from("cms_access_requests").select("*").order("requested_at") : Promise.resolve({ data: [] }),
       p.role === "admin" ? sb.from("cms_invites").select("*").order("created_at") : Promise.resolve({ data: [] }),
+      allowed.includes("texomaco") ? sb.from("partner_organizations").select("*").order("sort_order") : Promise.resolve({ data: [] }),
+      allowed.includes("texomaco") ? sb.from("partner_locations").select("*").order("sort_order") : Promise.resolve({ data: [] }),
+      allowed.includes("texomaco") ? sb.from("partner_map_settings").select("*").eq("id", "texomaco").maybeSingle() : Promise.resolve({ data: null }),
     ]);
     const failed = queries.map((result: any, index) => result?.error ? { index, message: result.error.message } : null).filter(Boolean) as { index: number; message: string }[];
     if (failed.length) console.error("CMS workspace queries failed", failed);
@@ -174,7 +178,7 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
         draft_content: mergeContent(base, draftPatch),
       };
     });
-    setData({ brands, media: queries[1].data ?? [], alerts: queries[2].data ?? [], faqs: queries[3].data ?? [], packages: queries[4].data ?? [], events: queries[5].data ?? [], inquiries: queries[6].data ?? [], global: queries[7].data ?? [], settings: queries[8].data ?? [], revisions: queries[9].data ?? [], audit: queries[10].data ?? [], users: queries[11].data ?? [], requests: (queries[12].data ?? []).filter((r: any) => !userIds.has(r.user_id)), invites: queries[13].data ?? [], tbusLocations: tbusData.locations ?? [], tbusOperators: tbusData.operators ?? [], tbusConfig: tbusData.config ?? [], tbusImages: tbusData.images ?? [] });
+    setData({ brands, media: queries[1].data ?? [], alerts: queries[2].data ?? [], faqs: queries[3].data ?? [], packages: queries[4].data ?? [], events: queries[5].data ?? [], inquiries: queries[6].data ?? [], global: queries[7].data ?? [], settings: queries[8].data ?? [], revisions: queries[9].data ?? [], audit: queries[10].data ?? [], users: queries[11].data ?? [], requests: (queries[12].data ?? []).filter((r: any) => !userIds.has(r.user_id)), invites: queries[13].data ?? [], partnerOrganizations: queries[14].data ?? [], partnerLocations: queries[15].data ?? [], partnerMapSettings: queries[16].data ?? null, tbusLocations: tbusData.locations ?? [], tbusOperators: tbusData.operators ?? [], tbusConfig: tbusData.config ?? [], tbusImages: tbusData.images ?? [] });
     setStatus(failed.length ? `Loaded with ${failed.length} data warning${failed.length === 1 ? "" : "s"}` : "Live");
   }, []);
 
@@ -208,7 +212,7 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
     <div className="cms-app">
       <aside className="cms-sidebar">
         <div><strong>Texoma Destinations</strong><span>Brand publishing</span></div>
-        <nav>{NAV.filter(([key]) => (key !== "staff" || profile.role === "admin") && (key !== "towboatus" || assignments.includes("towboatus-ntx"))).map(([key, label]) => <button key={key} className={tab === key ? "active" : ""} onClick={() => setTab(key)}>{label}</button>)}{profile.role !== "viewer" && <a className="cms-studio-link" href="/studio"><span>✦</span> AI Site Studio</a>}</nav>
+        <nav>{NAV.filter(([key]) => (key !== "staff" || profile.role === "admin") && (key !== "towboatus" || assignments.includes("towboatus-ntx")) && (key !== "partners" || assignments.includes("texomaco"))).map(([key, label]) => <button key={key} className={tab === key ? "active" : ""} onClick={() => setTab(key)}>{label}</button>)}{profile.role !== "viewer" && <a className="cms-studio-link" href="/studio"><span>✦</span> AI Site Studio</a>}</nav>
         <div className="cms-user"><strong>{profile.display_name || profile.phone}</strong><span>{profile.role.replace("_", " ")}</span><button onClick={() => sb!.auth.signOut()}>Sign out</button></div>
       </aside>
       <main className="cms-main">
@@ -224,6 +228,7 @@ export function AdminApp({ supabaseUrl, supabaseKey }: { supabaseUrl: string; su
         {tab === "inquiries" && <InquiryList rows={data.inquiries ?? []} assignments={assignments} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
         {tab === "global" && <GlobalEditor rows={data.global ?? []} settings={data.settings ?? []} assignments={assignments} leader={profile.role === "admin" || profile.role === "director"} onChanged={() => load()} />}
         {tab === "network" && <BrandNetworkEditor rows={data.global ?? []} leader={profile.role === "admin" || profile.role === "director"} onChanged={() => load()} />}
+        {tab === "partners" && <PartnerDirectoryAdmin client={sb!} organizations={data.partnerOrganizations ?? []} locations={data.partnerLocations ?? []} settings={data.partnerMapSettings ?? null} media={data.media ?? []} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
         {tab === "towboatus" && <TowBoatUSAdmin client={sb!} locations={data.tbusLocations ?? []} operators={data.tbusOperators ?? []} config={data.tbusConfig ?? []} images={data.tbusImages ?? []} canWrite={profile.role !== "viewer"} onChanged={() => load()} />}
         {tab === "staff" && <StaffEditor users={data.users ?? []} requests={data.requests ?? []} invites={data.invites ?? []} onChanged={() => load()} />}
         {tab === "activity" && <Activity rows={data.audit ?? []} revisions={data.revisions ?? []} onChanged={() => load()} />}
@@ -254,7 +259,7 @@ function PhoneLogin() {
 
 function CmsMessage({ title, children }: { title: string; children: React.ReactNode }) { return <div className="cms-login"><div className="cms-login-card"><div className="cms-mark">TD</div><h1>{title}</h1><div className="cms-message-body">{children}</div></div></div>; }
 function tabDescription(tab: Tab) {
-  return ({ overview: "What is live, scheduled, and waiting for attention.", analytics: "Understand traffic, engagement, and conversion activity for your assigned brand sites.", sites: "Edit approved copy and images without changing page design.", media: "Upload, reuse, and archive brand photography.", alerts: "Schedule one dismissible message across one or more sites.", faqs: "Maintain site-specific answers and search-friendly FAQ data.", packages: "Publish the same offer consistently across selected brands.", events: "Schedule event information and tracked registration links.", inquiries: "Review partner, group and general inquiries from brand sites.", global: "Manage shared TAP content and each brand’s contact details.", network: "Manage the shared Texoma Destinations discovery panel across every site.", towboatus: "Manage TowBoatUS locations, network listings, operational links, and photography.", staff: "Approve access, assign roles, and limit site access.", activity: "A record of publishing and content changes." } as Record<Tab,string>)[tab];
+  return ({ overview: "What is live, scheduled, and waiting for attention.", analytics: "Understand traffic, engagement, and conversion activity for your assigned brand sites.", sites: "Edit approved copy and images without changing page design.", media: "Upload, reuse, and archive brand photography.", alerts: "Schedule one dismissible message across one or more sites.", faqs: "Maintain site-specific answers and search-friendly FAQ data.", packages: "Publish the same offer consistently across selected brands.", events: "Schedule event information and tracked registration links.", inquiries: "Review partner, group and general inquiries from brand sites.", global: "Manage shared TAP content and each brand’s contact details.", network: "Manage the shared Texoma Destinations discovery panel across every site.", partners: "Approve partner organizations, manage locations, and control what appears on the Texoma Collective map.", towboatus: "Manage TowBoatUS locations, network listings, operational links, and photography.", staff: "Approve access, assign roles, and limit site access.", activity: "A record of publishing and content changes." } as Record<Tab,string>)[tab];
 }
 
 function InquiryList({ rows, assignments, canWrite, onChanged }: { rows: any[]; assignments: string[]; canWrite: boolean; onChanged: () => void }) {

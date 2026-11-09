@@ -375,8 +375,38 @@
 .collectionGrid .tone_slate h3, .collectionGrid .tone_slate p, .collectionGrid .tone_deep h3, .collectionGrid .tone_deep p { color: var(--tc-bg); }
 
 /* Explore */
+.exploreHero { position: relative; display: grid; grid-template-columns: minmax(0,.82fr) minmax(0,1.18fr); min-height: 560px; overflow: hidden; background: var(--tc-primary); color: var(--tc-bg); }
+.exploreHeroCopy { align-self: center; padding: clamp(4rem,8vw,7rem) clamp(2rem,6vw,7rem); padding-right: clamp(2rem,4vw,4rem); position: relative; z-index: 2; }
+.exploreHeroCopy h1 { max-width: 720px; margin-top: 1rem; color: var(--tc-bg); font-size: clamp(3.4rem,6vw,6.7rem); line-height: .92; }
+.exploreHeroCopy > p:not(.kicker) { max-width: 36rem; margin: 1.5rem 0 2rem !important; color: #dcece8; font-size: clamp(1.05rem,1.6vw,1.3rem); }
+.exploreJump { display: inline-flex; align-items: center; gap: .75rem; border-bottom: 2px solid var(--tc-accent); padding: .35rem 0; color: var(--tc-bg); font-weight: 800; text-decoration: none; }
+.exploreJump span { color: var(--tc-accent); font-size: 1.4rem; }
+.exploreHeroImage { position: relative; min-height: 560px; overflow: hidden; clip-path: polygon(9% 0,100% 0,100% 100%,0 100%); }
+.exploreHeroImage::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,rgb(7 75 86 / .45),transparent 45%),linear-gradient(0deg,rgb(13 52 62 / .5),transparent 45%); }
+.exploreHeroImage img { object-fit: cover; object-position: center; }
+.exploreHeroImage span { position: absolute; right: clamp(1.5rem,4vw,4rem); bottom: 4rem; z-index: 2; max-width: 15rem; color: var(--tc-bg); text-align: right; text-transform: uppercase; letter-spacing: .16em; font: 800 .72rem/1.5 var(--tc-body); }
+.tripPlanner { padding: clamp(3.5rem, 7vw, 6rem) var(--tc-gutter); background: var(--tc-deep); color: var(--tc-bg); }
+.tripPlannerIntro { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,.72fr); gap: 1.5rem 4rem; align-items: end; margin-bottom: 2rem; }
+.tripPlannerIntro .kicker { grid-column: 1/-1; color: var(--tc-accent); }
+.tripPlannerIntro h2 { color: var(--tc-bg); font-size: clamp(2.7rem, 5vw, 5.2rem); line-height: .98; }
+.tripPlannerIntro h2 .script { color: var(--tc-sun); font-size: .86em; }
+.tripPlannerIntro > p:not(.kicker) { color: #d8e6e3; font-size: 1.08rem; max-width: 42rem; }
+.tripPlannerIntro ol { grid-column: 1/-1; list-style: none; display: flex; gap: .75rem; flex-wrap: wrap; margin: .5rem 0 0; padding: 0; }
+.tripPlannerIntro li { display: flex; align-items: center; gap: .65rem; padding: .65rem 1rem; border: 1px solid rgb(251 248 239 / .22); border-radius: 999px; font-size: .88rem; }
+.tripPlannerIntro li span { color: var(--tc-accent); font: 700 .72rem/1 var(--tc-body); letter-spacing: .12em; }
 .exploreGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; padding: clamp(4rem, 8vw, 6rem) var(--tc-gutter); }
 .postcardGrid { flex: initial; }
+
+@media (max-width: 760px) {
+  .exploreHero { grid-template-columns: 1fr; }
+  .exploreHeroCopy { padding: 4rem var(--tc-gutter) 3rem; }
+  .exploreHeroCopy h1 { font-size: clamp(3rem,14vw,5.4rem); }
+  .exploreHeroImage { min-height: 330px; clip-path: none; }
+  .tripPlanner { padding-inline: 0; }
+  .tripPlannerIntro { grid-template-columns: 1fr; padding-inline: var(--tc-gutter); }
+  .tripPlannerIntro .kicker, .tripPlannerIntro ol { grid-column: auto; }
+  .tripPlannerIntro ol { display: grid; }
+}
 
 .emptyState { text-align: center; max-width: 40rem; margin: 0 auto; }
 .emptyState img { display: block; width: 90px; height: auto; margin: 0 auto 1.5rem; animation: bob 5s ease-in-out infinite; }
