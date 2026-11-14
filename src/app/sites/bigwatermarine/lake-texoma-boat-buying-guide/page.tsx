@@ -10,6 +10,7 @@ import { Arrow } from "../_components/Finder";
 
 import hero from "@public/media/texoma-dusk-cruise.webp";
 import chop from "@public/media/scout-offshore.webp";
+import { faqs as pageFaqs } from "@/bigwatermarine/lib/cms";
 
 const PATH = "/lake-texoma-boat-buying-guide/";
 const UPDATED = "2026-09-10";
@@ -51,13 +52,8 @@ const BEFORE = [
   ["Price the whole season, not the boat.", "Winterization, storage and wrap are real numbers. They are all published on our site rather than quoted after the fact."],
 ];
 
-const FAQS = [
-  { q: "What size boat is best for Lake Texoma?", a: "For most families, 22 to 25 feet. That range carries a crowd, handles afternoon chop, and still trailers and stores easily. Smaller boats are fine for calm mornings but get uncomfortable when the wind comes up." },
-  { q: "Are pontoons safe on a lake this big?", a: "Yes, when they are specified for it. A tritoon with a performance package handles Texoma chop well. A basic two-tube boat is better suited to sheltered water and calm mornings." },
-  { q: "Tritoon or two-tube pontoon?", a: "On Texoma, tritoon. The third tube adds buoyancy, stability and the ability to carry more power, which together make the difference on a windy afternoon." },
-  { q: "What is the best boat for striper fishing here?", a: "A 21 to 24 foot center console. The deep-V entry softens wind chop, and the open deck lets you follow a fish around the boat instead of over the furniture." },
-  { q: "Can I see a boat on the water before buying?", a: "Yes, by appointment. Call 903-419-1019 and we will schedule a demo. We would rather you find out on our time than after delivery." },
-];
+// FAQs are edited in /admin (content/bigwatermarine.json → faqs.buyingGuide).
+const FAQS = pageFaqs("buyingGuide");
 
 export default function BuyingGuidePage() {
   return (

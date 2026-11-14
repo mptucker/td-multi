@@ -10,6 +10,7 @@ import { Arrow } from "../_components/Finder";
 import hero from "@public/media/texoma-pontoon-dusk.webp";
 import mapSales from "@public/media/map-sales.webp";
 import mapService from "@public/media/map-service.webp";
+import { faqs as pageFaqs } from "@/bigwatermarine/lib/cms";
 
 export const metadata: Metadata = pageMeta({
   title: "Contact Big Water Marine | Pottsboro, TX on Lake Texoma",
@@ -32,14 +33,8 @@ const TOPICS = [
   { k: "Something else", v: "Anything else on your mind.", href: smsHref("Hi Big Water Marine! "), cta: "Text us" },
 ];
 
-// From the current Contact page (verbatim).
-const FAQS = [
-  { q: "Which location do I need?", a: "Buying, trading or browsing inventory: the sales lot at 50055 N State Hwy 289. Repairs, winterization, storage or anything mechanical: the service centre at 33 Tackle Box Dr." },
-  { q: "What are your hours?", a: "Sales is open Tuesday through Saturday, 9am to 5pm. Service is open Tuesday through Friday, 8am to 5pm, and Saturday 8am to 3pm. Both are closed Sunday and Monday." },
-  { q: "How do I get there from Dallas?", a: "Take US-75 north past Sherman and Denison, then head west toward Pottsboro and Lake Texoma. It is roughly 75 miles from Dallas." },
-  { q: "Do I need an appointment?", a: "Not to browse inventory. Sea trials, demos and service work are scheduled, so call ahead on 903-419-1019 for those." },
-  { q: "Can you come to my boat instead?", a: "Yes. Our mobile technicians work at your dock or marina, which saves hauling the boat to us. Mobile rates apply." },
-];
+// FAQs are edited in /admin (content/bigwatermarine.json → faqs.contact).
+const FAQS = pageFaqs("contact");
 
 export default function ContactPage() {
   return (

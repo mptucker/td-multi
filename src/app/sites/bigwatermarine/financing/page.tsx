@@ -10,6 +10,7 @@ import LoanCalculator from "../inventory/_components/LoanCalculator";
 import { Arrow } from "../_components/Finder";
 
 import hero from "@public/media/helm.webp";
+import { faqs as pageFaqs } from "@/bigwatermarine/lib/cms";
 
 export const metadata: Metadata = pageMeta({
   title: "Boat Financing on Lake Texoma | New, Used & Repower Loans",
@@ -19,14 +20,8 @@ export const metadata: Metadata = pageMeta({
   image: abs("/bigwatermarine/media/helm.webp"),
 });
 
-// From the current Financing page (verbatim).
-const FAQS = [
-  { q: "What do I need to apply?", a: "The standard information any marine lender asks for: identification, income, and details of the boat you’re buying. The application is online and secure, and you’ll usually hear back quickly." },
-  { q: "Can I finance a repower?", a: "Yes. Repowering an existing boat can be financed the same way as a purchase, which often makes a new engine cheaper per month than continuing to repair an old one." },
-  { q: "Do you finance used boats?", a: "Yes. Terms vary by the age and value of the boat, so the best step is to apply and let us match you to the right lender." },
-  { q: "What about commercial or fleet purchases?", a: "Fleet and commercial purchases don’t go through our retail lenders. Tell us how the deal is structured and we’ll help you find the right banking partner for it." },
-  { q: "Does applying affect my credit?", a: "Lender policies differ on whether an application triggers a soft or hard inquiry. Ask us before you apply and we’ll tell you what to expect from the lender we’d send you to." },
-];
+// FAQs are edited in /admin (content/bigwatermarine.json → faqs.financing).
+const FAQS = pageFaqs("financing");
 
 const STEPS = [
   ["Apply online.", "The secure application takes a few minutes."],

@@ -17,6 +17,7 @@ import berkshireLogo from "@public/brands/berkshire-logo.png";
 import verandaLogo from "@public/brands/veranda-logo.png";
 import scoutLogo from "@public/brands/scout-logo.png";
 import highfieldLogo from "@public/brands/highfield-logo.png";
+import { faqs as pageFaqs } from "@/bigwatermarine/lib/cms";
 
 export const revalidate = 300;
 
@@ -68,13 +69,8 @@ const BRANDS: Brand[] = [
   },
 ];
 
-const FAQS = [
-  { q: "Which brands do you sell new?", a: "Berkshire and Veranda pontoons, Scout center consoles, and Highfield rigid inflatable boats and tenders. All four are available new at our Pottsboro location." },
-  { q: "What engines do your boats come with?", a: "Suzuki, Yamaha, Mercury and Rotax, depending on model. We are a factory-authorized service center for Mercury, Yamaha, Suzuki and BRP, so whatever you buy, we can service it here." },
-  { q: "Which brand is best for Lake Texoma?", a: "It depends on how you boat. Pontoons suit entertaining and family days in Texoma chop; a Scout center console suits serious fishing; a Highfield RIB suits tenders and fast, rough-water runs. Come tell us how you use the lake." },
-  { q: "Do you sell used boats from other brands?", a: "Yes. Used inventory rotates and has included Trifecta, Carolina Skiff, Monterey and Sea Ray alongside used examples of the brands we carry new." },
-  { q: "Can I sea trial before I buy?", a: "Yes, by appointment. Schedule a demo and feel how the boat handles real Texoma water before you commit." },
-];
+// FAQs are edited in /admin (content/bigwatermarine.json → faqs.brands).
+const FAQS = pageFaqs("brands");
 
 export default async function BrandsPage() {
   const boats = (await getInventory()).filter((b) => b.status !== "sold");

@@ -11,6 +11,7 @@ import { Arrow } from "../_components/Finder";
 
 import hero from "@public/media/club-fleet.webp";
 import pontoon from "@public/media/rental-red-pontoon.webp";
+import { faqs as pageFaqs } from "@/bigwatermarine/lib/cms";
 
 export const revalidate = 300;
 
@@ -52,14 +53,8 @@ const SUPPLY = [
   "Corporate and event fleets",
 ];
 
-const FAQS = [
-  { q: "Do I have to buy a whole fleet?", a: "No. Fleet pricing starts at two boats, gets deeper at four, and reaches wholesale at eight. Plenty of operators start with a pair and build from there." },
-  { q: "Do you deliver?", a: "Yes — rigged, prepped, and water-ready. Delivery anywhere on Lake Texoma is included. Beyond Texoma we’ll quote it at a reasonable rate." },
-  { q: "What do I do with the boats I’m replacing?", a: "Whatever nets you the most. We’ll help you retail them yourself, take them on consignment and handle the sale, or make you a favorable trade on the upgrade — and we’ll tell you honestly which one puts more money back in your pocket." },
-  { q: "Can you service our existing fleet, even if we didn’t buy it here?", a: "Yes. We’re factory-authorized for Mercury, Yamaha, Suzuki and BRP, and our mobile technicians work at your dock or marina." },
-  { q: "Do you handle off-season storage and winterization?", a: "Yes — winterization, shrink wrap, and storage are all handled in-house." },
-  { q: "Can you help with financing?", a: "Commercial fleet purchases don’t go through our retail lenders — but we’ll help you find the right banking partner for it. Tell us how the deal is structured and we’ll make the introduction." },
-];
+// FAQs are edited in /admin (content/bigwatermarine.json → faqs.fleetSales).
+const FAQS = pageFaqs("fleetSales");
 
 const FLEET_TEXT = "Hi! I'm interested in fleet pricing. We run ___ boats for ___ and need them on the water by ___.";
 

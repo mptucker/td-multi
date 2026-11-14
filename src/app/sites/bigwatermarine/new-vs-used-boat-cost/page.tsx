@@ -9,6 +9,7 @@ import { abs, breadcrumbs, faqPage, ORG_ID, pageMeta } from "@/bigwatermarine/li
 import { Arrow } from "../_components/Finder";
 
 import hero from "@public/media/winter-shrinkwrap-row.webp";
+import { faqs as pageFaqs } from "@/bigwatermarine/lib/cms";
 
 const PATH = "/new-vs-used-boat-cost/";
 const UPDATED = "2026-09-10";
@@ -64,13 +65,8 @@ const USED_CASE = [
   ["More boat", "Length for the same money", "Used often lets you move up two feet. On Texoma, two feet is the difference between coming in early and staying out."],
 ];
 
-const FAQS = [
-  { q: "Is it cheaper to own a used boat on Lake Texoma?", a: "Up front, yes. Over a season, less than people expect. Winterization, shrink wrap and storage are priced by length rather than age, so they cost the same on either boat. The real variable is unplanned repairs." },
-  { q: "How much does it cost to store a boat for the winter?", a: "Secure outdoor storage is $2 per foot per month for shrinkwrapped boats, and wrap is $25 per foot. A 22-foot boat stored six months comes to about $814 for wrap and storage combined." },
-  { q: "Do I have to winterize on Lake Texoma?", a: "Yes, if you want to avoid a cracked block. Our packages start at $335 onsite, and our Guaranteed Winterization means that if your engine does not start in spring because of our process, we make it right at no charge." },
-  { q: "Are ex-rental boats a bad buy?", a: "Not necessarily. Fleet boats are maintained on a commercial schedule by factory-authorized technicians, so their service history is usually better documented than a private owner’s. Condition matters more than the badge." },
-  { q: "What costs do you not publish?", a: "Insurance, fuel, registration and slip fees, because they depend on your boat’s value, how you use it and who you insure with. Everything we control — service, winterization, storage, detailing — is published rather than quoted after the fact." },
-];
+// FAQs are edited in /admin (content/bigwatermarine.json → faqs.newVsUsed).
+const FAQS = pageFaqs("newVsUsed");
 
 function CaseCards({ items }: { items: string[][] }) {
   return (

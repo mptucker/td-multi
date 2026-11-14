@@ -54,7 +54,7 @@ export default function BigWaterMarineLayout({ children }: { children: React.Rea
       <link rel="stylesheet" href="https://use.typekit.net/cta4sca.css" />
       {gtmSnippet && <Script id="bwm-gtm" strategy="afterInteractive">{gtmSnippet}</Script>}
       <JsonLd data={siteGraph()} />
-      <Header phone={config.phone} phoneHref={`tel:${config.phoneE164}`} windlassUrl={config.windlassIntakeUrl} />
+      <Header phone={config.phone} phoneHref={`tel:${config.phoneE164}`} windlassUrl={config.windlassIntakeUrl} promo={config.promo} hours={config.hours} />
       <main id="main">{children}</main>
       <Footer />
       {/* Dockline: text-message conversations instead of contact forms. */}
