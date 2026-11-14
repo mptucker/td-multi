@@ -1,9 +1,9 @@
 import { apiDiagnostics } from "@/bigwatermarine/lib/boats/api";
 import { getInventory, getInventorySource } from "@/bigwatermarine/lib/boats";
 
-// Health check for the Boats Group feed. Shows whether the site is reading live
-// data, how many boats each status returned, and the shape of one record.
-// The API key is never included.
+// Health check for the Boats Group feed: whether the site is reading live data
+// and how many listings each status returned. Counts only; no listing data,
+// contact details or API key.
 export const dynamic = "force-dynamic";
 
 export async function GET() {

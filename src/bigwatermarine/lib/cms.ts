@@ -31,13 +31,15 @@ function placeholderValues(): Record<string, string> {
     "club.winterHalfDayHalf": String(n(club.winterHalfDay) / 2),
   };
   for (const [k, v] of Object.entries(club)) values[`club.${k}`] = v;
+  // {winter.freezeguard}, {winter.securepro}, …: onsite package prices, formatted like "1,750".
+  for (const p of cms.service.winterPackages) values[`winter.${p.key}`] = n(p.onsite).toLocaleString("en-US");
   return values;
 }
 
 /** Replace {placeholders} with current values. Unknown placeholders are left as written. */
-export function fill(text: string): string {
-  const values = placeholderValues();
-  return text.replace(/\{([\w.]+)\}/g, (match, key: string) => values[key] ?? match);
+export function fill(text: string, extra?: Record<string, string | number>): string {
+  const values: Record<string, string | number> = { ...placeholderValues(), ...extra };
+  return text.replace(/\{([\w.]+)\}/g, (match, key: string) => (key in values ? String(values[key]) : match));
 }
 
 /** FAQs for a page, with placeholders filled. */
