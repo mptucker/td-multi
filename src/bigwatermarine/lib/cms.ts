@@ -31,6 +31,8 @@ function placeholderValues(): Record<string, string> {
     "club.winterHalfDayHalf": String(n(club.winterHalfDay) / 2),
   };
   for (const [k, v] of Object.entries(club)) values[`club.${k}`] = v;
+  // {winter.freezeguard}, {winter.securepro}, …: onsite package prices, formatted like "1,750".
+  for (const p of cms.service.winterPackages) values[`winter.${p.key}`] = n(p.onsite).toLocaleString("en-US");
   return values;
 }
 

@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import CmsImage from "@/bigwatermarine/components/CmsImage";
 import JsonLd from "@/bigwatermarine/components/JsonLd";
 import Motif from "@/bigwatermarine/components/Motif";
+import Rich from "@/bigwatermarine/components/Rich";
 import { config, smsHref } from "@/bigwatermarine/lib/config";
 import { abs, breadcrumbs, faqPage, pageMeta, type Faq } from "@/bigwatermarine/lib/seo";
 import { Arrow } from "../_components/Finder";
 
-import hero from "@public/media/texoma-open-water.webp";
 import { cms, fill } from "@/bigwatermarine/lib/cms";
 
+const P = cms.pages.faq;
+const PHONE = { phone: config.phone, email: config.email };
+
 export const metadata: Metadata = pageMeta({
-  title: "Frequently Asked Questions | Boats, Service & Boat Club on Lake Texoma",
-  description:
-    "Answers to the questions Big Water Marine is asked most: locations and hours, brands, used boats, trade-ins, financing, service, winterization, storage, Big Water Boat Club, fleet sales, fees and sea trials.",
+  title: P.meta.title,
+  description: P.meta.description,
   path: "/faq/",
-  image: abs("/bigwatermarine/media/texoma-open-water.webp"),
+  image: abs(P.images.hero.src),
 });
 
 type Group = { id: string; title: string; em: string; links: [string, string][]; faqs: Faq[] };
@@ -44,20 +46,18 @@ export default function FaqPage() {
 
       <section className="bwm-hero bwm-hero--short" aria-labelledby="faq-title">
         <div className="bwm-heroMedia">
-          <Image src={hero} alt="Open water on Lake Texoma" fill sizes="100vw" placeholder="blur" loading="eager" fetchPriority="high" className="bwm-heroImg" />
+          <CmsImage image={P.images.hero} fill sizes="100vw" loading="eager" fetchPriority="high" className="bwm-heroImg" />
         </div>
         <div className="bwm-heroShade" aria-hidden />
         <div className="bwm-heroInner">
           <nav aria-label="Breadcrumb" className="bwm-crumbs bwm-crumbs--light"><ol><li><Link href="/">Home</Link></li><li aria-current="page">FAQ</li></ol></nav>
-          <p className="bwm-eyebrow bwm-in" style={{ ["--d" as string]: "80ms" }}>Straight answers</p>
+          <p className="bwm-eyebrow bwm-in" style={{ ["--d" as string]: "80ms" }}>{P.hero.eyebrow}</p>
           <h1 id="faq-title" className="bwm-heroTitle bwm-heroTitle--md">
-            <span className="bwm-in" style={{ ["--d" as string]: "160ms" }}>Frequently asked</span>
-            <span className="bwm-in" style={{ ["--d" as string]: "260ms" }}><em>questions.</em></span>
+            <span className="bwm-in" style={{ ["--d" as string]: "160ms" }}><Rich text={P.hero.title[0]} /></span>
+            <span className="bwm-in" style={{ ["--d" as string]: "260ms" }}><Rich text={P.hero.title[1]} /></span>
           </h1>
           <p className="bwm-heroLede bwm-in" style={{ ["--d" as string]: "460ms" }}>
-            Big Water Marine is a boat dealer and full-service marine center on Lake Texoma in Pottsboro, Texas, with sales at 50055 N State Hwy 289 and
-            service at 33 Tackle Box Dr. We sell Berkshire, Veranda, Scout and Highfield boats, service Mercury, Yamaha, Suzuki and BRP engines, and run Big
-            Water Boat Club. Below are the questions we are asked most.
+            <Rich text={P.hero.lede} />
           </p>
           <nav aria-label="FAQ topics" className="bwm-jump bwm-in" style={{ ["--d" as string]: "600ms" }}>
             {GROUPS.map((g) => <a key={g.id} href={`#${g.id}`}>{g.title} {g.em}</a>)}
@@ -86,15 +86,14 @@ export default function FaqPage() {
 
       <section className="bwm-section bwm-white" aria-labelledby="faq-more">
         <div className="bwm-wrap bwm-sectionHead bwm-sectionHead--center">
-          <p className="bwm-kicker"><Motif linesOnly className="bwm-kickerMark" />Still have a question?</p>
-          <h2 id="faq-more" className="bwm-h2">Ask a <em>real person.</em></h2>
+          <p className="bwm-kicker"><Motif linesOnly className="bwm-kickerMark" />{P.closing.kicker}</p>
+          <h2 id="faq-more" className="bwm-h2"><Rich text={P.closing.title} /></h2>
           <p className="bwm-lede">
-            Call or text {config.phone}, email <a href={`mailto:${config.email}`} className="bwm-inlineLink">{config.email}</a> for service, or see all the
-            ways to <Link href="/contact/" className="bwm-inlineLink">reach us</Link>.
+            <Rich text={P.closing.lede} values={PHONE} />
           </p>
           <div className="bwm-actions bwm-actions--center">
-            <a href={smsHref("Hi! I have a question: ")} className="bwm-btnTeal">Text {config.phone}</a>
-            <a href={`tel:${config.phoneE164}`} className="bwm-btnOutlineDark">Call {config.phone}</a>
+            <a href={smsHref(P.closing.textMessage)} className="bwm-btnTeal">{fill(P.closing.textButton, PHONE)}</a>
+            <a href={`tel:${config.phoneE164}`} className="bwm-btnOutlineDark">{fill(P.closing.callButton, PHONE)}</a>
           </div>
         </div>
       </section>

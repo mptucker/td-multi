@@ -1,34 +1,30 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import CmsImage from "@/bigwatermarine/components/CmsImage";
 import JsonLd from "@/bigwatermarine/components/JsonLd";
 import Motif from "@/bigwatermarine/components/Motif";
+import Rich from "@/bigwatermarine/components/Rich";
 import { config, smsHref } from "@/bigwatermarine/lib/config";
 import { FINANCING } from "@/bigwatermarine/lib/brands";
 import { abs, breadcrumbs, faqPage, ORG_ID, pageMeta } from "@/bigwatermarine/lib/seo";
 import LoanCalculator from "../inventory/_components/LoanCalculator";
 import { Arrow } from "../_components/Finder";
 
-import hero from "@public/media/helm.webp";
-import { faqs as pageFaqs } from "@/bigwatermarine/lib/cms";
+import { cms, fill, faqs as pageFaqs } from "@/bigwatermarine/lib/cms";
+
+// Page copy and photos are edited in /admin (content/bigwatermarine.json → pages.financing).
+const P = cms.pages.financing;
+const V = { phone: config.phone, phoneE164: config.phoneE164 };
 
 export const metadata: Metadata = pageMeta({
-  title: "Boat Financing on Lake Texoma | New, Used & Repower Loans",
-  description:
-    "Big Water Marine offers financing on new and used boat purchases and on repowers through marine lending partners, with a secure online application. Rates as low as 5.99% APR, terms up to 20 years. Pottsboro, TX.",
+  title: P.meta.title,
+  description: P.meta.description,
   path: "/financing/",
-  image: abs("/bigwatermarine/media/helm.webp"),
+  image: abs(P.images.hero.src),
 });
 
 // FAQs are edited in /admin (content/bigwatermarine.json → faqs.financing).
 const FAQS = pageFaqs("financing");
-
-const STEPS = [
-  ["Apply online.", "The secure application takes a few minutes."],
-  ["We match you to a lender.", "We work with marine lenders who understand boats, not just cars."],
-  ["Review your terms.", "We walk through the out-the-door number, including TTL, freight, prep and doc fee."],
-  ["Take delivery.", "We rig, prep and hand over the boat water-ready."],
-];
 
 export default function FinancingPage() {
   return (
@@ -51,24 +47,22 @@ export default function FinancingPage() {
 
       <section className="bwm-hero bwm-hero--short" aria-labelledby="fin-title">
         <div className="bwm-heroMedia">
-          <Image src={hero} alt="Hands on the helm of a boat underway on Lake Texoma" fill sizes="100vw" placeholder="blur" loading="eager" fetchPriority="high" className="bwm-heroImg" />
+          <CmsImage image={P.images.hero} fill sizes="100vw" loading="eager" fetchPriority="high" className="bwm-heroImg" />
         </div>
         <div className="bwm-heroShade" aria-hidden />
         <div className="bwm-heroInner">
           <nav aria-label="Breadcrumb" className="bwm-crumbs bwm-crumbs--light"><ol><li><Link href="/">Home</Link></li><li aria-current="page">Financing</li></ol></nav>
-          <p className="bwm-eyebrow bwm-in" style={{ ["--d" as string]: "80ms" }}>Flexible financing &amp; trade-ins welcome</p>
+          <p className="bwm-eyebrow bwm-in" style={{ ["--d" as string]: "80ms" }}>{P.hero.eyebrow}</p>
           <h1 id="fin-title" className="bwm-heroTitle bwm-heroTitle--md">
-            <span className="bwm-in" style={{ ["--d" as string]: "160ms" }}>Boat financing</span>
-            <span className="bwm-in" style={{ ["--d" as string]: "260ms" }}><em>on Lake Texoma.</em></span>
+            <span className="bwm-in" style={{ ["--d" as string]: "160ms" }}><Rich text={P.hero.title[0]} /></span>
+            <span className="bwm-in" style={{ ["--d" as string]: "260ms" }}><Rich text={P.hero.title[1]} /></span>
           </h1>
           <p className="bwm-heroLede bwm-in" style={{ ["--d" as string]: "460ms" }}>
-            Big Water Marine offers financing on new and used boat purchases and on repowers, through marine lending partners, with a secure online
-            application. Commercial and fleet purchases are handled separately &mdash; we&rsquo;ll point you to the right banking partner rather than run
-            those through retail lenders.
+            <Rich text={P.hero.lede} />
           </p>
           <div className="bwm-actions bwm-in" style={{ ["--d" as string]: "600ms" }}>
-            <a href={config.financingUrl} className="bwm-btnTeal">Apply for financing online</a>
-            <a href={smsHref("Hi! I have a question about boat financing.")} className="bwm-btnOutlineLight">Text {config.phone}</a>
+            <a href={config.financingUrl} className="bwm-btnTeal">{P.hero.applyButton}</a>
+            <a href={smsHref("Hi! I have a question about boat financing.")} className="bwm-btnOutlineLight">{fill(P.hero.textButton, V)}</a>
           </div>
           <ul className="bwm-heroChecks bwm-in" style={{ ["--d" as string]: "720ms" }} role="list">
             {FINANCING.financing.map((x) => <li key={x}>{x}</li>)}
@@ -79,19 +73,19 @@ export default function FinancingPage() {
       <section className="bwm-section bwm-white" aria-labelledby="fin-how">
         <div className="bwm-wrap bwm-howGrid">
           <div>
-            <p className="bwm-kicker"><Motif linesOnly className="bwm-kickerMark" />How it works</p>
-            <h2 id="fin-how" className="bwm-h2">Four steps <em>to the water.</em></h2>
+            <p className="bwm-kicker"><Motif linesOnly className="bwm-kickerMark" />{P.steps.kicker}</p>
+            <h2 id="fin-how" className="bwm-h2"><Rich text={P.steps.title} /></h2>
             <p className="bwm-lede">
-              Make your dream boat a reality with competitive financing options tailored to your budget. Low rates, flexible terms, quick approvals.
+              <Rich text={P.steps.lede} />
             </p>
             <div className="bwm-actions">
-              <a href={config.financingUrl} className="bwm-btnTeal">Apply for financing online</a>
-              <Link href="/inventory/" className="bwm-textLink">See current inventory <Arrow /></Link>
+              <a href={config.financingUrl} className="bwm-btnTeal">{P.steps.applyButton}</a>
+              <Link href="/inventory/" className="bwm-textLink">{P.steps.inventoryLink} <Arrow /></Link>
             </div>
           </div>
           <ol className="bwm-howSteps" role="list">
-            {STEPS.map(([k, v], i) => (
-              <li key={k}><span className="bwm-stepNum">{i + 1}</span><div><h3>{k}</h3><p>{v}</p></div></li>
+            {P.steps.items.map((step, i) => (
+              <li key={step.title}><span className="bwm-stepNum">{i + 1}</span><div><h3>{step.title}</h3><p>{step.text}</p></div></li>
             ))}
           </ol>
         </div>
@@ -100,9 +94,9 @@ export default function FinancingPage() {
       <section className="bwm-section bwm-foam" aria-labelledby="fin-calc">
         <div className="bwm-wrap">
           <header className="bwm-sectionHead">
-            <p className="bwm-kicker"><Motif linesOnly className="bwm-kickerMark" />Estimate your payment</p>
-            <h2 id="fin-calc" className="bwm-h2">Run the numbers <em>before you apply.</em></h2>
-            <p className="bwm-lede">Change the price, down payment, rate and term to see an estimated monthly payment. Every boat listing has this calculator too.</p>
+            <p className="bwm-kicker"><Motif linesOnly className="bwm-kickerMark" />{P.calculator.kicker}</p>
+            <h2 id="fin-calc" className="bwm-h2"><Rich text={P.calculator.title} /></h2>
+            <p className="bwm-lede"><Rich text={P.calculator.lede} /></p>
           </header>
           <div className="bwm-panel">
             <LoanCalculator price={60000} downPercent={config.loan.downPercent} apr={config.loan.apr} termYears={config.loan.termYears} financingUrl={config.financingUrl} />
@@ -114,30 +108,29 @@ export default function FinancingPage() {
         <div className="bwm-wrap">
           <div className="bwm-twoUp">
             <div className="bwm-option bwm-option--hi">
-              <h3>Financing options</h3>
-              <p className="bwm-optionMeta">Competitive financing options tailored to your budget. Low rates, flexible terms, quick approvals.</p>
+              <h3>{P.options.financingTitle}</h3>
+              <p className="bwm-optionMeta"><Rich text={P.options.financingText} /></p>
               <ul className="bwm-checks" role="list">{FINANCING.financing.map((x) => <li key={x}>{x}</li>)}</ul>
-              <div className="bwm-actions"><a href={config.financingUrl} className="bwm-btnTeal">Get pre-approved</a></div>
+              <div className="bwm-actions"><a href={config.financingUrl} className="bwm-btnTeal">{P.options.financingButton}</a></div>
             </div>
             <div className="bwm-option">
-              <h3 id="fin-trade">Trade-in value</h3>
-              <p className="bwm-optionMeta">Upgrade and get top dollar for your current boat. We make the transition seamless with fair valuations and easy paperwork.</p>
+              <h3 id="fin-trade">{P.options.tradeTitle}</h3>
+              <p className="bwm-optionMeta"><Rich text={P.options.tradeText} /></p>
               <ul className="bwm-checks" role="list">{FINANCING.trade.map((x) => <li key={x}>{x}</li>)}</ul>
-              <div className="bwm-actions"><a href={config.tradeValueUrl} className="bwm-btnOutlineDark">Get your trade value</a></div>
+              <div className="bwm-actions"><a href={config.tradeValueUrl} className="bwm-btnOutlineDark">{P.options.tradeButton}</a></div>
             </div>
           </div>
-          <p className="bwm-fine">*For qualified buyers, on approved credit.</p>
+          <p className="bwm-fine">{P.options.fine}</p>
         </div>
       </section>
 
       <section className="bwm-section bwm-foam" aria-labelledby="fin-faq">
         <div className="bwm-wrap bwm-helpGrid">
           <div>
-            <p className="bwm-kicker"><Motif linesOnly className="bwm-kickerMark" />Financing questions</p>
-            <h2 id="fin-faq" className="bwm-h2">Straight <em>answers.</em></h2>
+            <p className="bwm-kicker"><Motif linesOnly className="bwm-kickerMark" />{P.faq.kicker}</p>
+            <h2 id="fin-faq" className="bwm-h2"><Rich text={P.faq.title} /></h2>
             <p className="bwm-lede">
-              Questions before you apply? Call <a href={`tel:${config.phoneE164}`} className="bwm-inlineLink">{config.phone}</a> and ask for sales, or see{" "}
-              <Link href="/inventory/" className="bwm-inlineLink">current inventory</Link>.
+              <Rich text={P.faq.lede} values={V} />
             </p>
           </div>
           <div className="bwm-faq">

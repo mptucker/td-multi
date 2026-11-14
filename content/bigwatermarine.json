@@ -53,7 +53,2054 @@
       "summary": "Sales Tue–Sat 9am–5pm · Service Tue–Fri 8am–5pm, Sat 8am–3pm"
     }
   },
-  "pages": {},
+  "pages": {
+    "home": {
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/scout-offshore.webp",
+          "alt": "A Scout center console carving a wide wake across deep blue water"
+        },
+        "bridge": {
+          "src": "/bigwatermarine/media/scout-dorado.webp",
+          "alt": "A Scout Dorado running fast across open water"
+        },
+        "service": {
+          "src": "/bigwatermarine/media/veranda-vx27.webp",
+          "alt": "Twin outboards on a Veranda pontoon running past a wooded shore"
+        },
+        "statement": {
+          "src": "/bigwatermarine/media/texoma-dusk-cruise.webp",
+          "alt": ""
+        },
+        "familyMain": {
+          "src": "/bigwatermarine/media/hero-lifestyle.webp",
+          "alt": "Friends tossing a football in the shallows beside a Berkshire pontoon"
+        },
+        "familyGoldenHour": {
+          "src": "/bigwatermarine/media/highfield-sunset.webp",
+          "alt": "A family cruising in a Highfield RIB at golden hour"
+        },
+        "familyJump": {
+          "src": "/bigwatermarine/media/veranda-family.webp",
+          "alt": "A dad in the water catching a jumping kid off a Veranda pontoon"
+        },
+        "familyOpenWater": {
+          "src": "/bigwatermarine/media/texoma-open-water.webp",
+          "alt": "A boat crossing open water under a wide Texoma sky"
+        },
+        "clubFleet": {
+          "src": "/bigwatermarine/media/club-fleet.webp",
+          "alt": "The Big Water Boat Club fleet running in formation"
+        },
+        "clubCouple": {
+          "src": "/bigwatermarine/media/club-couple.webp",
+          "alt": "A couple relaxing aboard a Boat Club boat"
+        },
+        "visit": {
+          "src": "/bigwatermarine/media/texoma-sunset.webp",
+          "alt": "Sunset over Lake Texoma"
+        }
+      },
+      "hero": {
+        "eyebrow": "Lake Texoma · Pottsboro, Texas",
+        "title": [
+          "Your next boat",
+          "is _already here._"
+        ],
+        "script": "Welcome to the family",
+        "lede": "{boats.count} new and pre-owned boats in stock from Scout, Veranda, Highfield and Berkshire. Every one backed by the factory-certified service team down the road.",
+        "primaryButton": "Shop {boats.count} boats",
+        "secondaryButton": "Book service",
+        "stats": {
+          "newInStock": "New in stock",
+          "preOwned": "Pre-owned",
+          "engineMakers": "Certified engine makers"
+        }
+      },
+      "buyStrip": {
+        "text": "**Financing & trade-ins handled in-house.** Get pre-qualified or value your trade before you visit.",
+        "link": "Financing & trade-ins"
+      },
+      "bridge": {
+        "line": "Every boat we sell comes with _a team that keeps it running._"
+      },
+      "builders": {
+        "kicker": "Premium Boats",
+        "title": "Four builders we’d put _our own name behind._",
+        "lede": "We carry a short list on purpose. Scout, Veranda, Highfield and Berkshire each earned their place on Texoma’s big, sometimes rough water, and every one of them is backed by our own service team."
+      },
+      "service": {
+        "kicker": "Superior Service",
+        "title": "Bought here or not, _we’ll keep you on the water._",
+        "lede": "Texoma’s factory-authorized service department, with genuine OEM parts and technicians who know these engines inside and out. Routine maintenance at your engine maker’s recommended intervals is often finished the same day, so a quick check-up doesn’t cost you a weekend. Repairs and repowers get an honest timeline up front.",
+        "proof": [
+          {
+            "label": "Factory-certified",
+            "text": "{engineMakers}"
+          },
+          {
+            "label": "Often same day",
+            "text": "Oil & filter, impeller and lower-unit service"
+          },
+          {
+            "label": "Mobile service",
+            "text": "A certified technician comes to your dock"
+          },
+          {
+            "label": "Any boat",
+            "text": "We service boats we didn’t sell"
+          }
+        ],
+        "caption": "**Service center** 33 Tackle Box Dr, Pottsboro",
+        "captionHours": "Tue–Fri 8am–5pm · Sat 8am–3pm",
+        "season": {
+          "script": "It’s that time",
+          "text": "Guaranteed winterization protects your engine through the freeze. Appointments fill fast.",
+          "link": "Reserve winterization"
+        },
+        "planner": {
+          "title": "Start a service request",
+          "steps": [
+            "**Tell us about your boat** on our secure work-order page. It takes about two minutes.",
+            "**We text you back** to confirm the work, the timing and the price.",
+            "**We text again when it’s ready.** Routine work is often done the same day."
+          ],
+          "primaryButton": "Start a work order",
+          "textLink": "Or text us",
+          "textMessage": "Hi! I have a service question about my boat."
+        },
+        "faqTitle": "A few things people ask"
+      },
+      "statement": {
+        "line": "Premium boats. Superior service. Genuine care.",
+        "subline": "One team from the day you buy to every season after."
+      },
+      "family": {
+        "kicker": "Genuine Care",
+        "title": "You’re not buying a boat. _You’re joining the family._",
+        "lede": "Some places sell boats. We’re here for everything that comes after. The first launch. The kids’ favorite cove. The friends who turn into family. That’s the good stuff.",
+        "script": "That’s going Big."
+      },
+      "club": {
+        "kicker": "Big Water Boat Club",
+        "title": "All of the lake days. _None of the upkeep._",
+        "lede": "Not ready to own? You’re still one of us. Membership unlocks discounted boat rentals at Lighthouse Resort & Marina, with no maintenance, storage or ownership costs. Pick your day, bring your people, and let the lake do the rest. Plenty of our owners started right here.",
+        "primaryButton": "Explore Boat Club",
+        "textLink": "Text us about membership",
+        "textMessage": "Hi! I'd like to hear more about Big Water Boat Club.",
+        "fine": "Membership dues, rental charges, fuel, deposits and other program terms apply. Reservations subject to availability."
+      },
+      "nextStep": {
+        "title": "Your next step",
+        "items": [
+          {
+            "label": "Own",
+            "text": "Find the boat that fits how you actually spend a Saturday.",
+            "link": "Shop boats"
+          },
+          {
+            "label": "Join",
+            "text": "Boat Club access, with the upkeep handled for you.",
+            "link": "Boat Club"
+          },
+          {
+            "label": "Explore",
+            "text": "Lodging, camping and adventure with our friends at Texoma Destinations.",
+            "link": "The Most Texoma"
+          }
+        ]
+      },
+      "visit": {
+        "script": "See you on the water",
+        "title": "Come see us _in Pottsboro._",
+        "area": "Based in Pottsboro, we serve Lake Texoma, Sherman, Denison, North Texas and Southern Oklahoma.",
+        "directionsLink": "Get directions",
+        "contactTitle": "Sales & Service",
+        "textButton": "Text us",
+        "textMessage": "Hi Big Water Marine!"
+      }
+    },
+    "inventory": {
+      "meta": {
+        "title": "Boats for Sale on Lake Texoma | New & Used Boats in Pottsboro, TX",
+        "description": "Shop new and pre-owned boats for sale at Big Water Marine on Lake Texoma: Scout center consoles, Veranda and Berkshire pontoons, Highfield RIBs and more. Live inventory, real prices, financing and trade-ins."
+      },
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/highfield-aerial.webp",
+          "alt": ""
+        }
+      },
+      "hero": {
+        "title": "Boats for sale _on Lake Texoma_",
+        "lede": "Big Water Marine has **{boats.count} boats** in stock in Pottsboro, Texas ({boats.new} new, {boats.used} pre-owned)",
+        "ledePrices": ", priced from **{prices.min}** to **{prices.max}**",
+        "ledeEnd": ". Every one is backed by our factory-certified service team. Updated {updated}."
+      },
+      "finderTitle": "Shop all {boats.count} boats",
+      "buyStrip": {
+        "text": "**Don’t see the one?** New arrivals land every week, and we can order the exact boat you want.",
+        "link": "Text us what you’re after",
+        "textMessage": "Hi! I'm looking for a boat you don't have listed right now."
+      },
+      "help": {
+        "kicker": "Buying with Big Water",
+        "title": "Straight answers _before you buy._",
+        "lede": "Real prices, the trailer included, financing in-house, and a team that keeps the boat running after you take it home.",
+        "primaryButton": "Apply for financing",
+        "secondaryButton": "Value your trade",
+        "links": [
+          "Lake Texoma boat buying guide",
+          "New vs. used: what a boat really costs",
+          "Fleet sales"
+        ],
+        "faqTitle": "Common questions"
+      }
+    },
+    "service": {
+      "meta": {
+        "title": "Boat Repair & Marine Service on Lake Texoma | Suzuki, Yamaha, Mercury & BRP",
+        "description": "Factory-authorized boat service in Pottsboro, TX: Suzuki, Yamaha, Mercury and BRP maintenance, repowers, diagnostics, electronics and mobile service at your Lake Texoma dock. Routine work often done the same day."
+      },
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/service-tech.webp",
+          "alt": "A Big Water Marine technician working on a Suzuki outboard in the service shop"
+        },
+        "team": {
+          "src": "/bigwatermarine/media/service-team.webp",
+          "alt": "The Big Water Marine service team outside the shop in Pottsboro"
+        },
+        "winter": {
+          "src": "/bigwatermarine/media/winter-shrinkwrap-row.webp",
+          "alt": ""
+        }
+      },
+      "hero": {
+        "eyebrow": "Expert care for your investment",
+        "title": [
+          "Bought here or not,",
+          "_we’ll keep you on the water._"
+        ],
+        "lede": "Factory-authorized service from certified technicians who treat every boat like their own: **Suzuki, Yamaha, Mercury and BRP**. Same-day service available. On-site or mobile, we come to you. Start a work order and we’ll text you.",
+        "primaryButton": "Start a work order",
+        "secondaryButton": "Text the service team",
+        "textMessage": "Hi! I have a question about service for my boat.",
+        "details": "33 Tackle Box Dr, Pottsboro · Tue–Fri 8am–5pm · Sat 8am–3pm"
+      },
+      "how": {
+        "kicker": "How service works",
+        "title": "Two minutes to book. _Texts the whole way._",
+        "lede": "Tell us about the boat once, on our secure work-order page. From there, everything happens by text: the estimate, the timing, the “it’s ready” message. Repairs and repowers get an honest timeline before anything starts.",
+        "button": "Start a work order",
+        "callLink": "Or call {phone}",
+        "steps": [
+          {
+            "title": "Start a work order",
+            "text": "Your boat, your engine, what it needs, and where it is: our shop, your dock or your driveway."
+          },
+          {
+            "title": "We text to confirm",
+            "text": "Timing and price, before any work. Anything extra gets an estimate first, every time."
+          },
+          {
+            "title": "We do it right",
+            "text": "Factory procedures, genuine parts, and techs who treat every boat like their own."
+          },
+          {
+            "title": "Back on the water",
+            "text": "We text when it’s ready. Routine maintenance is often finished the same day."
+          }
+        ]
+      },
+      "authorized": {
+        "kicker": "Factory-authorized",
+        "title": "The exact care _your engine maker recommends._",
+        "paragraphs": [
+          "When you’ve invested in premium equipment, you need a service center that matches that commitment. Big Water Marine combines factory-authorized expertise with genuine care for every vessel that enters our facility. Whether it’s routine maintenance, a complex repower, or seasonal winterization, our certified technicians approach every job with precision and pride. We’re not just fixing boats—we’re protecting your time on the water.",
+          "As an authorized service center for Mercury, Yamaha, Suzuki, and BRP, we have direct access to technical support, genuine parts, and factory training. Your warranty stays intact, and your engine gets the exact care the manufacturer recommends."
+        ],
+        "engines": [
+          "Suzuki",
+          "Yamaha",
+          "Mercury",
+          "BRP"
+        ],
+        "checks": [
+          "Factory-trained, certified technicians",
+          "Genuine OEM parts and fluids",
+          "State-of-the-art diagnostic equipment",
+          "Transparent pricing and communication",
+          "Work guaranteed—because we stand behind our service",
+          "All major outboard brands, plus sterndrive and inboard/outboard (I/O) service",
+          "Factory service intervals, diagnostics and warranty-approved repairs",
+          "Same-day service for routine maintenance"
+        ],
+        "caption": "The crew at 33 Tackle Box Dr. We’re boaters too."
+      },
+      "services": {
+        "kicker": "What we do",
+        "title": "Full-service marine, _start to finish._",
+        "linkLabel": "See packages and prices",
+        "items": [
+          {
+            "name": "Routine maintenance",
+            "text": "Factory-interval service: oil and filters, water-pump impellers, lower-unit gear lube, fuel systems. Often finished the same day.",
+            "tag": "Often same day",
+            "link": ""
+          },
+          {
+            "name": "Repowers",
+            "text": "New engine, new life. Engine selection, complete installation and rigging, prop selection and performance tuning, with financing available.",
+            "tag": "Quotes by text",
+            "link": ""
+          },
+          {
+            "name": "Diagnostics & repairs",
+            "text": "State-of-the-art diagnostic equipment, warranty-approved repairs, and an honest timeline before any work starts.",
+            "tag": "No surprises",
+            "link": ""
+          },
+          {
+            "name": "Winterization & storage",
+            "text": "Guaranteed winterization packages, shrink wrap, outdoor storage and spring startup.",
+            "tag": "Book early",
+            "link": "/winterize/"
+          },
+          {
+            "name": "Sterndrives & inboards",
+            "text": "Inboard/outboard (I/O) service alongside every major outboard brand, whoever sold you the boat.",
+            "tag": "All major brands",
+            "link": ""
+          },
+          {
+            "name": "Marine electronics",
+            "text": "Install and service for Garmin, Humminbird, Lowrance and Raymarine, plus Minn Kota trolling motors, GPS, radar and sonar.",
+            "tag": "Install & service",
+            "link": ""
+          },
+          {
+            "name": "Audio & lighting",
+            "text": "Authorized Wet Sounds dealer: tower speakers, subwoofers, amplifiers and custom lighting, installed right.",
+            "tag": "Wet Sounds dealer",
+            "link": ""
+          },
+          {
+            "name": "Trailer service",
+            "text": "Bearings and repacking, brakes and controllers, axles and hubs, wiring and lights, for boat and utility trailers.",
+            "tag": "Safety first",
+            "link": ""
+          },
+          {
+            "name": "General repairs",
+            "text": "Fiberglass and gelcoat, steering and controls, fuel systems, electrical troubleshooting, upholstery and canvas.",
+            "tag": "If it’s broken",
+            "link": ""
+          }
+        ]
+      },
+      "where": {
+        "kicker": "Your choice",
+        "title": "We come to you. _Or you come to us._",
+        "shop": {
+          "title": "At our service center",
+          "price": "${labor.onsite}",
+          "priceUnit": "/hour labor",
+          "checks": [
+            "State-of-the-art facility with modern diagnostic tools",
+            "Climate-controlled bays, professional equipment, and a comfortable waiting area",
+            "Convenient location minutes from Lake Texoma",
+            "Trailer available if you need transport assistance",
+            "Drop-off scheduling for your convenience",
+            "Same-day service available for routine maintenance"
+          ],
+          "details": "33 Tackle Box Dr, Pottsboro, TX 75076 · Tue–Fri 8–5, Sat 8–3. Serving Lake Texoma, North Texas and DFW, and Southern Oklahoma and Oklahoma City markets."
+        },
+        "mobile": {
+          "tag": "Popular",
+          "title": "Mobile, at your dock",
+          "price": "${labor.mobile}",
+          "priceUnit": "/hour labor + travel",
+          "checks": [
+            "Marinas, private docks, storage facilities and homes",
+            "Approved and insured at most Texoma marinas, from Highport to Rock Creek and Cedar Bayou",
+            "Service throughout the Texoma area",
+            "Full diagnostic and repair capability on site",
+            "Transport service available to bring your boat to our shop if needed",
+            "On-water towing through our TowBoatUS Lake Texoma partnership"
+          ],
+          "details": "Travel: ${mobileTravel.minimum} minimum, ${mobileTravel.perMile}/mile. Some work needs a trailer or lift."
+        },
+        "button": "Start a work order"
+      },
+      "why": {
+        "kicker": "Why Big Water Marine for service?",
+        "title": "You have choices. _Here’s why boaters choose us._",
+        "lede": "You have choices when it comes to marine service. Here’s why discerning boat owners throughout Lake Texoma trust Big Water Marine.",
+        "addonsTitle": "Additional services",
+        "notesTitle": "Good to know"
+      },
+      "reviews": {
+        "kicker": "Genuine care",
+        "title": "What Texoma boaters _tell us._"
+      },
+      "winter": {
+        "script": "It’s that time",
+        "title": "Winterize once. Relax all winter.",
+        "text": "Protect your investment through the off-season. Guaranteed winterization packages from ${winter.freezeguard}, plus shrink wrap, outdoor storage, spring commissioning, and pickup and delivery options.",
+        "button": "See winterization packages"
+      },
+      "faq": {
+        "kicker": "Straight answers",
+        "title": "Service _questions._",
+        "lede": "Anything else? Text the service team and a real person answers.",
+        "button": "Text {phone}",
+        "textMessage": "Hi! I have a service question."
+      }
+    },
+    "winterize": {
+      "meta": {
+        "title": "Boat Winterization on Lake Texoma | Guaranteed, From ${winter.freezeguard}",
+        "description": "Guaranteed boat winterization in Pottsboro, TX and mobile around Lake Texoma. Packages from ${winter.freezeguard} (FreezeGuard) to ${winter.securepro} (SecurePro with shrink wrap, 6 months storage and spring startup). Outboard and PWC winterization from $165."
+      },
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/winter-shrinkwrap-row.webp",
+          "alt": "A row of shrink-wrapped boats on trailers in winter storage"
+        },
+        "shrinkWrap": {
+          "src": "/bigwatermarine/media/winter-shrinkwrap-heat.webp",
+          "alt": "A technician heat-shrinking white wrap over a boat for winter"
+        },
+        "antifreeze": {
+          "src": "/bigwatermarine/media/winter-antifreeze.webp",
+          "alt": "A technician pouring non-toxic antifreeze into a boat engine"
+        }
+      },
+      "hero": {
+        "eyebrow": "Boat winterization · Lake Texoma",
+        "title": [
+          "Winterize once.",
+          "_Relax all winter._"
+        ],
+        "script": "It’s that time",
+        "lede": "**Professional, guaranteed winterization from Texoma’s most trusted marine team.** If your engine doesn’t start in spring due to our winterization process, we’ll make it right at no charge. Limited appointments available — book today and get on the schedule.",
+        "primaryButton": "Book winterization",
+        "secondaryButton": "Text us",
+        "textMessage": "Hi! I'd like to get my boat winterized."
+      },
+      "why": {
+        "kicker": "Why winterize",
+        "title": "Don’t let winter _cost you thousands._",
+        "lede": "Frozen engines, cracked manifolds, and lack of service cost boaters thousands every spring… and ruin the fun. Protect your vessel before temperatures drop. Texas ranks #1 nationally for freeze-damage insurance claims (GEICO and BoatUS data).",
+        "items": [
+          {
+            "label": "Freeze damage",
+            "text": "Prevent cracked blocks, damaged drives, and broken tanks."
+          },
+          {
+            "label": "Avoid costly repairs",
+            "text": "Save thousands in spring engine repairs."
+          },
+          {
+            "label": "Limited slots",
+            "text": "Book before availability runs out."
+          }
+        ]
+      },
+      "packages": {
+        "kicker": "Inboard & sterndrive packages",
+        "title": "Pick your level _of protection._",
+        "lede": "Each package builds on the one before it. Prices are labor only for single-engine boats; materials are billed separately.",
+        "shopOption": "At our service center",
+        "mobileOption": "Mobile, at your dock",
+        "bestTag": "Best value",
+        "shopPrice": "at our shop",
+        "mobilePrice": "mobile",
+        "shopOnly": "Service center only",
+        "hours": "{hours} labor · single engine · materials extra",
+        "button": "Book {package}"
+      },
+      "menu": {
+        "kicker": "Outboards, PWC & extras",
+        "title": "The full _winter menu._",
+        "outboardTitle": "Outboard & PWC winterization",
+        "addOnsTitle": "Add-ons, storage & spring startup",
+        "mobileLabel": "mobile",
+        "detailingTitle": "Additional services",
+        "shrinkWrapCaption": "Shrink wrap at $25/ft, with vents and supports, done at our service center.",
+        "notesTitle": "Important notes"
+      },
+      "guarantee": {
+        "kicker": "The Big Water guarantee",
+        "title": "If it won’t start, _we make it right._",
+        "lede": "If your engine doesn’t start in spring because of our winterization process, we fix it at no charge. Because we do the spring dewinterization too, we verify the whole system end to end.",
+        "inspectionTitle": "The 20-point vessel inspection (TotalLock and SecurePro)",
+        "button": "Book winterization",
+        "serviceLink": "All marine services",
+        "caption": "Drain, fog, stabilize and fill with non-toxic antifreeze, done right."
+      },
+      "faq": {
+        "kicker": "Straight answers",
+        "title": "Winterization _questions._",
+        "lede": "Not sure which package fits your boat? Text us the year, make and engine and we’ll tell you.",
+        "button": "Text {phone}",
+        "textMessage": "Hi! Which winterization package fits my boat? It's a "
+      }
+    },
+    "boatclub": {
+      "meta": {
+        "title": "Big Water Boat Club | Lake Texoma Boat Club, 50% Off Every Rental",
+        "description": "Join Big Water Boat Club on Lake Texoma: ${club.initiation} to join, ${club.monthly}/month, and {club.discount}% off every boat rental at Lighthouse Resort & Marina. No blackout dates, no maintenance, no storage.",
+        "schemaDescription": "Boat club membership on Lake Texoma: ${club.initiation} initiation, ${club.monthly} per month billed quarterly, and {club.discount}% off boat rentals at Lighthouse Resort & Marina with no blackout dates."
+      },
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/hero-lifestyle.webp",
+          "alt": "Friends playing in the shallows next to a pontoon on Lake Texoma"
+        },
+        "fleet": {
+          "src": "/bigwatermarine/media/club-fleet.webp",
+          "alt": "Boat Club boats running in formation on Lake Texoma"
+        },
+        "couple": {
+          "src": "/bigwatermarine/media/club-couple.webp",
+          "alt": "A couple relaxing at the bow of a club boat"
+        },
+        "family": {
+          "src": "/bigwatermarine/media/veranda-family.webp",
+          "alt": "A dad catching a kid jumping off a pontoon"
+        },
+        "sunset": {
+          "src": "/bigwatermarine/media/highfield-sunset.webp",
+          "alt": "A family cruising at golden hour"
+        },
+        "final": {
+          "src": "/bigwatermarine/media/texoma-dusk-cruise.webp",
+          "alt": ""
+        }
+      },
+      "hero": {
+        "eyebrow": "Big Water Boat Club · Lake Texoma",
+        "title": [
+          "All the lake days.",
+          "_None of the upkeep._"
+        ],
+        "script": "That’s going Big.",
+        "lede": "**${club.initiation} to join. ${club.monthly} a month. {club.discount}% off every rental.** No blackout dates, no boat payment, no storage, no winterizing. Just pick your day and bring your people.",
+        "primaryButton": "Join the club",
+        "secondaryButton": "Text us a question",
+        "textMessage": "Hi! I have a question about joining Big Water Boat Club.",
+        "stats": [
+          {
+            "label": "Off every rental",
+            "value": "{club.discount}%"
+          },
+          {
+            "label": "Per month, billed quarterly",
+            "value": "${club.monthly}"
+          },
+          {
+            "label": "Blackout dates",
+            "value": "0"
+          }
+        ]
+      },
+      "math": {
+        "kicker": "Do the math",
+        "title": "Half price. _Every time you go._",
+        "lede": "Members pay {club.discount}% of the posted rental rate at Lighthouse Resort & Marina. On a busy summer, that adds up fast.",
+        "winter": {
+          "label": "Winter half day",
+          "was": "${club.winterHalfDay}",
+          "now": "${club.winterHalfDayHalf}",
+          "nowNote": "member price"
+        },
+        "holiday": {
+          "label": "Holiday-weekend full day",
+          "was": "up to ${club.holidayFullDay}",
+          "now": "${club.holidayHalfDay}",
+          "nowNote": "member price"
+        },
+        "own": {
+          "label": "Owning a ${own.price} pontoon",
+          "now": "about {own.payment}",
+          "nowNote": "a month financed*, before storage, upkeep and winterizing",
+          "versus": "Membership: **${club.monthly}/month.**"
+        },
+        "fine": "Rental rates vary by season, weekdays, weekends and holidays. Each rental requires a refundable ${club.deposit} damage deposit; fuel is billed at the member rate. *{loan.downPercent}% down, {loan.apr}% APR, {loan.termYears} years, on approved credit."
+      },
+      "why": {
+        "kicker": "Why members love it",
+        "title": "Max flex. _Experience boating without the hassle of ownership._",
+        "lede": "We’re your top choice when you want more than the usual Lake Texoma boat rental but aren’t ready to commit to ownership. Our club offers exclusive access to our outstanding boat fleet, eliminating concerns about maintenance, storage, and ownership expenses, so you can focus on having a great time on the water.",
+        "perks": [
+          {
+            "title": "No blackout dates",
+            "text": "Weekdays, weekends, holidays. Half day or full day. If a boat’s free, it’s yours."
+          },
+          {
+            "title": "{club.discount}% off every rental",
+            "text": "Half the posted rate at Lighthouse Resort & Marina, every single time you go out."
+          },
+          {
+            "title": "Book up to the day of",
+            "text": "Online or by phone. Woke up to a perfect lake? Grab a boat that morning (subject to availability)."
+          },
+          {
+            "title": "Nothing to maintain",
+            "text": "No boat payment, no storage, no winterizing, no repair bills. Dock it and walk away."
+          },
+          {
+            "title": "Free boater training",
+            "text": "The Intro to Boating on Lake Texoma class is free, and our team knows every cove on this lake."
+          },
+          {
+            "title": "A growing fleet",
+            "text": "Rental boats plus member-only boats, with more added as the club grows."
+          },
+          {
+            "title": "Member perks around the lake",
+            "text": "Discounts on cabin and RV stays at Lighthouse Resort, cruises with Fastrac Cruises, and more."
+          },
+          {
+            "title": "Concierge service",
+            "text": "Tell us the plan and we’ll help you pick the right boat and make the day easy."
+          },
+          {
+            "title": "Member-to-Owner",
+            "text": "When you’re ready to own, your membership becomes your on-ramp to the right boat."
+          },
+          {
+            "title": "Cheaper than renting or other boat clubs",
+            "text": "Low initiation and quarterly fees, half-price rentals, and no long-term commitment. Cancel anytime after your first quarter."
+          }
+        ]
+      },
+      "photos": {
+        "script": "See you on the water"
+      },
+      "how": {
+        "kicker": "How it works",
+        "title": "From sign-up _to sandbar._",
+        "lede": "Four simple steps to your first lake day. When you join Big Water Boat Club, you are not joining a “time share-like boating club.” You are becoming a member of Lake Texoma’s largest and most experienced boating operations company, with over 15 years of on-the-water experience, and part of the Texoma Destinations family.",
+        "primaryButton": "Join the club",
+        "compareLink": {
+          "label": "How we compare to Freedom Boat Club",
+          "href": "/big-water-boat-club-vs-freedom-boat-club/"
+        },
+        "steps": [
+          {
+            "title": "Join",
+            "text": "${club.initiation} initiation and your first quarter (${club.quarterly}). Members must be {club.minAge} or older."
+          },
+          {
+            "title": "Get lake-ready",
+            "text": "Finish the online boater safety course and our partner BoaterWise’s free Intro to Boating on Lake Texoma."
+          },
+          {
+            "title": "Book your day",
+            "text": "Reserve online or by phone, as early or as late as you like."
+          },
+          {
+            "title": "Show up and go",
+            "text": "Bring your people. A refundable ${club.deposit} deposit holds the boat; fuel is billed at the member rate."
+          }
+        ]
+      },
+      "compare": {
+        "kicker": "Simple on purpose",
+        "title": "Owning, typical clubs, _or Big Water._",
+        "columns": {
+          "owning": "Owning a boat",
+          "typical": "Typical boat club",
+          "us": "Big Water Boat Club"
+        },
+        "rows": [
+          {
+            "label": "Upfront cost",
+            "owning": "Down payment on the boat",
+            "typical": "High buy-in",
+            "us": "${club.initiation} initiation"
+          },
+          {
+            "label": "Monthly cost",
+            "owning": "Loan, insurance, storage",
+            "typical": "Expensive dues",
+            "us": "${club.monthly}/month"
+          },
+          {
+            "label": "Membership levels",
+            "owning": "n/a",
+            "typical": "Multiple tiers",
+            "us": "One simple plan"
+          },
+          {
+            "label": "Reservation limits",
+            "owning": "None",
+            "typical": "Often limited",
+            "us": "None, no blackout dates"
+          },
+          {
+            "label": "Maintenance & winterizing",
+            "owning": "Yours to handle",
+            "typical": "Included",
+            "us": "Not your problem"
+          },
+          {
+            "label": "Commitment",
+            "owning": "Years of payments",
+            "typical": "Varies by club",
+            "us": "3-month minimum"
+          }
+        ]
+      },
+      "faq": {
+        "kicker": "Straight answers",
+        "title": "Everything you _want to know._",
+        "lede": "Still wondering? Text us. A real person on our team will answer.",
+        "button": "Text {phone}",
+        "textMessage": "Hi! I have a question about Big Water Boat Club."
+      },
+      "final": {
+        "title": "Not just a boat club. The boat club.",
+        "text": "Your next lake day is closer than you think. You’re not joining a club. You’re joining the Big Water family.",
+        "primaryButton": "Join Big Water Boat Club",
+        "secondaryButton": "Ready to own? Shop boats"
+      },
+      "terms": {
+        "title": "Membership terms",
+        "text": "Dues of ${club.quarterly} per quarter are billed automatically. Initiation fee and membership dues are not refundable or transferable. A refundable ${club.deposit} damage deposit is required for each rental and is returned, less any amount due, when the boat comes back in the condition it left. Written, signed notice is required to cancel. Big Water Boat Club may cancel a membership for non-payment or conduct detrimental to the club. Reservations are subject to availability. Members must be {club.minAge} or older."
+      }
+    },
+    "keepboating": {
+      "meta": {
+        "title": "Rent, Join or Buy a Boat on Lake Texoma",
+        "description": "Rent, join or own? Compare Lake Texoma rentals, Big Water Boat Club at 50% off rentals, and buying your own boat. Find what fits your days on the water.",
+        "schemaDescription": "Compare Lake Texoma boat rentals, Big Water Boat Club at 50% off rentals, and buying your own boat."
+      },
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/berkshire-le-2500.webp",
+          "alt": "Berkshire LE pontoon under way with passengers"
+        },
+        "final": {
+          "src": "/bigwatermarine/media/rental-red-pontoon.webp",
+          "alt": ""
+        }
+      },
+      "hero": {
+        "eyebrow": "❤️ Life is better on a boat.",
+        "title": [
+          "Make every weekend",
+          "_a lake weekend._"
+        ],
+        "script": "Your best Texoma memories happen on the water.",
+        "buttons": {
+          "buyRental": "Buy the boat you rented",
+          "joinClub": "Join Big Water Boat Club",
+          "buyNew": "Buy a new boat and save"
+        }
+      },
+      "memories": {
+        "kicker": "Your best Texoma memories",
+        "title": "Perfect boat, _perfect memories._",
+        "photos": [
+          {
+            "image": {
+              "src": "/bigwatermarine/media/berkshire-le-2500.webp",
+              "alt": "Berkshire LE pontoon under way with passengers"
+            },
+            "caption": "Perfect boat, perfect memories."
+          },
+          {
+            "image": {
+              "src": "/bigwatermarine/media/rental-tube.webp",
+              "alt": "Riders on a towable tube behind a boat"
+            },
+            "caption": "“One more ride!” — the tubing that never should end."
+          },
+          {
+            "image": {
+              "src": "/bigwatermarine/media/rental-dog.webp",
+              "alt": "Woman holding a small dog aboard a boat on Lake Texoma"
+            },
+            "caption": "Cold drinks, sun on our skin, nothing but Texoma ahead."
+          },
+          {
+            "image": {
+              "src": "/bigwatermarine/media/rental-beachball.webp",
+              "alt": "Family playing with a beach ball on a pontoon boat"
+            },
+            "caption": "The Islands were a highlight of our day."
+          },
+          {
+            "image": {
+              "src": "/bigwatermarine/media/rental-selfie.webp",
+              "alt": "Couple taking a selfie on a boat"
+            },
+            "caption": "The moment we said, “We should do this more often.”"
+          }
+        ],
+        "quote": "“Don’t let it be a rental memory. Make it your lifestyle.”"
+      },
+      "options": {
+        "kicker": "Rent? Join? Own?",
+        "title": "You _decide!_",
+        "cards": [
+          {
+            "title": "Buy Your Rental Boat",
+            "subtitle": "",
+            "points": [
+              "Huge discounts on last year's boats",
+              "Exclusive Discounts for our Previous Renters",
+              "Same Boat, Same Memories",
+              "No more \"sold out\" weekends"
+            ],
+            "button": "Buy This Pontoon",
+            "href": "/fleet-sales/",
+            "image": {
+              "src": "/bigwatermarine/media/rental-red-pontoon.webp",
+              "alt": "A red rental pontoon on Lake Texoma under a blue sky"
+            }
+          },
+          {
+            "title": "Big Water Boat Club",
+            "subtitle": "Boating without the Hassle",
+            "points": [
+              "Premium fleet access to member-only boats",
+              "50% off rentals + priority booking",
+              "Break even after 2 rentals"
+            ],
+            "button": "Join Boat Club",
+            "href": "/boatclub/",
+            "image": {
+              "src": "/bigwatermarine/media/berkshire-le.webp",
+              "alt": "A Berkshire LE pontoon full of friends on the lake"
+            }
+          },
+          {
+            "title": "Buy A New Boat",
+            "subtitle": "Find your dream boat and save $",
+            "points": [
+              "Apply renter discount to any in-stock model on your new boat",
+              "Financing Available",
+              "Membership, Discounts, Service"
+            ],
+            "button": "View Inventory",
+            "href": "/inventory/",
+            "image": {
+              "src": "/bigwatermarine/media/rental-selfie.webp",
+              "alt": "A couple enjoying a day on their boat"
+            }
+          }
+        ]
+      },
+      "calculator": {
+        "kicker": "Do the math",
+        "title": "Find your best _Lake Texoma path._",
+        "lede": "Compare keep renting, join the club (50% off normal rentals), and purchase."
+      },
+      "reviews": {
+        "kicker": "Genuine care",
+        "title": "What our customers _are saying._",
+        "rental": [
+          {
+            "name": "Kristin H – Lighthouse Boat Rental",
+            "text": "Had a great experience! Amazing new boat, great staff and great price. Highly recommend!!"
+          },
+          {
+            "name": "Cindy B – Lighthouse Boat Rental",
+            "text": "This was an easy boat rental. The staff was friendly and thorough with needed information. The boat was clean and in good shape. We will go back the next time we are in the area."
+          },
+          {
+            "name": "Ryan A – Lighthouse Boat Rental",
+            "text": "Extremly informative, friendly staff, easy setup, boat was perfect. I highly recommend lighthouse marina boat rentals. Overally an amazing experience."
+          }
+        ],
+        "brandReviewName": "{name} – Big Water Marine"
+      },
+      "faq": {
+        "kicker": "Straight answers",
+        "title": "Rent, join _or own?_",
+        "lede": "Not sure which fits? Text us how you like to spend a lake day and we’ll help you decide.",
+        "button": "Text {phone}",
+        "textMessage": "Hi! Help me decide: rent, join the Boat Club, or buy?"
+      },
+      "final": {
+        "title": "Your Texoma adventure doesn’t have to end!",
+        "text": "Keep the fun going beyond your rental. Join the Big Water Boat Club for year-round access, buy the boat you already love, or upgrade to something new — all with exclusive discounts and top-notch service.",
+        "buttons": {
+          "buyRental": "Buy the boat you rented",
+          "joinClub": "Join Big Water Boat Club",
+          "buyNew": "Buy a new boat and save"
+        }
+      }
+    },
+    "financing": {
+      "meta": {
+        "title": "Boat Financing on Lake Texoma | New, Used & Repower Loans",
+        "description": "Big Water Marine offers financing on new and used boat purchases and on repowers through marine lending partners, with a secure online application. Rates as low as 5.99% APR, terms up to 20 years. Pottsboro, TX."
+      },
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/helm.webp",
+          "alt": "Hands on the helm of a boat underway on Lake Texoma"
+        }
+      },
+      "hero": {
+        "eyebrow": "Flexible financing & trade-ins welcome",
+        "title": [
+          "Boat financing",
+          "_on Lake Texoma._"
+        ],
+        "lede": "Big Water Marine offers financing on new and used boat purchases and on repowers, through marine lending partners, with a secure online application. Commercial and fleet purchases are handled separately — we’ll point you to the right banking partner rather than run those through retail lenders.",
+        "applyButton": "Apply for financing online",
+        "textButton": "Text {phone}"
+      },
+      "steps": {
+        "kicker": "How it works",
+        "title": "Four steps _to the water._",
+        "lede": "Make your dream boat a reality with competitive financing options tailored to your budget. Low rates, flexible terms, quick approvals.",
+        "applyButton": "Apply for financing online",
+        "inventoryLink": "See current inventory",
+        "items": [
+          {
+            "title": "Apply online.",
+            "text": "The secure application takes a few minutes."
+          },
+          {
+            "title": "We match you to a lender.",
+            "text": "We work with marine lenders who understand boats, not just cars."
+          },
+          {
+            "title": "Review your terms.",
+            "text": "We walk through the out-the-door number, including TTL, freight, prep and doc fee."
+          },
+          {
+            "title": "Take delivery.",
+            "text": "We rig, prep and hand over the boat water-ready."
+          }
+        ]
+      },
+      "calculator": {
+        "kicker": "Estimate your payment",
+        "title": "Run the numbers _before you apply._",
+        "lede": "Change the price, down payment, rate and term to see an estimated monthly payment. Every boat listing has this calculator too."
+      },
+      "options": {
+        "financingTitle": "Financing options",
+        "financingText": "Competitive financing options tailored to your budget. Low rates, flexible terms, quick approvals.",
+        "financingButton": "Get pre-approved",
+        "tradeTitle": "Trade-in value",
+        "tradeText": "Upgrade and get top dollar for your current boat. We make the transition seamless with fair valuations and easy paperwork.",
+        "tradeButton": "Get your trade value",
+        "fine": "*For qualified buyers, on approved credit."
+      },
+      "faq": {
+        "kicker": "Financing questions",
+        "title": "Straight _answers._",
+        "lede": "Questions before you apply? Call [{phone}](tel:{phoneE164}) and ask for sales, or see [current inventory](/inventory/)."
+      }
+    },
+    "storage": {
+      "meta": {
+        "title": "Boat Storage on Lake Texoma | Secure Outdoor Storage in Pottsboro, TX",
+        "description": "Secure outdoor boat storage at Big Water Marine in Pottsboro, Texas, on Lake Texoma. Six months of storage, shrink wrap and spring startup included in our ${securePro.price} SecurePro winterization package."
+      },
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/winter-shrinkwrap-row.webp",
+          "alt": "A row of shrink-wrapped boats on trailers in outdoor winter storage"
+        },
+        "shrinkWrap": {
+          "src": "/bigwatermarine/media/winter-shrinkwrap-heat.webp",
+          "alt": "A technician heat-shrinking white wrap over a boat for winter storage"
+        }
+      },
+      "hero": {
+        "eyebrow": "Pottsboro, Texas · Lake Texoma",
+        "title": [
+          "Boat storage",
+          "_on Lake Texoma._"
+        ],
+        "lede": "Big Water Marine offers secure **outdoor** boat storage at our Pottsboro, Texas location on Lake Texoma. We do not offer indoor or covered storage. Six months of storage is included in our SecurePro winterization package, along with shrink wrap for boats up to 25 feet and spring startup. Space is seasonal — call {phone} to check availability.",
+        "callButton": "Call {phone}",
+        "textButton": "Text to check availability"
+      },
+      "includes": {
+        "kicker": "What outdoor storage includes",
+        "title": "Wrapped, winterized, _ready in spring._",
+        "items": [
+          {
+            "label": "Secure onsite storage",
+            "text": "at our Pottsboro facility."
+          },
+          {
+            "label": "Shrink wrap",
+            "text": "for boats up to 25 feet, protecting against weather and debris."
+          },
+          {
+            "label": "Winterization",
+            "text": "so nothing freezes while the boat sits."
+          },
+          {
+            "label": "Spring dewinterization",
+            "text": "so it starts when you want it back."
+          },
+          {
+            "label": "Pickup and delivery",
+            "text": "options if you can’t bring it yourself."
+          }
+        ],
+        "note": "Because storage is outdoors, we strongly recommend shrink wrap for any boat left through the winter. A wrapped hull outdoors weathers the season far better than an uncovered one.",
+        "caption": "Shrink wrap at $25/ft, with vents and supports."
+      },
+      "securePro": {
+        "kicker": "Storage and winterization together",
+        "title": "The simplest way: _SecurePro._",
+        "lede": "The simplest way to get storage is the [SecurePro winterization package](/winterize/), which bundles it with everything the boat needs for the off-season:",
+        "tableHeadings": [
+          "Included in SecurePro",
+          "Detail"
+        ],
+        "rows": [
+          {
+            "label": "Outdoor storage",
+            "detail": "6 months, onsite and secure"
+          },
+          {
+            "label": "Shrink wrap",
+            "detail": "Boats up to 25′"
+          },
+          {
+            "label": "Full winterization",
+            "detail": "Engine, drive and vessel protection"
+          },
+          {
+            "label": "20-point inspection",
+            "detail": "Full vessel check"
+          },
+          {
+            "label": "Dewinterization",
+            "detail": "Spring startup included"
+          }
+        ],
+        "pricing": "Pricing is **${securePro.price} onsite**, labor for single-engine boats; materials are additional. See the [winterization page](/winterize/) for all package tiers.",
+        "bookButton": "Book SecurePro",
+        "packagesLink": "All winterization packages"
+      },
+      "faq": {
+        "kicker": "Storage questions",
+        "title": "Straight _answers._",
+        "lede": "Storage slots are limited and seasonal. Call [{phone}](tel:{phoneE164}) or email [{email}](mailto:{email}) to reserve a space."
+      }
+    },
+    "about": {
+      "meta": {
+        "title": "About Us | Pottsboro, TX on Lake Texoma",
+        "description": "Big Water Marine is a new and used boat dealership and full-service marine center in Pottsboro, Texas, on Lake Texoma: Berkshire, Veranda, Scout and Highfield boats, factory-authorized Mercury, Yamaha, Suzuki and BRP service, and Big Water Boat Club."
+      },
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/texoma-sunset.webp",
+          "alt": "Sunset over Lake Texoma's wooded shoreline"
+        },
+        "team": {
+          "src": "/bigwatermarine/media/service-team.webp",
+          "alt": "The Big Water Marine team outside the shop in Pottsboro"
+        },
+        "fleet": {
+          "src": "/bigwatermarine/media/club-fleet.webp",
+          "alt": "The Big Water Boat Club fleet running in formation on Lake Texoma"
+        }
+      },
+      "hero": {
+        "eyebrow": "Who we are",
+        "title": [
+          "About",
+          "_Big Water Marine._"
+        ],
+        "script": "Welcome to the family",
+        "lede": "Big Water Marine is a new and used boat dealership and full-service marine center in Pottsboro, Texas, on Lake Texoma. It sells Berkshire and Veranda pontoons, Scout center consoles and Highfield RIBs, runs a factory-authorized service department for Mercury, Yamaha, Suzuki and BRP, and operates Big Water Boat Club."
+      },
+      "whatWeDo": {
+        "kicker": "What we do",
+        "title": "Premium boats. Superior service. _Genuine care._",
+        "items": [
+          {
+            "title": "Sell boats.",
+            "text": "New Berkshire, Veranda, Scout and Highfield models, plus used and brokerage inventory that rotates through the lot.",
+            "link": "Shop boats",
+            "href": "/inventory/"
+          },
+          {
+            "title": "Service them.",
+            "text": "Factory-authorized for Mercury, Yamaha, Suzuki and BRP. Same-day service for routine work, mobile service to your dock, repowers, marine audio, winterization and storage.",
+            "link": "Marine service",
+            "href": "/service/"
+          },
+          {
+            "title": "Keep people boating.",
+            "text": "Big Water Boat Club and rentals exist for people who want the water without the ownership.",
+            "link": "Rent, join or own",
+            "href": "/keepboating/"
+          },
+          {
+            "title": "Supply operators.",
+            "text": "We sell fleet and rental boats to marinas, resorts and rental companies, and service their fleets at the dock.",
+            "link": "Fleet sales",
+            "href": "/fleet-sales/"
+          }
+        ]
+      },
+      "mission": {
+        "kicker": "Our mission",
+        "title": "An unrivaled experience _on the water._",
+        "paragraphs": [
+          "To offer an unrivaled customer experience through the world of boating, setting new standards for excellence and enjoyment on the water.",
+          "We serve Lake Texoma, Pottsboro, Denison, Sherman, Durant, and the wider North Texas and Southern Oklahoma area."
+        ],
+        "caption": "The crew at 33 Tackle Box Dr. We’re boaters too."
+      },
+      "findUs": {
+        "kicker": "Where to find us",
+        "title": "Two locations _in Pottsboro._",
+        "sales": {
+          "title": "Boat Sales",
+          "address": "50055 N State Hwy 289, Pottsboro, TX 75076",
+          "hours": "Tuesday–Saturday, 9am–5pm",
+          "email": "Sales email: [sales@bigwatermarine.com](mailto:sales@bigwatermarine.com)",
+          "directionsLink": "Get directions",
+          "directionsHref": "https://maps.google.com/?q=50055+N+State+Hwy+289+Pottsboro+TX+75076"
+        },
+        "service": {
+          "title": "Service Center",
+          "address": "33 Tackle Box Dr, Pottsboro, TX 75076",
+          "hours": "Tuesday–Friday 8am–5pm, Saturday 8am–3pm",
+          "email": "Service email: [{email}](mailto:{email})",
+          "directionsLink": "Get directions",
+          "directionsHref": "https://maps.google.com/?q=33+Tackle+Box+Dr+Pottsboro+TX+75076"
+        },
+        "callButton": "Call {phone}",
+        "textButton": "Text {phone}"
+      },
+      "related": {
+        "kicker": "The Big Water family",
+        "title": "Related businesses _on Lake Texoma._",
+        "items": [
+          {
+            "name": "Big Water Boat Club",
+            "text": "membership boating on Lake Texoma.",
+            "href": "/boatclub/"
+          },
+          {
+            "name": "TowBoatUS North Texas / Big Water Cowboys",
+            "text": "24/7 on-water towing and salvage on Lake Texoma, Bois d’Arc and Cedar Creek.",
+            "href": "https://towboatusntx.com"
+          },
+          {
+            "name": "Texoma Destinations",
+            "text": "lodging, rentals and things to do around the lake.",
+            "href": "https://texomadestinations.com"
+          }
+        ],
+        "closing": "Come see us in Pottsboro, or call [{phone}](tel:{phoneE164})."
+      }
+    },
+    "contact": {
+      "meta": {
+        "title": "Contact Big Water Marine | Pottsboro, TX on Lake Texoma",
+        "description": "Call or text Big Water Marine at 903-419-1019. Boat sales at 50055 N State Hwy 289 (Tue–Sat 9am–5pm) and service at 33 Tackle Box Dr (Tue–Fri 8am–5pm, Sat 8am–3pm) in Pottsboro, Texas, on Lake Texoma."
+      },
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/texoma-pontoon-dusk.webp",
+          "alt": "A pontoon boat cruising Lake Texoma at sunset"
+        },
+        "salesMap": {
+          "src": "/bigwatermarine/media/map-sales.webp",
+          "alt": "Map showing Big Water Marine sales at 50055 N State Hwy 289, Pottsboro, Texas"
+        },
+        "serviceMap": {
+          "src": "/bigwatermarine/media/map-service.webp",
+          "alt": "Map of Big Water Marine on N Hwy 289 in Pottsboro, Texas, near Highport Marina"
+        }
+      },
+      "hero": {
+        "eyebrow": "Plan your next adventure",
+        "title": [
+          "Visit Big Water Marine",
+          "_in Pottsboro, TX._"
+        ],
+        "lede": "Big Water Marine has two locations in Pottsboro, Texas, on Lake Texoma. Boat sales are at 50055 N State Hwy 289, open Tuesday–Saturday 9am–5pm. The service centre is at 33 Tackle Box Dr, open Tuesday–Friday 8am–5pm and Saturday 8am–3pm. Both are reached on {phone}, and service can be emailed at {email}.",
+        "textButton": "Text {phone}",
+        "callButton": "Call {phone}"
+      },
+      "topics": {
+        "kicker": "How can we help?",
+        "title": "Pick a topic. _Get a real person._",
+        "lede": "Texts go straight to our team. Sales is open Tuesday–Saturday, 9am–5pm; service Tuesday–Friday 8am–5pm and Saturday 8am–3pm.",
+        "items": [
+          {
+            "topic": "sales",
+            "title": "New boat sales",
+            "text": "Ask about a boat, a price or a sea trial.",
+            "button": "Text sales"
+          },
+          {
+            "topic": "service",
+            "title": "Boat service",
+            "text": "Repairs, maintenance, winterization or mobile service.",
+            "button": "Book service"
+          },
+          {
+            "topic": "club",
+            "title": "Boat Club",
+            "text": "Half-price rentals at Lighthouse Resort & Marina.",
+            "button": "See the club"
+          },
+          {
+            "topic": "parts",
+            "title": "Parts",
+            "text": "Genuine OEM parts and accessories.",
+            "button": "Text parts"
+          },
+          {
+            "topic": "other",
+            "title": "Something else",
+            "text": "Anything else on your mind.",
+            "button": "Text us"
+          }
+        ]
+      },
+      "locations": {
+        "kicker": "Located on Lake Texoma",
+        "title": "Visit us _in Pottsboro._",
+        "lede": "We are roughly 75 miles north of Dallas via US-75, near Denison and Sherman, and about 160 miles south of Oklahoma City.",
+        "sales": {
+          "title": "Big Water Marine – Sales",
+          "address": [
+            "50055 N State Hwy 289",
+            "Pottsboro, TX 75076"
+          ],
+          "hours": "**Sales:** Tuesday thru Saturday 9am – 5pm",
+          "email": "Email: [sales@bigwatermarine.com](mailto:sales@bigwatermarine.com)",
+          "mapHref": "https://maps.app.goo.gl/utZa4T7ZvSxJU2Cv5",
+          "directionsButton": "Get directions",
+          "callButton": "Call {phone}"
+        },
+        "service": {
+          "title": "Big Water Marine – Service",
+          "address": [
+            "33 Tackle Box Dr",
+            "Pottsboro, TX 75076"
+          ],
+          "hours": "**Service:** Tuesday thru Friday 8am – 5pm, Saturday 8am – 3pm",
+          "email": "Email: [{email}](mailto:{email})",
+          "mapHref": "https://maps.app.goo.gl/beVpzPSHNJf7u7aU6",
+          "directionsButton": "Get directions",
+          "bookButton": "Book service"
+        }
+      },
+      "faq": {
+        "kicker": "Before you visit",
+        "title": "Good to _know._",
+        "ledeBeforeLink": "Prefer to write? Text",
+        "ledeAfterLink": ", or email [{email}](mailto:{email}) for service enquiries.",
+        "faqLink": "More answers in our FAQ"
+      }
+    },
+    "fleetSales": {
+      "meta": {
+        "title": "Fleet & Rental Boat Sales, Lake Texoma",
+        "description": "Fleet boat sales for marinas, resorts, rental operators, boat clubs and camps on Lake Texoma and North Texas. Volume pricing from two boats, mobile service at your dock, and used rental boats anyone can buy."
+      },
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/club-fleet.webp",
+          "alt": "A fleet of pontoon boats running together on Lake Texoma"
+        },
+        "pontoon": {
+          "src": "/bigwatermarine/media/rental-red-pontoon.webp",
+          "alt": "A red rental pontoon beached on a Lake Texoma shoreline"
+        }
+      },
+      "textMessages": {
+        "fleetQuote": "Hi! I'm interested in fleet pricing. We run ___ boats for ___ and need them on the water by ___.",
+        "rentalBoat": "Hi! I'm interested in one of your used rental boats."
+      },
+      "hero": {
+        "eyebrow": "Rental, fleet and boat club boat sales",
+        "title": [
+          "Fleet & rental",
+          "_boat sales._"
+        ],
+        "lede": "If you run a marina, resort, rental operation, boat club, or camp, your boats are working assets — they need to launch every morning, take a beating all season, and hold their value when it’s time to cycle them out. Big Water Marine sells new and used fleet boats to operators across Lake Texoma and North Texas, at volume pricing, from a dealership that runs its own rental fleet and boat club on this lake.",
+        "textButton": "Text for a fleet quote",
+        "callButton": "Call {phone}"
+      },
+      "operators": {
+        "kicker": "Why operators buy here",
+        "title": "Built for operators, _not just owners._",
+        "tiers": [
+          {
+            "number": "2+",
+            "unit": "boats",
+            "label": "Fleet pricing"
+          },
+          {
+            "number": "4+",
+            "unit": "boats",
+            "label": "Deep discount"
+          },
+          {
+            "number": "8+",
+            "unit": "boats",
+            "label": "Wholesale"
+          }
+        ],
+        "items": [
+          {
+            "title": "Volume pricing that starts at two boats",
+            "text": "Fleet buyers don’t pay retail, and you don’t need a marina full of boats to qualify. Pricing steps down as the order grows: two boats earn fleet pricing, four or more earns a deep discount, and at eight or more you’re buying at wholesale. Mixed models and mixed sizes count toward the same order — we’ll quote a full season as one deal rather than boat by boat."
+          },
+          {
+            "title": "Brands that survive a rental season",
+            "text": "We’re a dealer for Berkshire and Veranda pontoons, Scout center consoles, and Highfield aluminum-hull RIBs and tenders — rigged with Suzuki, Yamaha, Mercury and Rotax power. Heavy-gauge construction, simple layouts, and parts availability matter more in a fleet than any feature list, and we’ll steer you toward the models that hold up rather than the ones with the best brochure."
+          },
+          {
+            "title": "Mobile service to your dock",
+            "text": "This is the part most dealers can’t offer. Our technicians are factory-authorized for Mercury, Yamaha, Suzuki and BRP, same-day service is available, and we come to your dock or marina. A boat that gets fixed in its slip is a boat that’s still earning that weekend."
+          },
+          {
+            "title": "One relationship, whole lifecycle",
+            "text": "Buy the fleet, service the fleet, cycle the fleet. We rig and prep every boat before delivery, keep genuine OEM parts on hand, handle seasonal winterization and shrink wrap, and help you move boats on when you’re ready to refresh."
+          }
+        ]
+      },
+      "newFleet": {
+        "kicker": "In stock now",
+        "title": "Available new _fleet boats._",
+        "link": "See all Berkshire inventory",
+        "empty": "No new fleet boats are listed right now. Text us what you need and we’ll put together a quote."
+      },
+      "cycle": {
+        "kicker": "Plan it, don’t react to it",
+        "title": "How the fleet _cycle works._",
+        "lede": "Most operators run a boat two to three seasons, then move it on while it still carries strong resale value and before maintenance costs climb. We help you plan that cycle instead of reacting to it.",
+        "steps": [
+          {
+            "title": "Spec it.",
+            "text": "We help you choose layouts, power, and options that rent well and service easily."
+          },
+          {
+            "title": "Run it.",
+            "text": "Scheduled maintenance at your dock keeps boats in the water through the season."
+          },
+          {
+            "title": "Cycle it.",
+            "text": "When you refresh, we help you get the most out of the boats you’re replacing — and into next season’s fleet."
+          }
+        ],
+        "retailTitle": "We’d rather you get retail than wholesale",
+        "retailText": [
+          "Most dealers want your trade cheap. We’d rather see you sell that boat at retail, because a fleet boat that retails well almost always returns more than one absorbed at wholesale — and that’s your margin, not ours. So we’ll support you selling it yourself, take it on consignment and do the work for you, or make you a favorable trade on the upgrade when that’s genuinely the cleaner deal.",
+          "The point is maximum dollar out for dollar in, and a fleet fresh enough that renters keep choosing you over the operation down the lake."
+        ],
+        "caption": "Two to three seasons in the fleet, then on to a new owner."
+      },
+      "usedRental": {
+        "kicker": "Anyone can buy one",
+        "title": "Available used _rental boats._",
+        "lede": "Gently used fleet boats at substantially reduced prices — maintained on a commercial schedule, serviced by factory-authorized technicians, and priced well below comparable new models. Anyone can buy one; you don’t have to be an operator. If you’ve been pricing a first pontoon or a second boat for the lake house, this is usually the most boat per dollar on our lot.",
+        "empty": "No used rental boats are listed right now. Text us and we’ll let you know when the next ones are available.",
+        "textButton": "Text about a rental boat",
+        "link": "All boats for sale"
+      },
+      "supply": {
+        "kicker": "Who we supply",
+        "title": "Working boats for _working operations._",
+        "items": [
+          "Marinas and resorts",
+          "Rental and charter operators",
+          "Boat clubs",
+          "Youth camps and church camps",
+          "Lodges and RV resorts",
+          "Municipal and patrol operations",
+          "Corporate and event fleets"
+        ]
+      },
+      "faq": {
+        "kicker": "Fleet questions",
+        "title": "Let’s build _your fleet._",
+        "lede": "Tell us how many boats you run, what they do, and when you need them on the water. We’ll put together a quote — and if you’d rather talk it through, call and ask for fleet sales.",
+        "textButton": "Text for a fleet quote",
+        "callButton": "Call {phone}",
+        "fine": "Sales, Tuesday through Saturday, 9am–5pm · 50055 N State Hwy 289, Pottsboro, TX 75076"
+      }
+    },
+    "brands": {
+      "meta": {
+        "title": "Boat Brands We Sell | Lake Texoma",
+        "description": "Big Water Marine carries four new boat brands in Pottsboro, Texas on Lake Texoma: Berkshire and Veranda pontoons, Scout center consoles and Highfield aluminum-hull RIBs, with Suzuki, Yamaha, Mercury or Rotax power."
+      },
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/hero-lifestyle.webp",
+          "alt": "Friends enjoying a day on a boat on Lake Texoma"
+        }
+      },
+      "hero": {
+        "eyebrow": "Four new brands · Pottsboro, Texas",
+        "title": [
+          "Boat brands",
+          "_we sell._"
+        ],
+        "lede": "Big Water Marine carries four new boat brands at our Pottsboro, Texas dealership on Lake Texoma: Berkshire and Veranda pontoons, Scout center consoles, and Highfield aluminum-hull RIBs. Boats are rigged with Suzuki, Yamaha, Mercury or Rotax power, and we service all of it in-house."
+      },
+      "brands": [
+        {
+          "name": "Berkshire",
+          "path": "/berkshire/",
+          "type": "Pontoon",
+          "builtFor": "Family days, entertaining, performance",
+          "signature": "Full-length under-deck performance packages; triple-toon and lifting strake options",
+          "why": "heavy-gauge aluminum construction and under-deck protection, built to stay solid season after season. The range runs from the entry-level LE series to ultra-luxury layouts.",
+          "image": {
+            "src": "/bigwatermarine/media/berkshire-sport.webp",
+            "alt": "A Berkshire pontoon running on open water"
+          }
+        },
+        {
+          "name": "Veranda",
+          "path": "/veranda/",
+          "type": "Luxury pontoon",
+          "builtFor": "Lake living, quiet comfort",
+          "signature": "Patented all-aluminum interlocking deck — no wood to rot",
+          "why": "the patented all-aluminum deck is the differentiator. No wood means nothing to rot, and the interlocking system gives a notably quiet, solid ride.",
+          "image": {
+            "src": "/bigwatermarine/media/veranda-vx27.webp",
+            "alt": "A Veranda luxury pontoon on the water"
+          }
+        },
+        {
+          "name": "Scout",
+          "path": "/scout/",
+          "type": "Center console",
+          "builtFor": "Fishing and family offshore",
+          "signature": "Tournament-grade fishability; 25+ years of build heritage",
+          "why": "offshore capability and tournament-grade fishability in a boat a family can still enjoy on a Saturday. Built to last generations, and priced accordingly.",
+          "image": {
+            "src": "/bigwatermarine/media/scout-xsf-running.webp",
+            "alt": "A Scout XSF center console running fast"
+          }
+        },
+        {
+          "name": "Highfield",
+          "path": "/highfield/",
+          "type": "RIB / tender",
+          "builtFor": "Tenders, fast rough-water runs",
+          "signature": "America’s best-selling RIB; high-performance aluminum hull",
+          "why": "America’s number-one selling RIB, with aluminum hulls that take abuse a fiberglass tender would not survive.",
+          "image": {
+            "src": "/bigwatermarine/media/highfield-open-water.webp",
+            "alt": "A Highfield RIB crossing open water"
+          }
+        }
+      ],
+      "compare": {
+        "kicker": "Side by side",
+        "title": "Compare _the four._",
+        "columns": [
+          "Brand",
+          "Type",
+          "Built for",
+          "Signature"
+        ]
+      },
+      "why": {
+        "kicker": "Hand-picked for this lake",
+        "title": "Why we carry _these four._",
+        "cardText": "**{name}** — {why}",
+        "shopOneButton": "Shop {count} {name} boat",
+        "shopManyButton": "Shop {count} {name} boats",
+        "exploreButton": "Explore {name}",
+        "note": "All four are serviced by our factory-authorized technicians, so the boat you buy here is maintained here — including mobile service to your dock."
+      },
+      "faq": {
+        "kicker": "Brand questions",
+        "title": "Which one _fits you?_",
+        "lede": "See what’s in stock on our [inventory page](/inventory/), or call [{phone}](tel:{phoneE164}) to schedule a demo.",
+        "primaryButton": "Shop all boats",
+        "guideLink": "Boat buying guide"
+      }
+    },
+    "faq": {
+      "meta": {
+        "title": "Frequently Asked Questions | Boats, Service & Boat Club on Lake Texoma",
+        "description": "Answers to the questions Big Water Marine is asked most: locations and hours, brands, used boats, trade-ins, financing, service, winterization, storage, Big Water Boat Club, fleet sales, fees and sea trials."
+      },
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/texoma-open-water.webp",
+          "alt": "Open water on Lake Texoma"
+        }
+      },
+      "hero": {
+        "eyebrow": "Straight answers",
+        "title": [
+          "Frequently asked",
+          "_questions._"
+        ],
+        "lede": "Big Water Marine is a boat dealer and full-service marine center on Lake Texoma in Pottsboro, Texas, with sales at 50055 N State Hwy 289 and service at 33 Tackle Box Dr. We sell Berkshire, Veranda, Scout and Highfield boats, service Mercury, Yamaha, Suzuki and BRP engines, and run Big Water Boat Club. Below are the questions we are asked most."
+      },
+      "closing": {
+        "kicker": "Still have a question?",
+        "title": "Ask a _real person._",
+        "lede": "Call or text {phone}, email [{email}](mailto:{email}) for service, or see all the ways to [reach us](/contact/).",
+        "textMessage": "Hi! I have a question: ",
+        "textButton": "Text {phone}",
+        "callButton": "Call {phone}"
+      }
+    },
+    "buyingGuide": {
+      "meta": {
+        "title": "What Boat Fits Lake Texoma | Buying Guide",
+        "description": "A Lake Texoma boat buying guide from Big Water Marine in Pottsboro: how the wind should drive your choice, which hull and size fit how you use the lake, and what to do before you buy."
+      },
+      "article": {
+        "headline": "What boat actually fits Lake Texoma?",
+        "description": "How the wind, the way you use the lake, and the shop behind the boat should shape a Lake Texoma boat purchase."
+      },
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/texoma-dusk-cruise.webp",
+          "alt": "A boat cruising Lake Texoma at dusk"
+        },
+        "chop": {
+          "src": "/bigwatermarine/media/scout-offshore.webp",
+          "alt": "A Scout center console running through open water"
+        }
+      },
+      "hero": {
+        "eyebrow": "Lake Texoma boat buying guide",
+        "title": [
+          "What boat actually",
+          "_fits Lake Texoma?_"
+        ],
+        "lede": "Texoma is big, open and famously windy. At roughly 89,000 acres straddling the Texas–Oklahoma border, it has enough fetch for a calm morning to turn into a two-foot chop by mid-afternoon. That single fact should drive most of your boat-buying decision."
+      },
+      "intro": {
+        "text": "This guide walks through how people actually use this lake, what that means for hull type and size, and which boats hold up to a full Texoma season. Written by the team at Big Water Marine in Pottsboro, who sell, service and store boats here year-round.",
+        "stats": [
+          {
+            "value": "~89,000",
+            "label": "acres of open water"
+          },
+          {
+            "value": "2 states",
+            "label": "Texas and Oklahoma shoreline"
+          },
+          {
+            "value": "4 brands",
+            "label": "new at our Pottsboro lot"
+          },
+          {
+            "value": "${labor.onsite}/hr",
+            "label": "onsite service labor"
+          }
+        ]
+      },
+      "wind": {
+        "kicker": "Rule one",
+        "title": "Start with the wind, _not the boat._",
+        "lede": "Most first-time Texoma buyers shop on layout and upholstery. Then they take delivery in June, head out at 2pm on a Saturday, and discover the lake has other ideas. Wind is the defining characteristic here — it is why sailors love Texoma and why an undersized boat gets old fast.",
+        "pullQuote": "If a boat is comfortable in Texoma afternoon chop, it will be comfortable almost anywhere you take it.",
+        "body": "Three things make a boat handle that chop well: **length, weight and hull design**. A longer, heavier boat bridges waves instead of slapping into them. On pontoons, that means the difference between two tubes and three, and whether there is a performance package under the deck. On V-hulls, it means deadrise — the sharper the entry, the softer the ride."
+      },
+      "use": {
+        "kicker": "Be honest about this part",
+        "title": "How do you actually _use the lake?_",
+        "lede": "The boat that wins is the one matched to your real weekends, not your aspirational ones.",
+        "tableHeaders": [
+          "If your day looks like this",
+          "You want",
+          "Why on Texoma"
+        ],
+        "rows": [
+          {
+            "day": "Family, friends, coolers, swimming, sandbar",
+            "want": "Tritoon, 22′–25′",
+            "why": "Deck space and stability; the third tube handles chop and carries the crowd without wallowing"
+          },
+          {
+            "day": "Serious striper and sand bass fishing",
+            "want": "Center console, 21′–24′",
+            "why": "Deep-V entry cuts wind chop; open deck lets you fight fish around the boat"
+          },
+          {
+            "day": "Both — fish early, entertain later",
+            "want": "Fish-and-cruise pontoon",
+            "why": "Livewell and rod storage without giving up the seating your family wants"
+          },
+          {
+            "day": "Tender to a big boat or a lake house",
+            "want": "Aluminum-hull RIB",
+            "why": "Takes dock rash and beach landings that would wreck a fiberglass tender"
+          },
+          {
+            "day": "Skiing, boarding, tubing",
+            "want": "Runabout or sport tritoon",
+            "why": "Needs to get on plane fast and track straight in wind"
+          }
+        ],
+        "callout": {
+          "title": "The size mistake",
+          "text": "People almost never regret going two feet longer. They regret going two feet shorter almost every windy Saturday. If you are between sizes on Texoma, size up."
+        }
+      },
+      "brands": {
+        "kicker": "Not picked at random",
+        "title": "Which of our brands _fits which day?_",
+        "lede": "We carry four lines, and we did not pick them at random. Each one answers a different version of the question above.",
+        "bestForLabel": "Best for:",
+        "linkLabel": "Explore {name}",
+        "items": [
+          {
+            "type": "Pontoon",
+            "name": "Berkshire",
+            "path": "/berkshire/",
+            "body": "Heavy-gauge aluminum with full-length under-deck performance packages, and optional triple-toon and lifting strakes. That combination is exactly what makes a pontoon behave in Texoma chop rather than pound through it.",
+            "bestFor": "big family days where nobody wants to come in early."
+          },
+          {
+            "type": "Luxury pontoon",
+            "name": "Veranda",
+            "path": "/veranda/",
+            "body": "A patented all-aluminum interlocking deck — no plywood anywhere, so nothing rots when a wet season follows a wet season. The deck system is also why the ride is noticeably quiet and solid underfoot.",
+            "bestFor": "boats that live at the lake and need to last."
+          },
+          {
+            "type": "Center console",
+            "name": "Scout",
+            "path": "/scout/",
+            "body": "Offshore-bred hulls with tournament-grade fishability, built by a company that has spent 25 years refining the same promise. On a lake that behaves like a small sea, that pedigree is not marketing — it is ride quality.",
+            "bestFor": "anglers who still want the family aboard."
+          },
+          {
+            "type": "RIB / tender",
+            "name": "Highfield",
+            "path": "/highfield/",
+            "body": "America’s best-selling RIB, on an aluminum hull that shrugs off the abuse that destroys fiberglass tenders — rock, gravel, dock edges, trailer bunks.",
+            "bestFor": "tenders, quick runs, and anyone who beaches a boat."
+          }
+        ]
+      },
+      "newOrUsed": {
+        "kicker": "New or used?",
+        "title": "Both work on Texoma.",
+        "text": "The honest answer depends more on how long you plan to keep the boat than on the sticker. We wrote a separate breakdown using our real service pricing: [New vs used on Lake Texoma: what it actually costs to own](/new-vs-used-boat-cost/)."
+      },
+      "checklist": {
+        "kicker": "Checklist",
+        "title": "Three things to do _before you buy._",
+        "steps": [
+          {
+            "title": "Sea trial on a windy afternoon.",
+            "text": "Anyone can sell you a boat on a glass-calm morning. Ask to run it when the lake is working."
+          },
+          {
+            "title": "Ask who services it.",
+            "text": "A boat is only as good as the shop behind it. Ours is factory-authorized for Mercury, Yamaha, Suzuki and BRP, and our technicians will come to your dock."
+          },
+          {
+            "title": "Price the whole season, not the boat.",
+            "text": "Winterization, storage and wrap are real numbers. They are all published on our site rather than quoted after the fact."
+          }
+        ]
+      },
+      "contact": {
+        "kicker": "Frequently asked",
+        "title": "Come tell us how _you use the lake._",
+        "lede": "We will point you at the right boat, even when that means a smaller sale. Sales at 50055 N State Hwy 289, Pottsboro, Tuesday–Saturday 9am–5pm.",
+        "primaryButton": "See current inventory",
+        "callButton": "Call {phone}",
+        "textPrompt": "Rather text?",
+        "textLink": "Text {phone}",
+        "textMessage": "Hi! Here's how we use the lake: ",
+        "afterText": ". Last updated 10 September 2026."
+      }
+    },
+    "newVsUsed": {
+      "meta": {
+        "title": "New vs Used Boat on Lake Texoma | Cost of Ownership",
+        "description": "What a boat really costs to own on Lake Texoma, new or used, using Big Water Marine's published pricing: shrink wrap $25/ft, outdoor storage $2/ft per month, winterization from ${winter.freezeguard}, service $165/hr."
+      },
+      "article": {
+        "headline": "New vs used on Lake Texoma: what it actually costs to own",
+        "description": "An honest cost-of-ownership comparison for new and used boats on Lake Texoma, using Big Water Marine's published service, winterization and storage pricing."
+      },
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/winter-shrinkwrap-row.webp",
+          "alt": "Shrink-wrapped boats in outdoor winter storage"
+        }
+      },
+      "rates": {
+        "wrapPerFoot": "25",
+        "storagePerFootMonth": "2",
+        "storageMonths": "6"
+      },
+      "hero": {
+        "eyebrow": "Cost of ownership on Lake Texoma",
+        "title": [
+          "New vs used:",
+          "_what it actually costs to own._"
+        ],
+        "lede": "The purchase price is the part everyone compares. The season is the part that decides whether you enjoy the boat. Winterization, storage, wrap and service are real, recurring numbers — and on a lake that freezes some winters and blows most afternoons, they are not optional."
+      },
+      "intro": {
+        "text": "Below is an honest breakdown using our **actual published service pricing**, not industry averages. Where a number depends on you — insurance, fuel, slip fees — we have said so rather than inventing one.",
+        "stats": [
+          {
+            "value": "${wrap}/ft",
+            "label": "shrink wrap"
+          },
+          {
+            "value": "${storage}/ft",
+            "label": "outdoor storage, per month"
+          },
+          {
+            "value": "${freezeGuard}+",
+            "label": "winterization, onsite"
+          },
+          {
+            "value": "${labor.onsite}/hr",
+            "label": "onsite service labor"
+          }
+        ]
+      },
+      "season": {
+        "kicker": "Driven by length, not age",
+        "title": "The off-season is _the real difference._",
+        "lede": "A boat on Texoma works hard for roughly half the year and sits for the other half. What you spend during the sitting half is largely the same whether the boat is new or ten years old — it is driven by length, not age.",
+        "tableTitle": "What a season off the water costs, by length",
+        "tableIntro": "Using our published rates: shrink wrap at ${wrap}/ft, secure outdoor storage at ${storage}/ft per month for shrinkwrapped boats, and FreezeGuard winterization at ${freezeGuard} onsite.",
+        "tableHeaders": [
+          "Boat length",
+          "Shrink wrap",
+          "Storage, {months} months",
+          "FreezeGuard",
+          "Season total"
+        ],
+        "lengthLabel": "{ft} ft",
+        "callout": {
+          "title": "Read this before you budget",
+          "text": "These figures are labor for single-engine boats; materials are additional, and mobile service is priced separately. Our [SecurePro package](/winterize/) at ${winter.securepro} bundles winterization, wrap up to 25 feet, six months of storage and spring startup — which for most boats in that range lands close to buying the pieces individually."
+        }
+      },
+      "differ": {
+        "kicker": "Line by line",
+        "title": "Where new and used _genuinely differ._",
+        "tableHeaders": [
+          "Cost",
+          "New boat",
+          "Used boat"
+        ],
+        "rows": [
+          {
+            "cost": "Purchase price",
+            "new": "Highest",
+            "used": "Lower — often dramatically"
+          },
+          {
+            "cost": "Depreciation",
+            "new": "Steepest in the first seasons",
+            "used": "Already absorbed by someone else"
+          },
+          {
+            "cost": "Warranty",
+            "new": "Factory coverage on boat and engine",
+            "used": "Varies; may be expired"
+          },
+          {
+            "cost": "Unplanned repairs",
+            "new": "Rare early on",
+            "used": "Budget for them — billed at ${labor.onsite}/hr onsite"
+          },
+          {
+            "cost": "Winterization & storage",
+            "new": "Effectively identical — driven by length, not age",
+            "used": ""
+          },
+          {
+            "cost": "Detailing",
+            "new": "$8/ft exterior, $10/ft interior either way",
+            "used": ""
+          },
+          {
+            "cost": "Insurance, fuel, registration",
+            "new": "Varies by value, use and carrier — get a quote before you commit",
+            "used": ""
+          }
+        ],
+        "pullQuote": "Buy new for the warranty and the years of trouble-free use. Buy used to let someone else pay the depreciation. Neither saves you a winter."
+      },
+      "newCase": {
+        "kicker": "Certainty",
+        "title": "The case _for new._",
+        "cards": [
+          {
+            "tag": "Predictability",
+            "title": "Nothing surprises you",
+            "text": "A new Berkshire, Veranda, Scout or Highfield comes with factory warranty on hull and engine. For the first several seasons your costs are the planned ones — fuel, winterization, storage."
+          },
+          {
+            "tag": "Specification",
+            "title": "You get the boat you wanted",
+            "text": "Tritoon or two-tube, the performance package, the engine, the layout. On a lake this windy, being able to specify for the conditions is worth real money later."
+          },
+          {
+            "tag": "Support",
+            "title": "Warranty work stays local",
+            "text": "We are factory-authorized for Mercury, Yamaha, Suzuki and BRP. Warranty repairs happen here, or at your dock, instead of being shipped somewhere."
+          }
+        ],
+        "link": {
+          "label": "Our four new brands",
+          "href": "/brands/"
+        }
+      },
+      "usedCase": {
+        "kicker": "Flexibility",
+        "title": "The case _for used._",
+        "cards": [
+          {
+            "tag": "Value",
+            "title": "Someone else took the hit",
+            "text": "The steepest depreciation happens early. A well-kept boat a few seasons old can deliver most of the experience for a good deal less money."
+          },
+          {
+            "tag": "Known history",
+            "title": "Ex-fleet boats are a quiet bargain",
+            "text": "Our used inventory often includes gently used rental and fleet boats — maintained on a commercial schedule by factory-authorized technicians, which is better documented than most private-owner histories."
+          },
+          {
+            "tag": "More boat",
+            "title": "Length for the same money",
+            "text": "Used often lets you move up two feet. On Texoma, two feet is the difference between coming in early and staying out."
+          }
+        ],
+        "link": {
+          "label": "Used rental and fleet boats",
+          "href": "/fleet-sales/#used-rental"
+        }
+      },
+      "example": {
+        "kicker": "A worked example",
+        "title": "A 22-foot tritoon, _new or used._",
+        "lede": "Say you are choosing between a new 22-foot tritoon and a well-kept used one. Both live outdoors, both get wrapped, both get winterized. Over the first winter:",
+        "points": [
+          "**Identical:** wrap {example.wrap}, storage {example.storage}, winterization from {example.freezeGuard}. Roughly {example.total} either way.",
+          "**Different:** the new boat’s repairs are under warranty; the used boat’s are billed at ${labor.onsite}/hr onsite plus parts.",
+          "**Also different:** the used boat cost less up front and will lose less value over the next three seasons."
+        ],
+        "closing": "So the question is not really new versus used. It is whether you would rather pay for certainty or pay for flexibility.",
+        "callout": {
+          "title": "Still choosing a boat?",
+          "text": "If you have not settled on a type yet, start with [what boat actually fits Lake Texoma](/lake-texoma-boat-buying-guide/) — it covers hull type, size and how the wind here should shape the decision."
+        }
+      },
+      "contact": {
+        "kicker": "Frequently asked",
+        "title": "Run the numbers _with us._",
+        "lede": "Bring the boat you are considering, new or used, and we will price out a realistic season on it before you buy. No obligation, and no surprises in April.",
+        "primaryButton": "Browse inventory",
+        "secondaryButton": "See service pricing",
+        "textPrompt": "Questions?",
+        "textLink": "Text {phone}",
+        "textMessage": "Hi! Can you price out a season on a boat I'm considering? ",
+        "afterText": ". Last updated 10 September 2026. Service pricing shown is onsite labor for single-engine boats; materials additional."
+      }
+    },
+    "clubVsFreedom": {
+      "meta": {
+        "title": "Big Water vs Freedom Boat Club | Lake Texoma Comparison",
+        "description": "Big Water Boat Club vs Freedom Boat Club on Lake Texoma: initiation and monthly fees, reservation limits, blackout dates, commitment and fleet size, side by side."
+      },
+      "article": {
+        "headline": "Big Water Boat Club vs Freedom Boat Club",
+        "description": "A Lake Texoma comparison of Big Water Boat Club and Freedom Boat Club: cost, local ownership, availability and membership terms."
+      },
+      "images": {
+        "hero": {
+          "src": "/bigwatermarine/media/club-couple.webp",
+          "alt": "A couple relaxing on a pontoon on Lake Texoma"
+        },
+        "vsMark": {
+          "src": "/bigwatermarine/media/club-vs-freedom.webp",
+          "alt": "Big Water Boat Club versus Freedom Boat Club"
+        },
+        "cost": {
+          "src": "/bigwatermarine/media/club-berkshire-cutout.webp",
+          "alt": "Friends relaxing aboard a Berkshire pontoon"
+        },
+        "local": {
+          "src": "/bigwatermarine/media/club-tan-pontoon-cutout.webp",
+          "alt": "A family cruising Lake Texoma on a pontoon"
+        },
+        "availability": {
+          "src": "/bigwatermarine/media/club-red-pontoon-framed.webp",
+          "alt": "A family boarding a red pontoon at the dock"
+        },
+        "questions": {
+          "src": "/bigwatermarine/media/club-pontoon-cutout.webp",
+          "alt": "A black Berkshire pontoon carrying passengers on Lake Texoma"
+        }
+      },
+      "hero": {
+        "title": [
+          "Navigating",
+          "_the waters._"
+        ],
+        "lede": "As an avid boating enthusiast, you want the best option when it comes to boat clubs. You seek nothing but the best. To ensure you make the right choice, it’s crucial to carefully consider and compare the offerings of two leading contenders: Big Water Boat Club and Freedom Boat Club. Only by exploring their differences can you truly discover the perfect match for your boat rental needs.",
+        "jumpLinks": {
+          "cost": "Cost",
+          "local": "Locally Owned",
+          "availability": "Availability",
+          "comparison": "Comparison"
+        }
+      },
+      "cost": {
+        "kicker": "Cost",
+        "title": "Cost _comparison._",
+        "text": "Let’s start with cost. While Freedom Boat Club does not publicly disclose their membership prices, online sources suggest that they may be approximately over two times higher than those of Big Water Boat Club. In contrast, Big Water Boat Club offers significantly lower initiation fees and quarterly payments, making boating far more accessible and affordable.",
+        "chart": {
+          "before": "Over",
+          "multiple": "3X",
+          "after": "the cost of Big Water Boat Club",
+          "usAmount": "$3,100",
+          "usLabel": "Big Water Boat Club",
+          "themAmount": "$10,400",
+          "themLabel": "Freedom Boat Club",
+          "caption": "Based off 8x 1/2 day rentals in a year"
+        }
+      },
+      "local": {
+        "kicker": "Right here on Texoma",
+        "title": "Locally _owned._",
+        "text": "Freedom Boat Club is based in Florida, whereas Big Water Boat Club is conveniently located right here on Lake Texoma. By becoming a member of Big Water Boat Club, you are joining Texoma’s premier and most seasoned boating operations company. Supporting local Texas businesses ensures a thriving community and a remarkable boating experience for you."
+      },
+      "comparison": {
+        "kicker": "Side by side",
+        "title": "Big Water _vs Freedom._",
+        "usHeader": "Big Water Boat Club",
+        "themHeader": "Freedom Boat Club*",
+        "rows": [
+          {
+            "feature": "Initiation Fee",
+            "us": "$500 (normally $1,000)",
+            "them": "$5,000"
+          },
+          {
+            "feature": "Monthly Fee",
+            "us": "$50",
+            "them": "$450"
+          },
+          {
+            "feature": "Reservation Limit",
+            "us": "None",
+            "them": "4"
+          },
+          {
+            "feature": "Restrictions",
+            "us": "No",
+            "them": "Yes"
+          },
+          {
+            "feature": "Black out dates",
+            "us": "No",
+            "them": "Yes"
+          },
+          {
+            "feature": "Long-term commitment",
+            "us": "No",
+            "them": "Yes"
+          },
+          {
+            "feature": "Rent half days - back-to-back",
+            "us": "Yes",
+            "them": "No"
+          },
+          {
+            "feature": "Rent full days - weekends",
+            "us": "Yes",
+            "them": "No"
+          },
+          {
+            "feature": "Large Texoma Fleet",
+            "us": "Yes",
+            "them": "No"
+          },
+          {
+            "feature": "Free Boater’s Training",
+            "us": "Yes",
+            "them": "Yes"
+          },
+          {
+            "feature": "Discounts on Cabins & Camping",
+            "us": "Yes",
+            "them": "No"
+          },
+          {
+            "feature": "Discounts on RV stays & Camping",
+            "us": "Yes",
+            "them": "No"
+          },
+          {
+            "feature": "Membership-to-Ownership Program",
+            "us": "Yes",
+            "them": "No"
+          }
+        ],
+        "footnote": "*Freedom Boat Club does not publicly disclose membership prices; its figures are based on online sources.",
+        "joinButton": "Join Big Water Boat Club",
+        "learnMore": {
+          "label": "Learn more about the club",
+          "href": "/boatclub/"
+        }
+      },
+      "availability": {
+        "kicker": "No blackout days",
+        "title": "_Availability._",
+        "paragraphs": [
+          "At Big Water Boat Club, you enjoy unparalleled flexibility with no restrictions or blackout days. You have unrestricted access to our fleet of boats at any time, be it for a half day, full day, weekends, or even holidays.",
+          "On the other hand, Freedom Boat Club operates with a different approach, and their members face certain limitations. They are allowed to have only 4 active reservations at a time and can book just 2 weekend reservations simultaneously. Additionally, a full-day outing or a weekend excursion requires two reservation slots, which can be quite restrictive.",
+          "Moreover, numerous Freedom Boat Club members have expressed their frustrations during peak seasons due to the lack of available boats. The club’s boat inventory doesn’t seem to adequately meet the demands of its membership, making it challenging for members to secure boats for their desired outings.",
+          "In contrast, at Big Water Boat Club, we prioritize providing an abundance of boats and maximum flexibility, ensuring that you can fully enjoy your boating experiences without unnecessary constraints."
+        ]
+      },
+      "questions": {
+        "kicker": "Questions?",
+        "title": "Have more questions about _joining a boat club?_",
+        "lede": "Call [903.419.1019](tel:{phoneE164}) or text us. Call Tuesday thru Saturday 9am to 5pm.",
+        "optionsIntro": "**Your knowledge about Boat Clubs** — tap the one that fits and we’ll pick it up from there:",
+        "options": [
+          "I know nothing and ready to learn more!",
+          "I have seen other clubs and curious how yours is better.",
+          "I’m ready to sign up, just have a few questions."
+        ],
+        "textMessage": "Hi! About Big Water Boat Club: {option}",
+        "privacy": "Your information will not be shared or sold."
+      },
+      "faq": {
+        "costQuestion": "Is Big Water Boat Club cheaper than Freedom Boat Club?",
+        "localQuestion": "Is Big Water Boat Club locally owned?",
+        "availabilityQuestion": "Does Big Water Boat Club have reservation limits or blackout dates?"
+      }
+    }
+  },
   "club": {
     "initiation": "500",
     "returningInitiation": "1000",
