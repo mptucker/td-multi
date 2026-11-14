@@ -12,6 +12,7 @@ import Packages from "./Packages";
 import hero from "@public/media/winter-shrinkwrap-row.webp";
 import heatWrap from "@public/media/winter-shrinkwrap-heat.webp";
 import antifreeze from "@public/media/winter-antifreeze.webp";
+import { faqs as pageFaqs } from "@/bigwatermarine/lib/cms";
 
 export const metadata: Metadata = pageMeta({
   title: "Boat Winterization on Lake Texoma | Guaranteed, From $335",
@@ -21,17 +22,8 @@ export const metadata: Metadata = pageMeta({
   image: abs("/bigwatermarine/media/winter-shrinkwrap-row.webp"),
 });
 
-const FAQS = [
-  { q: "Why winterize my boat if Texas doesn’t get deep freezes?", a: "While Texas winters are milder than up north, GEICO and BoatUS data show Texas ranks #1 nationally for freeze-damage insurance claims — mostly from owners who skipped winterization. Even a single cold night can cause water to expand and crack blocks, split hoses, or destroy cooling systems. Professional winterization protects your investment." },
-  { q: "What’s the difference between your winterization packages?", a: "Each builds on the last. FreezeGuard is essential freeze protection: drain, fog and stabilize. SystemShield adds oil, fuel filter and gear lube service. TotalLock adds a full mechanical inspection, impeller and a 20-point vessel check. SecurePro is all-in: shrink wrap, six months of storage and spring dewinterization." },
-  { q: "What does the winterization guarantee cover?", a: "If your engine doesn’t start in spring because of our winterization process, we make it right at no charge. The guarantee applies when Big Water Marine also performs your spring dewinterization, so we can verify the system end to end." },
-  { q: "What is dewinterization and why does it matter?", a: "Dewinterization is the spring startup: flushing antifreeze, reconnecting systems, checking for leaks and verifying everything works. It’s $165, included in SecurePro, and required for the guarantee." },
-  { q: "Can you winterize my boat at a marina, storage facility or my house?", a: "Yes. Our mobile team travels to marinas, storage facilities and homes across Lake Texoma. Mobile rates apply, plus travel ($75 minimum, $2.50 per mile). Gear lube and impeller work needs the boat on a trailer or lift." },
-  { q: "Can I just use a marine heater or lamp instead?", a: "While marine approved bilge heaters are a good idea, they aren’t a substitute for winterization. Power outages, tripped breakers, or temperature swings can still freeze and crack components. Many Texas freeze claims happen because heaters failed during sudden cold snaps or power outage." },
-  { q: "What’s included in your 20-point inspection?", a: `${INSPECTION_POINTS.join("; ")}. You get a summary report with any recommended maintenance.` },
-  { q: "When should I book my winterization?", a: "As early as possible — once temperatures dip, appointments fill quickly. We start scheduling in late summer, and prime weeks typically sell out. Don’t wait until the first freeze warning." },
-  { q: "Are materials included in the price?", a: "No. Package prices are labor only, for single-engine boats. Materials such as antifreeze, oil, filters, stabilizer and parts are billed separately, and we never do extra work without an estimate first." },
-];
+// FAQs are edited in /admin (content/bigwatermarine.json → faqs.winterize).
+const FAQS = pageFaqs("winterize");
 
 export default function WinterizePage() {
   return (

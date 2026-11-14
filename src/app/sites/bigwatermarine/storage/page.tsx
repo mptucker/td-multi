@@ -9,6 +9,7 @@ import { Arrow } from "../_components/Finder";
 
 import hero from "@public/media/winter-shrinkwrap-row.webp";
 import heatWrap from "@public/media/winter-shrinkwrap-heat.webp";
+import { faqs as pageFaqs } from "@/bigwatermarine/lib/cms";
 
 export const metadata: Metadata = pageMeta({
   title: "Boat Storage on Lake Texoma | Secure Outdoor Storage in Pottsboro, TX",
@@ -18,15 +19,8 @@ export const metadata: Metadata = pageMeta({
   image: abs("/bigwatermarine/media/winter-shrinkwrap-row.webp"),
 });
 
-// From the current Storage page (verbatim).
-const FAQS = [
-  { q: "Is your storage indoor or outdoor?", a: "Outdoor only. We do not offer indoor or covered storage. Boats are kept in secure onsite outdoor storage at our Pottsboro location, and we recommend shrink wrap for anything staying through the winter." },
-  { q: "How do I get storage included?", a: "Our SecurePro winterization package ($1,750 onsite, labor for single-engine boats) includes six months of onsite secure outdoor storage, shrink wrap for boats up to 25 feet, and spring dewinterization." },
-  { q: "Can I store a boat without buying a winterization package?", a: "Call us. Standalone storage depends on current space, which is seasonal and fills up. 903-419-1019 is the fastest way to find out what’s open." },
-  { q: "Do you shrink wrap?", a: "Yes. Shrink wrap is included for boats up to 25 feet in the SecurePro package and is available separately. It’s the single best protection for a boat stored outdoors through a Texoma winter." },
-  { q: "Can you pick up and deliver my boat?", a: "Pickup and delivery options are available. Tell us where the boat is — home, marina or storage facility — and we’ll quote it." },
-  { q: "What happens in spring?", a: "Dewinterization, or spring startup, gets the boat ready to run. It is included in the SecurePro package and available separately at $165 onsite or $215 mobile. It is also required to keep our winterization guarantee valid." },
-];
+// FAQs are edited in /admin (content/bigwatermarine.json → faqs.storage).
+const FAQS = pageFaqs("storage");
 
 const INCLUDES = [
   ["Secure onsite storage", "at our Pottsboro facility."],

@@ -20,13 +20,11 @@ import familyC from "@public/media/texoma-open-water.webp";
 import fleet from "@public/media/club-fleet.webp";
 import couple from "@public/media/club-couple.webp";
 import sunset from "@public/media/texoma-sunset.webp";
+import { faqs as pageFaqs } from "@/bigwatermarine/lib/cms";
 
 
-const faqs = [
-  { q: "Do you service boats you didn’t sell?", a: "Yes. Our factory-authorized team works on Suzuki, Yamaha, Mercury and BRP engines, and services major outboards and sterndrives wherever you bought your boat." },
-  { q: "Can you come to my boat?", a: "Yes. Mobile service is available around Lake Texoma at docks, marinas, homes and storage facilities. Tell us where the boat is and what it needs." },
-  { q: "Can routine service really be done the same day?", a: "Often, with advance scheduling. Oil, filter, impeller and other factory-interval work depends on parts, workload and your boat. We’ll confirm timing with you up front." },
-];
+// FAQs are edited in /admin (content/bigwatermarine.json → faqs.home).
+const faqs = pageFaqs("home");
 
 export const revalidate = 300;
 

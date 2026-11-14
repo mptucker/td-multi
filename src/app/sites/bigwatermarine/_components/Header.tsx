@@ -15,9 +15,15 @@ const nav = [
   { label: "Visit", href: "/#visit" },
 ];
 
-type Props = { phone: string; phoneHref: string; windlassUrl: string };
+type Props = {
+  phone: string;
+  phoneHref: string;
+  windlassUrl: string;
+  promo: { text: string; href: string };
+  hours: { salesShort: string; serviceShort: string; summary: string };
+};
 
-export default function Header({ phone, phoneHref, windlassUrl }: Props) {
+export default function Header({ phone, phoneHref, windlassUrl, promo, hours }: Props) {
   const pathname = usePathname();
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
@@ -40,11 +46,11 @@ export default function Header({ phone, phoneHref, windlassUrl }: Props) {
         <div className="bwm-utilityInner">
           <a href={phoneHref} className="bwm-utilityPhone">Call or text {phone}</a>
           <span className="bwm-utilityHours">
-            <span>Sales Tue–Sat 9–5</span>
-            <span>Service Tue–Fri 8–5, Sat 8–3</span>
+            <span>{hours.salesShort}</span>
+            <span>{hours.serviceShort}</span>
           </span>
           <span className="bwm-utilityPlace">Pottsboro · Lake Texoma</span>
-          <Link href="/inventory/" className="bwm-utilityPromo">🌊 GO BIG in 2026: an extra $2,026 off most new boats</Link>
+          {promo.text && <Link href={promo.href || "/inventory/"} className="bwm-utilityPromo">{promo.text}</Link>}
         </div>
       </div>
 
@@ -82,7 +88,7 @@ export default function Header({ phone, phoneHref, windlassUrl }: Props) {
             <a href={windlassUrl} className="bwm-btnOutlineDark">Book service</a>
             <a href={phoneHref} className="bwm-btnOutlineDark">Call or text {phone}</a>
           </div>
-          <p className="bwm-mobileMenuHours">Sales Tue–Sat 9am–5pm · Service Tue–Fri 8am–5pm, Sat 8am–3pm</p>
+          <p className="bwm-mobileMenuHours">{hours.summary}</p>
         </div>
       )}
     </header>

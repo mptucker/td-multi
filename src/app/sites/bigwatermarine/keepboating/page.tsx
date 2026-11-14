@@ -15,6 +15,7 @@ import tube from "@public/media/rental-tube.webp";
 import selfie from "@public/media/rental-selfie.webp";
 import beachball from "@public/media/rental-beachball.webp";
 import le from "@public/media/berkshire-le.webp";
+import { faqs as pageFaqs } from "@/bigwatermarine/lib/cms";
 
 export const metadata: Metadata = pageMeta({
   title: "Rent, Join or Buy a Boat on Lake Texoma",
@@ -71,12 +72,8 @@ const RENTAL_REVIEWS = [
   { name: "Ryan A – Lighthouse Boat Rental", text: "Extremly informative, friendly staff, easy setup, boat was perfect. I highly recommend lighthouse marina boat rentals. Overally an amazing experience." },
 ];
 
-const FAQS = [
-  { q: "Should I rent, join Big Water Boat Club, or buy a boat on Lake Texoma?", a: "It depends on how many days you boat. At about 1–3 days a year, renting keeps it simple. From roughly 2–9 days, Big Water Boat Club saves 50% on every rental for $500 to join and $150 a quarter. At 10 or more days a year, owning your own boat usually makes the most sense. Use the Rent, Join, Own calculator on this page to run your own numbers." },
-  { q: "Can I buy the boat I rented?", a: "Yes. Previous renters get exclusive discounts on our rental fleet boats, and last year’s boats are offered at big discounts. Same boat, same memories, and no more sold-out weekends." },
-  { q: "How much does Big Water Boat Club save on rentals?", a: "Members pay 50% of the posted rental rate at Lighthouse Resort & Marina, plus priority booking and access to member-only boats. With a $500 initiation (discounted from $1,000 for your first membership) and $50 a month billed quarterly, most members break even after about two rentals." },
-  { q: "Can I use a renter discount on a new boat?", a: "Yes. Apply your renter discount to any in-stock model when you buy new, with financing available." },
-];
+// FAQs are edited in /admin (content/bigwatermarine.json → faqs.keepboating).
+const FAQS = pageFaqs("keepboating");
 
 export default function KeepBoatingPage() {
   const reviews = [...RENTAL_REVIEWS, ...BRAND_REVIEWS.map((r) => ({ name: `${r.name} – Big Water Marine`, text: r.text }))];

@@ -11,6 +11,7 @@ import { Arrow } from "../_components/Finder";
 import tech from "@public/media/service-tech.webp";
 import team from "@public/media/service-team.webp";
 import shrinkwrap from "@public/media/winter-shrinkwrap-row.webp";
+import { faqs as pageFaqs } from "@/bigwatermarine/lib/cms";
 
 export const metadata: Metadata = pageMeta({
   title: "Boat Repair & Marine Service on Lake Texoma | Suzuki, Yamaha, Mercury & BRP",
@@ -34,16 +35,8 @@ const SERVICES = [
   { name: "General repairs", body: "Fiberglass and gelcoat, steering and controls, fuel systems, electrical troubleshooting, upholstery and canvas.", tag: "If it’s broken" },
 ];
 
-const FAQS = [
-  { q: "How do I schedule boat service at Big Water Marine?", a: "Start a work order online through our secure service intake. It takes about two minutes. Our service team texts you back to confirm the work, the timing and the price, and texts again when your boat is ready. You can also call or text 903-419-1019." },
-  { q: "Do you service boats you didn’t sell?", a: "Yes. We’re factory-authorized for Suzuki, Yamaha, Mercury and BRP, and we service all major outboards plus sterndrives (I/O), wherever the boat came from." },
-  { q: "Can routine maintenance be done the same day?", a: "Often, yes, with advance scheduling. Factory-interval work like oil and filters, impellers and gear lube depends on parts availability, our workload and your boat. We confirm timing with you up front." },
-  { q: "Do you offer mobile boat service on Lake Texoma?", a: `Yes. Our mobile team comes to marinas, docks, storage facilities and homes around Lake Texoma, and we’re an approved, insured vendor at most marinas from Highport to Rock Creek and Cedar Bayou. Mobile labor is $${LABOR.mobile}/hour plus travel ($${MOBILE_TRAVEL.minimum} minimum, $${MOBILE_TRAVEL.perMile.toFixed(2)}/mile). Some work, like gear lube or impeller changes, needs the boat on a trailer or lift.` },
-  { q: "What is your labor rate?", a: `$${LABOR.onsite} per hour at our Pottsboro service center and $${LABOR.mobile} per hour for mobile service, plus parts and materials. We give you an estimate before doing additional work.` },
-  { q: "Will service at Big Water Marine keep my engine warranty intact?", a: "Yes. As an authorized service center for Mercury, Yamaha, Suzuki and BRP, we follow factory procedures, use genuine OEM parts and fluids, and have direct manufacturer support." },
-  { q: "Can you pick up my boat?", a: "Yes. We can pick your boat up, service it at our facility and bring it back. For on-water emergencies, we work with TowBoatUS Lake Texoma, then get you back out fast." },
-  { q: "Where is the service center and what are the hours?", a: "33 Tackle Box Dr, Pottsboro, TX 75076, minutes from Lake Texoma. Open Tuesday through Friday 8am–5pm and Saturday 8am–3pm." },
-];
+// FAQs are edited in /admin (content/bigwatermarine.json → faqs.service).
+const FAQS = pageFaqs("service");
 
 export default function ServicePage() {
   return (

@@ -8,6 +8,7 @@ import { config, smsHref } from "@/bigwatermarine/lib/config";
 import { breadcrumbs, faqPage, inventoryList, pageMeta } from "@/bigwatermarine/lib/seo";
 import Finder, { Arrow } from "../_components/Finder";
 import heroImg from "@public/media/highfield-aerial.webp";
+import { faqs as pageFaqs } from "@/bigwatermarine/lib/cms";
 
 export const revalidate = 300;
 
@@ -18,14 +19,8 @@ export const metadata: Metadata = pageMeta({
   path: "/inventory/",
 });
 
-const FAQS = [
-  { q: "Do your boat prices include the trailer?", a: "Yes. All of our boat packages include the trailer unless the listing says otherwise. If you don’t need one, we can remove it from your estimate." },
-  { q: "What isn’t included in the listed price?", a: "Tax, title and license (TTL), freight, prep and doc fees are not reflected in the posted price. We’ll give you a complete out-the-door number before you commit." },
-  { q: "Do you take trade-ins?", a: "Yes. Get a quick estimate with our online trade tool; the final value is set after we see the boat in person." },
-  { q: "Can you deliver a boat outside Lake Texoma?", a: "Yes. We offer reasonable delivery anywhere in the U.S., and every boat we sell gets a lake-ready orientation." },
-  { q: "What does “On order” mean on a listing?", a: "The boat is built or being built and on its way to us. You can reserve it now so it’s yours when it arrives." },
-  { q: "Can I finance a boat with you?", a: "Yes. Apply online for fast, secure pre-approval. Each listing has a loan calculator so you can estimate a monthly payment first." },
-];
+// FAQs are edited in /admin (content/bigwatermarine.json → faqs.inventory).
+const FAQS = pageFaqs("inventory");
 
 export default async function InventoryPage() {
   const boats = await getInventory();

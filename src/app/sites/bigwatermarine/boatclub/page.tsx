@@ -14,18 +14,19 @@ import fleet from "@public/media/club-fleet.webp";
 import sunset from "@public/media/highfield-sunset.webp";
 import family from "@public/media/veranda-family.webp";
 import dusk from "@public/media/texoma-dusk-cruise.webp";
+import { cms, n, faqs as pageFaqs } from "@/bigwatermarine/lib/cms";
 
-// All terms below come from the current Boat Club page. Change them here.
+// Boat Club terms are edited in /admin (content/bigwatermarine.json → club.*).
 const CLUB = {
-  initiation: 500,
-  returningInitiation: 1000,
-  monthly: 50,
-  quarterly: 150,
-  discount: 50,
-  deposit: 500,
-  minAge: 25,
-  winterHalfDay: 450,
-  holidayFullDay: 1200,
+  initiation: n(cms.club.initiation),
+  returningInitiation: n(cms.club.returningInitiation),
+  monthly: n(cms.club.monthly),
+  quarterly: n(cms.club.quarterly),
+  discount: n(cms.club.discount),
+  deposit: n(cms.club.deposit),
+  minAge: n(cms.club.minAge),
+  winterHalfDay: n(cms.club.winterHalfDay),
+  holidayFullDay: n(cms.club.holidayFullDay),
 };
 
 export const metadata: Metadata = pageMeta({
@@ -35,16 +36,8 @@ export const metadata: Metadata = pageMeta({
   image: abs("/bigwatermarine/media/club-couple.webp"),
 });
 
-const FAQS = [
-  { q: "What is Big Water Boat Club?", a: `A membership that gives you access to Lake Texoma boat rentals at a big discount. Instead of the normal rental rate, members pay ${CLUB.discount}% of the posted rate at Lighthouse Resort & Marina.` },
-  { q: "How much does it cost to join?", a: `The initiation fee is $${CLUB.returningInitiation}, discounted to $${CLUB.initiation} for your first membership, plus $${CLUB.monthly} a month, billed quarterly ($${CLUB.quarterly}). After that, every boat you book at Lighthouse Resort & Marina is ${CLUB.discount}% off the posted rental rate.` },
-  { q: "What do I need to join?", a: `Be ${CLUB.minAge} or older, pay the $${CLUB.initiation} initiation fee and your first quarter’s dues ($${CLUB.quarterly}), complete the boater safety course at boaters-ed.com, and take the free Intro to Boating on Lake Texoma class from our partner BoaterWise.` },
-  { q: "When can I rent a boat? How many reservations can I have?", a: "There are no restrictions or blackout dates. Rent half days, full days, weekdays, weekends and holidays. Book online or by phone, up to the day of your rental, subject to availability." },
-  { q: "How is Big Water Boat Club different from other boat clubs?", a: `Many clubs have high buy-ins, expensive monthly fees, membership tiers and reservation limits. Ours is simple: $${CLUB.initiation} to join, $${CLUB.monthly} a month, and ${CLUB.discount}% off rentals, plus discounts with affiliated companies and a professional team to help you make the most of every trip.` },
-  { q: "Are there hidden costs?", a: `No. After you join you pay quarterly dues and ${CLUB.discount}% of the posted rental rate when you rent. Rates vary by season, weekday or weekend, and holidays: a winter half day at $${CLUB.winterHalfDay} costs a member $${CLUB.winterHalfDay / 2}, and a holiday full day of up to $${CLUB.holidayFullDay} costs a member up to $${CLUB.holidayFullDay / 2}. Each rental needs a refundable $${CLUB.deposit} damage deposit on a major credit card, and you pay for the fuel you use at the discounted member rate.` },
-  { q: "How long is the commitment?", a: `Dues are billed quarterly, so the minimum commitment is three months, and you can cancel anytime after that with written notice. If you cancel and rejoin later, the initiation fee is $${CLUB.returningInitiation}.` },
-  { q: "Can I buy a boat later?", a: "Yes. The Member-to-Owner program helps members move into ownership when they’re ready, with Big Water Marine’s sales and service team behind them." },
-];
+// FAQs are edited in /admin (content/bigwatermarine.json → faqs.boatclub).
+const FAQS = pageFaqs("boatclub");
 
 const PERKS = [
   ["No blackout dates", "Weekdays, weekends, holidays. Half day or full day. If a boat’s free, it’s yours."],
