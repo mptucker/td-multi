@@ -13,6 +13,7 @@ export const BRAND_UPDATED: Record<BrandSlug, string> = {
   bigwater: "2026-09-14",
   "towboatus-ntx": "2026-09-14",
   texomaco: "2026-10-26",
+  bigwatermarine: "2026-11-14",
 };
 
 export const BRAND_TOPICS: Record<BrandSlug, string[]> = {
@@ -26,6 +27,7 @@ export const BRAND_TOPICS: Record<BrandSlug, string[]> = {
   "water-taxi": ["Lake Texoma water taxi", "Lake Texoma island transportation", "dock-to-dock boat service", "Highport Marina water taxi", "private boat ride Lake Texoma"],
   bigwater: ["BigWater.co", "Lake Texoma marine brands", "Big Water Marine", "Big Water Boat Club", "Lake Texoma boat sales", "Lake Texoma boat club", "TowBoatUS North Texas", "marine towing North Texas"],
   "towboatus-ntx": ["boat towing North Texas", "TowBoatUS Lake Texoma", "TowBoatUS Bois d'Arc", "TowBoatUS Cedar Creek", "marine salvage Texas", "24 hour boat towing", "Lake Texoma boat rescue", "on-water fuel delivery", "boat ungrounding North Texas"],
+  bigwatermarine: ["Lake Texoma boat dealer", "boats for sale Lake Texoma", "Pottsboro boat dealer", "Lake Texoma boat service", "boat winterization Lake Texoma", "Big Water Boat Club", "Scout boats Texas", "Veranda pontoons", "Highfield RIBs", "Berkshire pontoons"],
   texomaco: ["Lake Texoma", "Texoma tourism", "Lake Texoma events", "Lake Texoma weddings", "Texoma business partnerships", "Texas Oklahoma tourism", "group events Lake Texoma"],
 };
 

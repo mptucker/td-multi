@@ -16,6 +16,14 @@ export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
   const path = url.pathname;
 
+  // next.config sets skipTrailingSlashRedirect so bigwatermarine.com can keep
+  // its WordPress-style trailing slashes. Every other path keeps the default
+  // behaviour of dropping a trailing slash.
+  const bwmTree = path.startsWith("/sites/bigwatermarine");
+  if (!bwmTree && path.length > 1 && path.endsWith("/") && !isBigWaterMarineRequest(req)) {
+    return NextResponse.redirect(withPath(req, path.replace(/\/+$/, "")), 308);
+  }
+
   if (path.startsWith("/sites/")) {
     const res = NextResponse.next();
     res.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
@@ -34,7 +42,6 @@ export function middleware(req: NextRequest) {
     path.startsWith("/api") ||
     path.startsWith("/admin") ||
     path.startsWith("/studio") ||
-    path.startsWith("/brands/") ||
     /\.(png|jpg|jpeg|svg|ico|webp|txt|xml|json|webmanifest)$/.test(path)
   ) {
     return NextResponse.next();
@@ -69,15 +76,40 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(dest, 308);
   }
 
+  // bigwatermarine.com URLs all end in a slash, as they did on WordPress.
+  if (slug === "bigwatermarine" && !path.endsWith("/")) {
+    return NextResponse.redirect(withPath(req, `${path}/`), 308);
+  }
+
   // 3. rewrite into the brand's route tree
   url.pathname = `/sites/${slug}${path === "/" ? "" : path}`;
   url.searchParams.delete("brand");
   const res = NextResponse.rewrite(url);
   res.headers.set("x-brand", slug);
+  // bigwatermarine.com's pages are static, so previews are kept out of search here.
+  if (slug === "bigwatermarine" && hostBrand?.slug !== "bigwatermarine") {
+    res.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+  }
   if (qsBrand && qsBrand !== cookieBrand) {
     res.cookies.set("brand", slug, { path: "/", maxAge: 60 * 60 * 24 * 30 });
   }
   return res;
+}
+
+/** Same URL with a new path. A plain URL, because NextURL re-applies Next's own trailing-slash rule. */
+function withPath(req: NextRequest, pathname: string): URL {
+  const dest = new URL(req.url);
+  dest.pathname = pathname;
+  return dest;
+}
+
+/** True when this request will be served as bigwatermarine.com (host, ?brand or cookie). */
+function isBigWaterMarineRequest(req: NextRequest): boolean {
+  const qs = req.nextUrl.searchParams.get("brand");
+  if (qs) return qs === "bigwatermarine";
+  const host = brandFromHost(req.headers.get("host"));
+  if (host) return host.slug === "bigwatermarine";
+  return req.cookies.get("brand")?.value === "bigwatermarine";
 }
 
 export const config = {

@@ -19,7 +19,8 @@ export type BrandSlug =
   | "water-taxi"
   | "bigwater"
   | "towboatus-ntx"
-  | "texomaco";
+  | "texomaco"
+  | "bigwatermarine";
 
 /** Pages a brand may enable. Order here = nav order. */
 export type PageKey =

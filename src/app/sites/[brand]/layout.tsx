@@ -24,8 +24,9 @@ export const revalidate = 60; // ISR: CMS edits appear within a minute
 
 type Params = { params: Promise<{ brand: string }> };
 
+// bigwatermarine.com has its own route tree at /sites/bigwatermarine.
 export function generateStaticParams() {
-  return BRAND_SLUGS.map((brand) => ({ brand }));
+  return BRAND_SLUGS.filter((brand) => brand !== "bigwatermarine").map((brand) => ({ brand }));
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
@@ -63,7 +64,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function BrandLayout({ children, params }: { children: ReactNode } & Params) {
   const { brand: slug } = await params;
-  if (!isBrandSlug(slug)) notFound();
+  if (!isBrandSlug(slug) || slug === "bigwatermarine") notFound();
   const [brand, content, alert, tap, footer, network, dockline] = await Promise.all([
     getBrandWithSettings(slug),
     getContent(slug),

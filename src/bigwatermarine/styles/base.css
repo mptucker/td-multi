@@ -1,0 +1,15 @@
+/* Big Water Marine base. Tailwind is already loaded by the root layout, so this
+   file only sets the page shell, scoped to pages that render .bwm-root. */
+html:has(.bwm-root) { scroll-behavior: smooth; scroll-padding-top: 128px; background: #062538; }
+html:has(.bwm-root) body {
+  margin: 0;
+  background: #062538;
+  color: #eef7fb;
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+/* td-multi's globals give h1–h3 a serif display font through this variable. */
+.bwm-root { --font-display: var(--font-montserrat), system-ui, sans-serif; font-family: var(--font-montserrat), system-ui, sans-serif; }
+.bwm-root ::selection { background: #69aac8; color: #04192a; }
+@media (prefers-reduced-motion: reduce) { html:has(.bwm-root) { scroll-behavior: auto; } }
