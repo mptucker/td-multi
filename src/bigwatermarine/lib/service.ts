@@ -43,7 +43,7 @@ const menu = (items: { name: string; hours: string; onsite: string; mobile?: str
 export const OUTBOARD_MENU: MenuItem[] = menu(svc.outboardMenu);
 export const ADD_ONS: MenuItem[] = menu(svc.addOns);
 
-export const WINTER_NOTES: string[] = svc.winterNotes.map(fill);
+export const WINTER_NOTES: string[] = svc.winterNotes.map((t) => fill(t));
 export const INSPECTION_POINTS: string[] = svc.inspectionPoints;
 
 /** Customer reviews from the Service page. */

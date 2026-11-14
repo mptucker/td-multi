@@ -35,9 +35,9 @@ function placeholderValues(): Record<string, string> {
 }
 
 /** Replace {placeholders} with current values. Unknown placeholders are left as written. */
-export function fill(text: string): string {
-  const values = placeholderValues();
-  return text.replace(/\{([\w.]+)\}/g, (match, key: string) => values[key] ?? match);
+export function fill(text: string, extra?: Record<string, string | number>): string {
+  const values: Record<string, string | number> = { ...placeholderValues(), ...extra };
+  return text.replace(/\{([\w.]+)\}/g, (match, key: string) => (key in values ? String(values[key]) : match));
 }
 
 /** FAQs for a page, with placeholders filled. */

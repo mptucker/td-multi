@@ -37,26 +37,18 @@ async function search(salesstatus: string): Promise<Raw[]> {
 }
 
 /** Health check: raw counts per status and the shape of one record (no key exposed). */
+/** Feed health for the public status check: counts only, never listing data or contacts. */
 export async function apiDiagnostics() {
   if (!hasApiKey()) return { keyConfigured: false };
-  const out: Record<string, unknown> = { keyConfigured: true, statuses: {} as Record<string, unknown> };
+  const statuses: Record<string, number | string> = {};
   for (const s of STATUSES) {
     try {
-      const rows = await search(s.query);
-      (out.statuses as Record<string, unknown>)[s.query] = rows.length;
-      if (!out.sampleRaw && rows[0]) {
-        const r = rows[0];
-        out.rawFieldNames = Object.keys(r).sort();
-        out.sampleRaw = Object.fromEntries(
-          Object.entries(r).map(([k, v]) => [k, typeof v === "string" && v.length > 160 ? v.slice(0, 160) + "…" : Array.isArray(v) ? v.slice(0, 2) : v]),
-        );
-        out.sampleNormalized = normalize(r, s.status);
-      }
-    } catch (e) {
-      (out.statuses as Record<string, unknown>)[s.query] = `error: ${(e as Error).message}`;
+      statuses[s.query] = (await search(s.query)).length;
+    } catch {
+      statuses[s.query] = "error";
     }
   }
-  return out;
+  return { keyConfigured: true, statuses };
 }
 
 /** All listings from the API, normalized. Throws if the API can't be reached. */
