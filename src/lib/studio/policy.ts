@@ -12,6 +12,7 @@ const COMPONENT_DIRS: Record<BrandSlug, string[]> = {
   bigwater: ["src/components/bigwater/"],
   "towboatus-ntx": ["src/components/towboatus-ntx/"],
   texomaco: ["src/components/texomaco/"],
+  bigwatermarine: ["src/bigwatermarine/", "src/app/sites/bigwatermarine/"],
 };
 
 const ALWAYS_ALLOWED = new Set(["src/app/globals.css", "src/config/brands.ts", "src/config/types.ts"]);

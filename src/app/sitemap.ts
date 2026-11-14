@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { headers } from "next/headers";
 import { brandFromHost, PAGE_PATHS } from "@/config/brands";
 import { BRAND_UPDATED } from "@/lib/seo";
+import bigWaterMarineSitemap from "@/bigwatermarine/routes/sitemap";
 
 const FASTRAC_DISCOVERY_PATHS = [
   "/public-cruises",
@@ -22,6 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const host = (await headers()).get("host");
   const brand = brandFromHost(host);
   if (!brand) return [];
+  if (brand.slug === "bigwatermarine") return bigWaterMarineSitemap();
   const base = `https://${brand.canonicalDomain}`;
   const standardPages: MetadataRoute.Sitemap = brand.pages.map((p) => ({
     url: `${base}${PAGE_PATHS[p]}`,

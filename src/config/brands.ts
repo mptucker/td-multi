@@ -444,6 +444,23 @@ export const BRANDS: Record<BrandSlug, BrandConfig> = {
     primaryLabel: "Get help now",
     schemaType: "LocalBusiness",
   },
+  bigwatermarine: {
+    slug: "bigwatermarine",
+    domains: ["bigwatermarine.com", "www.bigwatermarine.com", "bigwatermarine.localhost"],
+    canonicalDomain: "bigwatermarine.com",
+    tagline: "Premium boats. Superior service. Genuine care.",
+    mostTag: "Go Big",
+    // Big Water Marine renders its own design (src/app/sites/bigwatermarine); this
+    // theme only colors shared surfaces such as the admin and brand directory.
+    theme: { primary: "#062538", primaryDark: "#03131f", accent: "#69aac8", accent2: "#93d4ee", bg: "#062538", surface: "#0b3a59", ink: "#eef7fb", muted: "#8fa6b6", fontDisplay: "Bebas Neue", fontBody: "Montserrat", fontHref: gf("family=Bebas+Neue&family=Montserrat:wght@400;600;700"), radius: "soft", header: "dark" },
+    logo: { src: "/bigwatermarine/brand/logo-grey-teal.png", width: 935, height: 200, onDark: "/bigwatermarine/brand/logo-white-teal.png" },
+    nap: { legalName: "Big Water Marine", displayName: "Big Water Marine", shortName: "Big Water Marine", streetAddress: "50055 N State Hwy 289", city: "Pottsboro", region: "TX", postalCode: "75076", phone: "903.419.1019", phoneE164: "+19034191019", email: "service@bigwatermarine.com", geo: { lat: 33.7593, lng: -96.6694 }, googleMapsUrl: "https://maps.google.com/?q=50055+N+State+Hwy+289+Pottsboro+TX+75076", facebook: "https://www.facebook.com/bigwatermarinetexoma", instagram: "https://instagram.com/bigwatermarinetexoma", hours: ["Sales: Tuesday–Saturday 9am–5pm", "Service: Tuesday–Friday 8am–5pm, Saturday 8am–3pm"] },
+    pages: ["home"],
+    primaryIntent: "companies",
+    primaryLabel: "Shop boats",
+    schemaType: "BoatDealer",
+    gtmId: "GTM-K42QC7JS",
+  },
   texomaco: {
     slug: "texomaco",
     domains: ["texomaco.com", "www.texomaco.com", "texomaco.localhost"],

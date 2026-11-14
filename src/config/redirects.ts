@@ -15,6 +15,11 @@ export const REDIRECTS: Record<BrandSlug, Record<string, string>> = {
     "/request": "https://tide.towboatuslaketexoma.com",
   },
   bigwater: {},
+  // bigwatermarine.com keeps every WordPress URL; these are the old WordPress-only redirects.
+  bigwatermarine: {
+    "/fleet": "/fleet-sales/",
+    "/boatclub/signup": "https://texomadestinations.com/tap?v=bwbc",
+  },
   lighthouse: {
     "/camping": "/rv-sites",
     "/marina": "/boat-slips",
@@ -105,4 +110,5 @@ export const PREFIX_REDIRECTS: Partial<Record<BrandSlug, { from: string; to: str
   paradise: [{ from: "/stay/", to: "/stay#glamping" }],
   sundance: [{ from: "/cabin-", to: "/stay#cabins" }],
   fastrac: [{ from: "/product/", to: "/stay" }],
+  bigwatermarine: [{ from: "/rpt_pricing_table/", to: "/" }],
 };
