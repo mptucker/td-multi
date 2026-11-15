@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./TexomaTripPlanner.module.css";
 
 type Partner = {
@@ -77,13 +77,17 @@ function LayeredMap({ url, roads, labels }: { url: string; roads: boolean; label
 export function TexomaTripPlanner() {
   const [partners, setPartners] = useState<Partner[]>(FALLBACK);
   const [filter, setFilter] = useState("all");
-  const [selected, setSelected] = useState(FALLBACK[0].id);
+  const [selected, setSelected] = useState<string | null>(null);
+  const [carouselIndex, setCarouselIndex] = useState(0);
   const [trip, setTrip] = useState<string[]>([]);
   const [tripOpen, setTripOpen] = useState(false);
   const [shareMessage, setShareMessage] = useState("");
   const [mapSettings, setMapSettings] = useState<MapSettings>(DEFAULT_MAP);
   const [showRoads, setShowRoads] = useState(DEFAULT_MAP.show_roads);
   const [showLabels, setShowLabels] = useState(DEFAULT_MAP.show_geographic_labels);
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const drag = useRef<{ x: number; y: number; panX: number; panY: number } | null>(null);
 
   useEffect(() => {
     const queryTrip = new URLSearchParams(window.location.search).get("trip");
@@ -122,7 +126,7 @@ export function TexomaTripPlanner() {
           setShowLabels(nextSettings.show_geographic_labels);
         }
         setPartners(next);
-        setSelected((current) => next.some((item) => item.id === current) ? current : next[0].id);
+        setSelected((current) => current && next.some((item) => item.id === current) ? current : null);
       })
       .catch(() => undefined);
   }, []);
@@ -130,8 +134,39 @@ export function TexomaTripPlanner() {
   useEffect(() => { localStorage.setItem(STORAGE_KEY, JSON.stringify(trip)); }, [trip]);
 
   const visible = useMemo(() => filter === "all" ? partners : partners.filter((partner) => partner.categories.includes(filter)), [filter, partners]);
-  const active = partners.find((partner) => partner.id === selected) ?? visible[0] ?? partners[0];
+  const featured = useMemo(() => {
+    const featuredPartners = visible.filter((partner) => partner.featured);
+    return featuredPartners.length ? featuredPartners : visible;
+  }, [visible]);
+  const carouselPartner = featured[carouselIndex % Math.max(featured.length, 1)] ?? visible[0] ?? partners[0];
+  const active = (selected ? partners.find((partner) => partner.id === selected) : undefined) ?? carouselPartner;
   const tripPartners = trip.map((id) => partners.find((partner) => partner.id === id)).filter((partner): partner is Partner => Boolean(partner));
+
+  useEffect(() => {
+    setCarouselIndex(0);
+    setSelected(null);
+  }, [filter]);
+
+  useEffect(() => {
+    if (selected || featured.length < 2) return;
+    const timer = window.setInterval(() => setCarouselIndex((current) => (current + 1) % featured.length), 5000);
+    return () => window.clearInterval(timer);
+  }, [featured.length, selected]);
+
+  function selectPartner(id: string) {
+    setSelected(id);
+  }
+
+  function changeZoom(next: number) {
+    const value = Math.min(3, Math.max(1, next));
+    setZoom(value);
+    if (value === 1) setPan({ x: 0, y: 0 });
+  }
+
+  function clampPan(value: number, scale = zoom) {
+    const limit = 310 * Math.max(0, scale - 1);
+    return Math.min(limit, Math.max(-limit, value));
+  }
 
   function toggleTrip(id: string) {
     setTrip((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id]);
@@ -160,7 +195,7 @@ export function TexomaTripPlanner() {
         <aside className={styles.results} aria-label="Partner listings">
           <p className={styles.resultCount}>{visible.length} curated {visible.length === 1 ? "place" : "places"}</p>
           {visible.map((partner, index) => (
-            <button key={partner.id} className={`${styles.result} ${active?.id === partner.id ? styles.selectedResult : ""}`} onClick={() => setSelected(partner.id)}>
+            <button key={partner.id} className={`${styles.result} ${active?.id === partner.id ? styles.selectedResult : ""}`} onClick={() => selectPartner(partner.id)}>
               <span className={styles.number}>{String(index + 1).padStart(2, "0")}</span>
               <span><strong>{partner.name}</strong><small>{partner.area}</small></span>
               <span aria-hidden="true">→</span>
@@ -169,17 +204,48 @@ export function TexomaTripPlanner() {
         </aside>
 
         <div className={styles.map} aria-label="Map of Texoma Collective partner locations">
-          <div className={styles.mapStage} data-theme={mapSettings.theme}>
-            <LayeredMap url={mapSettings.map_url} roads={showRoads} labels={showLabels} />
+          <div
+            className={`${styles.mapStage} ${zoom > 1 ? styles.isZoomed : ""}`}
+            data-theme={mapSettings.theme}
+            onWheel={(event) => { event.preventDefault(); changeZoom(zoom + (event.deltaY < 0 ? .25 : -.25)); }}
+            onPointerDown={(event) => {
+              if (event.button !== 0 || zoom === 1 || (event.target as HTMLElement).closest("button")) return;
+              drag.current = { x: event.clientX, y: event.clientY, panX: pan.x, panY: pan.y };
+              event.currentTarget.setPointerCapture(event.pointerId);
+            }}
+            onPointerMove={(event) => {
+              if (!drag.current) return;
+              setPan({ x: clampPan(drag.current.panX + event.clientX - drag.current.x), y: clampPan(drag.current.panY + event.clientY - drag.current.y) });
+            }}
+            onPointerUp={(event) => { drag.current = null; event.currentTarget.releasePointerCapture(event.pointerId); }}
+            onPointerCancel={() => { drag.current = null; }}
+          >
+            <div className={styles.mapCanvas} style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})` }}>
+              <LayeredMap url={mapSettings.map_url} roads={showRoads} labels={showLabels} />
+              {visible.map((partner, index) => <button key={partner.id} className={`${styles.pin} ${active?.id === partner.id ? styles.activePin : ""}`} style={mapPosition(partner)} onClick={() => selectPartner(partner.id)} aria-label={`Open ${partner.name}`}><span>{index + 1}</span></button>)}
+            </div>
             <span className={styles.mapCredit}>Lake Texoma · Texas + Oklahoma</span>
             <div className={styles.mapLayers} aria-label="Map layers"><button className={showRoads ? styles.activeLayer : ""} onClick={() => setShowRoads((value) => !value)}>Roads</button><button className={showLabels ? styles.activeLayer : ""} onClick={() => setShowLabels((value) => !value)}>Places</button></div>
-            {visible.map((partner, index) => <button key={partner.id} className={`${styles.pin} ${active?.id === partner.id ? styles.activePin : ""}`} style={mapPosition(partner)} onClick={() => setSelected(partner.id)} aria-label={`Open ${partner.name}`}><span>{index + 1}</span></button>)}
+            <div className={styles.zoomControls} aria-label="Map zoom controls">
+              <button onClick={() => changeZoom(zoom + .5)} disabled={zoom >= 3} aria-label="Zoom in">+</button>
+              <button onClick={() => changeZoom(zoom - .5)} disabled={zoom <= 1} aria-label="Zoom out">−</button>
+              {zoom > 1 && <button className={styles.resetZoom} onClick={() => changeZoom(1)} aria-label="Reset map zoom">Reset</button>}
+            </div>
+            <span className={styles.zoomHint}>{zoom === 1 ? "Scroll or use + to zoom" : `${Math.round(zoom * 100)}% · drag to move`}</span>
           </div>
 
-          {active && <article className={styles.detail}>
+          {active && <article className={styles.detail} aria-live={selected ? "off" : "polite"}>
             <div className={styles.detailPhoto}><img src={active.image} alt={`${active.name} at Lake Texoma`} /></div>
             <div className={styles.detailCopy}>
-              <p>{active.area}</p>
+              <div className={styles.carouselMeta}>
+                <p>{selected ? active.area : `Featured around the lake · ${active.area}`}</p>
+                {!selected && featured.length > 1 && <div className={styles.carouselControls} aria-label="Featured partner carousel">
+                  <button onClick={() => setCarouselIndex((carouselIndex - 1 + featured.length) % featured.length)} aria-label="Previous featured partner">←</button>
+                  <span>{carouselIndex + 1} / {featured.length}</span>
+                  <button onClick={() => setCarouselIndex((carouselIndex + 1) % featured.length)} aria-label="Next featured partner">→</button>
+                </div>}
+                {selected && <button className={styles.backToFeatured} onClick={() => setSelected(null)}>Show featured places</button>}
+              </div>
               <h3>{active.name}{active.featured && <span className={styles.featured}>Featured</span>}</h3>
               <p>{active.description}</p>
               <address>{active.address}</address>
