@@ -122,18 +122,19 @@ export function PartnerDirectoryAdmin({ client, organizations, locations, settin
           <div className="wide tco-switches"><label><input type="checkbox" checked={organization.approved} disabled={!canWrite} onChange={(e) => updateOrg(organization.id, { approved: e.target.checked })}/> Approved</label><label><input type="checkbox" checked={organization.active} disabled={!canWrite} onChange={(e) => updateOrg(organization.id, { active: e.target.checked })}/> Active</label><label><input type="checkbox" checked={organization.public} disabled={!canWrite} onChange={(e) => updateOrg(organization.id, { public: e.target.checked })}/> Public</label></div>
         </div>
         {canWrite && <div className="cms-review-actions"><button className="cms-button" onClick={() => save("partner_organizations", organization.id, organization)}>Save partner</button><button className="cms-button cms-button-muted" onClick={() => addLocation(organization.id)}>Add location</button></div>}
-        <div className="tco-locations">{orgLocations.map((location) => <LocationEditor key={location.id} location={location} media={media} canWrite={canWrite} uploading={uploading} update={(patch) => updateLocation(location.id, patch)} upload={(file) => uploadPhoto(location, file)} inputRef={(node) => { photoInputs.current[location.id] = node; }} save={() => save("partner_locations", location.id, location)} />)}</div>
+        <div className="tco-locations">{orgLocations.map((location, index) => <LocationEditor key={location.id} location={location} defaultOpen={index === 0} media={media} canWrite={canWrite} uploading={uploading} update={(patch) => updateLocation(location.id, patch)} upload={(file) => uploadPhoto(location, file)} inputRef={(node) => { photoInputs.current[location.id] = node; }} save={() => save("partner_locations", location.id, location)} />)}</div>
       </details>;
     })}
-    {message && <p className="cms-form-note" role="status" aria-live="polite">{message}</p>}
+    {message && <p className="cms-save-toast" role="status" aria-live="polite">{message}</p>}
   </div>;
 }
 
-function LocationEditor({ location, media, canWrite, uploading, update, upload, inputRef, save }: { location: Location; media: any[]; canWrite: boolean; uploading: string; update: (patch: Partial<Location>) => void; upload: (file?: File) => void; inputRef: (node: HTMLInputElement | null) => void; save: () => void }) {
+function LocationEditor({ location, defaultOpen, media, canWrite, uploading, update, upload, inputRef, save }: { location: Location; defaultOpen: boolean; media: any[]; canWrite: boolean; uploading: string; update: (patch: Partial<Location>) => void; upload: (file?: File) => void; inputRef: (node: HTMLInputElement | null) => void; save: () => void }) {
   const localInput = useRef<HTMLInputElement | null>(null);
   const setRef = (node: HTMLInputElement | null) => { localInput.current = node; inputRef(node); };
-  return <details className="tco-location">
-    <summary><span><strong>{location.name}</strong><small>{location.area} · {location.categories.join(", ")}{location.is_featured ? " · Featured" : ""}</small></span><span className={location.active && location.public ? "cms-status-live" : "cms-status-draft"}>{location.active && location.public ? "On map" : "Hidden"}</span></summary>
+  return <details className="tco-location" open={defaultOpen}>
+    <summary><span><strong>{location.name}</strong><small>{location.area} · {location.categories.join(", ")}{location.is_featured ? " · Featured" : ""}</small></span><span className="tco-location-summary-actions"><span className={location.active && location.public ? "cms-status-live" : "cms-status-draft"}>{location.active && location.public ? "On map" : "Hidden"}</span><span className="tco-edit-hint">Edit location <b aria-hidden="true">↓</b></span></span></summary>
+    <div className="tco-location-toolbar"><p>Update this pin and save it independently from the partner above.</p>{canWrite && <button type="button" className="cms-button" onClick={save}>Save location</button>}</div>
     <div className="tco-location-editor">
       <div className="cms-form-grid">
         <label><span>Location title</span><input value={location.name} disabled={!canWrite} onChange={(e) => update({ name: e.target.value })}/></label>
@@ -154,6 +155,6 @@ function LocationEditor({ location, media, canWrite, uploading, update, upload, 
       </div>
       <aside className="tco-photo-editor">{location.image_url ? <img src={location.image_url} alt="" /> : <span>No location photo selected</span>}<button type="button" className="cms-button cms-button-muted" disabled={!canWrite || uploading === location.id} onClick={() => localInput.current?.click()}>{uploading === location.id ? "Uploading…" : "Upload new photo"}</button><input ref={setRef} hidden type="file" accept="image/jpeg,image/png,image/webp,image/avif" onChange={(event) => upload(event.target.files?.[0])}/></aside>
     </div>
-    {canWrite && <button className="cms-button" onClick={save}>Save location</button>}
+    {canWrite && <button type="button" className="cms-button" onClick={save}>Save location</button>}
   </details>;
 }
