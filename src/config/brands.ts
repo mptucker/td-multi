@@ -83,7 +83,7 @@ export const BRANDS: Record<BrandSlug, BrandConfig> = {
       muted: "#6b7680",
       fontDisplay: "Bebas Neue",
       fontBody: "Nunito",
-      fontHref: gf("family=Bebas+Neue&family=Caveat:wght@500;600&family=Nunito:wght@400;600;700"),
+      fontHref: gf("family=Allison&family=Bebas+Neue&family=Caveat:wght@500;600&family=Josefin+Sans:wght@600;700&family=Nunito:wght@400;600;700;800"),
       radius: "round",
       header: "light",
     },

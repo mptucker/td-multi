@@ -93,7 +93,7 @@ export function Footer({ brand, blurb, settings }: { brand: BrandConfig; blurb: 
               </li>
             ))}
             <li className="pt-2">
-              <a href={settings?.hub_url || hubUrl("reserve", brand, { campaign: "footer" })} className="inline-flex items-center gap-2 font-bold hover:underline">
+              <a href={settings?.hub_url || hubUrl("reserve", brand, { campaign: "footer" })} className="inline-flex items-center gap-2 font-bold hover:underline [overflow-wrap:anywhere]">
                 <Image src="/brands/texoma-destinations.png" alt="" width={400} height={129} className="h-6 w-auto rounded bg-white/95 px-1" />
                 {settings?.hub_label || "Book everything at texomadestinations.com"}
               </a>
