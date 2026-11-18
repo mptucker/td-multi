@@ -103,10 +103,12 @@
 [data-brand="paradise"] > header > nav { background: transparent; border-top: 1px solid rgba(105, 120, 137, .12); }
 [data-brand="paradise"] > header > nav .container { font-size: .66rem; letter-spacing: .14em; gap: 1.25rem; scrollbar-width: none; }
 @media (max-width: 639px) {
-  [data-brand="paradise"] > header .container { gap: .75rem; padding-block: .55rem; }
-  [data-brand="paradise"] > header .brand-lockup-wrap { flex-direction: column; align-items: flex-start; gap: .15rem; }
-  [data-brand="paradise"] > header .brand-lockup img { height: 2.3rem; }
-  [data-brand="paradise"] > header .td-network-trigger { border-left: 0 !important; margin-left: 0 !important; padding-left: 0 !important; font-size: .5rem; }
+  [data-brand="paradise"] > header .container { gap: .75rem; padding-block: .45rem .4rem; }
+  [data-brand="paradise"] > header .brand-lockup-wrap { flex-direction: column; align-items: flex-start; gap: .05rem; }
+  [data-brand="paradise"] > header .brand-lockup img { height: 2.05rem; }
+  [data-brand="paradise"] > header .td-network-trigger { border-left: 0 !important; margin-left: 0 !important; padding-left: 0 !important; font-size: .46rem; line-height: 1.2; }
+  [data-brand="paradise"] > header .td-network-trigger i { width: 14px; height: 14px; font-size: .5rem; }
+  [data-brand="paradise"] > header > nav .container { padding-block: .4rem .35rem; font-size: .6rem; gap: 1.1rem; }
   [data-brand="paradise"] > header .btn-primary { font-size: .6rem !important; letter-spacing: .08em; padding: .66rem .9rem .58rem !important; }
 }
 @media (max-width: 379px) {
@@ -152,16 +154,14 @@
 .pd-tap-body { max-width: 32rem; margin: 1.4rem 0 0; font-family: var(--pd-body); font-size: 1.04rem; line-height: 1.7; color: #4b5964; }
 .pd-tap-perks { list-style: none; padding: 0; margin: 1.8rem 0 2.2rem; display: grid; gap: .1rem; max-width: 30rem; }
 .pd-tap-perks li {
-  display: flex;
-  align-items: baseline;
-  gap: .8rem;
-  padding: .75rem 0;
+  position: relative;
+  padding: .75rem 0 .75rem 1.5rem;
   border-bottom: 1px dashed rgba(105, 120, 137, .35);
   font-family: var(--pd-body);
   font-size: .98rem;
   color: #4b5964;
 }
-.pd-tap-perks li::before { content: "✳"; color: var(--pd-steel); font-size: .8rem; }
+.pd-tap-perks li::before { content: "✳"; position: absolute; left: 0; top: .85rem; color: var(--pd-steel); font-size: .8rem; }
 .pd-tap-perks b { color: var(--pd-ink); font-weight: 800; }
 .pd-tap-button {
   display: inline-flex;
@@ -845,7 +845,7 @@ html:has(.pd) { scroll-behavior: smooth; }
 .pd-clock-list a:hover { background: rgba(180, 220, 191, .35); }
 .pd-clock-list a[aria-current] { background: var(--pd-ink); color: #fff; }
 .pd-clock-list a[aria-current] span { color: rgba(255, 255, 255, .7); }
-@media (max-width: 640px) { .pd-clock-face { padding-right: .85rem; } .pd-clock-label { font-size: 1.02rem; } }
+@media (max-width: 640px) { .pd-clock-face { gap: .5rem; padding: .3rem .8rem .3rem .45rem; } .pd-clock-face svg { width: 2.1rem; height: 1.2rem; } .pd-clock-label { display: none; } .pd-clock-list { min-width: 16.5rem; } }
 
 /* ── Reveals (only once JS is running, so content never hides without it) ─────────────────── */
 .pd-r { transition: opacity 1s ease var(--d, 0ms), transform 1.15s var(--pd-ease) var(--d, 0ms); }
@@ -923,6 +923,61 @@ html:has(.pd) { scroll-behavior: smooth; }
   .pd-exhale-polaroid { position: relative !important; left: auto; bottom: auto; translate: none; display: block; margin: 3rem auto 0 !important; width: min(72%, 17rem); }
   .pd-exhale { padding-bottom: clamp(5rem, 12vw, 8rem); }
   .pd-morning { padding-top: clamp(5rem, 12vw, 8rem); }
+}
+
+/* ── Phones & small tablets: mobile-first composition ─────────────────────────────────── */
+@media (max-width: 899px) {
+  /* Hero: full-bleed photo inside a thin campaign frame; type sized to the screen */
+  .pd-hero { height: calc(100svh - var(--pd-head, 90px)); min-height: 540px; max-height: 860px; }
+  .pd-hero-back, .pd-hero-rule { display: none; }
+  .pd-hero-window { clip-path: none !important; animation: none !important; }
+  .pd-hero-window img { object-position: 36% 50%; }
+  .pd-hero-stage::after { content: ""; position: absolute; z-index: 2; inset: 12px 12px 0; border: 1.5px solid rgba(255, 255, 255, .78); border-bottom: 0; pointer-events: none; }
+  .pd-hero::after { background: linear-gradient(180deg, rgba(36, 50, 60, .35) 0%, transparent 20%), linear-gradient(0deg, rgba(36, 50, 60, .62) 0%, rgba(36, 50, 60, .25) 34%, transparent 55%); }
+  .pd-hero-place { top: 1.6rem; font-size: .62rem; }
+  .pd-hero-copy { animation: none !important; }
+  .pd-hero-title { margin-bottom: calc(clamp(44px, 7vw, 110px) * .38); }
+  .pd-hero-find { font-size: 1rem; letter-spacing: .42em; margin-bottom: .2em; }
+  .pd-hero-word { font-size: 28vw; line-height: .82; }
+  .pd-hero-word span { text-shadow: 0 4px 18px rgba(30, 44, 54, .3); }
+  .pd-hero { overflow-x: clip; overflow-y: visible; z-index: 2; }
+  .pd-hero-copy { z-index: 3; }
+  .pd-hero-sign { right: 4%; bottom: -.62em; padding: 0 .45em .1em .2em; font-size: clamp(2.7rem, 12.5vw, 4.2rem); rotate: -6deg; text-shadow: none; color: #5fa6ba; }
+  .pd-leave { padding-top: 6.5rem; }
+  .pd-wave { height: 44px; }
+
+  /* Golden hour: photo, then copy + polaroid side by side */
+  .pd-exhale-wide { height: clamp(300px, 92vw, 520px); }
+  .pd-exhale-copy { margin-top: 2rem; }
+  .pd-exhale-copy .pd-quiet { font-size: 2.3rem; }
+
+  /* Posters: copy stays clear of the clock, quieter type */
+  .pd-poster { min-height: 520px; }
+  .pd-poster-copy { bottom: 4.6rem; }
+  .pd-poster-line { font-size: 2rem; }
+  .pd-poster-word { font-size: 25vw; }
+  .pd-poster-refreshing .pd-poster-word { font-size: 12.5vw; text-shadow: 0 3px 0 rgba(36, 50, 60, .45), 0 10px 24px rgba(20, 30, 38, .35); }
+  .pd-poster-refreshing .pd-poster-find { font-size: 18vw; }
+  .pd-poster-adventure .pd-poster-word { font-size: 22vw; }
+  .pd-poster-cozy .pd-poster-find { font-size: 22vw; }
+  .pd-poster-cozy .pd-poster-word { font-size: 10vw; }
+
+  /* Map: edge to edge so the pins and labels are usable */
+  .pd-map-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+  .pd-map-tabs button { justify-content: flex-start; font-size: .7rem; }
+  .pd-map-board { margin-inline: -1.5rem; border-radius: 0; box-shadow: none; }
+  .pd-pin { width: 32px; height: 32px; }
+  .pd-pin em { opacity: 0; }
+  .pd-pin.is-active em { opacity: 1; }
+  .pd-map-scale { font-size: .9rem; }
+
+  /* Sunday: stay name over its note */
+  .pd-book a { grid-template-columns: 1fr auto; gap: .1rem 1rem; }
+  .pd-book-sub { grid-column: 1; grid-row: 2; font-size: 1.15rem; }
+  .pd-book .pd-arrow { grid-column: 2; grid-row: 1 / span 2; }
+  .pd-sunday-photo { width: min(88%, 24rem); }
+
+  .pd-textlink { line-height: 1.5; }
 }
 
 /* ── Reduced motion: everything visible, nothing moves ───────────────────────────────────── */
