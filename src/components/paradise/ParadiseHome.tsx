@@ -294,9 +294,15 @@ export function ParadiseHome({ brand }: { brand: BrandConfig }) {
           <div className="pd-exhale-copy pd-r">
             <Sun className="pd-breathe" />
             <p className="pd-quiet">
-              Find a chair facing west.
+              Find a chair
               <br />
-              <strong>That&apos;s the whole plan.</strong>
+              facing west.
+              <br />
+              <strong>
+                That&apos;s the
+                <br />
+                whole plan.
+              </strong>
             </p>
             <p>
               The sun goes down over the water every night. Most people stop what they&apos;re doing to watch it. That&apos;s sort of the

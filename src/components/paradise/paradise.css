@@ -487,15 +487,18 @@ html:has(.pd) { scroll-behavior: smooth; }
 .pd-exhale-wide .pd-par { position: absolute; inset: -8% 0; }
 .pd-exhale-copy { position: relative; z-index: 2; width: min(100% - 3rem, 26rem); margin: 2.5rem auto 0; }
 .pd-exhale-copy p { font-size: 1.02rem; line-height: 1.75; color: #4b5964; }
-.pd-exhale-copy .pd-quiet { margin-bottom: 1rem; font-family: var(--pd-display); font-size: clamp(2rem, 2.8vw, 2.7rem); line-height: .98; color: var(--pd-ink); }
+.pd-exhale-copy .pd-quiet { margin-bottom: 1.1rem; font-family: var(--pd-display); font-size: clamp(2rem, 2.8vw, 2.7rem); line-height: .98; color: var(--pd-ink); }
 .pd-exhale-copy .pd-quiet strong { font-weight: 400; color: var(--pd-tan); }
 .pd-breathe { width: 3.4rem; color: var(--pd-tan); margin-bottom: 1.2rem; animation: pd-breathe 7s ease-in-out infinite; }
 .pd-exhale-polaroid { --tilt: -5deg; position: absolute !important; z-index: 3; width: clamp(13rem, 21vw, 19rem); left: 50%; bottom: clamp(-10rem, -11vw, -6rem); translate: -50% 0; }
 @keyframes pd-breathe { 0%, 100% { transform: scale(.9) rotate(0deg); opacity: .7; } 50% { transform: scale(1.08) rotate(20deg); opacity: 1; } }
 @media (min-width: 900px) {
-  .pd-exhale-wide { width: 77vw; clip-path: polygon(9% 0, 100% 0, 100% 100%, 0 100%); }
-  .pd-exhale-copy { position: absolute; left: max(4rem, calc((100vw - 84rem) / 2)); top: clamp(5rem, 9vw, 9rem); width: min(19vw, 19rem); margin: 0; }
-  .pd-exhale-polaroid { left: max(5rem, calc((100vw - 84rem) / 2 + 3rem)); translate: 0 0; bottom: clamp(-6rem, -5vw, -3rem); }
+  /* one shared left edge (the content column) for copy, photo edge and polaroid */
+  .pd-exhale { --pd-col: max(4rem, calc((100vw - 84rem) / 2)); --pd-copy: clamp(15rem, 18vw, 17.5rem); }
+  .pd-exhale-scene { margin-top: clamp(1rem, 2vw, 1.75rem); }
+  .pd-exhale-wide { width: calc(100vw - var(--pd-col) - var(--pd-copy) - clamp(2.5rem, 4vw, 4rem)); clip-path: polygon(7% 0, 100% 0, 100% 100%, 0 100%); }
+  .pd-exhale-copy { position: absolute; left: var(--pd-col); top: clamp(2.5rem, 4vw, 4rem); width: var(--pd-copy); margin: 0; }
+  .pd-exhale-polaroid { --tilt: -4deg; left: var(--pd-col); translate: 0 0; bottom: clamp(-5.5rem, -4.5vw, -3rem); width: var(--pd-copy); }
 }
 
 /* ── 04 Saturday morning ──────────────────────────────────────────────────────────────────── */
