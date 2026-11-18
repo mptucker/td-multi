@@ -79,10 +79,10 @@ export function ParadiseMood() {
   const mood = moods[selected];
   return <div className="px-moods">
     <div className={`px-mood-stage px-mood-${mood.name.toLowerCase()}`}>
-      {moods.map((item, index) => <div key={item.name} className={`px-mood-image ${selected === index ? "is-active" : ""}`} aria-hidden={selected !== index}><Image src={item.image} alt={selected === index ? item.alt : ""} fill sizes="100vw" style={{ objectPosition: item.position }} /></div>)}
+      <div key={mood.image} className="px-mood-image is-active"><Image src={mood.image} alt={mood.alt} fill sizes="100vw" priority={selected === 0} style={{ objectPosition: mood.position }} /></div>
       <div className="px-mood-shade" />
       <div className="px-wrap px-mood-lead px-reveal"><p className="px-eyebrow">Follow your feeling</p><h2 id="px-discover-title">Your kind of <em>Paradise.</em></h2><p>Some days you wander. Some days you don&apos;t. There&apos;s room for both.</p></div>
-      {moods.map((item, index) => <div key={item.name} id={`px-mood-panel-${index}`} role="tabpanel" aria-labelledby={`px-mood-tab-${index}`} hidden={selected !== index} tabIndex={0} className="px-wrap px-mood-panel"><div className="px-mood-story"><h3>{item.title}</h3><p>{item.body}</p><span>{item.note}</span></div></div>)}
+      <div key={mood.name} id={`px-mood-panel-${selected}`} role="tabpanel" aria-labelledby={`px-mood-tab-${selected}`} tabIndex={0} className="px-wrap px-mood-panel"><div className="px-mood-story"><span className="px-mood-number" aria-hidden="true">0{selected + 1} / 04</span><h3>{mood.title}</h3><p>{mood.body}</p><span>{mood.note}</span></div></div>
       <div className="px-wrap px-mood-tabs" role="tablist" aria-label="Find your Paradise mood">{moods.map((item, index) => <button key={item.name} id={`px-mood-tab-${index}`} type="button" role="tab" aria-selected={selected === index} aria-controls={`px-mood-panel-${index}`} tabIndex={selected === index ? 0 : -1} onClick={() => setSelected(index)} onKeyDown={(event) => moveTab(event, index, moods.length, setSelected)}><span aria-hidden="true">0{index + 1}</span>{item.name}</button>)}</div>
     </div>
   </div>;
@@ -92,11 +92,12 @@ export type ParadiseStay = { name: string; invitation: string; description: stri
 
 export function ParadiseStays({ stays }: { stays: ParadiseStay[] }) {
   const [selected, setSelected] = useState(0);
+  const stay = stays[selected];
   return <div className="px-stay-explorer">
     <div className="px-stay-tabs" role="tablist" aria-label="Find your way to stay">{stays.map((stay, index) => <button key={stay.name} id={`px-stay-tab-${index}`} type="button" role="tab" aria-selected={selected === index} aria-controls={`px-stay-panel-${index}`} tabIndex={selected === index ? 0 : -1} onClick={() => setSelected(index)} onKeyDown={(event) => moveTab(event, index, stays.length, setSelected)}><span>0{index + 1}</span>{stay.name}<i aria-hidden="true">↗</i></button>)}</div>
-    {stays.map((stay, index) => <div key={stay.name} role="tabpanel" id={`px-stay-panel-${index}`} aria-labelledby={`px-stay-tab-${index}`} hidden={selected !== index} tabIndex={0} className="px-stay-scene">
+    <div key={stay.name} role="tabpanel" id={`px-stay-panel-${selected}`} aria-labelledby={`px-stay-tab-${selected}`} tabIndex={0} className="px-stay-scene">
       <figure className="px-stay-image"><Image src={stay.image} alt={stay.alt} fill sizes="(min-width: 900px) 64vw, 100vw" /><figcaption>{stay.note}</figcaption></figure>
-      <div className="px-stay-story"><span className="px-eyebrow">{stay.detail}</span><h3>{stay.invitation}</h3><p>{stay.description}</p><a href={stay.href} className="px-book-link">{stay.name === "Camping" ? "Find a tent site" : `Explore ${stay.name.toLowerCase()}`} <span aria-hidden="true">↗</span></a><small>Choose your dates with Texoma Destinations</small></div>
-    </div>)}
+      <div className="px-stay-story"><span className="px-stay-handle" aria-hidden="true" /><span className="px-eyebrow">{stay.detail}</span><h3>{stay.invitation}</h3><p>{stay.description}</p><a href={stay.href} className="px-book-link">{stay.name === "Camping" ? "Find a tent site" : `Explore ${stay.name.toLowerCase()}`} <span aria-hidden="true">↗</span></a><small>Choose your dates with Texoma Destinations</small></div>
+    </div>
   </div>;
 }
