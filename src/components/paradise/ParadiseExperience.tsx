@@ -3,16 +3,8 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 
-const chapters = [
-  { id: "px-arrive", label: "Arrive" }, { id: "px-exhale", label: "Exhale" },
-  { id: "px-discover", label: "Discover" }, { id: "px-stay", label: "Find your place" },
-  { id: "px-outside", label: "Lake time" }, { id: "px-last-light", label: "Stay longer" },
-];
-
 export function ParadiseJourney({ children }: { children: ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
-  const [chapter, setChapter] = useState("px-arrive");
-  const [inStory, setInStory] = useState(false);
 
   useEffect(() => {
     const element = root.current;
@@ -29,12 +21,6 @@ export function ParadiseJourney({ children }: { children: ReactNode }) {
       if (!motion.matches && target.getBoundingClientRect().top > window.innerHeight) target.classList.add("px-will-reveal");
       revealObserver.observe(target);
     });
-    const chapterObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
-      if (entry.isIntersecting) setChapter(entry.target.id);
-    }), { rootMargin: "-20% 0px -55% 0px" });
-    chapters.forEach(({ id }) => { const target = element.querySelector(`#${id}`); if (target) chapterObserver.observe(target); });
-    const rootObserver = new IntersectionObserver(([entry]) => setInStory(entry.isIntersecting), { rootMargin: "-100px 0px -80px 0px" });
-    rootObserver.observe(element);
     const updatePhotos = () => {
       frame = 0;
       if (motion.matches || !desktop.matches) return;
@@ -59,13 +45,13 @@ export function ParadiseJourney({ children }: { children: ReactNode }) {
     motion.addEventListener("change", onPreference);
     desktop.addEventListener("change", onPreference);
     return () => {
-      revealObserver.disconnect(); chapterObserver.disconnect(); rootObserver.disconnect(); photoObserver.disconnect();
+      revealObserver.disconnect(); photoObserver.disconnect();
       window.removeEventListener("scroll", onScroll); motion.removeEventListener("change", onPreference); desktop.removeEventListener("change", onPreference);
       cancelAnimationFrame(frame);
     };
   }, []);
 
-  return <div ref={root} className="px-home">{children}<nav className={`px-wayfinder ${inStory && chapter !== "px-arrive" ? "px-wayfinder-visible" : ""}`} aria-label="Your Paradise journey">{chapters.map((item, index) => <a key={item.id} href={`#${item.id}`} aria-current={chapter === item.id ? "location" : undefined}><span>{item.label}</span><i aria-hidden="true">{String(index + 1).padStart(2, "0")}</i></a>)}</nav></div>;
+  return <div ref={root} className="px-home">{children}</div>;
 }
 
 function moveTab(event: KeyboardEvent<HTMLButtonElement>, index: number, count: number, select: (index: number) => void) {
@@ -92,12 +78,12 @@ export function ParadiseMood() {
   const [selected, setSelected] = useState(0);
   const mood = moods[selected];
   return <div className="px-moods">
-    <div className="px-wrap px-mood-tabs" role="tablist" aria-label="Find your Paradise mood">{moods.map((item, index) => <button key={item.name} id={`px-mood-tab-${index}`} type="button" role="tab" aria-selected={selected === index} aria-controls={`px-mood-panel-${index}`} tabIndex={selected === index ? 0 : -1} onClick={() => setSelected(index)} onKeyDown={(event) => moveTab(event, index, moods.length, setSelected)}><span>0{index + 1}</span>{item.name}<i aria-hidden="true">↗</i></button>)}</div>
     <div className={`px-mood-stage px-mood-${mood.name.toLowerCase()}`}>
       {moods.map((item, index) => <div key={item.name} className={`px-mood-image ${selected === index ? "is-active" : ""}`} aria-hidden={selected !== index}><Image src={item.image} alt={selected === index ? item.alt : ""} fill sizes="100vw" style={{ objectPosition: item.position }} /></div>)}
-      <div className="px-mood-shade" /><div className="px-mood-frame" aria-hidden="true" />
-      {moods.map((item, index) => <div key={item.name} id={`px-mood-panel-${index}`} role="tabpanel" aria-labelledby={`px-mood-tab-${index}`} hidden={selected !== index} tabIndex={0} className="px-mood-panel"><div className="px-mood-title"><span>Find your</span><h3>{item.name}<em>Paradise</em></h3></div><div className="px-mood-story"><h4>{item.title}</h4><p>{item.body}</p><span>{item.note}</span></div></div>)}
-      <div className="px-mood-count" aria-hidden="true"><span>0{selected + 1}</span><i />04</div>
+      <div className="px-mood-shade" />
+      <div className="px-wrap px-mood-lead px-reveal"><p className="px-eyebrow">Follow your feeling</p><h2 id="px-discover-title">Your kind of <em>Paradise.</em></h2><p>Some days you wander. Some days you don&apos;t. There&apos;s room for both.</p></div>
+      {moods.map((item, index) => <div key={item.name} id={`px-mood-panel-${index}`} role="tabpanel" aria-labelledby={`px-mood-tab-${index}`} hidden={selected !== index} tabIndex={0} className="px-wrap px-mood-panel"><div className="px-mood-story"><h3>{item.title}</h3><p>{item.body}</p><span>{item.note}</span></div></div>)}
+      <div className="px-wrap px-mood-tabs" role="tablist" aria-label="Find your Paradise mood">{moods.map((item, index) => <button key={item.name} id={`px-mood-tab-${index}`} type="button" role="tab" aria-selected={selected === index} aria-controls={`px-mood-panel-${index}`} tabIndex={selected === index ? 0 : -1} onClick={() => setSelected(index)} onKeyDown={(event) => moveTab(event, index, moods.length, setSelected)}><span aria-hidden="true">0{index + 1}</span>{item.name}</button>)}</div>
     </div>
   </div>;
 }
@@ -106,10 +92,10 @@ export type ParadiseStay = { name: string; invitation: string; description: stri
 
 export function ParadiseStays({ stays }: { stays: ParadiseStay[] }) {
   const [selected, setSelected] = useState(0);
-  return <div className="px-stay-explorer px-wrap">
+  return <div className="px-stay-explorer">
     <div className="px-stay-tabs" role="tablist" aria-label="Find your way to stay">{stays.map((stay, index) => <button key={stay.name} id={`px-stay-tab-${index}`} type="button" role="tab" aria-selected={selected === index} aria-controls={`px-stay-panel-${index}`} tabIndex={selected === index ? 0 : -1} onClick={() => setSelected(index)} onKeyDown={(event) => moveTab(event, index, stays.length, setSelected)}><span>0{index + 1}</span>{stay.name}<i aria-hidden="true">↗</i></button>)}</div>
     {stays.map((stay, index) => <div key={stay.name} role="tabpanel" id={`px-stay-panel-${index}`} aria-labelledby={`px-stay-tab-${index}`} hidden={selected !== index} tabIndex={0} className="px-stay-scene">
-      <figure className="px-stay-image"><Image src={stay.image} alt={stay.alt} fill sizes="(min-width: 900px) 62vw, 100vw" /><figcaption>{stay.note}</figcaption></figure>
+      <figure className="px-stay-image"><Image src={stay.image} alt={stay.alt} fill sizes="(min-width: 900px) 64vw, 100vw" /><figcaption>{stay.note}</figcaption></figure>
       <div className="px-stay-story"><span className="px-eyebrow">{stay.detail}</span><h3>{stay.invitation}</h3><p>{stay.description}</p><a href={stay.href} className="px-book-link">{stay.name === "Camping" ? "Find a tent site" : `Explore ${stay.name.toLowerCase()}`} <span aria-hidden="true">↗</span></a><small>Choose your dates with Texoma Destinations</small></div>
     </div>)}
   </div>;
