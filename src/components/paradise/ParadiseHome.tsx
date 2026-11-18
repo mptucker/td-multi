@@ -1,65 +1,577 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import type { BrandConfig } from "@/config/types";
 import { hubUrl } from "@/config/hub-links";
-import { ParadiseJourney, ParadiseMood, ParadiseStays } from "./ParadiseExperience";
+import { ParadiseMotion, StayMap, type MapStay } from "./ParadiseExperience";
 
-function Sun({ className = "" }: { className?: string }) {
-  return <svg className={className} viewBox="0 0 100 100" fill="none" aria-hidden="true"><circle cx="50" cy="50" r="20" stroke="currentColor" strokeWidth="1.5" /><path d="M50 4v15m0 62v15M4 50h15m62 0h15M17 17l11 11m44 44 11 11M17 83l11-11m44-44 11-11M32 7l6 14m24 58 6 14M7 68l14-6m58-24 14-6M7 32l14 6m58 24 14 6M32 93l6-14m24-58 6-14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>;
+/* ------------------------------------------------------------------------------------------------
+ * Paradise on Lake Texoma — "one weekend at Paradise".
+ * The home page is told as a single weekend: arrive Friday afternoon, exhale at golden hour, wake up
+ * Saturday, find your kind of Paradise, find your spot, gather at the fire, and (reluctantly) leave
+ * Sunday. Every booking path resolves through hubUrl() → texomadestinations.com.
+ *
+ * Photo files were exported with misleading names; alt text below describes what is actually in each
+ * frame (verified by eye, Nov 2026).
+ * ---------------------------------------------------------------------------------------------- */
+
+const HERO_WORD = "PARADISE";
+
+function Stamp({ day, time, note }: { day: string; time: string; note: string }) {
+  return (
+    <p className="pd-stamp pd-r">
+      <span className="pd-stamp-time">
+        {day} <b>{time}</b>
+      </span>
+      <svg viewBox="0 0 64 12" aria-hidden="true">
+        <path d="M1 6c6-5 10 5 16 0s10-5 16 0 10 5 16 0 10-5 14 0" />
+      </svg>
+      <span className="pd-stamp-note">{note}</span>
+    </p>
+  );
 }
 
+function Strike({ children, i }: { children: ReactNode; i: number }) {
+  return (
+    <span className="pd-strike" style={{ ["--i" as string]: i }}>
+      {children}
+      <svg viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M2 13C18 7 30 15 48 9s30-1 50-4" />
+      </svg>
+    </span>
+  );
+}
+
+function Frame({
+  src,
+  alt,
+  caption,
+  sizes,
+  className = "",
+  priority,
+}: {
+  src: string;
+  alt: string;
+  caption?: string;
+  sizes: string;
+  className?: string;
+  priority?: boolean;
+}) {
+  return (
+    <figure className={`pd-frame ${className}`}>
+      <div className="pd-frame-photo">
+        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} />
+      </div>
+      {caption && <figcaption>{caption}</figcaption>}
+    </figure>
+  );
+}
+
+function Sun({ className = "" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 100 100" fill="none" aria-hidden="true">
+      <circle cx="50" cy="50" r="17" stroke="currentColor" strokeWidth="1.6" />
+      <path
+        d="M50 8v14m0 56v14M8 50h14m56 0h14M20 20l10 10m40 40 10 10M20 80l10-10m40-40 10-10"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function Arrow() {
+  return (
+    <svg className="pd-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M5 19 19 5M8 5h11v11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+const MOODS = [
+  {
+    id: "relaxing",
+    word: "Relaxing",
+    adj: "relaxing",
+    image: "/paradise/pavilion-detail.jpg",
+    alt: "A guest stretched out in a hammock as the sun sets through the trees",
+    line: "Claim a hammock.\nLeave the afternoon wide open.",
+    body: "The hammock garden is strung between the oaks, the shade is free, and nobody is going to ask what you did today.",
+    note: "permission to do nothing",
+  },
+  {
+    id: "adventure",
+    word: "Adventure",
+    adj: "adventurous",
+    image: "/paradise/aerial-peninsula.jpg",
+    alt: "Aerial view of the Paradise shoreline, oak trees and open Lake Texoma water",
+    line: "A whole lake out there.\nA quiet place to come back to.",
+    body: "Launch from the private boat ramp, or grab a kayak or paddleboard at the office and explore the calm coves along our shoreline.",
+    note: "come back sun-kissed",
+  },
+  {
+    id: "refreshing",
+    word: "Refreshing",
+    adj: "refreshing",
+    image: "/paradise/glamping-porch-lake.jpg",
+    alt: "A cedar porch with a grill and string lights looking out over the lake at first light",
+    line: "More lake light.\nLess screen time.",
+    body: "Wi-Fi lives at the office. Out here it's fresh air, wide water and the kind of quiet that resets the whole week.",
+    note: "fresh air, refilled",
+  },
+  {
+    id: "cozy",
+    word: "Cozy",
+    adj: "cozy",
+    image: "/paradise/dog-friendly-stay.jpg",
+    alt: "A glowing tent beneath the Milky Way at the edge of the trees",
+    line: "Dinner on the grill.\nOne more story.",
+    body: "Then a good night under a sky that feels a lot bigger out here. Bring the warm socks.",
+    note: "a million night-lights",
+  },
+] as const;
+
 export function ParadiseHome({ brand }: { brand: BrandConfig }) {
-  const stays = [
-    { name: "Glamping", subtitle: "A little closer to the lake.", description: "Kabanas, Kasitas and Kimas. Settle into a simple lakeside hideaway, step onto your porch and let the view do the rest. Shared bathhouses keep the essentials close.", image: "/paradise/glamping-guest-lake.jpg", alt: "An A-frame glamping cabin overlooking Lake Texoma", detail: "Kabanas · Kasitas · Kimas", href: hubUrl("cabins", brand, { campaign: "paradise-stays", content: "glamping" }) },
-    { name: "Cabins", subtitle: "Make yourself right at home.", description: "A cozy place to come back to after a day outside. Find your favorite cabin, or make a memory in the Paradise Express, our real 1920s train car.", image: "/paradise/lake-evening-with-dog.jpg", alt: "A small wood cabin tucked beneath the trees at Paradise", detail: "Cozy cabins · Paradise Express", href: hubUrl("cabins", brand, { campaign: "paradise-stays", content: "cabins" }) },
-    { name: "RV sites", subtitle: "Your home. A whole new view.", description: "Bring the rig and settle into a shaded loop or a waterfront site. Unfold the chairs, put something on the grill and stay a little longer.", image: "/paradise/aerial-rv-loop.jpg", alt: "Aerial view of RV sites beside the wooded Lake Texoma shoreline", detail: "Shaded loops · Waterfront sites", href: hubUrl("rv", brand, { campaign: "paradise-stays", content: "rv" }) },
-    { name: "Tent camping", subtitle: "A million little night-lights.", description: "Pack the tent and claim your piece of the shoreline. Simple nights, fresh air and a sky that makes you glad you stayed outside.", image: "/paradise/dog-friendly-stay.jpg", alt: "A glowing tent under a star-filled night sky", detail: "Primitive camping · Shoreline views", href: hubUrl("tents", brand, { campaign: "paradise-stays", content: "tents" }) },
+  const book = (intent: "cabins" | "rv" | "tents" | "kayaks", content: string) =>
+    hubUrl(intent, brand, { campaign: "paradise-home", content });
+
+  const stays: MapStay[] = [
+    {
+      id: "glamping",
+      name: "Glamping",
+      kicker: "Kabanas · Kasitas · Kimas",
+      line: "Closest to the water.",
+      body: "Little lakeside hideaways with a porch, a fire pit and a grill. Climate-controlled, linens included, with hot showers in the shared bathhouse a short walk away.",
+      facts: ["Sleeps 2–4", "Fire pit & grill", "Shared bathhouse"],
+      image: "/paradise/guest-dog.jpg",
+      alt: "Two metal chairs on the deck of an A-frame glamping cabin under the oaks",
+      href: book("cabins", "map-glamping"),
+      cta: "See glamping dates",
+      pin: { x: 262, y: 262 },
+      route: "M922 236H556C470 236 414 238 352 244S290 254 268 260",
+    },
+    {
+      id: "cabins",
+      name: "Cabins",
+      kicker: "Cabins · the Paradise Express",
+      line: "A porch, a kitchen, a door that locks.",
+      body: "Cabins with private baths, including the Paradise Express, a real 1920s train car turned two-bedroom cabin that welcomes your dog.",
+      facts: ["Private bath", "Kitchen or kitchenette", "Pet-friendly options"],
+      image: "/paradise/lake-evening-with-dog.jpg",
+      alt: "A small wood cabin with two yellow chairs on its porch beneath the trees",
+      href: book("cabins", "map-cabins"),
+      cta: "See cabin dates",
+      pin: { x: 482, y: 146 },
+      route: "M922 236H566C520 236 500 222 494 196S486 160 482 152",
+    },
+    {
+      id: "rv",
+      name: "RV sites",
+      kicker: "Two shady loops",
+      line: "Your rig. A whole new view.",
+      body: "Shaded and waterfront sites with 30 or 50-amp power and water, many with full hookups. Every site has a picnic table, a fire ring and a look at the lake. Vintage campers especially welcome.",
+      facts: ["30/50 amp", "Many full hookups", "Fire ring & table"],
+      image: "/paradise/aerial-rv-loop.jpg",
+      alt: "Aerial view of campers parked along a wooded loop with Lake Texoma beyond",
+      href: book("rv", "map-rv"),
+      cta: "Find an RV site",
+      pin: { x: 620, y: 470 },
+      route: "M922 236H660C646 236 640 246 640 262V420C640 446 634 462 620 468",
+    },
+    {
+      id: "tents",
+      name: "Tent camping",
+      kicker: "Walk-in primitive sites",
+      line: "Pack light. Sleep under the stars.",
+      body: "Park at the trailhead and walk in to a quiet stretch of shoreline set aside for tents. No hookups, a fire pit, and the best stargazing on the property.",
+      facts: ["Hike-in", "Fire pits", "Bring water"],
+      image: "/paradise/dog-friendly-stay.jpg",
+      alt: "A glowing tent beneath a starry sky at the edge of the trees",
+      href: book("tents", "map-tents"),
+      cta: "Reserve a tent site",
+      pin: { x: 304, y: 420 },
+      route: "M922 236H520C468 236 452 262 430 300S344 398 312 414",
+    },
   ];
 
   return (
-    <ParadiseJourney>
-      <section className="px-arrival" id="px-arrive" aria-labelledby="px-title">
-        <div className="px-arrival-photo"><Image src="/paradise/glamping-porch-lake.jpg" alt="Sunlight and lake views from a waterfront porch at Paradise on Lake Texoma" fill priority sizes="100vw" /></div>
-        <div className="px-arrival-shade" />
-        <div className="px-arrival-top"><span>Pottsboro, Texas</span><span>200 wooded acres. One beautiful escape.</span><span>On Lake Texoma</span></div>
-        <div className="px-arrival-title"><p>However you lake.</p><h1 id="px-title"><span>Find your</span>Paradise<span className="px-title-dot">.</span></h1></div>
-        <div className="px-arrival-bottom"><p>A little less rush.<br />A little more <em>right here.</em></p><a className="px-round-link" href="#px-feel"><span>Take a<br />look around</span><span aria-hidden="true">↓</span></a><a className="px-pill px-pill-light" href="#px-stay">Find your kind of stay <span aria-hidden="true">↗</span></a></div>
-        <svg className="px-shoreline-edge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 66C200 90 310 15 560 40S1000 105 1440 28V90H0Z" /></svg>
+    <div className="pd" data-pd-root>
+      {/* ───────── 01 · ARRIVE ───────── */}
+      <section className="pd-hero" id="pd-arrive" data-chapter data-day="Fri" data-time="3:00 pm" data-hour="15" data-label="Arrive" aria-labelledby="pd-title">
+        <div className="pd-hero-stage">
+          <div className="pd-hero-photo pd-hero-back" aria-hidden="true">
+            <Image src="/paradise/glamping-guest-lake.jpg" alt="" fill priority sizes="100vw" />
+          </div>
+          <div className="pd-hero-photo pd-hero-window">
+            <Image
+              src="/paradise/glamping-guest-lake.jpg"
+              alt="A guest and her dog relaxing on the deck of an A-frame glamping cabin, Lake Texoma through the trees"
+              fill
+              priority
+              sizes="100vw"
+            />
+          </div>
+          <span className="pd-hero-rule pd-hero-rule-l" aria-hidden="true" />
+          <span className="pd-hero-rule pd-hero-rule-r" aria-hidden="true" />
+        </div>
+
+        <div className="pd-hero-copy">
+          <p className="pd-hero-place">
+            <span>Pottsboro, Texas</span>
+            <span>On the quiet western shore of Lake Texoma</span>
+          </p>
+          <h1 className="pd-hero-title" id="pd-title" aria-label="Find your Paradise">
+            <span className="pd-hero-find" aria-hidden="true">Find your</span>
+            <span className="pd-hero-word" aria-hidden="true">
+              {HERO_WORD.split("").map((letter, i) => (
+                <span key={i} style={{ ["--i" as string]: i }}>
+                  {letter}
+                </span>
+              ))}
+            </span>
+          </h1>
+          <p className="pd-hero-sign" aria-hidden="true">
+            however you lake.
+          </p>
+        </div>
+
+        <a className="pd-hero-cue" href="#pd-leave">
+          <span>Come on in</span>
+          <i aria-hidden="true" />
+        </a>
+
+        <svg className="pd-wave" viewBox="0 0 2880 120" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 62C180 30 300 30 480 62S780 94 960 62s300-32 480 0 300 32 480 0 300-32 480 0 300 32 480 0V120H0Z" />
+        </svg>
       </section>
 
-      <section className="px-breathe px-wrap" id="px-feel" aria-labelledby="px-breathe-title">
-        <div className="px-chapter px-reveal"><span>01</span><p>Leave a little behind</p><i aria-hidden="true" /></div>
-        <div className="px-breathe-heading px-reveal"><h2 id="px-breathe-title">First,<br /><em>exhale.</em></h2><div><Sun /><p>Getting away should feel like<br /><strong>actually getting away.</strong></p></div></div>
-        <div className="px-morning-story">
-          <figure className="px-morning-portrait px-reveal"><Image src="/paradise/birthday-cabin.jpg" alt="A guest enjoying a drink in the doorway of a lakeside cabin" fill sizes="(min-width: 800px) 39vw, 83vw" /><figcaption>Stay here a minute.</figcaption></figure>
-          <div className="px-morning-copy px-reveal"><p className="px-eyebrow">You made it.</p><h3>The coffee&apos;s warm.<br />The lake&apos;s right there.<br /><em>The day can wait.</em></h3><p>Follow the trees down to the water. Put your phone away for a while. This quiet corner of Lake Texoma has a way of making a weekend feel a little longer.</p><Link className="px-underlink" href="/plan-your-visit">Get to know the place <span aria-hidden="true">↗</span></Link></div>
-          <figure className="px-morning-inset px-reveal"><Image src="/paradise/morning-coffee.jpg" alt="A pair of deck chairs facing a golden Lake Texoma sunset" fill sizes="(min-width: 800px) 37vw, 73vw" /><figcaption>Save a seat for sunset.</figcaption></figure>
-          <svg className="px-meander" viewBox="0 0 600 800" fill="none" aria-hidden="true"><path d="M60 10C-80 210 520 95 425 260S40 290 90 455s525 160 385 335" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 8" /><path d="m458 777 17 13 22-8" stroke="currentColor" strokeWidth="1.5" /></svg>
+      {/* ───────── 02 · THROUGH THE GATE ───────── */}
+      <section className="pd-leave" id="pd-leave" data-chapter data-day="Fri" data-time="3:20 pm" data-hour="15.3" data-label="Through the gate" aria-labelledby="pd-leave-title">
+        <div className="pd-wrap">
+          <Stamp day="Friday" time="3:20 pm" note="through the gate" />
+          <h2 className="pd-leave-lede pd-strikes" id="pd-leave-title">
+            Leave the <Strike i={0}>traffic</Strike>, the <Strike i={1}>inbox</Strike>, the <Strike i={2}>group chat</Strike> and the{" "}
+            <Strike i={3}>to-do list</Strike> at the gate.
+          </h2>
+          <p className="pd-leave-after pd-r">
+            Everything else is <em>down by the water.</em>
+          </p>
+          <ul className="pd-leave-notes" aria-label="About Paradise">
+            <li className="pd-r">
+              <b>200</b> wooded acres
+            </li>
+            <li className="pd-r">
+              <b>1</b> gated peninsula
+            </li>
+            <li className="pd-r">
+              <b>0</b> reasons to hurry
+            </li>
+          </ul>
         </div>
       </section>
 
-      <section className="px-feeling" id="px-yours" aria-labelledby="px-feeling-title">
-        <div className="px-wrap px-feeling-heading px-reveal"><div className="px-chapter"><span>02</span><p>Find your own pace</p><i aria-hidden="true" /></div><h2 id="px-feeling-title">What does your<br /><em>Paradise feel like?</em></h2><p>There&apos;s no right way to spend a lake day.<br />Just the way that feels like you.</p></div>
-        <ParadiseMood />
-      </section>
-
-      <section className="px-sleep px-wrap" id="px-stay" aria-labelledby="px-sleep-title">
-        <div className="px-sleep-heading px-reveal"><div><div className="px-chapter"><span>03</span><p>Make yourself at home</p><i aria-hidden="true" /></div><h2 id="px-sleep-title">Stay a<br /><em>little longer.</em></h2></div><p>A porch by the water.<br />Your favorite camper.<br />A tent beneath the stars.<br /><strong>Pick your kind of good night.</strong></p></div>
-        <ParadiseStays stays={stays} />
-        <div className="px-stay-footnote"><Link href="/stay">The details on every stay <span aria-hidden="true">↗</span></Link></div>
-      </section>
-
-      <section className="px-wander" id="px-outside" aria-labelledby="px-wander-title">
-        <div className="px-wrap px-wander-grid">
-          <div className="px-wander-copy px-reveal"><div className="px-chapter"><span>04</span><p>Let the day unfold</p><i aria-hidden="true" /></div><h2 id="px-wander-title">A whole lot<br />of<em>nothing</em>to do.</h2><p>And somehow, the best kind of day. A paddle along the shoreline. An afternoon in a hammock. A deer wandering past. One more story around the fire.</p><Link className="px-underlink" href="/plan-your-visit">Follow your curiosity <span aria-hidden="true">↗</span></Link></div>
-          <div className="px-wander-collage"><figure className="px-wander-main px-reveal"><Image src="/paradise/pavilion-detail.jpg" alt="A guest relaxing in a hammock in the shaded hammock garden" fill sizes="(min-width: 800px) 37vw, 77vw" /><figcaption>Doing nothing. Doing it well.</figcaption></figure><figure className="px-wander-small px-reveal"><Image src="/paradise/tent-under-stars.jpg" alt="A deer resting in the grass at Paradise on Lake Texoma" fill sizes="(min-width: 800px) 23vw, 48vw" /><figcaption>The neighbors are pretty quiet.</figcaption></figure><Sun className="px-wander-sun" /></div>
+      {/* ───────── 03 · GOLDEN HOUR ───────── */}
+      <section className="pd-exhale" id="pd-exhale" data-chapter data-day="Fri" data-time="7:45 pm" data-hour="19.75" data-label="Golden hour" aria-labelledby="pd-exhale-title">
+        <div className="pd-wrap pd-exhale-head">
+          <Stamp day="Friday" time="7:45 pm" note="golden hour" />
+          <h2 id="pd-exhale-title" className="pd-r">
+            <span className="pd-display">First,</span>
+            <span className="pd-sign">exhale.</span>
+          </h2>
         </div>
-        <div className="px-wander-notes px-wrap"><span>Kayaks &amp; paddleboards</span><i aria-hidden="true">✳</i><span>Hammock garden</span><i aria-hidden="true">✳</i><span>Community firepit</span><i aria-hidden="true">✳</i><span>Private boat ramp</span></div>
+        <div className="pd-exhale-scene">
+          <figure className="pd-exhale-wide pd-r-img">
+            <div className="pd-par" data-speed="slow">
+              <Image
+                src="/paradise/morning-coffee.jpg"
+                alt="A deck chair facing the low sun over Lake Texoma through the trees"
+                fill
+                sizes="(min-width: 900px) 78vw, 100vw"
+              />
+            </div>
+          </figure>
+          <div className="pd-exhale-copy pd-r">
+            <Sun className="pd-breathe" />
+            <p className="pd-quiet">
+              Find a chair facing west.
+              <br />
+              <strong>That&apos;s the whole plan.</strong>
+            </p>
+            <p>
+              The sun goes down over the water every night. Most people stop what they&apos;re doing to watch it. That&apos;s sort of the
+              point.
+            </p>
+          </div>
+          <Frame
+            className="pd-polaroid pd-exhale-polaroid pd-r-tilt"
+            src="/paradise/string-lights-lake.jpg"
+            alt="A guest wrapped in a blanket with her dog, looking out at the lake under string lights"
+            caption="someone already claimed the good blanket"
+            sizes="(min-width: 900px) 24vw, 62vw"
+          />
+        </div>
       </section>
 
-      <section className="px-company px-wrap" aria-labelledby="px-company-title"><figure className="px-company-photo px-reveal"><Image src="/paradise/camp-grill.jpg" alt="A guest and her dog spending time outside a Paradise cabin" fill sizes="(min-width: 800px) 30vw, 72vw" /></figure><div className="px-company-copy px-reveal"><p className="px-eyebrow">Good days. Better company.</p><h2 id="px-company-title">Bring your people.<br /><em>And your best friend.</em></h2><p>Room to reconnect, run around, or simply be together. Dog-friendly stays mean the whole crew can find their Paradise.</p><Link className="px-underlink" href="/plan-your-visit">A few things to know before you go <span aria-hidden="true">↗</span></Link></div><span className="px-company-note" aria-hidden="true">paws welcome ♡</span></section>
+      {/* ───────── 04 · SATURDAY MORNING ───────── */}
+      <section className="pd-morning" id="pd-morning" data-chapter data-day="Sat" data-time="7:10 am" data-hour="7.2" data-label="Wake up quieter" aria-labelledby="pd-morning-title">
+        <div className="pd-wrap pd-morning-grid">
+          <div className="pd-morning-copy">
+            <Stamp day="Saturday" time="7:10 am" note="no alarm" />
+            <h2 id="pd-morning-title" className="pd-r">
+              <span className="pd-display">Wake up</span>
+              <span className="pd-display">somewhere</span>
+              <span className="pd-sign">quieter.</span>
+            </h2>
+            <p className="pd-r">
+              Coffee on the porch. The lake right there. A deer wandering past like it owns the place, which, to be fair, it kind of does.
+            </p>
+          </div>
+          <div className="pd-morning-collage">
+            <Frame
+              className="pd-memory pd-morning-main pd-r-img"
+              src="/paradise/birthday-cabin.jpg"
+              alt="A guest pouring coffee on the porch of a cedar cabin, the lake visible through the window"
+              sizes="(min-width: 900px) 34vw, 80vw"
+            />
+            <Frame
+              className="pd-polaroid pd-morning-deer pd-r-tilt"
+              src="/paradise/tent-under-stars.jpg"
+              alt="A young deer resting in sunlit grass"
+              caption="the neighbors are up early"
+              sizes="(min-width: 900px) 22vw, 56vw"
+            />
+            <Frame
+              className="pd-polaroid pd-morning-hammock pd-r-tilt"
+              src="/paradise/deer.jpg"
+              alt="Striped hammocks hanging beneath a wooden pavilion in the trees"
+              caption="first come, first nap"
+              sizes="(min-width: 900px) 16vw, 42vw"
+            />
+          </div>
+        </div>
+      </section>
 
-      <section className="px-dusk" id="px-return" aria-labelledby="px-dusk-title"><Image src="/paradise/morning-coffee.jpg" alt="The sun setting over Lake Texoma beyond an empty pair of deck chairs" fill sizes="100vw" /><div className="px-dusk-shade" /><div className="px-dusk-copy px-reveal"><span className="px-eyebrow">Close enough for a weekend. Far enough to feel it.</span><h2 id="px-dusk-title">You&apos;ll know<br />when you&apos;ve<br /><em>found it.</em></h2><p>However you lake, you&apos;ll find your Paradise here.</p><a className="px-pill px-pill-light" href="#px-stay">Let&apos;s find your stay <span aria-hidden="true">↗</span></a></div><div className="px-dusk-bottom"><span>Paradise on Lake Texoma</span><span>Pottsboro, Texas</span><span>This is your sign to get away.</span></div></section>
-    </ParadiseJourney>
+      {/* ───────── 05 · FIND YOUR PARADISE ───────── */}
+      <section className="pd-yours" id="pd-yours" data-chapter data-day="Sat" data-time="10:00 am" data-hour="10" data-label="Find yours" aria-labelledby="pd-yours-title">
+        <div className="pd-wrap pd-yours-intro">
+          <Stamp day="Saturday" time="10:00 am" note="no plans yet" />
+          <h2 id="pd-yours-title" className="pd-r">
+            Paradise looks a little <span className="pd-sign">different</span> to everyone.
+          </h2>
+          <p className="pd-yours-ask pd-r">
+            Today, mine feels{" "}
+            {MOODS.map((mood, i) => (
+              <span key={mood.id}>
+                <a href={`#pd-mood-${mood.id}`} className="pd-mood-link" data-preview={mood.image}>
+                  {mood.adj}
+                </a>
+                {i < MOODS.length - 2 ? ", " : i === MOODS.length - 2 ? " or " : "."}
+              </span>
+            ))}
+          </p>
+        </div>
+
+        <div className="pd-posters">
+          {MOODS.map((mood, i) => (
+            <article className={`pd-poster pd-poster-${mood.id}`} id={`pd-mood-${mood.id}`} key={mood.id} aria-labelledby={`pd-mood-${mood.id}-title`}>
+              <div className="pd-poster-photo">
+                <Image src={mood.image} alt={mood.alt} fill sizes="100vw" />
+              </div>
+              {mood.id === "relaxing" && (
+                <div className="pd-poster-window" aria-hidden="true">
+                  <Image src={mood.image} alt="" fill sizes="100vw" />
+                </div>
+              )}
+              {mood.id === "adventure" && (
+                <svg className="pd-poster-slash" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <path className="pd-slash-a" d="M58 0 70 100" />
+                  <path d="M93 0l7 62" />
+                </svg>
+              )}
+              {mood.id === "cozy" && <div className="pd-stars" aria-hidden="true" />}
+              <div className="pd-poster-type">
+                <h3 id={`pd-mood-${mood.id}-title`}>
+                  {mood.id === "cozy" ? (
+                    <>
+                      <span className="pd-poster-find">Find</span>
+                      <span className="pd-poster-word">your {mood.word} Paradise</span>
+                    </>
+                  ) : mood.id === "refreshing" ? (
+                    <>
+                      <span className="pd-poster-find">Find your</span>
+                      <span className="pd-poster-word">{mood.word} Paradise</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="pd-poster-find">Find your</span>
+                      <span className="pd-poster-word">{mood.word}</span>
+                      <span className="pd-poster-sign">Paradise</span>
+                    </>
+                  )}
+                </h3>
+              </div>
+              <div className="pd-poster-copy">
+                <span className="pd-poster-count" aria-hidden="true">
+                  0{i + 1} <i>/</i> 04
+                </span>
+                <p className="pd-poster-line">
+                  {mood.line.split("\n").map((part, j) => (
+                    <span key={j}>{part}</span>
+                  ))}
+                </p>
+                <p>{mood.body}</p>
+                {mood.id === "adventure" && (
+                  <a className="pd-textlink" href={book("kayaks", "mood-adventure")} data-intent="kayaks">
+                    Kayak &amp; paddleboard rentals <Arrow />
+                  </a>
+                )}
+                <span className="pd-poster-note" aria-hidden="true">
+                  {mood.note}
+                </span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* ───────── 06 · FIND YOUR SPOT ───────── */}
+      <section className="pd-place" id="pd-place" data-chapter data-day="Sat" data-time="2:00 pm" data-hour="14" data-label="Find your spot" aria-labelledby="pd-place-title">
+        <div className="pd-wrap">
+          <div className="pd-place-head">
+            <div>
+              <Stamp day="Saturday" time="2:00 pm" note="scouting next time" />
+              <h2 id="pd-place-title" className="pd-r">
+                <span className="pd-display">So, where should</span>
+                <span className="pd-display">
+                  we put <span className="pd-sign">you?</span>
+                </span>
+              </h2>
+            </div>
+            <p className="pd-r">
+              A porch steps from the water, a cabin with a kitchen, a shady spot for the camper or a tent down by the shoreline. Tap around. Every
+              stay has a view of the lake.
+            </p>
+          </div>
+          <StayMap stays={stays} />
+        </div>
+      </section>
+
+      {/* ───────── 07 · SATURDAY NIGHT ───────── */}
+      <section className="pd-evening" id="pd-evening" data-chapter data-day="Sat" data-time="8:30 pm" data-hour="20.5" data-label="One big fire" aria-labelledby="pd-evening-title">
+        <div className="pd-stars pd-stars-sky" aria-hidden="true" />
+        <div className="pd-wrap pd-evening-grid">
+          <div className="pd-evening-copy">
+            <Stamp day="Saturday" time="8:30 pm" note="string lights on" />
+            <h2 id="pd-evening-title" className="pd-r">
+              <span className="pd-display">The fire&apos;s</span>
+              <span className="pd-display">already going.</span>
+              <span className="pd-sign">come on over</span>
+            </h2>
+            <p className="pd-r">
+              Evenings drift toward the community bar and the big group firepit. Bring your people. Bring your best friend, too. Leashed pets are
+              welcome on every RV site and in our pet-friendly stays.
+            </p>
+            <Link className="pd-textlink pd-r" href="/plan-your-visit">
+              A few things to know before you go <Arrow />
+            </Link>
+          </div>
+          <div className="pd-evening-collage">
+            <Frame
+              className="pd-memory pd-evening-main pd-r-img"
+              src="/paradise/hammock-pavilion.jpg"
+              alt="String lights glowing on an oak tree at the water's edge as dusk settles over the lake"
+              sizes="(min-width: 900px) 30vw, 78vw"
+            />
+            <Frame
+              className="pd-polaroid pd-evening-grill pd-r-tilt"
+              src="/paradise/porch-coffee.jpg"
+              alt="A hand lifting the lid of a charcoal grill at a campsite"
+              caption="dinner's on"
+              sizes="(min-width: 900px) 18vw, 46vw"
+            />
+            <Frame
+              className="pd-polaroid pd-evening-party pd-r-tilt"
+              src="/paradise/sunset-deck-chairs.jpg"
+              alt="Colorful 'Birthday Vibes' balloon letters on the cedar wall of a cabin"
+              caption="any excuse, really"
+              sizes="(min-width: 900px) 18vw, 46vw"
+            />
+            <Frame
+              className="pd-polaroid pd-evening-dog pd-r-tilt"
+              src="/paradise/camp-grill.jpg"
+              alt="A guest sitting in a cabin doorway hugging her golden retriever"
+              caption="paws welcome"
+              sizes="(min-width: 900px) 17vw, 46vw"
+            />
+          </div>
+        </div>
+        <div className="pd-drift" aria-hidden="true">
+          <div>
+            {Array.from({ length: 2 }).map((_, k) => (
+              <span key={k}>
+                s&apos;mores <i>✳</i> one more story <i>✳</i> string lights <i>✳</i> shooting stars <i>✳</i> quiet hours at 11 <i>✳</i> who brought the
+                guitar? <i>✳</i>{" "}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── 08 · SUNDAY ───────── */}
+      <section className="pd-sunday" id="pd-sunday" data-chapter data-day="Sun" data-time="10:30 am" data-hour="10.5" data-label="Stay longer" aria-labelledby="pd-sunday-title">
+        <div className="pd-wrap pd-sunday-grid">
+          <div className="pd-sunday-photo">
+            <Frame
+              className="pd-memory pd-r-img"
+              src="/paradise/glamping-patio.jpg"
+              alt="A guest in cowboy boots lingering over a coffee outside her cabin"
+              sizes="(min-width: 900px) 30vw, 80vw"
+            />
+            <span className="pd-sunday-note" aria-hidden="true">
+              check-out&apos;s not till 11
+            </span>
+          </div>
+          <div className="pd-sunday-copy">
+            <Stamp day="Sunday" time="10:30 am" note="five more minutes" />
+            <h2 id="pd-sunday-title" className="pd-r">
+              <span className="pd-display">Stay a</span>
+              <span className="pd-sign">little longer.</span>
+            </h2>
+            <p className="pd-r">
+              Or better yet, pick the weekend you&apos;re coming back. Dates, rates and every unit live on texomadestinations.com, and we&apos;ll
+              text your gate code before you arrive.
+            </p>
+            <ul className="pd-book" aria-label="Book your stay at Paradise">
+              {[
+                { label: "Glamping", sub: "Kabanas, Kasitas & Kimas", href: book("cabins", "sunday-glamping"), intent: "cabins" },
+                { label: "Cabins", sub: "incl. the Paradise Express", href: book("cabins", "sunday-cabins"), intent: "cabins" },
+                { label: "RV sites", sub: "30/50 amp, shady loops", href: book("rv", "sunday-rv"), intent: "rv" },
+                { label: "Tent sites", sub: "Walk-in, by the shore", href: book("tents", "sunday-tents"), intent: "tents" },
+              ].map((item, i) => (
+                <li key={item.label} className="pd-r" style={{ ["--d" as string]: `${i * 70}ms` }}>
+                  <a href={item.href} data-intent={item.intent}>
+                    <span className="pd-book-label">{item.label}</span>
+                    <span className="pd-book-sub">{item.sub}</span>
+                    <Arrow />
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="pd-sunday-fine pd-r">
+              <span className="pd-hand">psst, Sunday–Thursday nights are always discounted.</span>
+              <span>
+                Questions? Call <a href={`tel:${brand.nap.phoneE164}`}>{brand.nap.phone}</a>
+              </span>
+            </p>
+          </div>
+        </div>
+        <p className="pd-signoff" aria-hidden="true">
+          <span>however you lake,</span> you&apos;ll find your Paradise here.
+        </p>
+      </section>
+
+      <ParadiseMotion />
+    </div>
   );
 }

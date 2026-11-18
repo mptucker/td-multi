@@ -3,7 +3,60 @@ import type { BrandConfig } from "@/config/types";
 import { hubUrl } from "@/config/hub-links";
 
 type TapSettings = { image?: string; heading?: string; body?: string; button_label?: string; button_url?: string };
+/**
+ * Paradise variant: same CMS fields (heading/body/button/image from /admin → Shared settings → TAP),
+ * told as the next chapter of the weekend — "come back for the day". Benefits mirror the approved TAP
+ * key messages (docs/brand-guides/tap.md); prices deliberately stay on the hub.
+ */
+function ParadiseTap({ brand, settings }: { brand: BrandConfig; settings?: TapSettings }) {
+  const stops = ["Paradise", "Island View", "Lighthouse", "& the rest of the lake"];
+  return (
+    <section className="pd-tap" aria-labelledby="tap-heading">
+      <div className="pd-tap-inner">
+        <div className="pd-tap-copy">
+          <p className="pd-tap-kicker">Can&apos;t wait a whole year?</p>
+          <h2 id="tap-heading">{settings?.heading || "Come back for the day. Any day."}</h2>
+          <p className="pd-tap-body">
+            {settings?.body ||
+              "TAP, the Texoma Access Package, is one membership for the whole Texoma Destinations family. It's how the regulars keep a little Paradise in their week."}
+          </p>
+          <ul className="pd-tap-perks">
+            <li>
+              <b>Free day use</b> at Paradise &amp; Island View
+            </li>
+            <li>
+              <b>Free boat-ramp access</b> at Paradise &amp; Lighthouse
+            </li>
+            <li>
+              <b>Member savings</b> on stays, rentals, cruises &amp; more
+            </li>
+          </ul>
+          <a href={settings?.button_url || hubUrl("tap", brand, { campaign: "paradise-tap" })} className="pd-tap-button" data-intent="tap">
+            {settings?.button_label || "Compare TAP memberships"} <span aria-hidden>↗</span>
+          </a>
+        </div>
+        <div className="pd-tap-pass" aria-hidden="true">
+          <div className="pd-tap-ticket">
+            <Image src={settings?.image || "/brands/tap-pass.png"} alt="" width={600} height={300} className="pd-tap-card" />
+            <ol>
+              {stops.map((stop) => (
+                <li key={stop}>{stop}</li>
+              ))}
+            </ol>
+            <span className="pd-tap-stamp">
+              one pass
+              <br />
+              the whole lake
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function MembershipBand({ brand, settings }: { brand: BrandConfig; settings?: TapSettings }) {
+  if (brand.slug === "paradise") return <ParadiseTap brand={brand} settings={settings} />;
   const islandView = brand.slug === "island-view";
   return (
     <section className={`tap-band ${islandView ? "tap-band-island" : ""}`} aria-labelledby="tap-heading">
