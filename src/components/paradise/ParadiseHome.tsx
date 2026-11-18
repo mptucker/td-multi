@@ -36,7 +36,7 @@ function Strike({ children, i }: { children: ReactNode; i: number }) {
     <span className="pd-strike" style={{ ["--i" as string]: i }}>
       {children}
       <svg viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M2 13C18 7 30 15 48 9s30-1 50-4" />
+        <path d="M1 11.5C16 9 30 12.5 50 10.5S84 9 99 10" pathLength={100} />
       </svg>
     </span>
   );
