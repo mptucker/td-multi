@@ -2,64 +2,106 @@ import Image from "next/image";
 import Link from "next/link";
 import type { BrandConfig } from "@/config/types";
 import { hubUrl } from "@/config/hub-links";
-import { ParadiseJourney, ParadiseMood, ParadiseStays } from "./ParadiseExperience";
+import { ParadiseJourney, ParadiseMood, ParadiseStays, type ParadiseStay } from "./ParadiseExperience";
 
-function Sun({ className = "" }: { className?: string }) {
-  return <svg className={className} viewBox="0 0 100 100" fill="none" aria-hidden="true"><circle cx="50" cy="50" r="20" stroke="currentColor" strokeWidth="1.5" /><path d="M50 4v15m0 62v15M4 50h15m62 0h15M17 17l11 11m44 44 11 11M17 83l11-11m44-44 11-11M32 7l6 14m24 58 6 14M7 68l14-6m58-24 14-6M7 32l14 6m58 24 14 6M32 93l6-14m24-58 6-14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>;
+function Shoreline({ className = "" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 600 110" fill="none" aria-hidden="true">
+      <path d="M1 58c70-85 130 85 205 0s130 85 205 0 120 65 188 0M1 76c70-85 130 85 205 0s130 85 205 0 120 65 188 0" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  );
 }
 
 export function ParadiseHome({ brand }: { brand: BrandConfig }) {
-  const stays = [
-    { name: "Glamping", subtitle: "A little closer to the lake.", description: "Kabanas, Kasitas and Kimas. Settle into a simple lakeside hideaway, step onto your porch and let the view do the rest. Shared bathhouses keep the essentials close.", image: "/paradise/glamping-guest-lake.jpg", alt: "An A-frame glamping cabin overlooking Lake Texoma", detail: "Kabanas · Kasitas · Kimas", href: hubUrl("cabins", brand, { campaign: "paradise-stays", content: "glamping" }) },
-    { name: "Cabins", subtitle: "Make yourself right at home.", description: "A cozy place to come back to after a day outside. Find your favorite cabin, or make a memory in the Paradise Express, our real 1920s train car.", image: "/paradise/lake-evening-with-dog.jpg", alt: "A small wood cabin tucked beneath the trees at Paradise", detail: "Cozy cabins · Paradise Express", href: hubUrl("cabins", brand, { campaign: "paradise-stays", content: "cabins" }) },
-    { name: "RV sites", subtitle: "Your home. A whole new view.", description: "Bring the rig and settle into a shaded loop or a waterfront site. Unfold the chairs, put something on the grill and stay a little longer.", image: "/paradise/aerial-rv-loop.jpg", alt: "Aerial view of RV sites beside the wooded Lake Texoma shoreline", detail: "Shaded loops · Waterfront sites", href: hubUrl("rv", brand, { campaign: "paradise-stays", content: "rv" }) },
-    { name: "Tent camping", subtitle: "A million little night-lights.", description: "Pack the tent and claim your piece of the shoreline. Simple nights, fresh air and a sky that makes you glad you stayed outside.", image: "/paradise/dog-friendly-stay.jpg", alt: "A glowing tent under a star-filled night sky", detail: "Primitive camping · Shoreline views", href: hubUrl("tents", brand, { campaign: "paradise-stays", content: "tents" }) },
+  const stays: ParadiseStay[] = [
+    {
+      name: "Glamping", invitation: "Your porch. Your pace.",
+      description: "Wake up close to the water in a Kabana, Kasita or Kima. A real bed, a little outdoor space and a view worth lingering over. Bathrooms and showers are in the shared bathhouse.",
+      image: "/paradise/glamping-guest-lake.jpg", alt: "An A-frame glamping cabin overlooking Lake Texoma",
+      detail: "Kabanas · Kasitas · Kimas", note: "Pack light. Settle in.",
+      href: hubUrl("cabins", brand, { campaign: "paradise-stays", content: "glamping" }),
+    },
+    {
+      name: "Cabins", invitation: "A place to come back to.",
+      description: "Come in from the lake and make yourself at home. Choose a cozy cabin, or settle into the Paradise Express: a real 1920s train car with its own story to tell.",
+      image: "/paradise/lake-evening-with-dog.jpg", alt: "A small wood cabin beneath the trees at Paradise",
+      detail: "Cabins · The Paradise Express", note: "A good night, your way.",
+      href: hubUrl("cabins", brand, { campaign: "paradise-stays", content: "cabins" }),
+    },
+    {
+      name: "RV sites", invitation: "Bring your favorite little home.",
+      description: "A shaded loop or a spot near the water. Park the camper, unfold the chairs and make yourself comfortable. Vintage campers fit right in here.",
+      image: "/paradise/aerial-rv-loop.jpg", alt: "RV sites along the wooded shoreline at Paradise on Lake Texoma",
+      detail: "Shaded loops · Waterfront sites", note: "Same home. A better view.",
+      href: hubUrl("rv", brand, { campaign: "paradise-stays", content: "rv" }),
+    },
+    {
+      name: "Camping", invitation: "Leave room for the stars.",
+      description: "Carry the tent down to our primitive shoreline sites. No hookups, just a quieter corner of Paradise. Pack in your water; restrooms and showers are back at the main camp.",
+      image: "/paradise/dog-friendly-stay.jpg", alt: "A softly lit tent beneath a star-filled sky",
+      detail: "Primitive tent sites · Shoreline", note: "The simplest kind of getaway.",
+      href: hubUrl("tents", brand, { campaign: "paradise-stays", content: "tents" }),
+    },
   ];
 
   return (
     <ParadiseJourney>
       <section className="px-arrival" id="px-arrive" aria-labelledby="px-title">
-        <div className="px-arrival-photo"><Image src="/paradise/glamping-porch-lake.jpg" alt="Sunlight and lake views from a waterfront porch at Paradise on Lake Texoma" fill priority sizes="100vw" /></div>
-        <div className="px-arrival-shade" />
-        <div className="px-arrival-top"><span>Pottsboro, Texas</span><span>200 wooded acres. One beautiful escape.</span><span>On Lake Texoma</span></div>
-        <div className="px-arrival-title"><p>However you lake.</p><h1 id="px-title"><span>Find your</span>Paradise<span className="px-title-dot">.</span></h1></div>
-        <div className="px-arrival-bottom"><p>A little less rush.<br />A little more <em>right here.</em></p><a className="px-round-link" href="#px-feel"><span>Take a<br />look around</span><span aria-hidden="true">↓</span></a><a className="px-pill px-pill-light" href="#px-stay">Find your kind of stay <span aria-hidden="true">↗</span></a></div>
-        <svg className="px-shoreline-edge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 66C200 90 310 15 560 40S1000 105 1440 28V90H0Z" /></svg>
+        <div className="px-arrival-photo px-parallax" data-parallax>
+          <Image src="/paradise/glamping-porch-lake.jpg" alt="A quiet porch, shade trees and Lake Texoma just beyond at Paradise" fill priority sizes="100vw" />
+        </div>
+        <div className="px-arrival-wash" />
+        <div className="px-arrival-location"><span>Paradise on Lake Texoma</span><span>Pottsboro, Texas</span></div>
+        <div className="px-arrival-intro"><p>Leave a little<br />behind.</p><a href="#px-exhale" aria-label="Follow the story to the lake">Follow the lake <span aria-hidden="true">↓</span></a></div>
+        <div className="px-arrival-title">
+          <p className="px-arrival-script">However you lake.</p>
+          <h1 id="px-title"><span>Find your</span>Paradise<span className="px-title-dot">.</span></h1>
+        </div>
+        <div className="px-arrival-bottom"><span>A secluded escape. A very warm welcome.</span><a href={hubUrl("cabins", brand, { campaign: "paradise-hero" })}>Find a place to stay <span aria-hidden="true">↗</span></a></div>
       </section>
 
-      <section className="px-breathe px-wrap" id="px-feel" aria-labelledby="px-breathe-title">
-        <div className="px-chapter px-reveal"><span>01</span><p>Leave a little behind</p><i aria-hidden="true" /></div>
-        <div className="px-breathe-heading px-reveal"><h2 id="px-breathe-title">First,<br /><em>exhale.</em></h2><div><Sun /><p>Getting away should feel like<br /><strong>actually getting away.</strong></p></div></div>
-        <div className="px-morning-story">
-          <figure className="px-morning-portrait px-reveal"><Image src="/paradise/birthday-cabin.jpg" alt="A guest enjoying a drink in the doorway of a lakeside cabin" fill sizes="(min-width: 800px) 39vw, 83vw" /><figcaption>Stay here a minute.</figcaption></figure>
-          <div className="px-morning-copy px-reveal"><p className="px-eyebrow">You made it.</p><h3>The coffee&apos;s warm.<br />The lake&apos;s right there.<br /><em>The day can wait.</em></h3><p>Follow the trees down to the water. Put your phone away for a while. This quiet corner of Lake Texoma has a way of making a weekend feel a little longer.</p><Link className="px-underlink" href="/plan-your-visit">Get to know the place <span aria-hidden="true">↗</span></Link></div>
-          <figure className="px-morning-inset px-reveal"><Image src="/paradise/morning-coffee.jpg" alt="A pair of deck chairs facing a golden Lake Texoma sunset" fill sizes="(min-width: 800px) 37vw, 73vw" /><figcaption>Save a seat for sunset.</figcaption></figure>
-          <svg className="px-meander" viewBox="0 0 600 800" fill="none" aria-hidden="true"><path d="M60 10C-80 210 520 95 425 260S40 290 90 455s525 160 385 335" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 8" /><path d="m458 777 17 13 22-8" stroke="currentColor" strokeWidth="1.5" /></svg>
+      <section className="px-exhale" id="px-exhale" aria-labelledby="px-exhale-title">
+        <div className="px-wrap px-exhale-heading px-reveal">
+          <p className="px-chapter"><span>01 / Arrival</span><i aria-hidden="true" /> You made it.</p>
+          <h2 id="px-exhale-title">Nothing on the clock.<br /><em>Everything to feel.</em></h2>
+        </div>
+        <div className="px-wrap px-exhale-story">
+          <figure className="px-exhale-portrait px-reveal">
+            <Image src="/paradise/birthday-cabin.jpg" alt="A guest taking a quiet moment with a drink in her cabin doorway" fill sizes="(min-width: 900px) 36vw, 75vw" />
+            <figcaption>Stay here a minute.</figcaption>
+          </figure>
+          <div className="px-exhale-copy px-reveal"><Shoreline /><p>The coffee&apos;s warm.<br />The lake&apos;s right there.<br /><strong>The day can wait.</strong></p><div>Getting away should feel like actually getting away. Two hundred wooded acres, a quiet shoreline and room to settle into your own rhythm.</div><Link className="px-link" href="/plan-your-visit">Get to know Paradise <span aria-hidden="true">↗</span></Link></div>
+          <figure className="px-exhale-landscape px-parallax px-reveal" data-parallax><Image src="/paradise/hammock-pavilion.jpg" alt="String lights and trees framing Lake Texoma" fill sizes="(min-width: 900px) 53vw, 90vw" /><figcaption>Nowhere else you need to be.</figcaption></figure>
+          <span className="px-exhale-margin" aria-hidden="true">Less hurry. More here.</span>
         </div>
       </section>
 
-      <section className="px-feeling" id="px-yours" aria-labelledby="px-feeling-title">
-        <div className="px-wrap px-feeling-heading px-reveal"><div className="px-chapter"><span>02</span><p>Find your own pace</p><i aria-hidden="true" /></div><h2 id="px-feeling-title">What does your<br /><em>Paradise feel like?</em></h2><p>There&apos;s no right way to spend a lake day.<br />Just the way that feels like you.</p></div>
+      <section className="px-discover" id="px-discover" aria-labelledby="px-discover-title">
+        <div className="px-wrap px-discover-heading px-reveal"><p className="px-chapter"><span>02 / Discovery</span><i aria-hidden="true" /> Follow your feeling.</p><div><h2 id="px-discover-title">Your kind<br />of <em>Paradise.</em></h2><p>Some days you wander.<br />Some days you don&apos;t.<br />There&apos;s room for both.</p></div></div>
         <ParadiseMood />
       </section>
 
-      <section className="px-sleep px-wrap" id="px-stay" aria-labelledby="px-sleep-title">
-        <div className="px-sleep-heading px-reveal"><div><div className="px-chapter"><span>03</span><p>Make yourself at home</p><i aria-hidden="true" /></div><h2 id="px-sleep-title">Stay a<br /><em>little longer.</em></h2></div><p>A porch by the water.<br />Your favorite camper.<br />A tent beneath the stars.<br /><strong>Pick your kind of good night.</strong></p></div>
+      <section className="px-stays" id="px-stay" aria-labelledby="px-stay-title">
+        <div className="px-wrap px-stays-heading px-reveal"><p className="px-chapter"><span>03 / Your place</span><i aria-hidden="true" /> Put your bags down.</p><h2 id="px-stay-title">Make yourself<br /><em>right at home.</em></h2><p>A little porch. Your favorite camper. A tent under the stars.<br />How you stay is up to you.</p></div>
         <ParadiseStays stays={stays} />
-        <div className="px-stay-footnote"><Link href="/stay">The details on every stay <span aria-hidden="true">↗</span></Link></div>
+        <div className="px-wrap px-stays-fineprint"><span>Reservations are completed with Texoma Destinations.</span><Link className="px-link" href="/stay">All the details on staying here <span aria-hidden="true">↗</span></Link></div>
       </section>
 
-      <section className="px-wander" id="px-outside" aria-labelledby="px-wander-title">
-        <div className="px-wrap px-wander-grid">
-          <div className="px-wander-copy px-reveal"><div className="px-chapter"><span>04</span><p>Let the day unfold</p><i aria-hidden="true" /></div><h2 id="px-wander-title">A whole lot<br />of<em>nothing</em>to do.</h2><p>And somehow, the best kind of day. A paddle along the shoreline. An afternoon in a hammock. A deer wandering past. One more story around the fire.</p><Link className="px-underlink" href="/plan-your-visit">Follow your curiosity <span aria-hidden="true">↗</span></Link></div>
-          <div className="px-wander-collage"><figure className="px-wander-main px-reveal"><Image src="/paradise/pavilion-detail.jpg" alt="A guest relaxing in a hammock in the shaded hammock garden" fill sizes="(min-width: 800px) 37vw, 77vw" /><figcaption>Doing nothing. Doing it well.</figcaption></figure><figure className="px-wander-small px-reveal"><Image src="/paradise/tent-under-stars.jpg" alt="A deer resting in the grass at Paradise on Lake Texoma" fill sizes="(min-width: 800px) 23vw, 48vw" /><figcaption>The neighbors are pretty quiet.</figcaption></figure><Sun className="px-wander-sun" /></div>
+      <section className="px-outside" id="px-outside" aria-labelledby="px-outside-title">
+        <div className="px-wrap px-outside-layout">
+          <div className="px-outside-heading px-reveal"><p className="px-chapter"><span>04 / Lake time</span><i aria-hidden="true" /> No itinerary required.</p><h2 id="px-outside-title">A whole lot<br />of <em>nothing</em><br />to do.</h2></div>
+          <figure className="px-outside-photo px-parallax px-reveal" data-parallax><Image src="/paradise/pavilion-detail.jpg" alt="A guest relaxing in a hammock at Paradise" fill sizes="(min-width: 900px) 44vw, 83vw" /><figcaption>Busy doing this.</figcaption></figure>
+          <div className="px-outside-copy px-reveal"><p>Paddle the shoreline. Find your hammock. Watch a deer wander past. Meet your people at the community bar, then stay for one more story around the fire.</p><div className="px-outside-list"><span>Kayak &amp; paddleboard rentals</span><span>Hammock garden</span><span>Community bar &amp; firepit</span><span>Private boat ramp</span></div><Link className="px-link" href="/plan-your-visit">A little help planning your getaway <span aria-hidden="true">↗</span></Link></div>
+          <figure className="px-outside-memory px-reveal"><Image src="/paradise/tent-under-stars.jpg" alt="A deer resting in the grass at Paradise" fill sizes="(min-width: 900px) 22vw, 45vw" /><figcaption>Your quiet neighbors.</figcaption></figure>
         </div>
-        <div className="px-wander-notes px-wrap"><span>Kayaks &amp; paddleboards</span><i aria-hidden="true">✳</i><span>Hammock garden</span><i aria-hidden="true">✳</i><span>Community firepit</span><i aria-hidden="true">✳</i><span>Private boat ramp</span></div>
+        <div className="px-outside-line" aria-hidden="true">A little less rush. <em>A little more lake.</em></div>
       </section>
 
-      <section className="px-company px-wrap" aria-labelledby="px-company-title"><figure className="px-company-photo px-reveal"><Image src="/paradise/camp-grill.jpg" alt="A guest and her dog spending time outside a Paradise cabin" fill sizes="(min-width: 800px) 30vw, 72vw" /></figure><div className="px-company-copy px-reveal"><p className="px-eyebrow">Good days. Better company.</p><h2 id="px-company-title">Bring your people.<br /><em>And your best friend.</em></h2><p>Room to reconnect, run around, or simply be together. Dog-friendly stays mean the whole crew can find their Paradise.</p><Link className="px-underlink" href="/plan-your-visit">A few things to know before you go <span aria-hidden="true">↗</span></Link></div><span className="px-company-note" aria-hidden="true">paws welcome ♡</span></section>
+      <section className="px-together px-wrap" aria-labelledby="px-together-title"><div className="px-together-photo px-reveal"><Image src="/paradise/string-lights-lake.jpg" alt="A guest and her dog enjoying an evening beside Lake Texoma" fill sizes="(min-width: 900px) 35vw, 83vw" /></div><div className="px-together-copy px-reveal"><p className="px-eyebrow">The best part is who you bring.</p><h2 id="px-together-title">Your people.<br /><em>Your Paradise.</em></h2><p>A weekend to reconnect. A birthday by the water. Or just a few days with your favorite company. Dog-friendly stays mean your best friend can come, too.</p><Link className="px-link" href="/groups-and-events">Bring everyone together <span aria-hidden="true">↗</span></Link></div><figure className="px-together-memory px-reveal"><Image src="/paradise/camp-grill.jpg" alt="A guest with her dog outside a cabin" fill sizes="(min-width: 900px) 17vw, 40vw" /><figcaption>Always room for this one.</figcaption></figure></section>
 
-      <section className="px-dusk" id="px-return" aria-labelledby="px-dusk-title"><Image src="/paradise/morning-coffee.jpg" alt="The sun setting over Lake Texoma beyond an empty pair of deck chairs" fill sizes="100vw" /><div className="px-dusk-shade" /><div className="px-dusk-copy px-reveal"><span className="px-eyebrow">Close enough for a weekend. Far enough to feel it.</span><h2 id="px-dusk-title">You&apos;ll know<br />when you&apos;ve<br /><em>found it.</em></h2><p>However you lake, you&apos;ll find your Paradise here.</p><a className="px-pill px-pill-light" href="#px-stay">Let&apos;s find your stay <span aria-hidden="true">↗</span></a></div><div className="px-dusk-bottom"><span>Paradise on Lake Texoma</span><span>Pottsboro, Texas</span><span>This is your sign to get away.</span></div></section>
+      <section className="px-here" aria-labelledby="px-here-title"><div className="px-here-photo px-parallax" data-parallax><Image src="/paradise/aerial-peninsula.jpg" alt="The wooded Paradise peninsula surrounded by Lake Texoma" fill sizes="100vw" /></div><div className="px-here-wash" /><div className="px-here-copy px-reveal"><p className="px-eyebrow">On the quiet side of Lake Texoma</p><h2 id="px-here-title">Secluded.<br /><em>Not isolated.</em></h2><p>Close enough for the weekend.<br />Far enough to feel it.</p><a className="px-link" href={brand.nap.googleMapsUrl} data-intent="directions">Find us in {brand.nap.city}, {brand.nap.region} <span aria-hidden="true">↗</span></a></div><div className="px-here-address">{brand.nap.streetAddress}<span>{brand.nap.city}, {brand.nap.region} {brand.nap.postalCode}</span></div></section>
+
+      <section className="px-last-light" id="px-last-light" aria-labelledby="px-last-light-title"><div className="px-last-light-photo px-parallax" data-parallax><Image src="/paradise/morning-coffee.jpg" alt="Two empty chairs facing the sunset over Lake Texoma" fill sizes="100vw" /></div><div className="px-last-light-wash" /><div className="px-wrap px-last-light-copy px-reveal"><p className="px-chapter"><span>05 / Stay a little longer</span><i aria-hidden="true" /> There&apos;s always one more sunset.</p><h2 id="px-last-light-title">You&apos;ll know<br />when you&apos;ve<br /><em>found it.</em></h2><p>However you lake,<br />you&apos;ll find your Paradise here.</p><div className="px-booking-links"><a href={hubUrl("cabins", brand, { campaign: "paradise-finale", content: "cabins" })} data-intent="cabins">Find glamping &amp; cabins <span aria-hidden="true">↗</span></a><a href={hubUrl("rv", brand, { campaign: "paradise-finale", content: "rv" })} data-intent="rv">Bring your RV <span aria-hidden="true">↗</span></a><a href={hubUrl("tents", brand, { campaign: "paradise-finale", content: "tents" })} data-intent="tents">Pitch your tent <span aria-hidden="true">↗</span></a></div></div><div className="px-last-light-signature"><Shoreline /><span>this is Paradise</span></div></section>
     </ParadiseJourney>
   );
 }
