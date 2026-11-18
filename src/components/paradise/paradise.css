@@ -479,10 +479,10 @@ html:has(.pd) { scroll-behavior: smooth; }
 
 /* ── 03 Golden hour ───────────────────────────────────────────────────────────────────────── */
 .pd-exhale { position: relative; padding: clamp(3rem, 6vw, 5rem) 0 clamp(4rem, 6vw, 6rem); background: linear-gradient(180deg, var(--pd-cream) 0%, #f7ecdd 34%, #f3e3cf 100%); }
-.pd-exhale-head h2 { position: relative; z-index: 3; margin-top: 1.6rem !important; display: flex; align-items: flex-end; flex-wrap: wrap; gap: 0 .35em; }
+.pd-exhale-head h2 { position: relative; z-index: 3; margin-top: 1.6rem !important; display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 .22em; }
 .pd-exhale-head .pd-display { font-size: clamp(4.4rem, 11vw, 10.5rem); }
-.pd-exhale-head .pd-sign { font-size: clamp(6.4rem, 16vw, 15rem); color: var(--pd-tan); margin-bottom: -.2em; }
-.pd-exhale-scene { position: relative; margin-top: clamp(-4.5rem, -5vw, -2rem); }
+.pd-exhale-head .pd-sign { font-size: clamp(6.4rem, 16vw, 15rem); color: var(--pd-tan); }
+.pd-exhale-scene { position: relative; margin-top: 1.5rem; }
 .pd-exhale-wide { position: relative; margin-left: auto; width: 100%; height: clamp(420px, 60vw, 860px); overflow: hidden; }
 .pd-exhale-wide .pd-par { position: absolute; inset: -8% 0; }
 .pd-exhale-copy { position: relative; z-index: 2; width: min(100% - 3rem, 26rem); margin: 2.5rem auto 0; }
