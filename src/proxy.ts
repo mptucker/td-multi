@@ -12,7 +12,7 @@ import type { BrandSlug } from "@/config/types";
  *   /sites/paradise/...       →  always allowed (Vercel preview URLs, QA)
  * /admin, /studio and /api are never rewritten.
  */
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const url = req.nextUrl.clone();
   const path = url.pathname;
 
@@ -116,5 +116,7 @@ export const config = {
   matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };
 
-// Referenced so tree-shaking keeps BRANDS available to edge runtime if needed.
+// Referenced so tree-shaking keeps BRANDS available. This said "to edge
+// runtime if needed" until the rename: proxy runs on nodejs and cannot be
+// configured onto edge, so there is no edge here to keep it for.
 void BRANDS;

@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
     // not exist on 15, which is part of why this repo sat on an advisory.
     agentUpgrade: "security",
   },
-  // Trailing slashes are handled per brand in middleware: bigwatermarine.com
+  // Trailing slashes are handled per brand in proxy: bigwatermarine.com
   // keeps its WordPress-style /page/ URLs, every other brand drops them.
   skipTrailingSlashRedirect: true,
   images: {
@@ -26,7 +26,7 @@ const nextConfig: NextConfig = {
     if (!wp || /\/\/(www\.)?bigwatermarine\.com$/.test(wp)) return [];
     return [{ source: "/wp-content/:path*", has: [{ type: "host", value: "(www\\.)?bigwatermarine\\.com" }], destination: `${wp}/wp-content/:path*` }];
   },
-  // Legacy-URL redirects are served from /src/config/redirects.ts via middleware so
+  // Legacy-URL redirects are served from /src/config/redirects.ts via proxy so
   // they can be edited per brand without touching this file.
 };
 

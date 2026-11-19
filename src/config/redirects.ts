@@ -61,7 +61,7 @@ export const REDIRECTS: Record<BrandSlug, Record<string, string>> = {
     "/luau": "/packages",
     "/vintage": "/packages",
     "/test-page": "/",
-    // 65 unit pages (/stay/kima-1 …) are matched by prefix in middleware → /stay#glamping
+    // 65 unit pages (/stay/kima-1 …) are matched by prefix in proxy → /stay#glamping
   },
   sundance: {
     "/property": "/stay",
