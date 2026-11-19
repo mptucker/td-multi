@@ -23,7 +23,7 @@ const bebas = Bebas_Neue({ subsets: ["latin"], weight: "400", variable: "--font-
 const brand = BRANDS.bigwatermarine;
 
 // Stays static (ISR) by never reading the request: preview hosts get a
-// noindex header from middleware, and analytics checks the hostname in the browser.
+// noindex header from proxy, and analytics checks the hostname in the browser.
 export const metadata: Metadata = {
     metadataBase: new URL(SITE),
     title: {
