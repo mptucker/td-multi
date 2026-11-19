@@ -2,6 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  experimental: {
+    // Set as part of the 15 -> 16 upgrade. Records that this app takes
+    // security patches through `next upgrade --agent=security`, so a future
+    // advisory stops the build rather than passing unnoticed. The option did
+    // not exist on 15, which is part of why this repo sat on an advisory.
+    agentUpgrade: "security",
+  },
   // Trailing slashes are handled per brand in middleware: bigwatermarine.com
   // keeps its WordPress-style /page/ URLs, every other brand drops them.
   skipTrailingSlashRedirect: true,
